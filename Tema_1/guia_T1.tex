@@ -585,6 +585,337 @@
         \part $T = 40 \, \text{N}$.
     \end{parts}
 
+    \pagebreak
+
+    \section{Oscilador armónico simple}
+
+    \question Una masa de 5 kg se sujeta a un resorte de constante $k = 500 \, \frac{\text{N}}{\text{m}}$ que se encuentra en posición horizontal (Figura~\ref{fig:oas_reposo}). Luego manualmente se estira 5 cm el resorte, tal como se muestra en la Figura~\ref{fig:oas_inicial} y se lo suelta. 
+    \begin{enumerate}[a)]
+        \item Hallar la frecuencia angular ($\omega$).
+        \item Escribir las expresiones de $x(t)$ y de $v(t)$.
+        \item Calcule la frecuencia ($f$) y el período ($P$).
+        \item ¿Cuál es la rapidez máxima del cuerpo?
+        \item ¿Cuándo alcanza el cuerpo por primera vez su posición de equilibrio? Calcule la aceleración en ese instante.
+    \end{enumerate}
+
+    \begin{figure}[ht]
+    \centering
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=1.5]
+            \draw[decoration={coil,segment length = 1mm,amplitude = 2mm,aspect = 0.3,post length = 1mm,pre length = 1mm},decorate,thick,black!50] (1,0) -- (2,0);
+            \draw[thick] (1,-0.25) -- (1,0.25);
+            \node at (1.5,0.3) {\scriptsize $k$};
+            \draw[-latex] (0.5,0) -- (3.5,0) node[anchor=north]{\scriptsize $x$};
+            \draw[-latex] (2,-0.5) -- (2,0.5) node[anchor=east]{\scriptsize $y$};
+            \fill[black] (2,0) circle (0.5mm) node[anchor=south west]{\scriptsize $m$};
+        \end{tikzpicture}
+        \caption{ }
+        \label{fig:oas_reposo}
+    \end{subfigure}
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=1.5]
+            \draw[decoration={coil,segment length = 2mm,amplitude = 2mm,aspect = 0.5,post length = 1mm,pre length = 1mm},decorate,thick,black!50] (1,0) -- (3,0);
+            \draw[thick] (1,-0.25) -- (1,0.25);
+            \draw[-latex] (0.5,0) -- (3.5,0) node[anchor=north]{\scriptsize $x$};
+            \draw[-latex] (2,-0.5) -- (2,0.5) node[anchor=east]{\scriptsize $y$};
+            \fill[black] (3,0) circle (0.5mm) node[anchor=south west]{\scriptsize $m$};
+            \node[anchor=north] at (3,0) {\scriptsize $x_0$};
+        \end{tikzpicture}
+        \caption{ }
+        \label{fig:oas_inicial}
+    \end{subfigure}
+    \caption{ }
+    \label{fig:OAS}
+    \end{figure}
+
+    \begin{solution}
+    \begin{enumerate}[a)]
+        \item La frecuencia angular está dada por la expresión: $$\omega = \sqrt{\frac{k}{m}}$$ Teniendo en cuenta los valores correspondientes, se obtiene: $$\omega = \sqrt{\frac{500 \, \frac{\text{N}}{\text{m}}}{5 \, \text{kg}}} = \sqrt{100 \, \frac{1}{\text{s}^2}} = 10 \, \frac{\text{rad}}{\text{s}}$$
+        \item La forma general de la elongación en función del tiempo es: $$x(t) = A \, \cos \left(\omega \, t + \theta_0\right),$$ donde $A$ es la amplitud del movimiento y $\theta_0$ es la fase inicial. Por otro lado, la rapidez del oscilador viene dada por: $$v(t) = - A \, \omega \sen \left(\omega \, t + \theta_0\right)$$ Si se asume que el movimiento comienza en $t= 0$, instante en el que la posición inicial del oscilador es $x_0 = 0.05 \, \text{m}$ y su rapidez inicial es nula, tenemos que: $$x(0) = A \cos \theta_0 = x_0 \qquad \text{y que} \qquad v(0) = - A \omega \sen \theta_0 = v_0$$ Podemos ver entonces que, en términos generales: $$A = \sqrt{x_0^2 + \left(\frac{v_0}{\omega}\right)^2} \qquad \text{y} \qquad \tan \theta_0 = - \frac{v_0}{\omega \, x_0}$$ Como $v_0 = 0$, entonces $$A = \sqrt{x_0^2} = \abs{x_0} = 0.05 \, \text{m}$$ y $$\tan \theta_0 = - \frac{0}{\omega \, x_0} = 0$$ El hecho de que $\tan \theta_0 = 0$ podría significar, en principio que $\theta_0 = 0$ o que $\theta_0 = \pi$, pero como $x_0 > 0$, entonces es evidente que la solución correspondiente es $\theta_0 = 0$. Así, las expresiones de la elongación y de la rapidez en función del tiempo son 
+        \begin{align*}
+        x(t) &= 0.05 \, \text{m} \cos \left(10 \, \frac{\text{rad}}{\text{s}} \, t\right); \\
+        v(t) &= - 0.05 \, \text{m} \times 10 \, \frac{\text{rad}}{\text{s}} \sen \left(10 \, \frac{\text{rad}}{\text{s}} \, t\right) = - 0.5 \, \frac{\text{m}}{\text{s}} \sen \left(10 \, \frac{\text{rad}}{\text{s}} \, t\right)
+        \end{align*}
+        \item La frecuencia ``física'' $f$ está relacionada con la frecuencia angular mediante: $$\omega = 2 \, \pi \, f$$ Entonces: $$f = \frac{\omega}{2 \, \pi} = \frac{10 \, \frac{\text{rad}}{\text{s}}}{2 \, \pi} = \frac{5}{\pi} \frac{1}{\text{s}} \approx 1.59 \, \text{Hz}$$ Por otra parte, el periodo se puede calcular usando la expresión $$P = \frac{2 \, \pi}{\omega}$$ o bien: $$P = \frac{1}{f}$$ De cualquiera de las dos formas se obtiene: $$P = \frac{\pi}{5} \, \text{s} \approx 0.63 \, \text{s}$$
+        \item La rapidez máxima del oscilador puede pensarse como la ``amplitud'' de la función periódica $v(t)$, es decir: $$v_\text{max} = 0.5 \, \frac{\text{m}}{\text{s}}$$
+        \item El instante en que el oscilador alcanza por primera vez la posición de equilibrio se puede determinar de la siguiente manera. En virtud de que $$\omega = \frac{2 \, \pi}{P}$$ podemos reescribir, de forma general, la expresión de $x(t)$ como: $$ x(t) = A \cos \left(\frac{2 \, \pi}{P} \, t\right)$$ Se llamamos $t_\text{eq}$ a dicho instante, entonces: $x(t_\text{eq}) = 0$, entonces: $$x(t_\text{eq}) = A \cos \left(\frac{2 \, \pi}{P} \, t_\text{eq}\right) = 0$$ Esto es: $$\cos \left(\frac{2 \, \pi}{P} \, t_\text{eq}\right) = 0$$ Como sabemos, el coseno es cero ``por primera vez'' cuando su argumento es igual a $\frac{\pi}{2}$, luego: $$\frac{2 \, \pi}{P} \, t_\text{eq} = \frac{\pi}{2},$$ de donde se obtiene que $$t_\text{eq} = \frac{P}{4}$$ Así, podemos observar que el oscilador alcanza la posición de equilibrio por primera vez después de que ha transcurrido un intervalo de tiempo igual a la cuarta parte del periodo del mismo. Entonces: $$t_\text{eq} \approx 0.158 \, \text{s}$$ Por último, en el instante en que el oscilador pasa por la posición de equilibrio, en virtud de la relación $a(t) = - \omega^2 x(t)$, resulta claro que la aceleración debe ser igual a cero en dicho instante.
+    \end{enumerate}
+    \end{solution}
+
+    \question Un proyectil, que tiene $20 \, \un{g}$ de masa y se desplaza a una velocidad de $200 \, \frac{\text{m}}{\text{s}}$ en dirección horizontal y sentido hacia la derecha, choca contra un bloque de masa $1.98 \, \un{kg}$ que se encuentra en reposo sobre una superficie horizontal lisa, y queda incrustado en él. El bloque esta unido a un resorte en hélice como indica la Figura~\ref{fig:bala_bloque_resorte}. El calibrado del resorte indica que para comprimirlo $1 \, \un{cm}$ es necesaria una fuerza de $2 \, \un{N}$. Luego del choque, el sistema formado por el proyectil, el bloque y el resorte, describe un movimiento armónico simple.
+        
+    Determinar:
+    \begin{parts}
+    \part La velocidad del conjunto formado por el bloque y el proyectil inmediatamente después del choque.
+    \part La frecuencia angular ($\omega$) y el periodo ($P$) del oscilador armónico simple.
+    \part Las ecuaciones que dan la posición, la velocidad y la aceleración del oscilador en función del tiempo en la forma: 
+    \begin{itemize}
+        \item $x(t) = \phantom{-} \, A \cos \left(\omega \, t + \theta_0\right)$.
+        \item $v(t) = - \, A \, \omega \sen \left(\omega \, t + \theta_0\right)$.
+        \item $a(t) = - \, A \, \omega^2 \cos \left(\omega \, t + \theta_0\right)$.
+    \end{itemize}
+    \part ¿Cuál es el valor máximo del módulo de la aceleración?
+    \end{parts}
+
+    \begin{figure}[ht]
+        \centering
+        \begin{subfigure}{0.45\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=1]
+                \draw[decoration={coil,segment length = 3mm,amplitude = 2mm,aspect = 0.75,post length = 1mm,pre length = 1mm},decorate,thick,black!50] (2,0.5) -- (5,0.5);
+                \draw[fill=gray!40] (1,0) rectangle (2,1);
+                \node at (1.5,0.5) {$m$};
+                \node at (3.5,1) {$k$};
+                \draw[thick] (0,0) -- (5,0) -- (5,1);
+                
+                \coordinate (A) at (0,0.5);  % To position the bullet in another fig
+                \begin{scope}[shift={(A)}, rotate=0,scale=0.1]
+                \fill[top color=black!10, bottom color=black!70]
+                (0,1) -- (1.5, 1) to [out=0, in=120] (2.5,0.5) to[out=-120, in=0] (1.5,0) -- (0,0) --cycle;
+                \draw[white, draw opacity=0.5, line cap=round, line width=0.8mm] (0,0.1) -- (1.5,0.1) to[out=0, in=-140] (2.5,0.5)  (0.02,0) -- (0.02,1) (0.2,0) -- (0.2,1);
+                \draw[black!80, line width=0.4mm]   (0,1) -- (1.5, 1) to [out=0, in=120] (2.5,0.5) to[out=-120, in=0] (1.5,0) -- (0,0) --cycle (0.18,0) -- (0.18,1);
+                \end{scope}
+                \draw[thick,-latex] (-0.25,1) -- node[anchor=south]{$\vec{v}$} (0.5,1);
+            \end{tikzpicture}
+            \caption{}
+            \label{fig:bala_bloque_resorte1}
+        \end{subfigure}
+        ~
+        \begin{subfigure}{0.45\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=1]
+                \draw[decoration={coil,segment length = 2mm,amplitude = 2mm,aspect = 0.5,post length = 1mm,pre length = 1mm},decorate,thick,black!50] (3.5,0.5) -- (5,0.5);
+                \draw[fill=gray!40] (2.5,0) rectangle (3.5,1);
+                \draw (1,1.1) -- (1,1.4);
+                \draw (2.5,1.1) -- (2.5,1.4);
+                \draw [latex-latex] (1,1.25) -- node[fill=white]{$\Delta L$} (2.5,1.25);
+                \draw[thick] (0,0) -- (5,0) -- (5,1);
+                \coordinate (A) at (2.5,0.5);  % To position the bullet in another fig
+                \begin{scope}[shift={(A)}, rotate=0,scale=0.1]
+                \fill[top color=black!10, bottom color=black!70]
+                (0,1) -- (1.5, 1) to [out=0, in=120] (2.5,0.5) to[out=-120, in=0] (1.5,0) -- (0,0) --cycle;
+                \draw[white, draw opacity=0.5, line cap=round, line width=0.8mm] (0,0.1) -- (1.5,0.1) to[out=0, in=-140] (2.5,0.5)  (0.02,0) -- (0.02,1) (0.2,0) -- (0.2,1);
+                \draw[black!80, line width=0.4mm]   (0,1) -- (1.5, 1) to [out=0, in=120] (2.5,0.5) to[out=-120, in=0] (1.5,0) -- (0,0) --cycle (0.18,0) -- (0.18,1);
+                \end{scope}
+            \end{tikzpicture}
+            \caption{}
+            \label{fig:bala_bloque_resorte2}
+        \end{subfigure}
+        \caption{ }
+        \label{fig:bala_bloque_resorte}
+    \end{figure}
+
+    \begin{solution}
+    \begin{enumerate}[a)]
+        \item La velocidad del conjunto formado por el proyectil y el bloque después del choque puede hallarse utilizando la ecuación: $$m_A \, v_{A1} + m_B \, v_{B1} = m_A \, v_{A2} + m_B \, v_{B2},$$ donde $m_A$ y $m_B$ son la masa del proyectil y la del bloque, respectivamente, $v_{A1}$ y $v_{A2}$ son la rapidez del proyectil antes y después del choque, respectivamente, y $v_{B1}$ y $v_{B2}$ son las correspondientes para el bloque. En virtud de que el bloque estaba en reposo antes del choque, tenemos que $v_{B1} = 0$. Además, como ambos quedan unidos después del choque, sus velocidades son iguales: $v_{A2} = v_{B2} = v_2$. Entonces: $$m_A \, v_{A1} = \left(m_A + m_B\right) v_2$$ de donde podemos determinar el valor de $v_2$: $$v_2 = \frac{m_A \, v_{A1}}{m_A + m_B}$$ Reemplazando los valores correspondientes: $$v_2 = \frac{0.02 \, \text{kg} \times 200 \, \frac{\text{m}}{\text{s}}}{0.02 \, \text{kg} + 1.98 \, \text{kg}} = 2 \, \frac{\text{m}}{\text{s}}$$
+        \item Como sabemos, tanto la frecuencia angular como el periodo del oscilador armónico simple depende únicamente de $k$ y de $m$, mediante: $$ \omega = \sqrt{\frac{k}{m}} \qquad \text{ y } \qquad P = \frac{2\, \pi}{\omega} = 2 \, \pi \sqrt{\frac{m}{k}}$$ En este caso, tenemos que el resorte se comprime un centímetro cada 2 N de fuerza que se le aplica. Por lo tanto: $$k = 2 \frac{\text{N}}{\text{cm}} = 200 \, \frac{\text{N}}{\text{m}}$$ Además, la masa del oscilador es igual a la masa del conjunto formado por el proyectil y el bloque: $m = m_A + m_B = 2 \, \text{kg}$. Luego: $$\omega = \sqrt{\frac{200 \, \frac{\text{N}}{\text{m}}}{2 \, \text{kg}}} = \sqrt{100 \, \frac{1}{\text{s}^2}} = 10 \, \frac{\text{rad}}{\text{s}}$$ Entonces, el periodo es: $$ P = \frac{2 \, \pi \,\text{rad}}{10 \, \frac{\text{rad}}{\text{s}}} = \frac{\pi}{5} \text{s} \approx 0.63 \, \text{s}$$
+        \item Para poder escribir las ecuaciones que dan la elongación, la rapidez y la aceleración en función del tiempo, debemos primero determinar el valor de la amplitud y de la fase inicial. Una manera es considerando las condiciones iniciales. En $t= 0$, el oscilador se encuentra en la posición de equilibrio y su velocidad inicial es igual a $v_2$ en virtud del impulso adquirido inmediatamente después del choque. Esto es:
+        \begin{align*}
+        x(0) &= A \cos \theta_0 = 0 \\
+        v(0) &= - \, A \, \omega \sen \theta_0 = v_2 \Rightarrow A \sen \theta_0 = - \frac{v_2}{\omega}.
+        \end{align*} Por un lado, podemos elevar ambos miembros de estas dos ecuaciones y luego sumarlas para obtener: $$A = \sqrt{\left(\frac{v_2}{\omega}\right)^2} = \abs{\frac{v_2}{\omega}}$$ Reemplazando los valores correspondientes, obtenemos: $$ A = \abs{\frac{2 \, \frac{\text{m}}{\text{s}}}{10 \, \frac{\text{rad}}{\text{s}}}} = 0.2 \, \text{m}$$ Por otro lado, podemos calcular el cociente entre la segunda y la primera: $$\frac{A \sen \theta_0}{A \cos \theta_0} = \frac{- \frac{v_2}{\omega}}{0}$$ Lo que es equivalente a: $$ \tan \theta_0 = \frac{- \frac{v_2}{\omega}}{0} $$ Como el numerador es negativo y el denominador es nulo, $\tan \theta_0$ tiende a $-\infty$ y, por lo tanto: $$\theta_0 = \frac{3 \, \pi}{2}$$ En consecuencia:
+        \begin{align*}
+        x(t) &= 0.2 \, \text{m} \cos \left(10 \, \frac{\text{rad}}{\text{s}} \, t + \frac{3 \, \pi}{2}\right) \\
+        v(t) &= - 2 \, \frac{\text{m}}{\text{s}} \sen \left(10 \, \frac{\text{rad}}{\text{s}} \, t + \frac{3 \, \pi}{2}\right) \\
+        a(t) &= 20 \, \frac{\text{m}}{\text{s}^2} \cos \left(10 \, \frac{\text{rad}}{\text{s}} \, t + \frac{3 \, \pi}{2}\right)
+        \end{align*}
+        \item El valor máximo de la aceleración corresponde a la ``amplitud'' de la función periódica que da la aceleración del oscilador en función del tiempo, es decir: $$a_\text{max} = 20 \, \frac{\text{m}}{\text{s}^2}$$
+    \end{enumerate}
+    \end{solution}
+
+    \question Un oscilador armónico está formado por una masa de 100 kg y un resorte de constante $k$ desconocida.
+    \begin{parts}
+        \part Si el período de las oscilaciones es $P=1$ s, determinar la constante elástica $k$.
+        \part Si el resorte se reemplaza por otro de $k = 156.8 \, \frac{\text{N}}{\text{m}}$ y la masa por otra de valor $m = 10$ kg, hallar la frecuencia de las oscilaciones.
+    \end{parts}
+
+    \rtas
+    \begin{parts}
+        \part $k = 3950 \frac{\text{N}}{\text{m}}$.
+        \part $f = 0.63$ Hz.
+    \end{parts}
+
+    \question Un cuerpo de masa 10 g se mueve con movimiento armónico simple, de amplitud 24 cm y $P = 4$ s. Cuando $t=0$, la elongación es de $+24$ cm. Calcular:
+    \begin{parts}
+        \part La posición del cuerpo en $t=0.5$ s.
+        \part El valor y el sentido de la fuerza que actúa sobre el cuerpo en $t=0.5$ s.
+        \part El tiempo mínimo que es necesario para que se mueva desde la posición inicial hasta el punto de elongación $x = -12$ cm.
+        \part La velocidad del cuerpo para $x=-12$ cm.
+    \end{parts}
+
+    \rtas
+    \begin{parts}
+        \part $x = 17$ cm.
+        \part $F = -0.42 \E{-2}$ N.
+        \part $t = 1.33$ s.
+        \part $v = \pm 32.6 \, \frac{\text{cm}}{\text{s}}$.
+    \end{parts}
+
+    \question Hallar el periodo de oscilación de una partícula, sabiendo que cuando la elongación es de $6.25$ cm la aceleración es de $1 \, \frac{\text{m}}{\text{s}^2}$.
+
+    \rta $P = 1.57$ s.
+
+    \question Un cuerpo de masa 300 kg oscila en el extremo de un resorte sobre una superficie horizontal sin rozamiento. En el gráfico de la Figura~\ref{fig:graficaOAS} se observa la posición del cuerpo en función del tiempo.
+    \begin{parts}
+        \part Calcule la constante elástica del resorte.
+        \part Calcule la velocidad máxima que adquiere el cuerpo.
+        \part ¿En qué instantes la aceleración tiene módulo máximo?
+    \end{parts}
+
+    \begin{figure}[ht]
+        \centering
+        \begin{tikzpicture}[scale=1]
+            \draw[-latex,thick] (-0.5,0) -- (10,0) node[anchor=north]{\scriptsize $t$ [s]};
+            \draw[-latex,thick] (0,-2) -- (0,2) node[anchor=east]{\scriptsize $x(t)$ [cm]};
+            \draw[scale=1,domain=0:9,smooth,variable=\x,red,thick] plot ({\x},{1.5*cos(deg(2*pi*\x/6))});
+            \fill (0,1.5) circle (0.5mm) node[anchor=east]{\scriptsize $5$};
+            \fill (0,-1.5) circle (0.5mm) node[anchor=east]{\scriptsize $-5$};
+            \fill (0,0) circle (0.5mm) node[anchor=north east]{\scriptsize $0$};
+            \fill (1.5,0) circle (0.5mm) node[anchor=north]{\scriptsize $2$};
+            \fill (3,0) circle (0.5mm) node[anchor=north]{\scriptsize $4$};
+            \fill (4.5,0) circle (0.5mm) node[anchor=north]{\scriptsize $6$};
+            \fill (6,0) circle (0.5mm) node[anchor=north]{\scriptsize $8$};
+            \fill (7.5,0) circle (0.5mm) node[anchor=north east]{\scriptsize $10$};
+            \fill (9,0) circle (0.5mm) node[anchor=north]{\scriptsize $12$};
+        \end{tikzpicture}
+        \caption{ }
+        \label{fig:graficaOAS}
+    \end{figure}
+
+    \rtas
+    \begin{parts}
+        \part $k=185 \, \frac{\text{N}}{\text{m}}$.
+        \part $0.039 \, \frac{\text{m}}{\text{s}}$. 
+        \part $0$ s, 4 s y 8 s.
+    \end{parts}
+
+    \question Un cuerpo de masa $0.25$ kg está sometido a una fuerza recuperadora elástica de constante de $25 \, \frac{\text{N}}{\text{m}}$. Se inicia la oscilación del cuerpo con una energía potencial de $0.6$ J y una energía cinética de $0.2$ J.
+    \begin{parts}
+        \part ¿Cuál es la amplitud de movimiento?
+        \part ¿Cuál es la $E_\text{pe}$ cuando la elongación es la mitad de la amplitud?
+        \part ¿Para qué elongación son iguales la $E_\text{c}$ y la $E_\text{pe}$?
+        \part ¿Cuál es la velocidad del cuerpo en el centro de su trayectoria?
+    \end{parts}
+
+    \rtas
+    \begin{parts}
+        \part $0.25$ m.
+        \part $0.2$ J.
+        \part $x = \pm 0.18$ m.
+        \part $v = \pm 2.59 \, \frac{\text{m}}{\text{s}}$.
+    \end{parts}
+
+    \question Para el sistema del problema anterior, hallar:
+    \begin{parts}
+        \part El período $P$.
+        \part La frecuencia $f$.
+        \part La frecuencia angular $\omega$.
+        \part La fase inicial $\theta_0$ si la amplitud es $A =15$ cm, la elongación inicial es $x_0 =7.5$ cm y la velocidad inicial $v_0$ es negativa.
+        \part Escribir las ecuaciones horarias del movimiento: $x(t)$, $v(t)$ y $a(t)$.
+    \end{parts}
+
+    \rtas
+    \begin{parts}
+        \part $P = 0.628$ s.
+        \part $f = 1.59$ Hz.
+        \part $\omega = 10 \, \frac{\text{rad}}{\text{s}}$.
+        \part $\theta_0 = \frac{5 \, \pi}{6} \, \text{rad}$. 
+    \end{parts}
+
+    \question Un oscilador armónico simple está formado por una masa puntual de $5$ kg y un resorte cuya constante es $2880\, \frac{\text{N}}{\text{m}}$, tal como se muestra en la Figura~\ref{fig:OAS_x0neg} (\subref{fig:oas_reposo_x0neg}). El resorte se comprime hasta el punto $(-50 \, \text{cm};0)$, tal como se muestra en la Figura~\ref{fig:OAS_x0neg} (\subref{fig:oas_inicial_x0neg}) y luego el sistema se libera partiendo del reposo.
+
+    \begin{figure}[ht]
+        \centering
+        \begin{subfigure}{0.45\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=1.75]
+                \draw[decoration={coil,segment length = 2mm,amplitude = 2mm,aspect = 0.5,post length = 1mm,pre length = 1mm},decorate,thick,black!50] (0,0) -- (2,0);
+                \draw[thick] (0,-0.25) -- (0,0.25);
+                \node at (1,0.3) {$k$};
+                \draw[-latex] (-0.5,0) -- (4,0) node[anchor=north]{$x$};
+                \draw[-latex] (2,-0.5) -- (2,0.5) node[anchor=east]{$y$};
+                \fill[black] (2,0) circle (0.5mm) node[anchor=south west]{$m$};
+            \end{tikzpicture}
+            \caption{ }
+            \label{fig:oas_reposo_x0neg}
+        \end{subfigure}
+        \begin{subfigure}{0.45\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=1.75]
+                \draw[decoration={coil,segment length = 1mm,amplitude = 2mm,aspect = 0.3,post length = 1mm,pre length = 1mm},decorate,thick,black!50] (0,0) -- (1,0);
+                \draw[thick] (0,-0.25) -- (0,0.25);
+                \node at (0.5,0.3) {$k$};
+                \draw[-latex] (-0.5,0) -- (4,0) node[anchor=north]{$x$};
+                \draw[-latex] (2,-0.5) -- (2,0.5) node[anchor=east]{$y$};
+                \fill[black] (1,0) circle (0.5mm) node[anchor=south west]{$m$};
+                \node[anchor=north] at (1,-0.1) {$x_0$};
+            \end{tikzpicture}
+            \caption{ }
+            \label{fig:oas_inicial_x0neg}
+        \end{subfigure}
+        \caption{ }
+        \label{fig:OAS_x0neg}
+    \end{figure}
+
+    \begin{parts}
+        \part Determinar 
+        \begin{subparts}
+            \subpart la amplitud ($A$),
+            \subpart la frecuencia angular ($\omega$)
+            \subpart el periodo ($P$) y
+            \subpart la frecuencia física ($f$).
+        \end{subparts} de las oscilaciones.
+        \checkboxchar{$\Box$}
+        \part ¿Para qué valores de $x$ la rapidez de la masa puntual alcanza su valor máximo? Seleccionar todas las opciones correctas: \\
+        \begin{oneparcheckboxes}
+            \choice $-0.5$ m,
+            \choice 0 m,
+            \choice $0.5$ m.
+        \end{oneparcheckboxes}
+        \part ¿Para qué valores de $x$ la rapidez de la masa puntual se anula? Seleccionar todas las opciones correctas: \\ 
+        \begin{oneparcheckboxes}
+            \choice $-0.5$ m,
+            \choice 0 m,
+            \choice $0.5$ m.
+        \end{oneparcheckboxes}
+        \part ¿Para qué valores de $x$ el módulo de la aceleración impresa a la masa puntual alcanza su valor máximo? Seleccionar todas las opciones correctas: \\
+        \begin{oneparcheckboxes}
+            \choice $-0.5$ m,
+            \choice 0 m,
+            \choice $0.5$ m.
+        \end{oneparcheckboxes}
+        \part ¿Para qué valores de $x$ el módulo de la aceleración impresa a la masa puntual se anula? Seleccionar todas las opciones correctas: \\
+        \begin{oneparcheckboxes}
+            \choice $-0.5$ m,
+            \choice 0 m,
+            \choice $0.5$ m.
+        \end{oneparcheckboxes}
+        \part Si se duplica la amplitud, ¿se modifican los valores de $P$, $f$, $\omega$ y los resultados de los ítems (b), (c), (d) y (e)? ¿Por qué? Seleccione la respuesta correcta a continuación:
+        \checkboxchar{$\bigcirc$}
+        \begin{checkboxes}
+            \choice Sí, porque al duplicarse la amplitud, se duplican tanto la velocidad como la aceleración y por lo tanto los instantes de tiempo en los que el cuerpo pase por la posición de equilibrio van a ser diferentes.
+            \choice No, porque $\omega$, y por lo tanto $f$ y $P$, no dependen de las condiciones iniciales.
+            \choice No es posible determinar si los resultados se modifican o no con la información disponible.
+        \end{checkboxes}
+    \end{parts}
+
+    \rtas
+    \begin{enumerate}[a)]
+        \item
+        \begin{itemize}
+            \item $A =0.5$ m.
+            \item $\omega =24 \, \frac{\text{rad}}{\text{s}}$.
+            \item $P = 0.26$ s.
+            \item $f = 3.82$ Hz.
+        \end{itemize}
+        \item $ x = 0$ m.
+        \item $ x = -0.5$ m; $x = 0.5$ m.
+        \item $ x = -0.5$ m; $x = 0.5$ m.
+        \item $ x = 0$ m.
+    \end{enumerate}
+
     \section{Dinámica rotacional y MCUV}
 
     \question Un péndulo está constituido por una pequeña esfera de plomo, de masa 100 g, sujeta al extremo de una cuerda de 1 m de longitud. ¿Cuál es su momento de inercia respecto a un eje que pasa por el extremo superior de la cuerda y es perpendicular a su longitud?

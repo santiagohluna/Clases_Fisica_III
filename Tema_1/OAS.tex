@@ -1,0 +1,620 @@
+\documentclass[11pt,handout,aspectratio=1610]{beamer}
+%\documentclass[11pt]{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{latexsym} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{esint}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usetikzlibrary{babel}
+\usetikzlibrary{calc,patterns,decorations.pathmorphing,decorations.markings}
+\usepackage{xcolor}
+\usepackage{epstopdf}
+\usepackage[nointegrals]{wasysym}
+\usepackage{hyperref}
+
+\usetheme{Berkeley}
+\usecolortheme{seahorse}
+\uselanguage{Spanish}
+
+\newcommand{\sgn}{\mathop{\text{sgn}}}
+\newcommand{\diff}[0]{\text{d}}
+\newcommand{\fdiff}[2]{\dfrac{\text{d} #1}{\text{d} #2}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\fddiff}[2]{\frac{\text{d}^2 #1}{\text{d} #2^2}}
+\newcommand{\grado}[0]{^{\circ}}
+\newcommand{\chel}[4]{^{#1}_{#2}\text{#3}^{#4}}
+\newcommand{\valmed}[1]{\left\langle #1 \right\rangle}
+\newcommand{\E}[1]{\times 10^{#1}}
+\newcommand{\ver}[1]{\hat{\vec{#1}}}
+\newcommand{\vecg}[1]{\boldsymbol{#1}}
+\newcommand{\iu}{\text{i}}
+\newcommand{\norm}[1]{\left\vert\left\vert #1 \right\vert\right\vert}
+\newcommand{\abs}[1]{\left\vert #1 \right\vert}
+\newcommand{\tens}[1]{\mathbb{#1}}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\logoUNAHUR}{\includegraphics[scale=0.15]{/home/shluna/Proyectos/Clases_Fisica_III/imgs/logo-universidad-nacional-de-hurlingham_preview_rev_1.png}}
+\newcommand{\vs}{\vspace{11pt}}
+\newcommand{\un}[1]{\text{#1}}
+\renewcommand{\arraystretch}{1.4}
+
+\title{Oscilador armónico simple}
+\subtitle{Unidad 6}
+\author{Física}
+\institute{Instituto de Tecnología e Ingeniería \\ \vspace{0.25cm} Universidad Nacional de Hurlingham}
+\date{ }
+\logo{\logoUNAHUR}
+
+\AtBeginSection[]{
+  \begin{frame}
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+    \usebeamerfont{title}\insertsectionhead\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+}
+
+\tdplotsetmaincoords{70}{110}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}{En esta clase veremos:}
+    \tableofcontents
+\end{frame}
+
+\section{Definición}
+
+\begin{frame}{Oscilador armónico simple (OAS)}
+
+\begin{block}{Definición}
+    Un oscilador armónico simple es un sistema formado por un cuerpo, de masa $m$, unido a uno de los extremos de un resorte de constante $k$ mientras que el otro extremo se encuentra fijo.
+\end{block}
+
+\begin{center}
+    \begin{tikzpicture}[scale=1.2]
+        \draw[decoration={coil,segment length = 2mm,amplitude = 2mm,aspect = 0.5,post length = 1mm,pre length = 1mm},decorate,thick,black!50] (0,0) -- (2,0);
+        \draw[thick] (0,-0.25) -- (0,0.25);
+        \node at (1,0.3) {\scriptsize $k$};
+        \draw[-latex] (-0.5,0) -- (4,0) node[anchor=north]{\scriptsize $x$};
+        \draw[-latex] (2,-0.5) -- (2,0.5) node[anchor=east]{\scriptsize $y$};
+        \fill[black] (2,0) circle (0.5mm) node[anchor=south west]{\scriptsize $m$};
+    \end{tikzpicture}
+\end{center} Consideremos un sistema de referencia centrado en el cuerpo de masa $m$ cuando el resorte está en su longitud natural (no deformado), tal como se muestra en la figura. Vamos a asumir que el cuerpo se mueve a lo largo de la dirección horizontal.
+
+\end{frame}
+
+\section{Ecuación de movimiento}
+
+\begin{frame}{Ecuación de movimiento}
+
+    Supongamos que el cuerpo se desplaza una cierta distancia $x_P$ hacia la derecha, donde $P$ se refiere al punto representativo del cuerpo, y se lo mantiene en equilibrio en esa posición. Este desplazamiento es, por supuesto, igual a la deformación del resorte.
+
+    \begin{center}
+        \begin{tikzpicture}[scale=1.2]
+            \draw[decoration={coil,segment length = 3mm,amplitude = 2mm,aspect = 0.5,post length = 1mm,pre length = 1mm},decorate,thick,black!50] (0,0) -- (3,0);
+            \draw[thick] (0,-0.25) -- (0,0.25);
+            \node at (1.5,0.3) {\scriptsize $k$};
+            \draw[-latex] (-0.5,0) -- (4,0) node[anchor=north]{\scriptsize $x$};
+            \draw[-latex] (2,-0.5) -- (2,0.5) node[anchor=east]{\scriptsize $y$};
+            \node[anchor=north] at (3,0) {\scriptsize $x_P$};
+            \draw[thick,red,-latex] (3,0) -- (2.25,0) node[anchor=south west,yshift=1mm]{\scriptsize $\vec{F}_\text{res}$};
+            \fill[black] (3,0) circle (0.5mm) node[anchor=south west]{\scriptsize $m$};
+        \end{tikzpicture}
+    \end{center} Así, el vector de posición del cuerpo (o del punto representativo del mismo, $P$) es $\vec{r}_P = \left(x_P; 0\right)$. Por otro lado, sobre el cuerpo actúa la fuerza que el resorte ejerce sobre el mismo, la cual está dada por $$\vec{F}_\text{res} = \left(F_\text{res}; 0\right) = \left(- k\, x_P; 0\right)$$
+
+\end{frame}
+
+\begin{frame}{Ecuación de movimiento}
+
+    La fuerza ejercida por el resorte sobre el cuerpo se conoce también como \emph{fuerza recuperadora elástica} dado que siempre apunta hacia el centro del sistema de referencia que corresponde a la posición de equilibrio del sistema.
+    
+    \vspace{11pt}
+
+    Esto se puede apreciar más fácilmente observando la gráfica del módulo de la fuerza en función de la posición del cuerpo.
+
+\end{frame}
+
+\begin{frame}{Ecuación de movimiento}
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            Si el cuerpo está a la derecha de la posición de equilibrio, $x_P > 0$, y por lo tanto $- k \, x_P < 0$
+            \begin{center}
+                \begin{tikzpicture}[scale=0.8]
+                    \draw[thick,-latex] (-2,0) -- (2,0) node[anchor=north]{\scriptsize $x$};
+                    \draw[thick,-latex] (0,-2) -- (0,2) node[anchor=east]{\scriptsize $F_\text{res}$};
+                    \draw[thick,red] (-1.5,1.5) -- (1.5,-1.5);
+                    \draw[dashed] (1,0) -- (1,-1) -- (0,-1);
+                    \fill (1,0) circle (0.5mm) node[anchor=south]{\scriptsize $x_P$};
+                    \fill (0,-1) circle (0.5mm) node[anchor=east]{\scriptsize $- k \, x_P$};
+                    \fill (1,-1) circle (0.5mm);
+                \end{tikzpicture}
+            \end{center} En consecuencia, el vector $\vec{F}_\text{res}$ tiene sentido hacia la izquierda.
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            Si el cuerpo está a la derecha de la posición de equilibrio, $x_P < 0$, y por lo tanto $- k \, x_P > 0$
+            \begin{center}
+                \begin{tikzpicture}[scale=0.8]
+                    \draw[thick,-latex] (-2,0) -- (2,0) node[anchor=north]{\scriptsize $x$};
+                    \draw[thick,-latex] (0,-2) -- (0,2) node[anchor=east]{\scriptsize $F_\text{res}$};
+                    \draw[thick,red] (-1.5,1.5) -- (1.5,-1.5);
+                    \draw[dashed] (-1,0) -- (-1,1) -- (0,1);
+                    \fill (-1,0) circle (0.5mm) node[anchor=north]{\scriptsize $x_P$};
+                    \fill (0,1) circle (0.5mm) node[anchor=west]{\scriptsize $- k \, x_P$};
+                    \fill (-1,1) circle (0.5mm);
+                \end{tikzpicture}
+            \end{center} En consecuencia, el vector $\vec{F}_\text{res}$ tiene sentido hacia la derecha.
+        \end{column}
+    \end{columns}
+
+\end{frame}
+
+\begin{frame}{Ecuación de movimiento}
+
+    Vamos a asumir que el oscilador se encuentra en equilibrio en la dirección vertical.
+
+    \vs
+
+    En virtud de la segunda ley de Newton tenemos que: $$\sum f_x = - k \, x_P = m \, a_x$$ De donde se obtiene que: $$a_x = - \frac{k}{m} x_P$$ Sabemos que $a_x = \fdiff{v_{P,x}}{t}$ y que $v_{P,x} = \fdiff{x_P}{t}$, en consecuencia, $a_x = \fddiff{x_P}{t}$. Luego: $$\fddiff{x_P}{t} = - \frac{k}{m} x_P$$
+
+\end{frame}
+
+\begin{frame}{Ecuación de movimiento}
+
+    En otras palabras, la aceleración que la fuerza recuperadora elástica le imprime al cuerpo produce una variación en el tiempo de la posición del mismo. 
+    
+    \vspace{11pt}
+    
+    A su vez, como la aceleración es proporcional a la posición, esta también varía en el tiempo al igual que la velocidad de la partícula. 
+    
+    \vspace{11pt}
+    
+    En consecuencia, tanto la posición $x_P$ como la velocidad $v_{P,x}$ y la aceleración $a_x$ son funciones del tiempo. 
+
+\end{frame}
+
+\begin{frame}{Ecuación de movimiento}
+
+    La ecuación de movimiento deberá entonces escribirse como: $$\fddiff{x_P (t)}{t} = - \frac{k}{m} x_P (t)$$ El objetivo es encontrar la forma funcional de $x_P (t)$ que, a su vez, nos da las expresiones de $v_{P,x} (t)$ y de $a_{x} (t)$, es decir, la solución de la ecuación de movimiento.
+
+    \vspace{11pt}
+
+    Para hallar la expresión de $x_P (t)$ deberíamos resolver la ecuación diferencial lineal homogénea $$\ddot{x}_P (t) + \omega^2 x_P (t) = 0$$ donde $\omega^2 = \frac{k}{m}$ es una constante positiva. Sin embargo, es posible llegar a la solución de esta ecuación de otra manera.
+
+\end{frame}
+
+\begin{frame}{Ecuación de movimiento}
+
+    Por un lado, a partir de la expresión $$a_x = - \frac{k}{m} x_P$$ podemos observar que, al igual que la fuerza, el vector aceleración siempre apunta hacia la posición de equilibrio ($x_P = 0$). 
+    
+    \vspace{11pt}
+    
+    Es decir, cuando el cuerpo está a la derecha de dicha posición, el vector apunta hacia la izquierda. En cambio, cuando el cuerpo está a la izquierda de la posición de equilibrio, el vector aceleración apunta hacia la derecha.
+
+\end{frame}
+
+\begin{frame}{Ecuación de movimiento}
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{figure}[h]
+                \centering
+                \begin{tikzpicture}[scale=0.8]
+                    \draw[thick,-latex] (-2.5,0) -- (2.5,0) node[anchor=north]{\scriptsize $x$};
+                    \draw[thick,-latex] (0,-2.25) -- (0,2.5) node[anchor=south]{\scriptsize $y$};
+                    \draw[fill=black] (0,0) circle (0.5mm);
+                    \draw[fill=black] (45:2) circle (0.5mm);
+                    \node[anchor=south west] at (45:2) {\scriptsize $P$ ($t_0$)};
+                    \draw[thick,-latex] (0,0) -- (45:2);
+                    \node at (30:1.6) {\scriptsize $\vec{r}(t_0)$};
+                    \node[anchor=south east] at (120:2) {\scriptsize $P$ ($t$)};
+                    \draw[dashed] (120:2) -- ({2*cos(120)},0) node[anchor=north]{\scriptsize $x_P (t)$};
+                    \draw[fill=black] ({2*cos(120)},0) circle (0.5mm);
+                    \draw[thick,-latex] (0,0) -- node[anchor=east,fill=white]{\scriptsize $\vec{r}_P (t)$} (120:2);
+                    \draw (2,0) arc (0:360:2);
+                    \draw[thick,-latex,blue] (120:2) -- node[anchor=south east]{\scriptsize $\vec{v}_P$} ({2*cos(120)-2*0.75*sin(120)},{2*sin(120)+2*0.75*cos(120)});
+                    \draw[thick,-latex,red] (120:2) -- node[anchor=south west]{\scriptsize $\vec{a}_P$} ({2*cos(120)-2*0.5*cos(120)},{2*sin(120)-2*0.5*sin(120)});
+                    \node at (20:0.8) {\scriptsize $\theta_0$};
+                    \draw (0.5,0) arc (0:45:0.5);
+                    \node at (70:1.3) {\scriptsize $\theta (t)$};
+                    \draw (1,0) arc (0:120:1);
+                    \draw[fill=black] (120:2) circle (0.5mm);
+                \end{tikzpicture}
+            \end{figure}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            A partir del estudio del movimiento de un punto en una trayectoria circular de radio $A$ y con frecuencia angular $\omega$ constante, tenemos que: $$\theta (t) = \omega \left(t - t_0\right) + \theta_0$$
+        \end{column}
+    \end{columns}
+    \begin{align*}
+        \vec{r}_P (t) &= \left(x_P (t) ; y_P (t)\right) & &= \left(A \cos \theta (t) ; A \sen \theta (t)\right) \\
+        \vec{v}_P (t) &= \left(v_{P,x}  (t); v_{P,y} (t)\right) & &= \left(- A \, \omega \sen \theta (t) ; A \, \omega \cos \theta (t)\right) \\
+        \vec{a}_P (t) &= \left(a_{P,x} (t) ; a_{P,y} (t) \right) & &= \left(- A \, \omega^2 \cos \theta (t) ; - A \, \omega^2 \sen \theta (t)\right)
+    \end{align*}
+
+\end{frame}
+
+\begin{frame}{Ecuación de movimiento}
+
+    Podemos observar que la coordenada $x_P (t)$ del punto $P$ realiza un movimiento de ida y vuelta análogo al del oscilador armónico simple. Más aún, nada impide asociar a $x_P (t)$ con la ley de movimiento de un punto que se desplaza a lo largo de eje $x$ según: $$x_P (t) = A \cos \theta (t)$$ La velocidad de este punto está entonces dada por la componente $x$ de la velocidad tangencial: $$v_{P,x} (t) = - A \, \omega \sen \theta (t)$$
+
+\end{frame}
+
+\begin{frame}{Ecuación de movimiento}
+
+    Además, la aceleración de dicho punto corresponde a la componente $x$ de la aceleración centrípeta: $$a_{P,x} (t) = - A \, \omega^2 \cos \theta (t)$$ Teniendo en cuenta que $x_P (t) = A \cos \theta (t)$ podemos escribir: $$a_{P,x} (t) = - \omega^2 \, x_P (t)$$ Expresión totalmente análoga a la de la aceleración impresa al cuerpo de masa $m$ del oscilador armónico simple: $$a_x = - \frac{k}{m} x_P$$
+
+\end{frame}
+
+\begin{frame}{Ecuación de movimiento}
+
+    Comparando ambas expresiones tendríamos que: $$\omega^2 = \frac{k}{m}$$ Por supuesto, las dimensiones son consistentes: $$\left[\omega^2\right] = \frac{1}{\text{s}^2} \quad \text{y} \quad \left[\frac{k}{m}\right] = \frac{\text{N}}{\text{m}} \frac{1}{\text{kg}} = \frac{\text{kg} \, \text{m} \, \text{s}^{-2}}{\text{m}} \frac{1}{\text{kg}} = \frac{1}{\text{s}^{2}}$$ Además de este análisis, podemos demostrar formalmente esta igualdad.
+
+\end{frame}
+
+\begin{frame}{Ecuación de movimiento}
+
+    Para ello, vamos a proponer la función $x_P (t) = A \cos \theta (t)$, que se obtiene del MCU, como solución de la ecuación de movimiento del oscilador armónico simple: $$\fddiff{x_P (t)}{t} = - \frac{k}{m} x_P (t)$$ Calculemos la derivada primera de $x_P (t)$: $$\fdiff{x_P (t)}{t} = \fdiff{}{t} \left[A \cos \theta (t)\right] = A \fdiff{}{t} \left[\cos \theta (t)\right] = - A \sen \theta (t) \fdiff{\theta (t)}{t}$$ Luego: $$\fdiff{\theta (t)}{t} = \fdiff{}{t} \left[\omega \left(t-t_0\right) + \theta_0\right] = \omega$$
+
+\end{frame}
+
+\begin{frame}{Ecuación de movimiento}
+
+    En consecuencia: $$\fdiff{x_P (t)}{t} = - A \, \omega \sen \theta (t) $$ Derivando una vez más se obtiene:
+    \begin{align*}
+        \fdiff{}{t} \left[\fdiff{x_P (t)}{t}\right] &= \fdiff{}{t} \left[- A \, \omega \sen \theta (t)\right] \\
+        & = - A \, \omega \fdiff{}{t} \left[\sen \theta (t)\right] \\
+        & = - A \, \omega \cos \theta (t) \fdiff{\theta (t)}{t} \\
+        & = - A \, \omega^2 \cos \theta (t)
+    \end{align*} 
+    
+\end{frame}
+
+\begin{frame}{Ecuación de movimiento}
+    
+    Entonces: $$\fddiff{x_P (t)}{t} = - A \, \omega^2 \cos \theta (t) = - \omega^2 x_P (t)$$ En virtud de la ecuación de movimiento tenemos: $$ - \omega^2 x_P (t) = - \frac{k}{m} x_P (t) $$ En la posición de equilibrio, cuando $x_P = 0$, esta relación es verdadera para cualesquiera valores de $\omega$, $k$ y $m$.
+
+    \vspace{11pt}
+
+    Sin embargo, para cualquier valor de $x_P \neq 0$, la relación es cierta únicamente si $$\omega^2 = \frac{k}{m}$$
+
+\end{frame}
+
+\begin{frame}{Ecuación de movimiento}
+
+    De esta manera se demuestra claramente que el movimiento del oscilador armónico simple está descrito por las ecuaciones
+    \begin{align*}
+        x (t) &= \phantom{+} A \cos \theta (t) \\
+        v (t) &= - A \, \omega \sen \theta (t) \\
+        a (t) &= - A \, \omega^2 \cos \theta (t) = - \omega^2 x(t) 
+    \end{align*} donde $x (t)$, $v (t)$ y $a (t)$ son las expresiones de la posición, la velocidad y la aceleración del cuerpo de masa $m$ que forma parte del OAS. Además, la función $\theta (t)$ se llama \emph{fase}.
+
+    \vspace{11pt}
+
+    Esto es, el movimiento del OAS se describe como la proyección en el eje $x$ (o el $y$) del movimiento de un punto que describe una trayectoria circular de frecuencia angular constante.
+
+\end{frame}
+
+\section{Frecuencia y periodo}
+
+\begin{frame}{Frecuencia y periodo}
+
+    En consecuencia, el movimiento del oscilador armónico simple es un tipo de movimiento con periodo constante.
+
+    \vspace{11pt}
+
+    El periodo se define como el intervalo de tiempo necesario para realizar una oscilación completa, que corresponde a una revolución completa del MCU: $$P = \frac{2 \, \pi}{\omega}, \quad \text{donde} \quad \omega = \sqrt{\frac{k}{m}}$$ Luego: $$P = 2 \, \pi \sqrt{\frac{m}{k}}$$
+    
+\end{frame}
+
+\begin{frame}{Frecuencia y periodo}
+
+    Por otro lado, la frecuencia física $f$ es: $$ f = \frac{1}{P} = \frac{1}{2 \, \pi} \sqrt{\frac{k}{m}}$$ Es interesante notar que tanto $\omega$ como $P$ y $f$ son cantidades propias del sistema, es decir, dependen de las magnitudes físicas que caracterizan al oscilador y no de las condiciones iniciales.
+
+    \vspace{11pt}
+
+    A continuación, profundizaremos en las condiciones iniciales.
+    
+\end{frame}
+
+\section{Condiciones iniciales}
+
+\begin{frame}{Condiciones iniciales}
+
+    La fase está dada por $\theta (t) = \omega \left(t-t_0\right) + \theta_0$. Esto es, $\theta (t_0) = \theta_0$. En virtud de las ecuaciones que describen el movimiento del OAS:
+
+    \begin{columns}
+        \begin{column}{0.4\textwidth}
+            \begin{figure}[h]
+                \centering
+                \begin{tikzpicture}[scale=0.8]
+                    \draw[thick,-latex] (-0.5,0) -- (3.5,0) node[anchor=north]{\scriptsize $x$};
+                    \draw[thick,-latex] (0,-0.5) -- (0,3.5) node[anchor=south]{\scriptsize $y$};
+                    \draw[fill=black] (0,0) circle (0.5mm);
+                    \draw[fill=black] (45:3) circle (0.5mm);
+                    \draw ({3*cos(10)},{-3*sin(10)}) arc (-10:100:3);
+                    \node[anchor=south west] at (45:3) {\scriptsize $P(t_0)$};
+                    \draw[thick,-latex] (0,0) -- (45:3);
+                    \draw[dashed] (45:3) -- ({3*cos(45)},0) node[anchor=north]{\scriptsize $x_0$};
+                    \draw[thick,-latex,blue] (45:3) -- node[anchor=south west]{\scriptsize $\vec{v}_0$} ({3*cos(45)-3*0.75*sin(45)},{3*sin(45)+3*0.75*cos(45)});
+                    \draw[dashed] ({3*cos(45)-3*0.75*sin(45)},{3*sin(45)+3*0.75*cos(45)}) -- ({3*cos(45)-3*0.75*sin(45)},0);
+                    \draw[thick,-latex,blue] ({3*cos(45)},0) -- node[anchor=north,near end]{\scriptsize $\vec{v}_{0,x}$} ({3*cos(45)-3*0.75*sin(45)},0);
+                    \draw[thick,-latex,red] (45:3) -- node[anchor=south east,fill=white]{\scriptsize $\vec{a}_0$} ({3*cos(45)-2*0.5*cos(45)},{3*sin(45)-2*0.5*sin(45)});
+                    \draw[dashed] ({3*cos(45)-2*0.5*cos(45)},{3*sin(45)-2*0.5*sin(45)}) -- ({3*cos(45)-2*0.5*cos(45)},0);
+                    \draw[thick,-latex,red] ({3*cos(45)},0) -- node[anchor=south]{\scriptsize $\vec{a}_{0,x}$} ({3*cos(45)-2*0.5*cos(45)},0);
+                    \node at (20:0.8) {\scriptsize $\theta_0$};
+                    \draw (0.5,0) arc (0:45:0.5);
+                    \draw[fill=black] ({3*cos(45)},0) circle (0.5mm);
+                \end{tikzpicture}
+            \end{figure}
+        \end{column}
+        \begin{column}{0.6\textwidth}
+            \begin{align*}
+                x_0 &= x (t_0) = \phantom{+} A \cos \theta_0 \\
+                v_0 &= v (t_0) = - A \, \omega \sen \theta_0 \\
+                a_0 &= a (t_0) = - A \, \omega^2 \cos \theta_0 = - \omega^2 x_0 
+            \end{align*} donde $x_0$, $v_0$ y $a_0$ son los valores iniciales de la posición, velocidad y la aceleración.
+        \end{column}
+    \end{columns} 
+
+    \vspace{11pt}
+    
+    En la figura: $\vec{v}_{0,x} = v_0 \left(1,0\right)$ y $\vec{a}_{0,x} = a_0 \left(1,0\right)$.
+
+\end{frame}
+
+\begin{frame}{Condiciones iniciales}
+
+    Es muy común fijar $t_0 = 0$, esto es, la condición inicial corresponde al comienzo del movimiento armónico simple. 
+    
+    \vspace{11pt}
+
+    Esto parece redundante, pero la condición inicial puede corresponder al estado dinámico del oscilador en cualquier instante de tiempo.
+
+    \vspace{11pt}
+
+    En este caso, las ecuaciones que describen el movimiento del OAS quedan expresadas como:
+    \begin{align*}
+        x (t) &= \phantom{+} A \cos \left(\omega t + \theta_0\right) \\
+        v (t) &= - A \, \omega \sen \left(\omega t + \theta_0\right) \\
+        a (t) &= - A \, \omega^2 \cos \left(\omega t + \theta_0\right) = - \omega^2 x(t) 
+    \end{align*} donde $\theta_0$ es la \emph{fase inicial}.
+
+\end{frame}
+
+\begin{frame}{Condiciones iniciales}
+
+    Vamos ahora a estudiar el movimiento del OAS para distintos valores de la fase inicial y para distintos instantes de tiempo.
+
+    \vspace{11pt}
+
+    Para ello, vamos a expresar a $\omega$ como $$\omega = \frac{2 \, \pi}{P}$$ en las ecuaciones de movimiento. Se obtiene:
+    \begin{align*}
+        x (t) &= \phantom{+} A \cos \left(\frac{2 \, \pi}{P} t + \theta_0\right) \\
+        v (t) &= - A \, \omega \sen \left(\frac{2 \, \pi}{P} t + \theta_0\right) \\
+        a (t) &= - A \, \omega^2 \cos \left(\frac{2 \, \pi}{P} t + \theta_0\right)
+    \end{align*}
+    
+\end{frame}
+
+\begin{frame}{Condiciones iniciales}
+
+    Consideremos primero el caso en que $\theta_0 = 0$ y los instantes $$t = 0, \frac{P}{4}, \frac{P}{2}, \frac{3\, P}{4}, P$$ Las ecuaciones que describen el movimiento del OAS para este caso son:
+    \begin{align*}
+        x (t) &= \phantom{+} A \cos \left(\frac{2 \, \pi}{P} t \right) \\
+        v (t) &= - A \, \omega \sen \left(\frac{2 \, \pi}{P} t \right) \\
+        a (t) &= - A \, \omega^2 \cos \left(\frac{2 \, \pi}{P} t \right)
+    \end{align*}
+    
+\end{frame}
+
+\begin{frame}{Condiciones iniciales}
+
+    Podemos construir una tabla de valores con las expresiones anteriores:
+    \begin{center}
+        \begin{tabular}{|c|c|c|c|c|c|}
+            \hline
+            $t$    & $0$ & $\frac{P}{4}$ & $\frac{P}{2}$ & $\frac{3\, P}{4}$ & $P$ \\ \hline
+            $\frac{2 \, \pi}{P} t$ & $0$ & $\frac{\pi}{2}$ & $\pi$ & $\frac{3 \,\pi}{2}$ & $2 \, \pi$ \\ \hline
+            $x(t)$ & $A$ & $0$ & $-A$ & $0$ & $A$ \\ \hline
+            $v(t)$ & $0$ & $- A \, \omega$ & $0$ & $A \, \omega$ & $0$ \\ \hline
+            $a(t)$ & $- A \, \omega^2$ & $0$ & $A \, \omega^2$ & $0$ & $- A \, \omega^2$ \\ \hline
+        \end{tabular}
+    \end{center}
+
+    Esto implica que en el instante inicial $t=0$ la partícula parte del reposo ($v_0 = 0$) en el punto $x_0 = A$ y sobre el cual actúa la fuerza del resorte que le imprime una aceleración cuyo módulo es $A \, \omega^2$ en dirección horizontal y sentido hacia la izquierda.
+
+\end{frame}
+
+\begin{frame}{Condiciones iniciales}
+
+    Con ayuda de la tabla anterior podemos graficar las expresiones que dan la posición, velocidad y aceleración en función del tiempo normalizadas para poder incluir las tres curvas en una misma gráfica:
+    \begin{align*}
+        \frac{x (t)}{A} &= \phantom{+} \cos \left(\frac{2 \, \pi}{P} t \right) \\
+        \frac{v (t)}{A \, \omega} &= - \sen \left(\frac{2 \, \pi}{P} t \right) \\
+        \frac{a (t)}{A \, \omega^2} &= - \cos \left(\frac{2 \, \pi}{P} t \right)
+    \end{align*}
+    
+\end{frame}
+
+\begin{frame}{Condiciones iniciales}
+
+    \begin{center}
+        \begin{tikzpicture}[scale=1]
+            \draw[-latex,thick] (-0.5,0) -- (6.5,0) node[anchor=north]{\scriptsize $t$};
+            \draw[-latex,thick] (0,-2) -- (0,2);
+            \draw[dashed] (0,1.5) -- (6,1.5);
+            \draw[dashed] (0,-1.5) -- (6,-1.5);
+            \draw[scale=1,domain=0:6,smooth,variable=\x,green,thick] plot ({\x},{1.5*cos(deg(2*pi*\x/6))});
+            \draw[scale=1,domain=0:6,smooth,variable=\x,blue,thick] plot ({\x},{-1.5*sin(deg(2*pi*\x/6))});
+            \draw[scale=1,domain=0:6,smooth,variable=\x,red,thick] plot ({\x},{-1.5*cos(deg(2*pi*\x/6))});
+            \fill (0,1.5) circle (0.5mm) node[anchor=east]{\scriptsize $1$};
+            \fill (0,-1.5) circle (0.5mm) node[anchor=east]{\scriptsize $-1$};
+            \fill (0,0) circle (0.5mm) node[anchor=north east]{\scriptsize $0$};
+            \fill (1.5,0) circle (0.5mm) node[anchor=north]{\scriptsize $\frac{P}{4}$};
+            \fill (3,0) circle (0.5mm) node[anchor=north]{\scriptsize $\frac{P}{2}$};
+            \fill (4.5,0) circle (0.5mm) node[anchor=north]{\scriptsize $\frac{3 P}{4}$};
+            \fill (6,0) circle (0.5mm) node[anchor=north]{\scriptsize $P$};
+            \node[anchor=west,green] at (6,1.5) {\scriptsize $\frac{x (t)}{A}$};
+            \node[anchor=south west,blue] at (6,0) {\scriptsize $\frac{v (t)}{A \, \omega}$};
+            \node[anchor=west,red] at (6,-1.5) {\scriptsize $\frac{a (t)}{A \, \omega^2}$};
+        \end{tikzpicture}
+    \end{center}
+
+    Podemos observar en esta gráfica que en los puntos extremos del movimiento, es decir en $(A; 0)$ y $(A; 0)$, $x(t)$ y $a(t)$ alcanzan sus valores máximo o mínimo, mientras que la velocidad es nula. En cambio, en la posición de equilibrio, la velocidad es máxima en un sentido u otro.
+        
+\end{frame}
+
+\begin{frame}{Condiciones iniciales}
+
+    Si $\theta_0 = \frac{\pi}{2}$, entonces:
+    \begin{align*}
+        \frac{x (t)}{A} &= \phantom{+} \cos \left(\frac{2 \, \pi}{P} t + \frac{\pi}{2}\right) \\
+        \frac{v (t)}{A \, \omega} &= - \sen \left(\frac{2 \, \pi}{P} t + \frac{\pi}{2}\right) \\
+        \frac{a (t)}{A \, \omega^2} &= - \cos \left(\frac{2 \, \pi}{P} t + \frac{\pi}{2}\right)
+    \end{align*}
+
+\end{frame}
+
+\begin{frame}{Condiciones iniciales}
+
+    En el instante inicial $t = 0$ tendremos:
+    \begin{align*}
+        x (0) &= \phantom{+} A \cos \left(\frac{\pi}{2}\right) = 0 \\
+        v (0) &= - A \, \omega \sen \left(\frac{\pi}{2}\right) = - A \, \omega \\
+        a (0) &= - A \, \omega^2 \cos \left(\frac{\pi}{2}\right) = 0. 
+    \end{align*} Es decir, el OAS comienza a moverse desde la posición de equilibrio con una velocidad inicial $v_0 = A \, \omega$, con lo que el vector velocidad inicial tiene dirección horizontal y sentido hacia la izquierda.
+
+\end{frame}
+
+\begin{frame}{Condiciones iniciales}
+
+    Si $\theta_0 = \pi$, entonces:
+    \begin{align*}
+        \frac{x (t)}{A} &= \phantom{+} \cos \left(\frac{2 \, \pi}{P} t + \pi\right) \\
+        \frac{v (t)}{A \, \omega} &= - \sen \left(\frac{2 \, \pi}{P} t + \pi\right) \\
+        \frac{a (t)}{A \, \omega^2} &= - \cos \left(\frac{2 \, \pi}{P} t + \pi\right)
+    \end{align*}
+
+\end{frame}
+
+\begin{frame}{Condiciones iniciales}
+
+    En el instante inicial $t = 0$ tendremos:
+    \begin{align*}
+        x (0) &= \phantom{+} A \cos \left(\pi\right) = - A \\
+        v (0) &= - A \, \omega \sen \left(\pi\right) = 0 \\
+        a (0) &= - A \, \omega^2 \cos \left(\pi\right) = A \, \omega^2. 
+    \end{align*} Es decir, el OAS comienza a moverse desde el punto $(A; 0)$ desde el reposo. El vector aceleración inicial tiene dirección horizontal y sentido hacia la derecha.
+
+\end{frame}
+
+\begin{frame}{Condiciones iniciales}
+
+    Por último, si $\theta_0 = \frac{3 \pi}{2}$, entonces:
+    \begin{align*}
+        \frac{x (t)}{A} &= \phantom{+} \cos \left(\frac{2 \, \pi}{P} t + \frac{3 \pi}{2}\right) \\
+        \frac{v (t)}{A \, \omega} &= - \sen \left(\frac{2 \, \pi}{P} t + \frac{3 \pi}{2}\right) \\
+        \frac{a (t)}{A \, \omega^2} &= - \cos \left(\frac{2 \, \pi}{P} t + \frac{3 \pi}{2}\right)
+    \end{align*}
+
+\end{frame}
+
+\begin{frame}{Condiciones iniciales}
+
+    En el instante inicial $t = 0$ tendremos:
+    \begin{align*}
+        x (0) &= \phantom{+} A \cos \left(\pi\right) = 0 \\
+        v (0) &= - A \, \omega \sen \left(\pi\right) = A \, \omega \\
+        a (0) &= - A \, \omega^2 \cos \left(\pi\right) = 0. 
+    \end{align*} Es decir, el OAS comienza a moverse nuevamente desde la posición de equilibrio, pero esta vez el vector velocidad inicial tiene sentido hacia la derecha.
+
+\end{frame}
+
+\section{Con\-si\-de\-ra\-cio\-nes energéticas}
+
+\begin{frame}{Consideraciones energéticas}
+
+    Vamos a cerrar el análisis del movimiento de un OAS con el balance de energía.
+
+    \vspace{11pt}
+
+    En los puntos extremos del movimiento, cuando $x(t) = A$ o $x(t) = -A$, el OAS solamente tendrá energía potencial elástica, la cual asumirá su valor máximo: $\frac{1}{2} k \, A^2$.
+
+    \vspace{11pt}
+
+    En la posición de equilibrio, donde $x(t) = a(t) = 0$, el OAS solamente tendrá energía cinética, la cual alcanza su valor máximo en este punto: $\frac{1}{2} m \, v^2$.
+
+    \vspace{11pt}
+
+    En cualquier otro punto, el OAS tendrá las dos energías y, por lo tanto, su energía mecánica será: $$ E_\text{m} = E_\text{c} + E_\text{pe} = \frac{1}{2} m \, v^2 + \frac{1}{2} k \, x^2$$
+
+\end{frame}
+
+\begin{frame}{Consideraciones energéticas}
+
+    Ahora bien, $x(t) = A \cos \left[\theta (t)\right]$ y $v(t) = - A \, \omega \sen \left[\theta (t)\right]$. Entonces: $$E_\text{m} = \frac{1}{2} m \left(- A \, \omega \sen \left[\theta (t)\right]\right)^2 + \frac{1}{2} k \left(A \cos \left[\theta (t)\right]\right)^2$$
+    $$E_\text{m} = \frac{1}{2} m \, A^2 \, \omega^2 \sen^2 \left[\theta (t)\right] + \frac{1}{2} k \, A^2 \cos^2 \left[\theta (t)\right]$$ Pero, $\omega^2 = \frac{k}{m}$, entonces: $$E_\text{m} = \frac{1}{2} m \, A^2 \, \frac{k}{m} \sen^2 \left[\theta (t)\right] + \frac{1}{2} k \, A^2 \cos^2 \left[\theta (t)\right]$$ O bien: $$E_\text{m} = \frac{1}{2} k \, A^2 \sen^2 \left[\theta (t)\right] + \frac{1}{2} k \, A^2 \cos^2 \left[\theta (t)\right]$$
+
+\end{frame}
+
+\begin{frame}{Consideraciones energéticas}
+
+    Podemos sacar factor común $\frac{1}{2} k \, A^2$: $$E_\text{m} = \frac{1}{2} k \, A^2 \left(\sen^2 \left[\theta (t)\right] + \cos^2 \left[\theta (t)\right]\right)$$ Por último, como $\sen^2 \left[\theta (t)\right] + \cos^2 \left[\theta (t)\right] = 1$, se obtiene: $$E_\text{m} = \frac{1}{2} k \, A^2$$ En otras palabras, la energía total de un OAS, para cualquier instante de tiempo es constante e igual al valor máximo de la energía potencial elástica: $$E_\text{m} = \frac{1}{2} m \, v^2(t) + \frac{1}{2} k \, x^2(t) = \frac{1}{2} k \, A^2$$
+
+\end{frame}
+
+\begin{frame}{Consideraciones energéticas}
+
+    \begin{figure}
+        \centering
+        \begin{tikzpicture}[scale=1]
+            \draw[thick,-latex] (-2.5,0) -- (2.5,0) node[anchor=north]{\scriptsize $x$};
+            \draw[thick,-latex] (0,-0.5) -- (0,4.5) node[anchor=east]{\scriptsize $E_\text{m}$};
+            \draw[dashed] (-2,0) -- (-2,4) -- (2,4) -- (2,0);
+            \draw[scale=1,domain=-2:2,smooth,variable=\x,red,thick] plot ({\x},{\x*\x}) node[anchor=west]{\scriptsize $\frac{1}{2} k \, x^2(t)$};
+            \fill[black] (-2,0) circle (0.5mm) node[anchor=north]{\scriptsize $-A$};
+            \fill[black] (2,0) circle (0.5mm) node[anchor=north]{\scriptsize $A$};
+            \fill[black] (0,4) circle (0.5mm) node[anchor=north east]{\scriptsize $\frac{1}{2} k \, A^2$};
+            \fill[black] (1,1) circle (0.5mm);
+            \fill[black] (1,0) circle (0.5mm) node[anchor=north]{\scriptsize $x(t)$};
+            \draw[latex-latex] (1,0) -- node[anchor=west,fill=white]{\scriptsize $\frac{1}{2} k \, x^2(t)$} (1,1);
+            \draw[latex-latex] (1,1) -- (1,4);
+            \node[fill=white] at (0.3,2.5) {\scriptsize $\frac{1}{2} m v^2(t)$};
+        \end{tikzpicture}
+    \end{figure}
+
+\end{frame}
+
+\begin{frame}{Esto es todo por hoy}
+
+    \begin{center}
+        {\huge ¡Muchas gracias!}
+
+        \vs
+
+        Ahora a repasar y practicar.
+    \end{center}
+
+\end{frame}
+
+\end{document}
+
+\begin{frame}{}
+
+
+
+\end{frame}
