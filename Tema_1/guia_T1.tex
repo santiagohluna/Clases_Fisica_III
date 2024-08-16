@@ -41,7 +41,7 @@
 \newcommand{\chel}[4]{^{#1}_{#2}\mbox{#3}^{#4}}
 \newcommand{\valmed}[1]{\left\langle #1 \right\rangle}
 \newcommand{\E}[1]{\times 10^{#1}}
-\newcommand{\ver}[1]{\hat{\vec{#1}}}
+\newcommand{\ver}[1]{\hat{\mathbf{#1}}}
 \newcommand{\vecg}[1]{\boldsymbol{#1}}
 \newcommand{\iu}{\mathrm{i}}
 \newcommand{\norm}[1]{\left\vert\left\vert #1 \right\vert\right\vert}
@@ -49,7 +49,7 @@
 \newcommand{\tens}[1]{\mathbb{#1}}
 \newcommand{\rr}{\mathbb{R}}
 \newcommand{\un}[1]{\text{#1}}
-\newcommand{\logoUNAHUR}{\includegraphics[scale=0.35]{/home/shluna/UNAHUR/IAM/Apuntes/logo_unahur.png}}
+\newcommand{\logoUNAHUR}{\includegraphics[scale=0.35]{/home/shluna/Proyectos/Clases_Fisica_III/imgs/logo_unahur.png}}
 \renewcommand{\arraystretch}{1.5}
 \newcommand{\rta}{\textbf{Respuesta: }}
 \newcommand{\rtas}{\textbf{Respuestas: }}
@@ -58,6 +58,7 @@
 \newcommand{\rad}{4}
 \newcommand{\mg}{1}
 \newcommand{\muc}{0.5}
+\newcommand{\tita}{60}
 \newcommand{\arc}[1]{{%
   \setbox9=\hbox{#1}%
   \ooalign{\resizebox{\wd9}{\height}{\texttoptiebar{\phantom{A}}}\cr#1}}}
@@ -93,7 +94,7 @@
 
 \begin{tcolorbox}[colback=white,arc=0mm,colframe=black]
     \begin{center}
-        \Large\textbf{Guía de ejercicios resueltos y propuestos -- Unidad V}
+        \Large\textbf{Guía de ejercicios resueltos y propuestos -- Tema 1}
     \end{center}
 \end{tcolorbox}
 
@@ -133,7 +134,7 @@
 
     \begin{figure}[ht]
         \centering
-        \includegraphics[scale=0.8]{/home/shluna/UNAHUR/Física/Clases/figs/rugby.png}
+        \includegraphics[scale=0.8]{/home/shluna/Proyectos/Clases_Fisica_III/figs/rugby.png}
         \caption{ }
         \label{fig:rugby}
     \end{figure}
@@ -364,39 +365,17 @@
     \end{parts}
 
     \begin{solution}
-    \begin{center}
-        \begin{tikzpicture}[scale=1]
-        \fill[pattern=north east lines] ({5*cos(60)-0.5},{5*sin(60)}) rectangle ({5*cos(60)+0.5},{5*sin(60)+0.2});
-        \draw[thick] ({5*cos(60)-0.5},{5*sin(60)}) -- ({5*cos(60)+0.5},{5*sin(60)});
-        \draw[thick,-latex] (-0.5,0) -- (2,0) node[anchor=north]{$x$};
-        \draw[thick,-latex] (0,-0.5) -- (0,2) node[anchor=east]{$y$};
-        \draw[thick] (0,0) -- node[anchor=south east]{$L$} (60:5);
-        \draw (0,1) arc (90:60:1);
-        \node[anchor=south] at (75:1.1) {$\theta$};
-        \draw ({5*cos(60)},{5*sin(60)-1}) arc (270:240:1);
-        \node[anchor=north] at ({5*cos(60)-0.3},{5*sin(60)-1}) {$\theta$};
-        \draw[dashed] (0,0) -- ({10*cos(60)},0);
-        \draw[dashed] ({5*cos(60)},0) -- (60:5);
-        \fill[black] (0,0) circle (0.5mm);
-        \draw[dashed] ({5*cos(60)},0) ellipse (2.5 and 0.5);
-        \draw[-latex] ({10*cos(60)},-0.35) arc [x radius = 2.7, y radius = 0.7, start angle = -30, end angle = 30];
-        \node[anchor=west] at ({10*cos(60)+0.5},0) {$\omega$};
-        \draw[thick,red,-latex] (0,0) -- (0,-1.5) node[anchor=west]{$\vec{F}_\text{g}$};
-        \draw[thick,blue,-latex] (0,0) -- (60:2) node[anchor=north west]{$\vec{T}$};
-        \end{tikzpicture}
-    \end{center}
-
     \begin{parts}
-        \part Observando la figura se pueden obtener las componentes de los vectores tensión $\vec{T}$ y peso $\vec{F}_\text{g}$:
+        \part Observando la Figura~\ref{fig:pendiloconico} se pueden obtener las componentes de los vectores tensión $\vec{T}$ y peso $\vec{F}_\text{g}$:
         \begin{align*}
-        \vec{T} &= \left(T \sen \theta ; T \cos \theta\right) \\
-        \vec{F}_\text{g} &= \left(0; -m \, g\right)\\
+        \vec{F}_\text{T} &= F_\text{T} \sen \varphi \, \ver{e}_r + F_\text{T} \cos \varphi \, \ver{e}_z \\
+        \vec{F}_\text{g} &= - m \, g \, \ver{e}_z
         \end{align*} Estas son las únicas fuerzas que actúan sobre la pelota.
     
-        Planteamos ahora las sumatorias de las componentes de las fuerzas en los ejes $x$ e $y$:
+        Planteamos ahora las sumatorias de las componentes de las fuerzas en la dirección vertical y en la dirección radial:
         \begin{align*}
-        R_y &= T \cos \theta - m \, g = 0 \\
-        R_x &= T \sen \theta = m \, a_\text{c}
+        R_z &= T \cos \theta - m \, g = 0 \\
+        R_r &= T \sen \theta = m \, a_\text{c}
         \end{align*} De la sumatoria de fuerzas en el eje $y$ se obtiene: $$T = \frac{m \, g}{\cos \theta} = \frac{0.2 \, \text{kg} \times 9.8 \, \frac{\text{m}}{\text{s}^2}}{\cos 10\grado} \approx 2 \, \text{N}$$
         \part A partir de la sumatoria de fuerzas en el eje $x$ se puede obtener una expresión de la aceleración centrípeta: $$a_\text{c} = \frac{T \sen \theta}{m}$$ Reemplazando en esta última la expresión de la tensión obtenida antes: $$a_\text{c} = g \, \tan \theta$$ Por otro lado, la velocidad tangencial y la aceleración centrípeta se relacionan mediante: $$a_\text{c} = \frac{v^2}{R}$$ El radio de la trayectoria circular se puede obtener observando nuevamente la figura. Esto es, $R = L \sen \theta$ y por lo tanto: $$v^2 = a_\text{c} \, L \sen \theta = g \, L \, \tan \theta \sen \theta$$ Es decir: $$v = \sqrt{g \, L \, \tan \theta \sen \theta} = \sqrt{9.8 \, \frac{\text{m}}{s}^2 \times 0.5 \, \text{m} \times \tan 10\grado \times \sen 10\grado} \approx 0.387 \, \frac{\text{m}}{\text{s}}$$
         \part La aceleración centrípeta está relacionada con la velocidad angular mediante $$a_\text{c} = R \, \omega^2$$ De donde podemos despejar $\omega$: $$\omega = \sqrt{\frac{a_\text{c}}{R}} = \sqrt{\frac{g \tan \theta}{L \cos \theta}} = \sqrt{\frac{g}{L \cos \theta}}$$ Luego, podemos calcular el periodo con: $$P = \frac{2 \, \pi}{\omega} = 2 \, \pi \sqrt{\frac{L \cos \theta}{g}}$$ Reemplazando los valores: $$P = 2 \, \pi \sqrt{\frac{0.5 \, \text{m} \cos 10\grado}{9.8 \, \frac{\text{m}}{s}^2}} \approx 1.41 \, \text{s}$$
@@ -425,18 +404,49 @@
         \centering
         \begin{subfigure}{0.45\textwidth}
             \centering
-            \begin{tikzpicture}[scale=1]
-                \fill[pattern=north east lines] ({5*cos(60)-0.5},{5*sin(60)}) rectangle ({5*cos(60)+0.5},{5*sin(60)+0.2});
-                \draw[thick] ({5*cos(60)-0.5},{5*sin(60)}) -- ({5*cos(60)+0.5},{5*sin(60)});
-                \draw[thick] (0,0) -- node[anchor=south east]{$L$} (60:5);
-                \draw ({5*cos(60)},{5*sin(60)-1}) arc (270:240:1);
-                \node[anchor=north] at ({5*cos(60)-0.3},{5*sin(60)-1}) {$\theta$};
-                \draw[dashed] (0,0) -- ({10*cos(60)},0);
-                \draw[dashed] ({5*cos(60)},0) -- (60:5);
-                \fill[black] (0,0) circle (0.8mm);
-                \draw[dashed] ({5*cos(60)},0) ellipse (2.5 and 0.5);
-                \draw[-latex] ({10*cos(60)},-0.35) arc [x radius = 2.7, y radius = 0.7, start angle = -30, end angle = 30];
-                \node[anchor=west] at ({10*cos(60)+0.5},0) {$\omega$};
+            \begin{tikzpicture}[scale=1,tdplot_main_coords]
+
+                \tdplotsetthetaplanecoords{\tita}
+    
+    
+                \coordinate (O) at (0,0,0);
+    
+                \draw[thick,-latex,orange,tdplot_rotated_coords] (O) -- (0,0,4) node[anchor=west]{$\theta$};
+                \draw[thick,-latex,orange,tdplot_rotated_coords] (O) -- (0,0,1) node[anchor=south]{$\ver{e}_\theta$};
+    
+                \draw[thick,-latex,tdplot_rotated_coords,green!40!black] (0,3,0) -- (0,3,3) node[anchor=west]{$\vec{v}$};
+    
+                \draw[dashed] ({3*cos(\tita)},{3*sin(\tita)},0) arc (\tita:360:3);
+    
+                \draw[thick,-latex] (O) -- (0,4,0) node[anchor=north west]{$y$};
+                \draw[ultra thick,-latex] (O) -- (0,1,0) node[anchor=west,fill=white]{$\ver{e}_y$};
+    
+                \fill[gray!30,tdplot_rotated_coords,opacity=0.5] (-2.3,0,0) -- (-2.3,4,0) -- (5,4,0) -- (5,0,0) -- cycle;
+    
+                \draw[dashed] (3,0,0) arc (0:\tita:3);
+    
+                \draw[thick,-latex,orange,tdplot_rotated_coords] (O) -- (0,4,0) node[anchor=west]{$r$};
+                \draw[thick,-latex,orange,tdplot_rotated_coords] (O) -- (0,1,0) node[anchor=north]{$\ver{e}_r$};
+    
+                \draw[thick,-latex] (O) -- (4,0,0) node[anchor=north east]{$x$};
+                \draw[ultra thick,-latex] (O) -- (1.5,0,0) node[anchor=south east]{$\ver{e}_x$};
+    
+                \draw[thick,-latex] (O) -- (0,0,5) node[anchor=south east]{$z$};
+                \draw[ultra thick,-latex] (O) -- (0,0,1) node[anchor=south east]{$\ver{e}_z$};
+                
+                \draw[tdplot_rotated_coords,latex-latex] (O) -- node[anchor=north east]{$R$} (0,-3,0);
+                \draw[thick,tdplot_rotated_coords] (4,0,0) -- node[anchor=south west]{$L$} (0,3,0);
+                \tdplotdrawarc[tdplot_main_coords]{(O)}{1}{0}{\tita}{anchor=north}{$\theta$};
+                \tdplotdrawarc[tdplot_main_coords,-latex]{(O)}{5}{45}{75}{anchor=north west}{$\omega$};
+            
+                \fill[black] (0,0,4) circle (0.5mm);
+                \draw[ultra thick,tdplot_rotated_coords,-latex,red] (0,3,0) -- (-2,3,0) node[anchor=west]{$\vec{F}_\text{g}$};
+                \draw[ultra thick,tdplot_rotated_coords,-latex,blue] (0,3,0) -- node[anchor=south west]{$\vec{F}_\text{T}$} (1.2,2.1,0);
+                \draw[fill=gray,tdplot_rotated_coords] (0,3,0) circle (1mm);
+                
+                \tdplotdrawarc[tdplot_rotated_coords]{(4,0,0)}{1}{143.13}{180.0}{anchor=north}{$\varphi$};
+                
+                \fill[black] (O) circle (0.5mm);
             \end{tikzpicture}
             \caption{Esquema del Ejercicio~\ref{ej:pendulo_conico}.}
         \label{fig:pendiloconico}
@@ -444,7 +454,7 @@
         ~
         \begin{subfigure}{0.45\textwidth}
             \centering
-            \includegraphics[width=0.6\textwidth]{/home/shluna/UNAHUR/Física/Clases/figs/mesaydosmasas.jpg}
+            \includegraphics[width=0.6\textwidth]{/home/shluna/Proyectos/Clases_Fisica_III/figs/mesaydosmasas.jpg}
             \caption{Esquema del Ejercicio~\ref{ej:mesa}.}
             \label{fig:mesa}
         \end{subfigure}        
