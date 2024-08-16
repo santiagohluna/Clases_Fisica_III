@@ -1,0 +1,562 @@
+%\documentclass[11pt]{beamer}
+\documentclass[11pt,handout,aspectratio=1610]{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{latexsym} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{esint}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usetikzlibrary{babel}
+\usetikzlibrary{calc,patterns,decorations.pathmorphing,decorations.markings}
+\usepackage{xcolor}
+\usepackage{epstopdf}
+\usepackage[nointegrals]{wasysym}
+\usepackage{hyperref}
+\usepackage{cancel}
+
+\usetheme{Berkeley}
+\usecolortheme{seahorse}
+\uselanguage{Spanish}
+
+\newcommand{\sgn}{\mathop{\text{sgn}}}
+\newcommand{\diff}[0]{\text{d}}
+\newcommand{\fdiff}[2]{\dfrac{\text{d} #1}{\text{d} #2}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\fddiff}[2]{\frac{\text{d^2} #1}{\text{d} #2^2}}
+\newcommand{\grado}[0]{^{\circ}}
+\newcommand{\chel}[4]{^{#1}_{#2}\text{#3}^{#4}}
+\newcommand{\valmed}[1]{\left\langle #1 \right\rangle}
+\newcommand{\E}[1]{\times 10^{#1}}
+\newcommand{\ver}[1]{\hat{\vec{#1}}}
+\newcommand{\vecg}[1]{\boldsymbol{#1}}
+\newcommand{\iu}{\text{i}}
+\newcommand{\norm}[1]{\left\vert\left\vert #1 \right\vert\right\vert}
+\newcommand{\abs}[1]{\left\vert #1 \right\vert}
+\newcommand{\tens}[1]{\mathbb{#1}}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\logoUNAHUR}{\includegraphics[scale=0.15]{/home/shluna/Proyectos/Clases_Fisica_III/imgs/logo-universidad-nacional-de-hurlingham_preview_rev_1.png}}
+\newcommand{\vs}{\vspace{0.3cm}}
+\newcommand{\un}[1]{\text{#1}}
+
+\title{Sistemas de partículas y cuerpo rígido}
+\subtitle{Unidad 2}
+\author{Física III}
+\institute{Instituto de Tecnología e Ingeniería \\ \vspace{0.25cm} Universidad Nacional de Hurlingham}
+\date{Primera parte}
+\logo{\logoUNAHUR}
+
+\AtBeginSection[]{
+  \begin{frame}
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+    \usebeamerfont{title}\insertsectionhead\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+}
+
+\tdplotsetmaincoords{70}{110}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}{En esta clase veremos:}
+    \tableofcontents
+\end{frame}
+
+\section{Definición}
+
+\begin{frame}{Definición de un sistema de partículas}
+
+    \begin{block}{Definición}
+        Un sistema de partículas es un conjunto de cuerpos cuyas dimensiones son irrelevantes a los fines del problema, o bien son despreciables respecto a las demás dimensiones del problema, y que interactúan entre sí.
+    \end{block}
+
+\end{frame}
+
+\section{Centro de masa}
+
+% \begin{frame}{Centro de masa}
+
+%     Supongamos dos partículas sobre el eje $x$. Queremos saber a qué distancia $x_{\textsc{cm}}$ del origen el momento resultante es igual a cero. \pause
+    
+%     \begin{figure}
+%         \centering
+%         \begin{tikzpicture}[scale=1]
+%             \draw[thick] (0,-0.5) -- (0,0.5);
+%             \draw[thick,-latex] (-0.5,0) -- (4,0) node[anchor=north]{\scriptsize $x$};
+%             \draw[thick,-latex,blue] (1,0) -- (1,-1) node[anchor=north]{\scriptsize $m_1 \vec{g}$};
+%             \draw[thick,-latex,red] (3,0) -- (3,-0.5) node[anchor=north]{\scriptsize $m_2 \vec{g}$};
+%             \draw[thick,-latex,green] (2,0) -- (2,1) node[anchor=south]{\scriptsize $\vec{F}$};
+%             \draw[fill=black] (1,0) circle (0.5mm) node[anchor=south]{\scriptsize $x_1$};
+%             \draw[fill=black] (2,0) circle (0.5mm) node[anchor=north]{\scriptsize $x_{\textsc{cm}}$};
+%             \draw[fill=black] (3,0) circle (0.5mm) node[anchor=south]{\scriptsize $x_2$};
+%             \draw[fill=black] (0,0) circle (0.5mm);
+%             \node[anchor=north east] at (0,0) {\scriptsize $O$};
+%         \end{tikzpicture}
+%     \end{figure} \pause
+%     $$\sum f_y = F - m_1 \, g - m_2 \, g = 0$$
+
+% \end{frame}
+
+% \begin{frame}{Centro de masa}
+    
+%     \begin{figure}
+%         \centering
+%         \begin{tikzpicture}[scale=1]
+%             \draw[thick] (0,-0.5) -- (0,0.5);
+%             \draw[thick,-latex] (-0.5,0) -- (4,0) node[anchor=north]{\scriptsize $x$};
+%             \draw[thick,-latex,blue] (1,0) -- (1,-1) node[anchor=north]{\scriptsize $m_1 \vec{g}$};
+%             \draw[thick,-latex,red] (3,0) -- (3,-0.5) node[anchor=north]{\scriptsize $m_2 \vec{g}$};
+%             \draw[thick,-latex,green] (2,0) -- (2,1) node[anchor=south]{\scriptsize $\vec{F}$};
+%             \draw[fill=black] (1,0) circle (0.5mm) node[anchor=south]{\scriptsize $x_1$};
+%             \draw[fill=black] (2,0) circle (0.5mm) node[anchor=north]{\scriptsize $x_{\textsc{cm}}$};
+%             \draw[fill=black] (3,0) circle (0.5mm) node[anchor=south]{\scriptsize $x_2$};
+%             \draw[fill=black] (0,0) circle (0.5mm);
+%             \node[anchor=north east] at (0,0) {\scriptsize $O$};
+%         \end{tikzpicture}
+%     \end{figure} Entonces, de la primera condición de equilibrio obtenemos:
+%     $$F = m_1 \, g + m_2 \, g = \left(m_1 + m_2\right) g$$
+
+% \end{frame}
+
+% \begin{frame}{Centro de masa}
+    
+%     \begin{figure}
+%         \centering
+%         \begin{tikzpicture}[scale=1]
+%             \draw[thick] (0,-0.5) -- (0,0.5);
+%             \draw[thick,-latex] (-0.5,0) -- (4,0) node[anchor=north]{\scriptsize $x$};
+%             \draw[thick,-latex,blue] (1,0) -- (1,-1) node[anchor=north]{\scriptsize $m_1 \vec{g}$};
+%             \draw[thick,-latex,red] (3,0) -- (3,-0.5) node[anchor=north]{\scriptsize $m_2 \vec{g}$};
+%             \draw[thick,-latex,green] (2,0) -- (2,1) node[anchor=south]{\scriptsize $\vec{F}$};
+%             \draw[fill=black] (1,0) circle (0.5mm) node[anchor=south]{\scriptsize $x_1$};
+%             \draw[fill=black] (2,0) circle (0.5mm) node[anchor=north]{\scriptsize $x_{\textsc{cm}}$};
+%             \draw[fill=black] (3,0) circle (0.5mm) node[anchor=south]{\scriptsize $x_2$};
+%             \draw[fill=black] (0,0) circle (0.5mm);
+%             \node[anchor=north east] at (0,0) {\scriptsize $O$};
+%         \end{tikzpicture}
+%     \end{figure} Planteamos ahora la segunda condición de equilibrio:
+%     $$\sum T^{O} = F \, x_{\textsc{cm}} - m_1 \, g \, x_1 - m_2 \, g \, x_2 = 0$$ \pause
+%     \vspace{-0.3cm}
+%     $$F \, x_{\textsc{cm}} = m_1 \, g \, x_1 + m_2 \, g \, x_2 = \left(m_1 \, x_1 + m_2 \, x_2\right) g $$
+
+% \end{frame}
+
+% \begin{frame}{Centro de masa}
+    
+%     \begin{figure}
+%         \centering
+%         \begin{tikzpicture}[scale=1]
+%             \draw[thick] (0,-0.5) -- (0,0.5);
+%             \draw[thick,-latex] (-0.5,0) -- (4,0) node[anchor=north]{\scriptsize $x$};
+%             \draw[thick,-latex,blue] (1,0) -- (1,-1) node[anchor=north]{\scriptsize $m_1 \vec{g}$};
+%             \draw[thick,-latex,red] (3,0) -- (3,-0.5) node[anchor=north]{\scriptsize $m_2 \vec{g}$};
+%             \draw[thick,-latex,green] (2,0) -- (2,1) node[anchor=south]{\scriptsize $\vec{F}$};
+%             \draw[fill=black] (1,0) circle (0.5mm) node[anchor=south]{\scriptsize $x_1$};
+%             \draw[fill=black] (2,0) circle (0.5mm) node[anchor=north]{\scriptsize $x_{\textsc{cm}}$};
+%             \draw[fill=black] (3,0) circle (0.5mm) node[anchor=south]{\scriptsize $x_2$};
+%             \draw[fill=black] (0,0) circle (0.5mm);
+%             \node[anchor=north east] at (0,0) {\scriptsize $O$};
+%         \end{tikzpicture}
+%     \end{figure} Luego, $$x_{\textsc{cm}} = \frac{\left(m_1 \, x_1 + m_2 \, x_2\right) g}{F} $$ \pause
+%     $$x_{\textsc{cm}} = \frac{\left(m_1 \, x_1 + m_2 \, x_2\right) g}{\left(m_1 + m_2\right) g} = \frac{\left(m_1 \, x_1 + m_2 \, x_2\right) \cancel{g}}{\left(m_1 + m_2\right) \cancel{g}}$$
+    
+% \end{frame}
+
+% \begin{frame}{Centro de masa}
+    
+%     \begin{figure}
+%         \centering
+%         \begin{tikzpicture}[scale=1]
+%             \draw[thick] (0,-0.5) -- (0,0.5);
+%             \draw[thick,-latex] (-0.5,0) -- (4,0) node[anchor=north]{\scriptsize $x$};
+%             \draw[thick,-latex,blue] (1,0) -- (1,-1) node[anchor=north]{\scriptsize $m_1 \vec{g}$};
+%             \draw[thick,-latex,red] (3,0) -- (3,-0.5) node[anchor=north]{\scriptsize $m_2 \vec{g}$};
+%             \draw[thick,-latex,green] (2,0) -- (2,1) node[anchor=south]{\scriptsize $\vec{F}$};
+%             \draw[fill=black] (1,0) circle (0.5mm) node[anchor=south]{\scriptsize $x_1$};
+%             \draw[fill=black] (2,0) circle (0.5mm) node[anchor=north]{\scriptsize $x_{\textsc{cm}}$};
+%             \draw[fill=black] (3,0) circle (0.5mm) node[anchor=south]{\scriptsize $x_2$};
+%             \draw[fill=black] (0,0) circle (0.5mm);
+%             \node[anchor=north east] at (0,0) {\scriptsize $O$};
+%         \end{tikzpicture}
+%     \end{figure} En consecuencia, $$x_{\textsc{cm}} = \frac{m_1 \, x_1 + m_2 \, x_2}{m_1 + m_2}$$ $x_{\textsc{cm}}$ se conoce como la coordenada $x$ del \emph{centro de masa}.
+    
+% \end{frame}
+
+\begin{frame}{Centro de masa}
+    
+    \begin{block}{Centro de masa}
+        El centro de masa (CM) de un sistema de partículas es un punto tal que el sistema se comporta dinámicamente como si toda la masa del sistema estuviese concentrada en dicho punto.
+    \end{block} \pause
+
+    \begin{block}{Coordenadas del CM}
+        En el plano, las coordenadas del CM se calculan con las expresiones:
+        $$x_{\textsc{cm}} = \frac{1}{M} \sum\limits_{i=1}^N m_i \, x_i \quad \text{ e } \quad y_{\textsc{cm}} = \frac{1}{M} \sum\limits_{i=1}^N m_i \, y_i$$ donde $M = \sum\limits_{i}^N m_i$, es decir, la masa total.
+    \end{block}
+    
+\end{frame}
+
+\begin{frame}{Centro de masa}
+
+    Consideremos un sistema de dos partículas.
+
+    \vspace{11pt}
+
+    Con las componentes $x_{\textsc{cm}}$ e $y_{\textsc{cm}}$ del centro de masa, podemos definir el vector de posición del CM: $$\vec{r}_{\textsc{cm}} = \left(x_{\textsc{cm}},y_{\textsc{cm}}\right) = \left(\frac{m_1 \, x_1 + m_2 \, x_2}{M}, \frac{m_1 \, y_1 + m_2 \, y_2}{M}\right)$$ donde $M = m_1 + m_2$. \pause Esta expresión se puede reescribir como: $$\vec{r}_{\textsc{cm}} = \frac{1}{M} \left(m_1 \, x_1 + m_2 \, x_2, m_1 \, y_1 + m_2 \, y_2\right)$$
+    
+\end{frame}
+
+\begin{frame}{Centro de masa}
+
+    La masa se puede pasar multiplicando al lado izquierdo y el lado derecho se puede expresar como una suma de vectores: $$M \, \vec{r}_{\textsc{cm}} = \left(m_1 \, x_1, m_1 \, y_1\right) + \left(m_2 \, x_2, m_2 \, y_2 \right)$$ \pause Más aún: $$M \, \vec{r}_{\textsc{cm}} = m_1 \left(x_1,y_1\right) + m_2 \left(x_2,y_2\right)$$ \pause 
+    \vspace{-0.5cm}
+    \begin{block}{En consecuencia:} 
+        \vspace{-0.3cm}
+        $$M \, \vec{r}_{\textsc{cm}} = m_1 \, \vec{r}_1 + m_2 \, \vec{r}_2$$
+    \end{block}
+
+\end{frame}
+
+\section{Dinámica de un sistema de partículas}
+
+\begin{frame}{Dinámica de un sistema de partículas}
+
+    Podemos derivar a ambos lados de la relación $M \, \vec{r}_{\textsc{cm}} = m_1 \, \vec{r}_1 + m_2 \, \vec{r}_2$ con respecto al tiempo. \pause $$\fdiff{}{t} \left(M \, \vec{r}_{\textsc{cm}}\right) = \fdiff{}{t} \left(m_1 \, \vec{r}_1 + m_2 \, \vec{r}_2\right)$$ \pause $$M \fdiff{\vec{r}_{\textsc{cm}}}{t} = m_1 \fdiff{\vec{r}_1}{t} + m_2 \fdiff{\vec{r}_2}{t}$$ donde $\fdiff{\vec{r}_{\textsc{cm}}}{t}$ es la velocidad del CM, $\vec{V}_\text{cm}$. Además, $\vec{v}_1 = \fdiff{\vec{r}_1}{t}$ y $\vec{v}_2 = \fdiff{\vec{r}_2}{t}$.
+
+\end{frame}
+
+\begin{frame}{Dinámica de un sistema de partículas}
+
+    Luego, $$M \, \vec{V}_\text{cm} = m_1 \, \vec{v}_1 + m_2 \, \vec{v}_2$$ \pause
+    \begin{block}{Momento lineal del CM}
+        El momento lineal total del sistema es igual al momento lineal del CM $$\vec{P}_\text{cm} = \vec{p}_1 + \vec{p}_2$$ \pause donde $$\vec{P}_\text{cm} = M \, \vec{V}_\text{cm}$$
+    \end{block}
+
+\end{frame}
+
+\begin{frame}{Dinámica de un sistema de partículas}
+
+    Podemos derivar la relación $M \, \vec{V}_\text{cm} = m_1 \, \vec{v}_1 + m_2 \, \vec{v}_2$ respecto al tiempo una vez más: $$M \, \fdiff{\vec{V}_\text{cm}}{t} = m_1 \, \fdiff{\vec{v}_1}{t} + m_2 \, \fdiff{\vec{v}_2}{t}$$ donde $\fdiff{\vec{V}_\text{cm}}{t} = \vec{A}_\text{cm}$ es la aceleración del centro de masa. \pause Esto es, $$M \, \vec{A}_\text{cm} = m_1 \, \vec{a}_1 + m_2 \, \vec{a}_2 = \vec{F}_\text{R}$$ 
+
+\end{frame}
+
+\begin{frame}{Dinámica de un sistema de partículas}
+
+    Ahora bien, la fuerza resultante $\vec{F}_\text{R}$ es el resultado de sumar las fuerzas internas y externas aplicadas a las partículas que forman el sistema. \pause 
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{tikzpicture}[scale=0.8]
+                \draw[thick,-latex] (-0.5,0) -- (4.5,0) node[anchor=north]{\scriptsize $x$};
+                \draw[thick,-latex] (0,-0.5) -- (0,4.5) node[anchor=east]{\scriptsize $y$};
+                \draw[scale=1, domain=-0.2:4.2, smooth, variable=\x,red] plot ({\x}, {-\x+4}); 
+                \draw[thick,-latex] (0,0) -- node[anchor=west]{\scriptsize $\vec{r}_1$} (1,3);
+                \draw[thick,-latex] (0,0) -- node[anchor=north]{\scriptsize $\vec{r}_{\textsc{cm}}$} (2,2);
+                \draw[thick,-latex] (0,0) -- node[anchor=north]{\scriptsize $\vec{r}_2$} (3,1);
+                \draw[thick,-latex,blue] (1,3) -- node[anchor=south west]{\scriptsize $\vec{F}_{12}$} (1.5,2.5);
+                \draw[thick,-latex,blue] (3,1) -- node[anchor=south west]{\scriptsize $\vec{F}_{21}$} (2.5,1.5);
+                \draw[thick,-latex,green] (1,3) -- (1.5,4) node[anchor=east]{\scriptsize $\vec{F}_1$};
+                \draw[thick,-latex,green] (3,1) -- (4,1.5) node[anchor=north]{\scriptsize $\vec{F}_2$};
+                \fill[black] (1,3) circle (0.5mm);
+                \fill[black] (3,1) circle (0.5mm);
+                \fill[black] (2,2) circle (0.5mm) node[anchor=south west]{\scriptsize CM};
+            \end{tikzpicture}
+        \end{column} \pause
+        \begin{column}{0.5\textwidth}
+            $$\vec{F}_\text{R} = \vec{F}_1 + \vec{F}_2 + \vec{F}_{12} + \vec{F}_{21}$$ \pause Pero, en virtud de la tercera ley de Newton $$\vec{F}_{12} = - \vec{F}_{21}$$ \pause Por lo tanto $$\vec{F}_{12} + \vec{F}_{21} = \vec{0}$$
+        \end{column}
+    \end{columns}
+
+\end{frame}
+
+\begin{frame}{Dinámica de un sistema de partículas}
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{tikzpicture}[scale=0.8]
+                \draw[thick,-latex] (-0.5,0) -- (4.5,0) node[anchor=north]{\scriptsize $x$};
+                \draw[thick,-latex] (0,-0.5) -- (0,4.5) node[anchor=east]{\scriptsize $y$};
+                \draw[scale=1, domain=-0.2:4.2, smooth, variable=\x,red] plot ({\x}, {-\x+4}); 
+                \draw[thick,-latex] (0,0) -- node[anchor=west]{\scriptsize $\vec{r}_1$} (1,3);
+                \draw[thick,-latex] (0,0) -- node[anchor=north]{\scriptsize $\vec{r}_{\textsc{cm}}$} (2,2);
+                \draw[thick,-latex] (0,0) -- node[anchor=north]{\scriptsize $\vec{r}_2$} (3,1);
+                \draw[thick,-latex,blue] (1,3) -- node[anchor=south west]{\scriptsize $\vec{F}_{12}$} (1.5,2.5);
+                \draw[thick,-latex,blue] (3,1) -- node[anchor=south west]{\scriptsize $\vec{F}_{21}$} (2.5,1.5);
+                \draw[thick,-latex,green] (1,3) -- (1.5,4) node[anchor=east]{\scriptsize $\vec{F}_1$};
+                \draw[thick,-latex,green] (3,1) -- (4,1.5) node[anchor=north]{\scriptsize $\vec{F}_2$};
+                \fill[black] (1,3) circle (0.5mm);
+                \fill[black] (3,1) circle (0.5mm);
+                \fill[black] (2,2) circle (0.5mm) node[anchor=south west]{\scriptsize CM};
+            \end{tikzpicture}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            Entonces: $$\vec{F}_\text{R} = \vec{F}_1 + \vec{F}_2 = \vec{F}_\text{R}^{\text{(e)}}$$ \pause Luego, $$\boxed{M \, \vec{A}_\text{cm} = \vec{F}_\text{R}^{\text{(e)}}}$$
+        \end{column}
+    \end{columns}
+
+\end{frame}
+
+\section{Conservación del momento lineal}
+
+\begin{frame}{Conservación del momento lineal}
+
+    Si $\vec{F}_\text{R}^{\text{(e)}} = \vec{0}$ entonces: \vspace{-0.3cm} $$M \, \vec{A}_\text{cm} = \vec{0}$$ \vspace{-0.3cm} \pause Esto significa que \vspace{-0.3cm} $$\vec{A}_\text{cm} = \fdiff{\vec{V}_\text{cm}}{t} = \vec{0}$$ \pause Es decir, $$\vec{V}_\text{cm} = \text{constante}$$ \pause En otras palabras, el CM del sistema se mueve en una trayectoria rectilínea a velocidad constante.
+
+\end{frame}
+
+\begin{frame}{Conservación del momento lineal}
+
+    Una consecuencia inmediata de lo anterior es que el momento lineal total del sistema también permanece constante. \pause $$\vec{P}_\text{cm} = M \, \vec{V}_\text{cm} = \text{constante}$$ \pause Así llegamos al
+    \begin{block}{Teorema de conservación del momento lineal}
+        En ausencia de fuerzas externas, el momento lineal total de un sistema de partículas se conserva.
+    \end{block}
+
+\end{frame}
+
+\section{Movimiento relativo al centro de masa}
+
+\begin{frame}{Posiciones relativas al centro de masa}
+
+    Observemos lo siguiente:
+ 
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{tikzpicture}[scale=0.8]
+                \draw[thick,-latex] (-0.5,0) -- (4.5,0) node[anchor=north]{\scriptsize $x$};
+                \draw[thick,-latex] (0,-0.5) -- (0,4.5) node[anchor=east]{\scriptsize $y$};
+                \draw[scale=1, domain=-0.2:4.2, smooth, variable=\x,red] plot ({\x}, {-\x+4}); 
+                \draw[thick,-latex] (0,0) -- node[anchor=west]{\scriptsize $\vec{r}_1$} (1,3);
+                \draw[thick,-latex] (0,0) -- node[anchor=north]{\scriptsize $\vec{r}_{\textsc{cm}}$} (2,2);
+                \draw[thick,-latex] (0,0) -- node[anchor=north]{\scriptsize $\vec{r}_2$} (3,1);
+                \fill[black] (1,3) circle (0.5mm);
+                \fill[black] (3,1) circle (0.5mm);
+                \fill[black] (2,2) circle (0.5mm) node[anchor=south west]{\scriptsize CM};
+                \draw[thick,-latex,blue] (2,2) -- node[anchor=south west]{\scriptsize $\vec{r}_1^{\,\ast}$} (1,3);
+                \draw[thick,-latex,blue] (2,2) -- node[anchor=south west]{\scriptsize $\vec{r}_2^{\,\ast}$} (3,1);
+            \end{tikzpicture}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            La posición de cada punto respecto del CM es:
+            \begin{align*}
+                \vec{r}_1^{\,\ast} &= \vec{r}_1 - \vec{r}_{\textsc{cm}} \\
+                \vec{r}_2^{\,\ast} &= \vec{r}_2 - \vec{r}_{\textsc{cm}}. \\
+            \end{align*} \pause De lo cual se obtiene:
+
+            \begin{align*}
+                \vec{r}_1 &= \vec{r}_1^{\,\ast} + \vec{r}_{\textsc{cm}} \\
+                \vec{r}_2 &= \vec{r}_2^{\,\ast} + \vec{r}_{\textsc{cm}}. \\
+            \end{align*}
+            
+        \end{column}
+    \end{columns} 
+    
+\end{frame}
+
+\begin{frame}{Posiciones relativas al centro de masa}
+
+    Luego, como: $$M \, \vec{r}_{\textsc{cm}} = m_1 \, \vec{r}_1 + m_2 \, \vec{r}_2$$ \pause
+
+    Tenemos: $$M \, \vec{r}_{\textsc{cm}} = m_1 \left(\vec{r}_1^{\,\ast} + \vec{r}_{\textsc{cm}}\right) + m_2 \left(\vec{r}_2^{\,\ast} + \vec{r}_{\textsc{cm}}\right)$$ \pause
+
+    Desarrollando y reordenando se obtiene: $$M \, \vec{r}_{\textsc{cm}} = m_1 \, \vec{r}_1^{\,\ast} + m_2 \, \vec{r}^{\,\ast}_2 + \left(m_1 +  m_2\right) \vec{r}_{\textsc{cm}}$$ \pause En virtud de que $M = m_1 + m_2$, resulta: $$m_1 \, \vec{r}_1^{\,\ast} + m_2 \, \vec{r}^{\,\ast}_2 = \vec{0}$$
+
+\end{frame}
+
+\begin{frame}{Velocidades relativas al centro de masa}
+
+    Las velocidades de las partículas respecto al centro de masa se calculan derivando las respectivas posiciones relativas al centro de masa con respecto al tiempo:
+    \begin{align*}
+        \vec{v}_1^{\,\ast} &= \fdiff{\vec{r}_1^{\,\ast}}{t} = \vec{v}_1 - \vec{V}_\text{cm} \\
+        \vec{v}_2^{\,\ast} &= \fdiff{\vec{r}_2^{\,\ast}}{t} = \vec{v}_2 - \vec{V}_\text{cm}.
+    \end{align*} De donde se obtiene:
+    \begin{align*}
+        \vec{v}_1 &= \vec{v}_1^{\,\ast} + \vec{V}_\text{cm} \\
+        \vec{v}_2 &= \vec{v}_2^{\,\ast} + \vec{V}_\text{cm} 
+    \end{align*} \pause Es decir, esta última es la relación entre las velocidades, $\vec{v}_1$ y $\vec{v}_2$, en función de las velocidades relativas al CM y de $\vec{V}_\text{cm}$.
+    
+\end{frame}
+
+\begin{frame}{Velocidades relativas al centro de masa}
+
+    Si reemplazamos las expresiones de $\vec{v}_1$ y $\vec{v}_2$ en función de las velocidades relativas al CM y de la velocidad del CM en la expresión $$M \, \vec{V}_\text{cm} = m_1 \, \vec{v}_1 + m_2 \, \vec{v}_2$$ O bien, si derivamos respecto al tiempo la relación $$m_1 \, \vec{r}_1^{\,\ast} + m_2 \, \vec{r}^{\,\ast}_2 = \vec{0}$$ obtenemos como resultado que: $$m_1 \, \vec{v}_1^{\,\ast} + m_2 \, \vec{v}^{\,\ast}_2 = \vec{0}$$
+
+\end{frame}
+
+\section{Energía cinética de un sistema de partículas}
+
+\begin{frame}{Energía cinética de un sistema de partículas}
+
+    \begin{block}{Definición}
+        La energía cinética de un sistema de partículas se define como la suma algebraica de la energía cinética de cada partícula: $$E_\text{c} = \sum_{i=1}^N \frac{1}{2} m_i \, v_i^2$$
+    \end{block} \pause
+
+    Veamos a continuación un hecho interesante.
+    
+\end{frame}
+
+\begin{frame}{Energía cinética de un sistema de partículas}
+
+    En el caso de dos partículas, tenemos:
+    $$E_\text{c} = \sum_{i=1}^2 \frac{1}{2} m_i \, v_i^2 = \frac{1}{2} m_1 \, v_1^2 + \frac{1}{2} m_2 \, v_2^2$$ \pause En virtud de lo anterior:
+    $$E_\text{c} = \frac{1}{2} m_1 \, \left(\vec{v}_1^{\,\ast} + \vec{V}_\text{cm}\right)^2 + \frac{1}{2} m_2 \, \left(\vec{v}_2^{\,\ast} + \vec{V}_\text{cm}\right)^2$$ \pause Desarrollando y reordenando llegamos a:
+    \begin{multline*}
+        E_\text{c} = \frac{1}{2} \left(m_1 + m_2\right) \vec{V}_\text{cm}^2 + \frac{1}{2} m_1 \, \left[v_1^{\,\ast}\right]^2 + \frac{1}{2} m_2 \, \left[v_2^{\,\ast}\right]^2 \\ + \left(m_1 \, \vec{v}_1^{\,\ast} + m_2 \, \vec{v}^{\,\ast}_2\right) \vec{V}_\text{cm}
+    \end{multline*}
+
+    
+\end{frame}
+
+\begin{frame}{Energía cinética de un sistema de partículas}
+
+    Luego, $$E_\text{c} = \frac{1}{2} M \, V_\text{cm}^2 + \frac{1}{2} m_1 \, \left[v_1^{\,\ast}\right]^2 + \frac{1}{2} m_2 \, \left[v_2^{\,\ast}\right]^2.$$ \pause
+
+    \begin{block}{Consecuencia importante}
+        El movimiento de un sistema de partículas se puede describir como el movimiento del centro de masa más el movimiento de las partículas que lo conforman respecto al centro de masa. En otras palabras, el movimiento del sistema se puede separar en dos partes: el movimiento \emph{del} CM y el movimiento \emph{respecto al} CM.
+    \end{block}
+
+\end{frame}
+
+\section{Choques}
+
+\begin{frame}{Choques}
+
+    El teorema de conservación del momento lineal total nos permite estudiar algunos casos de choques entre partículas. \pause
+
+    \vspace{0.3cm}
+
+    Existen tres tipos básicos de choques: \pause
+    \begin{itemize}
+        \item Perfectamente elásticos. \pause Son aquellos en los que se conserva la energía cinética total del sistema. \pause
+        \item Perfectamente inelásticos o plásticos. \pause La energía cinética total del sistema no se conserva.
+        \item Inelásticos, en los que tampoco se conserva la energía cinética del sistema. Se trata de una situación intermedia entre las dos anteriores.
+    \end{itemize} \pause
+
+    \begin{alertblock}{Sin embargo,}
+        El momento lineal total del sistema se conserva en los tres tipos de choque.
+    \end{alertblock}
+
+\end{frame}
+
+\begin{frame}{Choques}
+
+    Consideremos dos bloques $A$ y $B$, cuyas masas son $m_A$ y $m_B$, respectivamente, que se mueven uno hacia el otro con las correspondientes velocidades $\vec{v}_{A \, 1}$ y $\vec{v}_{B\,1}$ antes de chocar.
+
+    \begin{figure}
+        \centering
+        \begin{tikzpicture}[scale=1]
+            \fill[pattern=north east lines] (0,0) -- (0,-0.2) -- (6,-0.2) -- (6,0) -- cycle;
+            \draw[fill=gray!40] (1,0) rectangle (2,1);
+            \draw[fill=gray!40] (4,0) rectangle (5,0.5);
+            \draw[thick] (0,0) -- (6,0);
+            \draw[thick,-latex] (1.2,1.2) -- node[anchor=south]{\scriptsize $\vec{v}_{A \, 1}$} (1.8,1.2);
+            \draw[thick,latex-] (4.2,0.7) -- node[anchor=south]{\scriptsize $\vec{v}_{B \, 1}$} (4.8,0.7);
+            \node at (1.5,0.5) {\scriptsize $A$};
+            \node at (4.5,0.25) {\scriptsize $B$};
+        \end{tikzpicture}
+    \end{figure}
+
+    Si $\vec{v}_{A \, 2}$ y $\vec{v}_{B\,2}$ son las velocidades de los cuerpos $A$ y $B$ después del choque, entonces, se tiene que $$m_A \, \vec{v}_{A \, 1} + m_B \, \vec{v}_{B\,1} = m_A \, \vec{v}_{A \, 2} + m_B \, \vec{v}_{B\,2}$$
+
+\end{frame}
+
+\begin{frame}{Choques}
+
+    \begin{block}{Choques perfectamente inelásticos}
+        Si después de chocar ambos bloques quedan unidos, tendremos:
+        $$m_A \, v_{A \, 1} + m_B \, v_{B\,1} = \left(m_A + m_B\right) v_2$$
+    \end{block}
+
+\end{frame}
+
+\begin{frame}{Choques}
+
+    \begin{block}{Choques perfectamente inelásticos}
+        La energía cinética del sistema antes del choque es:
+        $$E_{\text{c}1} = \frac{1}{2} m_A \, v_{A \, 1}^2 + \frac{1}{2} m_B \, v_{B\,1}^2$$ \pause y después del choque es: $$E_{\text{c}2} = \frac{1}{2} \left(m_A + m_B\right) v_2^2$$
+    \end{block}
+
+\end{frame}
+
+\begin{frame}{Choques}
+
+    \begin{block}{Choques perfectamente elásticos}
+        En este caso, tendremos:
+        $$m_A \, v_{A \, 1} + m_B \, v_{B\,1} = m_A \, v_{A \, 2} + m_B \, v_{B \, 2}$$
+    \end{block}
+
+\end{frame}
+
+\begin{frame}{Choques}
+
+    \begin{block}{Choques perfectamente elásticos}
+        La energía cinética del sistema antes del choque es:
+        $$E_{\text{c}1} = \frac{1}{2} m_A \, v_{A \, 1}^2 + \frac{1}{2} m_B \, v_{B\,1}^2$$ \pause y después del choque es: $$E_{\text{c}2} = \frac{1}{2} m_A \, v_{A \, 2}^2 + \frac{1}{2} m_B \, v_{B \, 2}^2 $$ \pause Además $$E_{\text{c}1} = E_{\text{c}2}$$
+    \end{block}
+
+\end{frame}
+
+\begin{frame}{Choques}
+
+    \begin{block}{Choques perfectamente elásticos}
+        De las relaciones:
+        $$m_A \, v_{A \, 1} + m_B \, v_{B\,1} = m_A \, v_{A \, 2} + m_B \, v_{B \, 2}$$ y $$\frac{1}{2} m_A \, v_{A \, 1}^2 + \frac{1}{2} m_B \, v_{B\,1}^2 = \frac{1}{2} m_A \, v_{A \, 2}^2 + m_B \, v_{B \, 2}^2$$
+    \end{block}
+
+\end{frame}
+
+\begin{frame}{Choques}
+
+    \begin{block}{Choques perfectamente elásticos}
+        Se pueden obtener la ecuaciones que dan las velocidades después del choque:
+        \begin{align*}
+            v_{B \, 2} - v_{A \, 2} &= - \left(v_{B\,1} - v_{A \, 1}\right) \\
+                         v_{A \, 2} &= \frac{2 \, m_B \, v_{B\,1} + v_{A \, 1} \left(m_A - m_B\right)}{m_A + m_B} \\
+                         v_{B \, 2} &= \frac{2 \, m_A \, v_{A\,1} + v_{B \, 1} \left(m_B - m_A\right)}{m_A + m_B}
+        \end{align*}
+    \end{block}
+
+\end{frame}
+
+\begin{frame}{Coeficiente de restitución}
+
+    El coeficiente de restitución ($\varepsilon$) mide el grado en que el choque entre dos cuerpos es elásticos. En otras palabras, indica ``qué tan elástico'' es un choque o, ``qué tan cerca'' está de serlo.
+
+    \begin{block}{Definición}
+        $$\varepsilon = - \frac{v_{B \, 2} - v_{A \, 2}}{v_{B\,1} - v_{A \, 1}}$$
+    \end{block}
+
+    Podemos ver fácilmente que si el choque es perfectamente elástico $\varepsilon = 1$, porque $v_{B \, 2} - v_{A \, 2} = - \left(v_{B\,1} - v_{A \, 1}\right)$, y que si el choque es perfectamente inelástico o plástico, $\varepsilon = 0$, porque en tal caso $v_{B \, 2} = v_{A \, 2}$. Esto implica que siempre $$0 \leq \varepsilon \leq 1$$
+
+\end{frame}
+
+\begin{frame}{Esto es todo por hoy}
+
+    \begin{center}
+        {\huge ¡Muchas gracias!}
+
+        \vs
+
+        Ahora a repasar y practicar.
+    \end{center}
+
+\end{frame}
+
+\end{document}
+
+\begin{frame}{}
+
+
+
+\end{frame}
