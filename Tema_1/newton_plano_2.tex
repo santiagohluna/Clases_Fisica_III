@@ -1,0 +1,1187 @@
+\documentclass[11pt,handout,aspectratio=1610]{beamer}
+%\documentclass[11pt]{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{latexsym} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{esint}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usetikzlibrary{babel}
+\usetikzlibrary{calc,patterns,decorations.pathmorphing,decorations.markings}
+\usepackage{xcolor}
+\usepackage{epstopdf}
+\usepackage[nointegrals]{wasysym}
+\usepackage{hyperref}
+
+\usetheme{Berkeley}
+\usecolortheme{seahorse}
+\uselanguage{Spanish}
+
+\newcommand{\sgn}{\mathop{\text{sgn}}}
+\newcommand{\diff}[0]{\text{d}}
+\newcommand{\fdiff}[2]{\dfrac{\text{d} #1}{\text{d} #2}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\fddiff}[2]{\frac{\text{d}^2 #1}{\text{d} #2^2}}
+\newcommand{\grado}[0]{^{\circ}}
+\newcommand{\chel}[4]{^{#1}_{#2}\text{#3}^{#4}}
+\newcommand{\valmed}[1]{\left\langle #1 \right\rangle}
+\newcommand{\E}[1]{\times 10^{#1}}
+\newcommand{\ver}[1]{\hat{\vec{#1}}}
+\newcommand{\vecg}[1]{\boldsymbol{#1}}
+\newcommand{\iu}{\text{i}}
+\newcommand{\norm}[1]{\left\vert\left\vert #1 \right\vert\right\vert}
+\newcommand{\abs}[1]{\left\vert #1 \right\vert}
+\newcommand{\tens}[1]{\mathbb{#1}}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\logoUNAHUR}{\includegraphics[scale=0.15]{/home/shluna/Proyectos/Clases_Fisica_III/imgs/logo-universidad-nacional-de-hurlingham_preview_rev_1.png}}
+\newcommand{\vs}{\vspace{11pt}}
+\newcommand{\un}[1]{\text{#1}}
+\renewcommand{\arraystretch}{1.4}
+
+\title{Leyes de Newton y movimiento curvilíneo}
+\subtitle{Tema 1}
+\author{Física III}
+\institute{Instituto de Tecnología e Ingeniería \\ \vspace{0.25cm} Universidad Nacional de Hurlingham}
+\date{Segunda parte}
+\logo{\logoUNAHUR}
+
+\AtBeginSection[]{
+  \begin{frame}
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+    \usebeamerfont{title}\insertsectionhead\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+}
+
+\tdplotsetmaincoords{70}{110}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}{En esta clase veremos:}
+    \tableofcontents
+\end{frame}
+
+\section{Producto vectorial}
+
+\begin{frame}{Producto vectorial}
+
+Supongamos que tenemos dos vectores, $\vec{u} = (u_x,u_y)$ y $\vec{v} = (v_x,v_y)$.
+
+\vs
+
+\begin{block}{Producto vectorial}
+    El producto vectorial entre $\vec{u}$ y $\vec{v}$ se denota como $\vec{u} \times \vec{v}$ y da como resultado un vector perpendicular al plano que contiene a $\vec{u}$ y $\vec{v}$ y cuyo módulo es $$ \norm{\vec{u} \times \vec{v}} = \norm{\vec{u}} \, \norm{\vec{v}} \sen{\psi} = u_x \, v_y - u_y \, v_x$$ donde $\psi$ es en ángulo entre $\vec{u}$ y $\vec{v}$.
+\end{block}
+
+    
+\end{frame}
+
+\begin{frame}{Cálculo del producto vectorial}
+
+    \begin{block}{Producto vectorial}
+        Si $\vec{w} = \vec{u} \times \vec{v}$, entonces: $$\vec{w} = \left(u_x \, v_y - u_y \, v_x\right) \hat{e}_z $$ donde $\hat{e}_z$ es un versor perpendicular al plano formado por $\vec{u}$ y $\vec{v}$.
+    \end{block}
+
+    \begin{columns}
+        \begin{column}{0.6\textwidth}
+            \begin{figure}[h]
+                \centering
+                \begin{tikzpicture}[tdplot_main_coords,scale=0.9]
+                    \draw[thick,-latex] (0,0,0) -- (3,0,0) node[anchor=east]{\scriptsize $x$};
+                    \draw[thick,-latex] (0,0,0) -- (0,3,0) node[anchor=west]{\scriptsize $y$};
+                    \draw[thick,-latex] (0,0,0) -- (0,0,2.5) node[anchor=south]{\scriptsize $z$};
+                    \draw (45:1) arc (45:-30:1);
+                    \node[anchor=north] at (22.5:1) {\scriptsize $\psi$};
+                    \draw[thick,-latex,red] (0,0) -- (330:2) node[anchor=south east]{\scriptsize $\vec{u}$};
+                    \draw[thick,-latex,blue] (0,0) -- (45:2) node[anchor=south west]{\scriptsize $\vec{v}$};
+                    \draw[thick,-latex,green!80] (0,0,0) -- node[anchor=east]{\scriptsize $\vec{w}$} (0,0,2);
+                    \draw[fill=black] (0,0) circle (0.5mm);
+                \end{tikzpicture}
+            \end{figure}
+        \end{column}
+        \begin{column}{0.4\textwidth}
+            $$\textcolor{green}{\vec{w}} = \textcolor{red}{\vec{u}} \times \textcolor{blue}{\vec{v}} $$
+        \end{column}
+    \end{columns}
+
+\end{frame}
+
+\begin{frame}{Producto vectorial}
+
+    \begin{block}{Propiedades importantes}
+        \begin{itemize}
+            \item El producto vectorial es \emph{anticonmutativo}: Si $\vec{u} \times \vec{v} = \vec{w}$, entonces $\vec {v} \times \vec{u} = - \vec{w}$.
+            \item Distributividad: $\left(\vec{u} + \vec{v}\right) \times \vec{w} = \vec{u} \times \vec{w} + \vec{v} \times \vec{w}$.
+            \item El producto vectorial \emph{no es asociativo}: $\left(\vec{u} \times \vec{v}\right) \times \vec{w} \neq \vec{u} \times \left(\vec{v} \times \vec{w}\right)$.
+            \item Si $\vec{u}$ y $\vec{v}$ son paralelos, $\psi = 0$ y $\vec{u} \times \vec{v} = \vec{0}$.
+            \item Como todo vector es paralelo a sí mismo: $\vec{u} \times \vec{u} = \vec{0}$.
+            \item Cancelación por ortogonalidad: $\vec{u} \cdot \left(\vec{u} \times \vec{v}\right) = \vec{v} \cdot \left(\vec{u} \times \vec{v}\right) = 0$.
+            \item Si $k \in \rr$, entonces: $k \left(\vec{u} \times \vec{v}\right) = \left(k \, \vec{u}\right) \times \vec{v} = \vec{u} \times \left(k \, \vec{v}\right)$, es decir, el producto vectorial es \emph{bihomogéneo}.
+        \end{itemize}
+    \end{block}
+
+\end{frame}
+
+\section{Momento angular}
+
+\begin{frame}{Momento angular}
+
+    El momento angular es una magnitud vectorial muy importante en Física dado que, como vamos a ver más adelante, es una cantidad que se conserva bajo determinadas condiciones.
+
+    \vspace{11pt}
+
+    En general se lo denota con $\vec{L}$.
+
+    \begin{block}{Definición}
+        El momento angular de una partícula se define mediante: $$\vec{L} = \vec{r} \times \vec{p}$$ donde $\vec{r}$ es el vector de posición de la partícula y $\vec{p}$ es su momento lineal.
+    \end{block}
+
+    Cabe destacar que esta expresión es general, es decir, se puede aplicar en cualquier instante de tiempo y en cualquier punto de la trayectoria.
+
+    \vs
+
+    Además, tanto $\vec{r}$ como $\vec{v}$ corresponden a los valores \emph{instantáneos} de la posición y de la velocidad, por lo que la definición da el valor instantáneo de $\vec{L}$.
+
+\end{frame}
+
+\begin{frame}{Momento angular}
+
+    Como $\vec{p} = m \, \vec{v}$, tenemos que: $$ \vec{L} = \vec{r} \times \left(m \, \vec{v}\right)$$ En virtud de la bihomogeneidad del producto vectorial, se puede escribir: $$\vec{L} = m \left(\vec{r} \times \vec{v}\right)$$ Podemos obtener la expresión del momento angular de una partícula que describe un MCU contenido en un plano.
+
+    \vspace{11pt}
+
+    Vamos a considerar un sistema de referencia cuyo origen coincide con el centro de la trayectoria circular y que los ejes $x$ e $y$ están también contenidos en el plano. Con lo cual, el eje $z$ es perpendicular al plano donde ocurre el movimiento.
+
+\end{frame}
+
+\begin{frame}{Momento angular}
+
+    En tal sistema, los vectores de posición y velocidad vienen dados por:
+    \begin{align*}
+        \vec{r} (t) &= \left(R \cos \theta (t); R \sen \theta (t)\right), \\
+        \vec{v} (t) &= \left(- R \, \omega \sen \theta (t); R \, \omega \cos \theta (t)\right).
+    \end{align*} Luego:
+    \begin{equation*}
+        \begin{split}
+            \vec{r} \times \vec{v} &= \left[R \cos \theta (t) \times R \, \omega \cos \theta (t) - R \sen \theta (t) \times \left(- R \, \omega \sen \theta (t)\right)\right] \hat{e}_z \\
+                                   &= \left[R^2 \, \omega \cos^2 \theta(t) + R^2 \omega \sen^2 \theta(t)\right] \hat{e}_z\\
+                                   &= \left[R^2 \, \omega \left(\cos^2 \theta(t) + \sen^2 \theta(t)\right)\right] \hat{e}_z \\
+                                   &= \left(R^2 \, \omega\right) \hat{e}_z \\
+                                   &= \left(R \, v \right) \hat{e}_z.
+        \end{split}        
+    \end{equation*}
+    
+\end{frame}
+
+\begin{frame}{Momento angular}
+
+    En consecuencia, $$ \vec{L} = \left(m \, R \, v \right) \hat{e}_z = \left(m \, R^2 \, \omega\right) \hat{e}_z$$ donde $\hat{e}_z$ es un versor dirigido en la dirección y sentido de los $z$ positivos.
+
+    \begin{figure}[h]
+        \centering
+        \begin{tikzpicture}[tdplot_main_coords,scale=1]
+            \draw[thick,-latex] (0,0,0) -- (3,0,0) node[anchor=east]{\scriptsize $x$};
+            \draw[thick,-latex] (0,0,0) -- (0,3,0) node[anchor=west]{\scriptsize $y$};
+            \draw[thick,-latex] (0,0,0) -- (0,0,2.5) node[anchor=south]{\scriptsize $z$};
+            \draw[fill=black] (0,0) circle (0.5mm);
+            \draw[fill=black] (45:2) circle (0.5mm);
+            \node[anchor=north] at (45:2) {\scriptsize $P$};
+            \draw[thick,-latex] (0,0) -- (45:2);
+            \node at (20:1.2) {\scriptsize $\vec{r}(t)$};
+            \draw (2,0) arc (0:360:2);
+            \draw[thick,-latex,blue] (45:2) -- node[anchor=north]{\scriptsize $\vec{v} (t)$} ({-1.5*sin(45) +   2*cos(45)},{1.5*cos(45) + 2*sin(45)});
+            \draw[thick,-latex,red] (0,0,0) -- (0,0,2) node[anchor=west]{\scriptsize $\vec{L}$};
+        \end{tikzpicture}
+    \end{figure}
+
+\end{frame}
+
+\begin{frame}{Momento angular}
+
+    En virtud de que $\omega$ es constante en el MCU, podemos concluir que, en este caso, el vector momento angular se conserva en el tiempo. Es decir, su módulo, dirección y sentido son siempre iguales en cualquier instante de tiempo.
+
+    \vspace{11pt}
+
+    A partir de la expresión del módulo del momento angular podemos ver que su unidad es: $$ \left[L\right] = \text{kg} \, \frac{\text{m}^2}{\text{s}}$$
+    
+\end{frame}
+
+\begin{frame}{Momento angular}
+
+    Cabe mencionar que el factor $m \, R^2$, presente en la expresión $\vec{L} = \left(m \, R^2 \, \omega\right) \hat{e}_z$ se conoce como \emph{momento de inercia} de la partícula y se lo simboliza con la letra $I$, es decir: $$I = m \, R^2$$ para el caso de una masa puntual.
+
+    \vspace{11pt}
+
+    Podemos observar entonces que el momento angular se puede escribir en función del momento de inercia ($I = m \, R^2$): $$ \vec{L} = I \, \omega \, \hat{e}_z$$
+
+\end{frame}
+
+\section{Vector velocidad angular}
+
+\begin{frame}{Vector velocidad angular}
+
+    A partir de la expresión del vector momento angular, $\vec{L} = I \, \omega \, \hat{e}_z$ puede definirse el \emph{vector velocidad angular} ($\vec{\omega}$) de la siguiente manera: $$\vec{\omega} = \omega \, \hat{e}_z$$ De esta forma, podemos expresar el momento angular como: $$\vec{L} = I \, \vec{\omega}$$ la cual resulta análoga a la expresión del momento lineal: $$\vec{p} = m \, \vec{v}$$ en donde el momento de inercia $I$ juega el papel de la masa.
+
+\end{frame}
+
+\begin{frame}{Vector velocidad angular}
+
+    Así, dado que el momento de inercia es un escalar positivo, podemos concluir que el vector momento angular y el vector velocidad angular tienen siempre la misma dirección y el mismo sentido y solamente difieren en sus módulos, excepto en el caso en que $I$ sea igual a la unidad. $$ \vec{L} = I \, \vec{\omega} \Rightarrow \vec{L} \parallel \vec{\omega} $$
+
+    \begin{figure}[h]
+        \centering
+        \begin{tikzpicture}[tdplot_main_coords,scale=1]
+            \draw[thick,-latex] (0,0,0) -- (3,0,0) node[anchor=east]{\scriptsize $x$};
+            \draw[thick,-latex] (0,0,0) -- (0,3,0) node[anchor=west]{\scriptsize $y$};
+            \draw[thick,-latex] (0,0,0) -- (0,0,2.5) node[anchor=south]{\scriptsize $z$};
+            \node[anchor=north] at (45:2) {\scriptsize $P$};
+            \draw[thick,-latex] (0,0) -- (45:2);
+            \node at (20:1.2) {\scriptsize $\vec{r}(t)$};
+            \draw (2,0) arc (0:360:2);
+            \draw[thick,-latex,blue] (45:2) -- node[anchor=north]{\scriptsize $\vec{v} (t)$} ({-1.5*sin(45) +   2*cos(45)},{1.5*cos(45) + 2*sin(45)});
+            \draw[thick,-latex,red] (0,0,0) -- (0,0,2) node[anchor=west]{\scriptsize $\vec{L}$};
+            \draw[thick,-latex,green] (0,0,0) -- (0,0,1.25) node[anchor=west]{\scriptsize $\vec{\omega}$};
+            \draw[fill=black] (45:2) circle (0.5mm);
+            \draw[fill=black] (0,0) circle (0.5mm);
+        \end{tikzpicture}
+    \end{figure}
+    
+\end{frame}
+
+\begin{frame}{Vector velocidad angular}
+
+    Por último, a partir de las dos expresiones vistas del momento angular: $\vec{L} = I \, \vec{\omega}$ y $\vec{L} = m \left(\vec{r} \times \vec{v}\right)$, y teniendo en cuenta que $I = m \, R^2$ podemos obtener una expresión del vector velocidad angular: $$\vec{\omega} = \frac{\vec{r} \times \vec{v}}{R^2}$$ O bien, como $\vec{r} = R \, \hat{\vec{r}}$ y $\vec{v} = R \, \omega \hat{\vec{v}}$, tenemos: $$\vec{\omega} = \omega \left(\hat{\vec{r}} \times \hat{\vec{v}}\right)$$ donde $\hat{\vec{r}}$ y $\hat{\vec{v}}$ son los versores que dan la dirección y sentido de los vectores de posición y velocidad, respectivamente.
+
+\end{frame}
+
+\section{Dinámica rotacional}
+
+\begin{frame}{Torque y momento angular}
+
+    En virtud de la segunda ley de Newton, sabemos que una fuerza aplicada a un cuerpo provoca que el vector momento lineal del mismo cambie en el tiempo: $$\fdiff{\vec{p}}{t} = \vec{F} $$  Podemos preguntarnos ahora, ¿qué provoca el cambio en el tiempo del momento angular?
+
+    \vs
+
+    Para responder a esa pregunta, vamos a proceder de un modo matemático derivando la definición que vimos del momento angular ($\vec{L} = \vec{r} \times \vec{p}$) respecto al tiempo: $$\fdiff{\vec{L}}{t} = \fdiff{}{t} \left(\vec{r} \times \vec{p}\right) = \fdiff{\vec{r}}{t} \times \vec{p} + \vec{r} \times \fdiff{\vec{p}}{t}$$
+
+\end{frame}
+
+\begin{frame}{Torque y momento angular}
+
+    Ahora bien, $\fdiff{\vec{r}}{t} = \vec{v}$ y $\vec{p} = m \, \vec{v}$.
+    $$\fdiff{\vec{L}}{t} = \vec{v} \times m \, \vec{v} + \vec{r} \times m \fdiff{\vec{v}}{t}$$ Por propiedad del producto vectorial, $\vec{v} \times m \, \vec{v} = m \, \left(\vec{v} \times \vec{v}\right)$, pero $\vec{v} \times \vec{v} = \vec{0}$ y, por lo tanto: $$\fdiff{\vec{L}}{t} = \vec{r} \times m \, \fdiff{\vec{v}}{t}$$ Pero por otro lado, sabemos que $\fdiff{\vec{v}}{t} = \vec{a}$. Además, en virtud de la segunda ley de Newton, $\vec{F} = m \, \vec{a}$ y por lo tanto: $$\fdiff{\vec{L}}{t} = \vec{r} \times \vec{F}$$
+
+\end{frame}
+
+\begin{frame}{Torque y momento angular}
+
+    El vector $\vec{r} \times \vec{F}$ se conoce como \emph{torque} y lo denotaremos $\vec{T}$, es decir: $$ \vec{T} = \vec{r} \times \vec{F} $$ Así como las fuerzas hacen que el momento lineal de una partícula cambie en el tiempo, los torques hacen que el momento angular cambie en el tiempo:
+    \begin{align*}
+        \fdiff{\vec{p}}{t} &= \vec{F}  & \fdiff{\vec{L}}{t} &= \vec{T}.
+    \end{align*}
+
+    La unidad del torque en el SI es el producto entre la unidad de fuerza y la unidad de longitud: $$ \left[T \right] = \text{N m,} $$ la cual \textbf{NO} debe confundirse con la unidad de trabajo o energía (J), dado que se trata de dos magnitudes diferentes.
+
+\end{frame}
+
+\begin{frame}{Torque y momento angular}
+
+    Veamos lo siguiente: En términos generales, el torque se define mediante $\vec{T} = \vec{r} \times \vec{F}$. Ahora bien, la fuerza aplicada se puede expresar como la suma de una fuerza paralela ($\vec{F}_\parallel$) a $\vec{r}$ y otra perpendicular ($\vec{F}_\perp$) a $\vec{r}$: $\vec{F} = \vec{F}_\parallel + \vec{F}_\perp$, entonces:
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{figure}[h]
+                \centering
+                \begin{tikzpicture}[scale=0.8]
+                    \draw[thick,-latex] (-0.5,0) -- (4,0) node[anchor=north]{\scriptsize $x$};
+                    \draw[thick,-latex] (0,-1) -- (0,4.5) node[anchor=east]{\scriptsize $y$};
+                    % \draw[step=1cm,gray,very thin] (-0.2,-0.2) grid (3.2,4.2);
+                    % \foreach \x in {1,2,3}
+                    % \draw (\x cm,1pt) -- (\x cm,-1pt) node[anchor=north] {\scriptsize $\x$};
+                    % \foreach \y in {-1,1,2,3,4}
+                    % \draw (1pt,\y cm) -- (-1pt,\y cm) node[anchor=east] {\scriptsize $\y$};
+                    \draw[scale=1, domain=1.2:2.7, smooth, variable=\x,dashed] plot ({\x}, {4*(\x-2)+2});
+                    \draw[scale=1, domain=0:3.5, smooth, variable=\x,dashed] plot ({\x}, {\x});
+                    \draw[scale=1, domain=2.5:3.25, smooth, variable=\x,dashed] plot ({\x}, {-(\x-2.5)+4});
+                    \draw[scale=1, domain=1.25:2.5, smooth, variable=\x,dashed] plot ({\x}, {(\x-2.5)+4});
+                    % \draw[dashed] (0,0) -- node[sloped,below]{\scriptsize $d \sen \varphi$} ({24/17},{-6/17});
+                    \draw[fill=black] (2,2) circle (0.5mm);
+                    \node[anchor=north west] at (2,2) {\scriptsize $P$};
+                    \draw[thick,-latex] (0,0) -- node[anchor=south]{\scriptsize $\vec{r}$} (2,2);
+                    \draw[thick,-latex] (2,2) -- node[anchor=east]{\scriptsize $\vec{F}$} (2.5,4);
+                    \draw[thick,-latex] (2,2) -- node[anchor=north west]{\scriptsize $\vec{F}_\parallel$} ({13/4},{13/4});
+                    \draw[thick,-latex] (2,2) -- node[anchor=east]{\scriptsize $\vec{F}_\perp$} ({5/4},{11/4});
+                    % \draw (45:{2.5*sqrt(2)}) arc (45:75.964:{0.5*sqrt(2)});
+                    % \draw (45:{1.6*sqrt(2)}) arc (225:255.694:{0.4*sqrt(2)});
+                    % \node at (2.5,2.8) {\scriptsize $\varphi$};
+                    % \node at (1.6,1.3) {\scriptsize $\varphi$};
+                \end{tikzpicture}
+            \end{figure}
+        \end{column}
+        ~
+        \begin{column}{0.5\textwidth}
+            $$\vec{T} = \vec{r} \times \left(\vec{F}_\parallel + \vec{F}_\perp\right)$$
+            $$\vec{T} = \vec{r} \times \vec{F}_\parallel + \vec{r} \times \vec{F}_\perp$$ Pero, $\vec{r} \times \vec{F}_\parallel = 0$, en consecuencia: $$\vec{T} = \vec{r} \times \vec{F}_\perp$$
+        \end{column}
+    \end{columns}
+
+\end{frame}
+
+\begin{frame}{Torque y momento angular}
+
+    Así, llegamos a la 
+
+    \begin{block}{Ecuación de movimiento para el momento angular}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            $$\fdiff{\vec{L}}{t} = \vec{T}$$
+            $$\vec{T} = \vec{r} \times \vec{F}_\perp$$
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{figure}[h]
+                \centering
+                \begin{tikzpicture}[tdplot_main_coords,scale=1]
+                    \draw[thick,-latex] (0,0,0) -- (3,0,0) node[anchor=east]{\scriptsize $x$};
+                    \draw[thick,-latex] (0,0,0) -- (0,3,0) node[anchor=west]{\scriptsize $y$};
+                    \draw[thick,-latex] (0,0,0) -- (0,0,3) node[anchor=south]{\scriptsize $z$};
+                    \draw[fill=black] (0,0) circle (0.5mm);
+                    \draw[fill=black] (45:2) circle (0.5mm);
+                    \node[anchor=north] at (45:2) {\scriptsize $P$};
+                    \draw[thick,-latex] (0,0) -- (45:2);
+                    \node at (20:1.2) {\scriptsize $\vec{r}(t)$};
+                    \draw (2,0) arc (0:360:2);
+                    \draw[thick,-latex,blue] (45:2) -- node[anchor=north]{\scriptsize $\vec{F}_\perp$} ({-1.5*sin(45) +   2*cos(45)},{1.5*cos(45) + 2*sin(45)});
+                    \draw[thick,-latex,red] (0,0,0) -- node[anchor=east]{\scriptsize $\vec{T}$} (0,0,2);
+                \end{tikzpicture}
+            \end{figure}
+        \end{column}
+    \end{columns}
+\end{block}
+
+\end{frame}
+
+\begin{frame}{Dinámica rotacional y movimiento circular}
+    
+Consideremos ahora una partícula cuyo movimiento está limitado a una trayectoria circular de radio $R$. En tal caso, habíamos visto que el momento angular viene dado por $$\vec{L} = I \, \vec{\omega}$$ donde $I = m \, R^2$ y $\vec{\omega} = \omega \, \hat{e}_z$.
+
+\vs 
+
+Supongamos que por el efecto de un torque, el momento angular de la partícula cambia de $\vec{L}_1$, en el instante $t_1$, a $\vec{L}_2$ en el instante $t_2$.
+
+\vs
+
+Tanto la masa de la partícula como el radio de la trayectoria circular permanecen constantes en el tiempo, por lo tanto el momento de inercia también es constante en el tiempo ($I = m \, R^2$).
+
+\vs 
+
+Por lo tanto, en virtud de la relación $\vec{L} = I \, \vec{\omega}$, tendremos que $$\vec{L}_1 = I \, \vec{\omega}_1 \quad \text{ y } \quad \vec{L}_2 = I \, \vec{\omega}_2$$
+
+%%% entonces: $$\fdiff{\vec{L}}{t} = \fdiff{}{t} \left(I \, \omega \, \hat{e}_z \right) = I \, \fdiff{\omega}{t} \, \hat{e}_z = I \, \alpha \, \hat{e}_z$$ 
+
+\end{frame}
+
+\begin{frame}{Dinámica rotacional y movimiento circular}
+
+    La variación o cambio de momento angular es $$\Delta \vec{L} = \vec{L}_2 - \vec{L}_1 $$ y, por lo tanto: $$\Delta \vec{L} = I \, \vec{\omega}_2 - I \, \vec{\omega}_1 = I \left(\vec{\omega}_2 - \vec{\omega}_1\right) $$ Es decir: $$ \Delta \vec{L} = I \, \Delta \vec{\omega} $$ En otras palabras, para el caso del movimiento circular, los cambios en el vector momento angular están asociados a cambios del vector velocidad angular.
+
+\end{frame}
+
+\begin{frame}{Aceleración angular}
+
+    Si ahora dividimos a ambos lados por el intervalo de tiempo transcurrido, $\Delta t = t_2 - t_1$, se obtiene el cambio por unidad de tiempo: $$ \frac{\Delta \vec{L}}{\Delta t} = I \, \frac{\Delta \vec{\omega}}{\Delta t} $$ El cociente $\frac{\Delta \vec{\omega}}{\Delta t}$ mide la variación de la velocidad angular por unidad de tiempo, dentro de cierto intervalo, y, por lo tanto, se lo conoce como \emph{aceleración angular media} ($\valmed{\vec{\alpha}}$): $$\valmed{\vec{\alpha}} = \frac{\Delta \vec{\omega}}{\Delta t}$$
+
+\end{frame}
+
+\begin{frame}{Aceleración angular}
+
+    Por otro lado, si la relación entre las variaciones temporales del momento angular y de la velocidad angular se miden en intervalos de tiempo infinitamente pequeños, entonces tomando el límite cuando $\Delta t \to 0$, se llega a: $$ \lim_{\Delta t \to 0} \frac{\Delta \vec{L}}{\Delta t} = \fdiff{\vec{L}}{t} \quad \text{ y } \quad \lim_{\Delta t \to 0} \frac{\Delta \vec{\omega}}{\Delta t} = \fdiff{\vec{\omega}}{t} $$ Por lo tanto: $$ \fdiff{\vec{L}}{t} = I \, \fdiff{\vec{\omega}}{t}$$ La derivada de la velocidad angular respecto al tiempo se la conoce como \emph{aceleración angular instantantánea} ($\vec{\alpha}$): $$ \vec{\alpha} = \fdiff{\vec{\omega}}{t}$$
+
+\end{frame}
+
+\begin{frame}{Dinámica rotacional y movimiento circular}
+
+    En consecuencia: $$\fdiff{\vec{L}}{t} = I \, \vec{\alpha}$$
+
+    \begin{columns}
+        \begin{column}{0.4\textwidth}
+            Además, como $$\fdiff{\vec{L}}{t} = \vec{T}$$ tenemos finalmente que: $$\vec{T} = I \, \vec{\alpha}$$
+        \end{column}
+        \begin{column}{0.6\textwidth}
+            \begin{figure}[h]
+                \centering
+                \begin{tikzpicture}[tdplot_main_coords,scale=1]
+                    \draw[thick,-latex] (0,0,0) -- (3,0,0) node[anchor=east]{\scriptsize $x$};
+                    \draw[thick,-latex] (0,0,0) -- (0,3,0) node[anchor=west]{\scriptsize $y$};
+                    \draw[thick,-latex] (0,0,0) -- (0,0,2.5) node[anchor=south]{\scriptsize $z$};
+                    \node[anchor=north] at (45:2) {\scriptsize $P$};
+                    \draw[thick,-latex] (0,0) -- (45:2);
+                    \node at (20:1.2) {\scriptsize $\vec{r}(t)$};
+                    \draw (2,0) arc (0:360:2);
+                    \draw[thick,-latex,blue] (45:2) -- node[anchor=north]{\scriptsize $\vec{F}_\perp$} ({-1.5*sin(45) +   2*cos(45)},{1.5*cos(45) + 2*sin(45)});
+                    \draw[thick,-latex,red] (0,0,0) -- (0,0,2) node[anchor=west]{\scriptsize $\vec{T}$};
+                    \draw[thick,-latex,green] (0,0,0) -- (0,0,1.25) node[anchor=west]{\scriptsize $\vec{\alpha}$};
+                    \draw[fill=black] (45:2) circle (0.5mm);
+                    \draw[fill=black] (0,0) circle (0.5mm);
+                \end{tikzpicture}
+            \end{figure}
+        \end{column}
+    \end{columns}
+    
+\end{frame}
+
+\begin{frame}{Dinámica rotacional y movimiento circular}
+    
+    Entonces, tenemos una expresión análoga a la segunda ley de newton para una partícula que se mueve en una trayectoria circular.
+
+    \vs
+
+    \begin{block}{``Segunda ley de Newton'' para el movimiento circular}
+
+    $$\vec{T} = I \, \vec{\alpha}$$ Aquí, $T$ juega el papel de la fuerza, $I$ el de la masa y $\alpha$ el de la aceleración.
+
+\end{block}
+
+    \vs
+
+    En consecuencia, al igual que en el caso del movimiento en línea recta, en el que una fuerza constante produce una aceleración constante, podemos ver ahora que \emph{un torque constante produce una aceleración angular constante}.
+    
+\end{frame}
+
+\begin{frame}{Dinámica rotacional y movimiento circular}
+
+    La relación $\vec{T} = I \, \vec{\alpha}$ nos indica que los vectores torque y aceleración angular van a tener siempre la misma dirección y sentido dado que el momento de inercia ($I$) es un número real positivo.
+
+    \vs
+
+    En el caso del movimiento circular, que se da siempre en un mismo plano, tendremos que tanto $\vec{T}$ como $\vec{\alpha}$ van a estar dirigidos según el versor $\hat{e}_z$ (eje $z$), en virtud de lo cual podemos escribir ambos vectores como: $$ \vec{T} = \left(0; 0; T\right) \quad \text{ y } \quad \vec{\alpha} = \left(0; 0; \alpha\right) $$
+
+    Por lo tanto, podemos trabajar directamente con la relación entre las componentes $z$ de estos vectores: $$ T = I \, \alpha $$
+
+\end{frame}
+
+% \section{Aceleración angular}
+
+% \begin{frame}{Aceleración angular}
+
+%     De forma análoga a como definimos la velocidad angular, podemos definir dos tipos de aceleración angular.
+
+% \begin{columns}
+%     \begin{column}{0.5\textwidth}
+%         \begin{figure}[h]
+%             \centering
+%             \begin{tikzpicture}[scale=0.8]
+%                 \draw[thick,-latex] (-2.5,0) -- (2.5,0) node[anchor=north]{\scriptsize $x$};
+%                 \draw[thick,-latex] (0,-2.5) -- (0,2.5) node[anchor=south]{\scriptsize $y$};
+%                 \draw[fill=black] (0,0) circle (0.5mm);
+%                 \draw[fill=black] (45:2) circle (0.5mm);
+%                 \node[anchor=south west] at (45:2) {\scriptsize $P$ ($t_0$)};
+%                 \draw[thick,-latex] (0,0) -- (45:2);
+%                 \node at (30:1.6) {\scriptsize $\vec{r}(t_0)$};
+%                 \draw[fill=black] (120:2) circle (0.5mm);
+%                 \node[anchor=south east] at (120:2) {\scriptsize $P$ ($t$)};
+%                 \draw[thick,-latex] (0,0) -- (120:2);
+%                 \node[anchor=north east] at (120:1.2) {\scriptsize $\vec{r}(t)$};
+%                 \draw (2,0) arc (0:360:2);
+%                 \node at (20:0.8) {\scriptsize $\theta_0$};
+%                 \draw (0.5,0) arc (0:45:0.5);
+%                 \node at (75:1.3) {\scriptsize $\theta$};
+%                 \draw (1,0) arc (0:120:1);
+%             \end{tikzpicture}
+%         \end{figure}
+%     \end{column} \pause
+%     \begin{column}{0.5\textwidth}
+%         {\small
+%         Aceleración angular media: $$\valmed{\alpha} = \frac{\Delta \omega}{\Delta t}$$ donde $\Delta \omega = \omega (t_2) - \omega (t_1)$ y $\Delta t = t_2 - t_1$.
+%         }
+%     \end{column}
+% \end{columns}
+
+% \end{frame}
+
+% \begin{frame}{Aceleración angular}
+
+%     De forma análoga a como definimos la velocidad angular, podemos definir dos tipos de aceleración angular.
+
+% \begin{columns}
+%     \begin{column}{0.5\textwidth}
+%         \begin{figure}[h]
+%             \centering
+%             \begin{tikzpicture}[scale=0.8]
+%                 \draw[thick,-latex] (-2.5,0) -- (2.5,0) node[anchor=north]{\scriptsize $x$};
+%                 \draw[thick,-latex] (0,-2.5) -- (0,2.5) node[anchor=south]{\scriptsize $y$};
+%                 \draw[fill=black] (0,0) circle (0.5mm);
+%                 \draw[fill=black] (45:2) circle (0.5mm);
+%                 \node[anchor=south west] at (45:2) {\scriptsize $P$ ($t_0$)};
+%                 \draw[thick,-latex] (0,0) -- (45:2);
+%                 \node at (30:1.6) {\scriptsize $\vec{r}(t_0)$};
+%                 \draw[fill=black] (120:2) circle (0.5mm);
+%                 \node[anchor=south east] at (120:2) {\scriptsize $P$ ($t$)};
+%                 \draw[thick,-latex] (0,0) -- (120:2);
+%                 \node[anchor=north east] at (120:1.2) {\scriptsize $\vec{r}(t)$};
+%                 \draw (2,0) arc (0:360:2);
+%                 \node at (20:0.8) {\scriptsize $\theta_0$};
+%                 \draw (0.5,0) arc (0:45:0.5);
+%                 \node at (75:1.3) {\scriptsize $\theta$};
+%                 \draw (1,0) arc (0:120:1);
+%             \end{tikzpicture}
+%         \end{figure}
+%     \end{column} \pause
+%     \begin{column}{0.5\textwidth}
+%         {\small
+%         Aceleración angular instantánea: $$\alpha = \lim_{\Delta t \to 0} \frac{\Delta \omega}{\Delta t} = \fdiff{\omega (t)}{t}$$ \pause
+
+%         La unidad de aceleración angular es: $$\left[\alpha\right] = \frac{\un{rad}}{\un{s}^2}$$
+%         }
+%     \end{column}
+% \end{columns}
+
+% \end{frame}
+
+\section[MCUV]{Movimiento circular uniformemente variado}
+
+\begin{frame}{Movimiento circular uniformemente variado (MCUV)}
+
+El movimiento circular uniformemente variado (MCUV) tiene lugar cuando la aceleración angular es constante, lo cual equivale a decir que el torque aplicado es constante.
+
+\vs
+
+En tal caso, la aceleración angular instantánea es igual a la aceleración angular media: $$\valmed{\alpha} = \frac{\Delta \omega}{\Delta t} = \alpha$$ donde $\Delta \omega = \omega(t) - \omega_0$ y $\Delta t = t - t_0$. Luego, $$\Delta \omega = \alpha \Delta t$$ O bien, $$\omega(t) - \omega_0 = \alpha \left(t - t_0\right)$$
+
+\end{frame}
+
+\begin{frame}{Movimiento circular uniformemente variado (MCUV)}
+
+En consecuencia, tenemos la
+
+\begin{block}{Primera ecuación fundamental del MCUV}
+    $$\omega(t) = \omega_0 + \alpha \left(t - t_0\right)$$
+\end{block} Esto es, cuando la aceleración angular es constante, la velocidad angular aumenta o disminuye linealmente en el tiempo.
+
+\vs 
+
+Puede resultar interesante comparar esta expresión con la que resulta del MRUV: $$v(t) = v_0 + a \left(t - t_0\right)$$
+
+\end{frame}
+
+\begin{frame}{Movimiento circular uniformemente variado (MCUV)}
+
+\begin{block}{Gráficas de $\omega$ y de $\alpha$ en función del tiempo}
+
+    \begin{columns}
+        \begin{column}{0.4\textwidth}
+            \begin{figure}[h]
+                \centering
+                \begin{tikzpicture}[scale=0.8]
+                    \draw[thick,-latex] (-0.5,0) -- (3.5,0) node[anchor=north]{\scriptsize $t$};
+                    \draw[thick,-latex] (0,-0.5) -- (0,3.5) node[anchor=south]{\scriptsize $\omega (t)$};
+                    \draw[scale=1, domain=-0.3:3, smooth, variable=\x,red,thick] plot ({\x}, {0.5*\x+1});
+                    \draw[fill=black] (2,2) circle (0.5mm);
+                    \draw[dashed,blue] (0,2) -- (2,2) -- (2,0);
+                    \node[anchor=north west,blue] at (2,2) {\scriptsize $(t_0,\omega_0)$};
+                    \node[anchor=north,blue] at (2,0) {\scriptsize $t_0$};
+                    \node[anchor=east,blue] at (0,2) {\scriptsize $\omega_0$};
+                \end{tikzpicture}
+            \end{figure}
+        \end{column}
+        \begin{column}{0.6\textwidth}
+            \begin{figure}[h]
+                \centering
+                \begin{tikzpicture}[scale=0.8]
+                    \draw[thick,-latex] (-0.5,0) -- (3.5,0) node[anchor=north]{\scriptsize $t$};
+                    \draw[thick,-latex] (0,-0.5) -- (0,3.5) node[anchor=south]{\scriptsize $\alpha$};
+                    \draw[red,thick] (-0.5,2) -- (3.5,2);
+                    \draw[fill=black] (0,2) circle (0.5mm);
+                    \node[anchor=south east,blue] at (0,2) {\scriptsize $\alpha_0$};
+                \end{tikzpicture}
+            \end{figure}
+        \end{column}
+    \end{columns}
+
+    \end{block}
+
+\end{frame}
+
+\begin{frame}{Movimiento circular uniformemente variado (MCUV)}
+
+Ahora, ¿cuál es la expresión de $\theta (t)$? \pause Sabemos que el desplazamiento angular es igual al área bajo la recta que corresponde a la gráfica de $\omega (t)$. \pause 
+
+\begin{columns}
+    \begin{column}{0.5\textwidth}
+        \begin{figure}[h]
+            \centering
+            \begin{tikzpicture}[scale=0.8]
+                \fill[red!20] (1,0) rectangle (3,1.5);
+                \fill[green!20] (1,1.5) -- (3,1.5) -- (3,2.5) -- cycle;
+                \draw[thick,-latex] (-0.5,0) -- (4,0) node[anchor=north]{\scriptsize $t$};
+                \draw[thick,-latex] (0,-0.5) -- (0,3.5) node[anchor=south]{\scriptsize $\omega (t)$};
+                \draw[scale=1, domain=-0.3:3.5, smooth, variable=\x,red,thick] plot ({\x}, {0.5*\x+1});
+                \draw[fill=black] (1,1.5) circle (0.5mm);
+                \draw[dashed,blue] (0,1.5) -- (1,1.5) -- (1,0);
+                \node[anchor=north,blue] at (1,0) {\scriptsize $t_0$};
+                \node[anchor=east,blue] at (0,1.5) {\scriptsize $\omega_0$};
+                \draw[fill=black] (3,2.5) circle (0.5mm);
+                \draw[dashed,blue] (0,2.5) -- (3,2.5);
+                \draw[dashed,blue] (3,1.5) -- (3,0);
+                \node[anchor=north,blue] at (3,0) {\scriptsize $t$};
+                \node[anchor=east,blue] at (0,2.5) {\scriptsize $\omega$};
+                \draw[dashed,blue] (1,1.5) -- node[anchor=north]{\scriptsize $t - t_0$} (3,1.5) -- node[anchor=west]{\scriptsize $\omega - \omega_0$} (3,2.5);
+                \draw[fill=black] (3,1.5) circle (0.5mm);
+            \end{tikzpicture}
+        \end{figure}
+    \end{column} \pause
+    \begin{column}{0.5\textwidth}
+        $$\Delta \theta (t) = A_\Box + A_\triangle$$ \pause
+        $$A_\Box = \omega_0 \left(t - t_0\right)$$ \pause
+        $$A_\triangle = \frac{1}{2} \left(\omega - \omega_0\right) \left(t - t_0\right)$$
+    \end{column}
+\end{columns}
+
+\end{frame}
+
+\begin{frame}{Movimiento circular uniformemente variado (MCUV)}
+
+    En consecuencia: $$ \Delta \theta = \omega_0 \left(t - t_0\right) + \frac{1}{2} \left(\omega - \omega_0\right) \left(t - t_0\right) = \frac{\omega + \omega_0}{2} \left(t - t_0\right)$$
+
+    \vspace{11pt}
+
+    Tenemos entonces la 
+    \begin{block}{Segunda ecuación fundamental del MCUV}
+        $$ \Delta \theta = \frac{\omega + \omega_0}{2} \left(t - t_0\right)$$
+    \end{block}
+    
+\end{frame}
+
+\begin{frame}{Movimiento circular uniformemente variado (MCUV)}
+
+Volvamos a la expresión $$ \Delta \theta = \omega_0 \left(t - t_0\right) + \frac{1}{2} \left(\omega - \omega_0\right) \left(t - t_0\right) $$ Por un lado, tenemos que $$\Delta \theta = \theta (t) - \theta_0$$ y, por otro lado, $$\omega (t) - \omega_0 = \alpha \left(t - t_0\right)$$
+
+Reemplazando las dos últimas expresiones en la primera se obtiene: $$\theta (t) - \theta_0 = \omega_0 \left(t - t_0\right) + \frac{1}{2} \alpha \left(t-t_0\right)^2$$
+
+\end{frame}
+
+\begin{frame}{Movimiento circular uniformemente variado (MCUV)}
+
+    Así, llegamos a la 
+    \begin{block}{Tercera ecuación fundamental del MCUV}
+        $$\theta (t) = \theta_0 + \omega_0 \left(t - t_0\right) + \frac{1}{2} \alpha \left(t-t_0\right)^2$$
+    \end{block}
+
+    Esta expresión nos dice que, cuando la aceleración angular es constante, el desplazamiento angular es una función cuadrática del tiempo.
+
+    $$x(t) = x_0 + v_0 \left(t - t_0\right) + \frac{1}{2} a \left(t-t_0\right)^2$$
+
+\end{frame}
+
+\begin{frame}{Movimiento circular uniformemente variado (MCUV)}
+
+Se puede obtener una tercera ecuación fundamental del MCUV eliminando $\left(t-t_0\right)$ entre las dos primeras ecuaciones fundamentales. 
+
+\begin{block}{Cuarta ecuación fundamental del MCUV}
+    $$\omega^2 (t) = \omega_0^2 + 2 \, \alpha \left(\theta (t) - \theta_0\right)$$
+\end{block} La cual es análoga a $$v^2 = v_0^2 + 2 \, a \, \Delta x $$
+
+\end{frame}
+
+\section{Aceleración tangencial}
+
+\begin{frame}{Aceleración tangencial}
+
+Calculemos ahora la velocidad y la aceleración de una partícula que se mueve en una trayectoria circular, pero esta vez asumiendo que la aceleración angular es constante. \pause 
+
+\vspace{0.3cm}
+
+El vector de posición es $$\vec{r} (t) = R \left(\cos \theta (t) , \sen \theta (t)\right)$$ donde $\theta (t) = \theta_0 + \omega_0 \left(t-t_0\right) + \dfrac{1}{2} \alpha \left(t-t_0\right)^2$ y $\omega (t) = \omega_0 + \alpha \left(t-t_0\right)$.
+
+\end{frame}
+
+\begin{frame}{Aceleración tangencial}
+
+Nuevamente,
+\begin{equation*}
+    \begin{split}
+        \vec{v} (t) &= \fdiff{\vec{r} (t)}{t} \\
+                    &= r \left(\fdiff{\cos \theta (t)}{t}, \fdiff{\sen \theta (t)}{t}\right) \\
+                    &= r \left(- \sen \theta (t) \fdiff{\theta (t)}{t}, \cos \theta (t) \fdiff{\theta (t)}{t}\right)
+    \end{split}
+\end{equation*} \pause Ahora, $$\fdiff{\theta (t)}{t} = \omega_0 + \alpha \left(t-t_0\right) = \omega (t)$$
+
+\end{frame}
+
+\begin{frame}{Aceleración tangencial}
+
+Entonces, $$\vec{v} (t) = R \left(- \omega(t) \sen \theta (t), \omega(t) \cos \theta (t)\right)$$ \pause En este caso, concluimos que:
+\begin{itemize}
+    \item $\norm{\vec{v} (t)} = v(t) = R \, \omega(t) \neq \text{constante}$. \pause
+    \item $\vec{r} (t) \cdot \vec{v} (t) = 0$.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Aceleración tangencial}
+
+    Ahora podemos calcular la aceleración:
+    \begin{equation*}
+        \begin{split}
+            \vec{a} (t) &= \fdiff{\vec{v}(t)}{t} \\
+                        &= R \left(\fdiff{\left[- \omega(t) \sen \theta (t)\right]}{t},\fdiff{\left[\omega(t) \cos \theta (t)\right]}{t}\right)
+        \end{split}
+    \end{equation*} \pause
+    \begin{equation*}
+        \begin{split}
+            \fdiff{\left[- \omega(t) \sen \theta (t)\right]}{t} &= - \left[\fdiff{\omega (t)}{t} \sen \theta (t) + \omega (t) \cos \theta(t) \fdiff{\theta (t)}{t} \right] \\
+             &= - \alpha \sen \theta (t) - \omega^2 (t) \cos \theta(t)
+        \end{split}
+    \end{equation*} \pause
+    \begin{equation*}
+        \begin{split}
+            \fdiff{\left[\omega(t) \cos \theta (t)\right]}{t} &= \fdiff{\omega (t)}{t} \cos \theta (t) - \omega (t) \sen \theta(t) \fdiff{\theta (t)}{t} \\
+             &= \alpha \cos \theta (t) - \omega^2 (t) \sen \theta(t)
+        \end{split}
+    \end{equation*}
+
+\end{frame}
+
+\begin{frame}{Aceleración tangencial}
+
+    En consecuencia,
+    \begin{equation*}
+        \vec{a} (t) = R \left(- \alpha \sen \theta (t) - \omega^2 (t) \cos \theta(t); \alpha \cos \theta (t) - \omega^2 (t) \sen \theta(t)\right)
+    \end{equation*}
+    \begin{equation*}
+        \vec{a} (t) = \left(- R \, \alpha \sen \theta (t) - R \, \omega^2 (t) \cos \theta(t); R \, \alpha \cos \theta (t) - R \, \omega^2 (t) \sen \theta(t)\right)
+    \end{equation*} Podemos pensar al vector $\vec{a} (t)$ como la suma de dos vectores:
+    \begin{equation*}
+        \vec{a} (t) = \left(- R \, \alpha \sen \theta (t); R \, \alpha \cos \theta (t)\right) + \left(- R \, \omega^2 (t) \cos \theta(t), - R \, \omega^2 (t) \sen \theta(t)\right)
+    \end{equation*}
+
+\end{frame}
+
+\begin{frame}{Aceleración tangencial}
+
+    O bien:
+    \begin{equation*}
+        \vec{a} (t) = R \, \alpha  \left(- \sen \theta (t),\cos \theta (t)\right) + R \, \omega^2 (t) \left(- \cos \theta(t), - \sen \theta(t)\right)
+    \end{equation*} \pause Pero, $$\vec{a}_{\text{c}} (t) = R \, \omega^2 (t) \left(- \cos \theta(t), - \sen \theta(t)\right)$$ es la aceleración centrípeta: $$ \vec{a}_{\text{c}} (t) = - R \, \omega^2 \hat{e}_r$$ El otro término corresponde a lo que se conoce como \emph{aceleración tangencial}: $$\vec{a}_{\text{t}} (t) = R \, \alpha  \left(- \sen \theta (t),\cos \theta (t)\right)$$ O bien: $$ \vec{a}_{\text{t}} (t) = R \, \alpha \, \hat{e}_\theta $$
+
+\end{frame}
+
+\begin{frame}{Aceleración tangencial}
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            ¿Por qué la llamamos tangencial? \pause Porque:
+            \begin{itemize}
+                \item $\vec{a}_{\text{t}} (t) \cdot \vec{r}(t) = 0$. \pause
+                \item $\vec{a}_{\text{t}} (t) \parallel \vec{v}(t)$. \pause
+                \item Además, $\norm{\vec{a}_{\text{t}} (t)} = R \, \alpha = \text{constante}$. \pause
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{figure}[h]
+                \centering
+                \begin{tikzpicture}[scale=0.8]
+                    \draw[thick,-latex] (-2.5,0) -- (2.5,0) node[anchor=north]{\scriptsize $x$};
+                    \draw[thick,-latex] (0,-2.5) -- (0,2.5) node[anchor=south]{\scriptsize $y$};
+                    \draw[fill=black] (0,0) circle (0.5mm);
+                    \draw[fill=black] (45:2) circle (0.5mm);
+                    \node[anchor=south west] at (45:2) {\scriptsize $P$};
+                    \draw[thick,-latex] (0,0) -- node[anchor=south east]{\scriptsize $\vec{r}$} (45:2);
+                    \draw[thick,-latex,blue] (45:2) -- node[anchor=south west]{\scriptsize $\vec{v}$} ({2*cos(45)-2*0.75*sin(45)},{2*sin(45)+2*0.75*cos(45)});
+                    \draw[thick,-latex,red] (45:2) -- node[anchor=north west]{\scriptsize $\vec{a}_{\text{c}}$} ({2*cos(45)-2*0.5*cos(45)},{2*cos(45)-2*0.5*cos(45)});
+                    \draw[thick,-latex,green] (45:2) -- node[anchor=north east]{\scriptsize $\vec{a}_{\text{t}}$} ({2*cos(45)-2*0.5*sin(45)},{2*sin(45)+2*0.5*cos(45)});
+                    \draw (0.5,0) arc (0:45:0.5);
+                    \node at (25:0.7) {\scriptsize $\theta$};
+                    \draw (2,0) arc (0:360:2);
+                \end{tikzpicture}
+            \end{figure}
+        \end{column}
+    \end{columns}
+
+\end{frame}
+
+\begin{frame}{Velocidad y aceleración tangencial}
+
+    Habíamos visto que $\norm{\vec{v} (t)} = v (t) = R \, \omega (t)$. \pause Además, tenemos que $\omega (t) = \omega_0 + \alpha \left(t-t_0\right)$. \pause En consecuencia: 
+    \begin{equation*}
+        \begin{split}
+            v(t) &= R \, \omega(t) \\ 
+                 &= R \left[\omega_0 + \alpha \left(t-t_0\right)\right] \\
+                 &= R \, \omega_0 + R \, \alpha \left(t-t_0\right)
+        \end{split}
+    \end{equation*} \pause Pero $R \, \omega_0 = v_0$ y $R \, \alpha = a_{\text{t}}$. \pause Así obtenemos la,
+
+    \begin{block}{Expresión de la velocidad tangencial en el MCUV}
+        $$v (t) = v_0 + a_{\text{t}} \left(t-t_0\right)$$
+    \end{block}
+
+\end{frame}
+
+\section{MCUV y dinámica}
+
+\begin{frame}{MCUV y dinámica}
+
+    En virtud de lo visto, un cuerpo puntual, de masa $m$, que describe una trayectoria circular con aceleración angular constante, tendrá impresa una aceleración total dada por: $$\vec{a} (t) = \vec{a}_{\text{t}} + \vec{a}_{\text{c}} (t) =  R \, \alpha \, \hat{e}_\theta + R \, \omega^2 \, \hat{e}_r$$
+
+    \begin{block}{En conclusión}
+        \vspace{-0.5cm}
+        $$\vec{F} (t) = m \, \vec{a} (t) = m \, \vec{a}_{\text{t}} (t) + m \, \vec{a}_{\text{c}} (t)$$ \pause
+        \vspace{-0.5cm}
+        $$\vec{F} (t) = \vec{F}_{\text{t}} (t) + \vec{F}_{\text{c}} (t)$$ donde $$ \vec{F}_{\text{t}} (t) = m \ R \, \alpha \, \hat{e}_\theta \quad \text{ y } \quad F_{\text{c}} (t) = m \, R \, \omega^2 \, \hat{e}_r $$
+    \end{block}
+
+    Esto significa que si la resultante de las fuerzas que actúan sobre la partícula tiene una componente tangencial a la trayectoria circular, pero de módulo constante, además de la componente centrípeta, entonces el movimiento que describe la partícula es un MCUV.
+
+\end{frame}
+
+\begin{frame}{MCUV y dinámica}
+
+    Evidentemente, el torque que imprime la aceleración angular constante está producido por la componente tangencial de la fuerza. $$\vec{T} = \vec{r} \times \vec{F}$$
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{figure}
+                \centering
+                \begin{tikzpicture}[scale=1]
+                    \draw[thick,-latex] (-0.5,0) -- (3,0) node[anchor=north]{\scriptsize $x$};
+                    \draw[thick,-latex] (0,-0.5) -- (0,3) node[anchor=east]{\scriptsize $y$};
+                    \fill (0,0) circle (0.5mm) node[anchor=north east]{\scriptsize $O$};
+                    \begin{scope}[rotate=30]
+                        \draw[dashed] (-10:2.5) arc (-10:20:2.5);
+                        \draw[thick,-latex] (0,0) -- node[anchor=north west]{\scriptsize $\vec{r} (t)$} (2.5,0);
+                        \fill (2.5,0) circle (0.5mm);
+                        \draw[thick,-latex,blue] (0:2.5) -- (1.5,1) node[anchor=east]{\scriptsize $\vec{F}$};
+                        \draw[thick,-latex,blue] (0:2.5) -- node[anchor=south west]{\scriptsize $\vec{F}_\text{t}$} (2.5,1);
+                        \draw[thick,-latex,blue] (0:2.5) -- node[anchor=north west]{\scriptsize $\vec{F}_\text{c}$} (1.5,0);
+                        \draw[dashed,blue] (1.5,0) -- (1.5,1) -- (2.5,1);
+                    \end{scope}
+                \end{tikzpicture}
+            \end{figure}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            Pero, como $\vec{F} = \vec{F}_\text{t} + \vec{F}_\text{c}$, entonces:
+            \begin{align*}
+                \vec{T} &= \vec{r} \times \left(\vec{F}_\text{t} + \vec{F}_\text{c}\right) \\
+                           &= \vec{r} \times \vec{F}_\text{t} + \vec{r} \times \vec{F}_\text{c}
+            \end{align*} Sin embargo, como $\vec{r} \times \vec{F}_\text{c} = \vec{0}$ por ser perpendiculares, resulta: $$\vec{T} = \vec{r} \times \vec{F}_\text{t} $$
+        \end{column}
+    \end{columns}
+
+\end{frame}
+
+% \begin{frame}{MCUV y dinámica}
+
+%     Ahora bien, como $\vec{r} = R \left(\cos \theta (t); \sen \theta (t)\right)$ y $\vec{F}_\text{t} = F_\text{t} \left(- \sen \theta(t) ; \cos \theta(t) \right)$, entonces: 
+%     \begin{align*}
+%         \vec{r} \times \vec{F}_\text{t} &= \left[R \, \cos \theta(t) \, F_\text{t} \cos \theta(t) + F_\text{t} \, \sen \theta(t) \, R \, \sen \theta(t) \right] \hat{e}_z \\
+%                                         &= F_\text{t} \, R \left[\cos^2 \theta(t) + \sen^2 \theta(t)\right]\hat{e}_z \\
+%                                         &= F_\text{t} \, R \, \hat{e}_z 
+%     \end{align*} En consecuencia, $$ \vec{T} = F_\text{t} \, R \, \hat{e}_z $$ Esto es, podemos calcular la componente $z$ del torque usando: $$ T = F_\text{t} \, R $$
+
+% \end{frame}
+
+\section[Trabajo y energía]{Trabajo y energía en el movimiento circular}
+
+\begin{frame}{Trabajo y energía en el movimiento circular}
+
+    Podemos calcular el trabajo necesario para producir una producir un cierto desplazamiento angular en una trayectoria circular.
+
+    \vs
+
+    Sea $\vec{r} (t)$ el vector de posición de la partícula en el instante $t$ y sea $\vec{r} (t+\Delta t)$ el vector de posición de la misma en el instante posterior $t + \Delta t$.
+
+    \vs
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{figure}
+                \centering
+                \begin{tikzpicture}[scale=1]
+                    \draw[thick,-latex] (-0.5,0) -- (3,0) node[anchor=north]{\scriptsize $x$};
+                    \draw[thick,-latex] (0,-0.5) -- (0,3) node[anchor=east]{\scriptsize $y$};
+                    \fill (0,0) circle (0.5mm) node[anchor=north east]{\scriptsize $O$};
+                    \draw[dashed] (15:2.5) arc (15:85:2.5);
+                    \draw[thick,-latex] (0,0) -- node[anchor=north west]{\scriptsize $\vec{r}(t)$} (30:2.5);
+                    \draw[thick,-latex] (0,0) -- node[anchor=south east,fill=white]{\scriptsize $\vec{r}(t+\Delta t)$} (75:2.5);
+                    \draw[thick,-latex] (30:2.5) -- node[anchor=north east]{\scriptsize $\Delta \vec{r}$} (75:2.5);
+                    \draw (30:1) arc (30:75:1);
+                    \node at (50:1.3) {\scriptsize $\Delta \theta$};
+                    \draw (30:2.6) -- (30:2.8);
+                    \draw (75:2.6) -- (75:2.8);
+                    \draw[latex-latex] (30:2.7) arc (30:75:2.7);
+                    \node at (50:3) {\scriptsize $\Delta s$};
+                    \fill (30:2.5) circle (0.5mm);
+                    \fill (75:2.5) circle (0.5mm);
+                \end{tikzpicture}
+            \end{figure}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            Como la trayectoria es circular: $$\norm{\vec{r}(t)} = \norm{\vec{r} (t+\Delta t)} = R$$ \pause
+            Además, $\Delta s = R \, \Delta \theta$, donde $$\Delta s = s (t + \Delta t) - s (t)$$ y $$\Delta \theta = \theta (t + \Delta t) - \theta (t)$$
+        \end{column}
+    \end{columns}
+
+\end{frame}
+
+\begin{frame}{Trabajo y energía en el movimiento circular}
+            
+    Si $\Delta \theta$ es suficientemente pequeño, $$\norm{\Delta \vec{r}} = \Delta r = \norm{\vec{r} (t+\Delta t) - \vec{r} (t)} \approx \Delta s .$$
+
+    En el límite, cuando $\Delta t \to 0$, tenemos que 
+    \begin{align*}
+    \Delta \theta & \to \text{d}\theta, \\
+    \Delta s & \to \text{d} s = R \, \text{d} \theta, \\
+    \Delta r & \to \text{d} r 
+    \end{align*} y la aproximación $\Delta r \approx \Delta s$ se vuelve exacta: $$\text{d} r = \text{d} s = R \, \text{d} \theta$$
+
+\end{frame}
+
+\begin{frame}{Trabajo y energía en el movimiento circular}
+
+    Consideremos nuevamente una partícula sobre el que actúa una fuerza resultante $\vec{F}$ y calculemos el diferencial de trabajo $\text{d} W$ realizado por dicha fuerza a lo largo de un desplazamiento infinitesimal $\text{d} \vec{r}$.
+
+    \vs
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{figure}
+                \centering
+                \begin{tikzpicture}[scale=1]
+                    \draw[thick,-latex] (-0.5,0) -- (3,0) node[anchor=north]{\scriptsize $x$};
+                    \draw[thick,-latex] (0,-0.5) -- (0,3) node[anchor=east]{\scriptsize $y$};
+                    \fill (0,0) circle (0.5mm) node[anchor=north east]{\scriptsize $O$};
+                    \begin{scope}[rotate=30]
+                        \draw[dashed] (-10:2.5) arc (-10:20:2.5);
+                        \draw[thick,-latex] (0,0) -- node[anchor=north west]{\scriptsize $\vec{r} (t)$} (2.5,0);
+                        \draw[thick,-latex] (0,0) -- node[anchor=south east,fill=white]{\scriptsize $\vec{r} (t+\text{d} t)$} (10:2.5);
+                        \draw[thick,-latex] (2.5,0) -- node[anchor=west]{\scriptsize $\text{d} \vec{r}$} (10:2.5);
+                        \fill (2.5,0) circle (0.5mm);
+                        \fill (10:2.5) circle (0.5mm);
+                        \draw[thick,-latex,blue] (0:2.5) -- (1.5,1) node[anchor=east]{\scriptsize $\vec{F}$};
+                        \draw[thick,-latex,blue] (0:2.5) -- node[anchor=south west]{\scriptsize $\vec{F}_\text{t}$} (2.5,1);
+                        \draw[thick,-latex,blue] (0:2.5) -- node[anchor=north west]{\scriptsize $\vec{F}_\text{c}$} (1.5,0);
+                        \draw[dashed,blue] (1.5,0) -- (1.5,1) -- (2.5,1);
+                        \draw (1,0) arc (0:10:1);
+                        \node[anchor=north] at (1,0) {\scriptsize $\text{d}\theta$};
+                    \end{scope}
+                \end{tikzpicture}
+            \end{figure}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            Como sabemos: $$\text{d} W = \vec{F} \cdot \text{d} \vec{r}$$ \pause $$ \text{d} W = \left(\vec{F}_\text{t} + \vec{F}_\text{c} \right)\cdot \text{d} \vec{r} $$ \pause $$ \text{d} W = \vec{F}_\text{t} \cdot \text{d} \vec{r} + \vec{F}_\text{c} \cdot \text{d} \vec{r} $$
+        \end{column}
+    \end{columns}
+
+\end{frame}
+
+\begin{frame}{Trabajo y energía en el movimiento circular}
+
+    \vspace{-11pt}
+
+    $$ \text{d} W = \vec{F}_\text{t} \cdot \text{d} \vec{r} + \vec{F}_\text{c} \cdot \text{d} \vec{r} $$
+
+    \vspace{11pt}
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{figure}
+                \centering
+                \begin{tikzpicture}[scale=1]
+                    \draw[thick,-latex] (-0.5,0) -- (3,0) node[anchor=north]{\scriptsize $x$};
+                    \draw[thick,-latex] (0,-0.5) -- (0,3) node[anchor=east]{\scriptsize $y$};
+                    \fill (0,0) circle (0.5mm) node[anchor=north east]{\scriptsize $O$};
+                    \begin{scope}[rotate=30]
+                        \draw[dashed] (-10:2.5) arc (-10:20:2.5);
+                        \draw[thick,-latex] (0,0) -- node[anchor=north west]{\scriptsize $\vec{r} (t)$} (2.5,0);
+                        \draw[thick,-latex] (0,0) -- node[anchor=south east,fill=white]{\scriptsize $\vec{r} (t+\text{d} t)$} (10:2.5);
+                        \draw[thick,-latex] (2.5,0) -- node[anchor=west]{\scriptsize $\text{d} \vec{r}$} (10:2.5);
+                        \fill (2.5,0) circle (0.5mm);
+                        \fill (10:2.5) circle (0.5mm);
+                        \draw[thick,-latex,blue] (0:2.5) -- (1.5,1) node[anchor=east]{\scriptsize $\vec{F}$};
+                        \draw[thick,-latex,blue] (0:2.5) -- node[anchor=south west]{\scriptsize $\vec{F}_\text{t}$} (2.5,1);
+                        \draw[thick,-latex,blue] (0:2.5) -- node[anchor=north west]{\scriptsize $\vec{F}_\text{c}$} (1.5,0);
+                        \draw[dashed,blue] (1.5,0) -- (1.5,1) -- (2.5,1);
+                        \draw (1,0) arc (0:10:1);
+                        \node[anchor=north] at (1,0) {\scriptsize $\text{d}\theta$};
+                    \end{scope}
+                \end{tikzpicture}
+            \end{figure}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            En el límite, $\vec{F}_\text{t} \parallel \text{d} \vec{r}$ y $\vec{F}_\text{c} \perp \text{d} \vec{r}$ y, por lo tanto, $$\vec{F}_\text{t} \cdot \text{d} \vec{r} =  F_\text{t} \, \text{d} r$$ $$\vec{F}_\text{c} \cdot \text{d} \vec{r} = 0$$ Luego,   $$\text{d} W = F_\text{t} \, \text{d} r$$
+        \end{column}
+    \end{columns}
+
+\end{frame}
+
+\begin{frame}{Trabajo y energía en el movimiento circular}
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{figure}
+                \centering
+                \begin{tikzpicture}[scale=1]
+                    \draw[thick,-latex] (-0.5,0) -- (3,0) node[anchor=north]{\scriptsize $x$};
+                    \draw[thick,-latex] (0,-0.5) -- (0,3) node[anchor=east]{\scriptsize $y$};
+                    \fill (0,0) circle (0.5mm) node[anchor=north east]{\scriptsize $O$};
+                    \begin{scope}[rotate=30]
+                        \draw[dashed] (-10:2.5) arc (-10:20:2.5);
+                        \draw[thick,-latex] (0,0) -- node[anchor=north west]{\scriptsize $\vec{r} (t)$} (2.5,0);
+                        \draw[thick,-latex] (0,0) -- node[anchor=south east,fill=white]{\scriptsize $\vec{r} (t+\text{d} t)$} (10:2.5);
+                        \draw[thick,-latex] (2.5,0) -- node[anchor=west]{\scriptsize $\text{d} \vec{r}$} (10:2.5);
+                        \fill (2.5,0) circle (0.5mm);
+                        \fill (10:2.5) circle (0.5mm);
+                        \draw[thick,-latex,blue] (0:2.5) -- (1.5,1) node[anchor=east]{\scriptsize $\vec{F}$};
+                        \draw[thick,-latex,blue] (0:2.5) -- node[anchor=south west]{\scriptsize $\vec{F}_\text{t}$} (2.5,1);
+                        \draw[thick,-latex,blue] (0:2.5) -- node[anchor=north west]{\scriptsize $\vec{F}_\text{c}$} (1.5,0);
+                        \draw[dashed,blue] (1.5,0) -- (1.5,1) -- (2.5,1);
+                        \draw (1,0) arc (0:10:1);
+                        \node[anchor=north] at (1,0) {\scriptsize $\text{d}\theta$};
+                    \end{scope}
+                \end{tikzpicture}
+            \end{figure}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+           $$\text{d} W = F_\text{t} \, \text{d} r$$ Como $\text{d} r = R \, \text{d} \theta$, tenemos: $$\text{d} W = F_\text{t} \, R \, \text{d} \theta$$ Pero $T = F_\text{t} \, R$, entonces: $$\text{d} W = T \, \text{d} \theta$$
+        \end{column}
+    \end{columns}
+
+\end{frame}
+
+\begin{frame}{Trabajo y energía en el movimiento circular}
+
+    El trabajo total, $W$, resulta de la suma de las infinitas cantidades infinitesimales de trabajo $\text{d}W$: $$W = \int \text{d}W = \int T \, \text{d} \theta$$ \pause 
+
+    \vspace{11pt}
+
+    Si el torque es constante, entonces puede sacarse del signo integral: $$W = T \int_{\theta_1}^{\theta_2} \text{d} \theta = T \left(\theta_2 - \theta_1\right)$$ Así,
+    \begin{equation*}
+        \boxed{W = T \, \Delta \theta}
+    \end{equation*}
+
+\end{frame}
+
+\begin{frame}{Trabajo y energía en el movimiento circular}
+
+    \begin{equation*}
+        W = T \, \Delta \theta
+    \end{equation*}
+
+    En virtud de la relación entre el torque y la aceleración angular, $$T = I \, \alpha,$$ tenemos que: $$W = I \, \alpha \, \Delta \theta$$ Por otro lado: $$\omega^2 = \omega_0^2 + 2 \, \alpha \, \Delta \theta$$ Despejando el factor $\alpha \, \Delta \theta$: $$\alpha \, \Delta \theta = \frac{\omega^2 - \omega_0^2}{2}$$
+
+\end{frame}
+
+\begin{frame}{Trabajo y energía en el movimiento circular}
+
+    Reemplazando en la expresión del trabajo: $$W = I \left(\frac{\omega^2 - \omega_0^2}{2}\right) = \frac{1}{2} \, I \, \omega^2 - \frac{1}{2} \, I \, \omega_0^2$$ 
+    
+    \begin{block}{Definición}
+        El término $\frac{1}{2} I \, \omega^2$ se conoce como \emph{Energía cinética de rotación}, $E_\text{cr}$, es decir: $$E_\text{cr} = \frac{1}{2} I \, \omega^2 $$
+    \end{block}
+    
+\end{frame}
+
+\begin{frame}{Trabajo y energía en el movimiento circular}  
+
+    En consecuencia, el trabajo de una fuerza que produce un torque constante, que hace girar a la partícula con aceleración angular constante, es igual a la variación de energía cinética de rotación. En consecuencia, tenemos:
+    
+    \begin{block}{Teorema del trabajo y la energía cinética de un cuerpo rígido}
+        $$W = E_\text{cr} - E_{\text{cr,}0} = \Delta E_\text{cr}$$    
+    \end{block}
+    
+
+\end{frame}
+
+% \section{Energía cinética de rotación}
+
+% \begin{frame}{Energía cinética de una partícula en MCU}
+
+%     En términos generales, la energía cinética de una partícula, de masa $m$ y cuya velocidad es $\vec{v}$, está dada por: $$E_\text{c} = \frac{1}{2} m \, v^2$$ donde $v = \norm{\vec{v}}$.
+
+%     \vspace{11pt}
+
+%     Si la partícula describe un movimiento circular con frecuencia angular $\omega$ constante, entonces su energía cinética puede expresarse de la siguiente manera: $$E_\text{c} = \frac{1}{2} m \, \left(R \, \omega\right)^2 = \frac{1}{2} m \, R^2 \, \omega^2$$ 
+    
+% \end{frame}
+
+% \begin{frame}{Energía cinética de una partícula en MCU}
+    
+%     Para el caso que estamos considerando, donde $\omega = \text{constante}$, podemos entonces concluir que la energía cinética en el MCU es también constante.
+
+%     \vspace{11pt}
+
+%     Cabe mencionar que el factor $m \, R^2$ se conoce como \emph{momento de inercia} de la partícula y se lo simboliza con la letra $I$, es decir: $$I = m \, R^2$$ para el caso de una masa puntual. En virtud de esto, la energía cinética también puede expresarse como: $$E_\text{c} = \frac{1}{2} I \, \omega^2$$
+
+% \end{frame}
+
+% \section{Trabajo y Energía cinética en el MCU}
+
+% \begin{frame}{Teorema del trabajo y la energía cinética}
+
+%     Recordemos que el trabajo y la energía cinética están relacionados por la expresión matemática del teorema que vincula ambos conceptos: $$ W = \Delta E_\text{c}$$ El hecho de que la energía cinética de una partícula que describe una circunferencia a velocidad angular uniforme sea constante implica que $\Delta E_\text{c} = 0$ y, por lo tanto: $$W = 0$$ Esto quiere decir que, si bien debe haber una fuerza neta no nula dirigida hacia el centro de la trayectoria circular para que la partícula describa un MCU, esta fuerza \emph{no realiza trabajo alguno}.
+
+% \end{frame}
+
+% \begin{frame}{Teorema del trabajo y la energía cinética}
+
+%     La afirmación anterior se puede demostrar formalmente de la siguiente manera.
+
+%     \vspace{11pt}
+
+%     Como la dirección de la fuerza centrípeta varía en el tiempo, el trabajo realizado por la misma se debe calcular mediante: $$ W = \int_A^B \vec{F}_\text{c} \cdot \text{d} \vec{r}$$ donde $A$ y $B$ representan dos puntos cualesquiera de la trayectoria circular.
+    
+% \end{frame}
+
+% \begin{frame}{Teorema del trabajo y la energía cinética}
+
+%     Por un lado, tenemos que: $$ \vec{F}_\text{c} = m \, \vec{a}_\text{c} $$ y, por otro lado: $$ \vec{v} = \fdiff{\vec{r
+%     }}{t} \quad \Rightarrow \quad \text{d} \vec{r} = \vec{v} \, \text{d}t$$ En consecuencia: $$\vec{F}_\text{c} \cdot \text{d} \vec{r} = m \left( \vec{a}_\text{c} \cdot \vec{v} \right) \text{d}t$$ 
+    
+% \end{frame}
+
+% \begin{frame}{Teorema del trabajo y la energía cinética}
+
+%     Ahora bien, según vimos anteriormente, los vectores aceleración centrípeta y velocidad son perpendiculares entre sí, es decir, $\vec{a}_\text{c} \cdot \vec{v} = 0$, y por lo tanto: $$ \vec{F}_\text{c} \cdot \text{d} \vec{r} = 0. $$ Esto es, el integrando en la expresión del trabajo es idénticamente nulo en todo instante de tiempo, dado que la fuerza es siempre perpendicular a todo desplazamiento infinitesimal, lo que hace que el trabajo de la fuerza centrípeta sea siempre nulo.
+
+% \end{frame}
+
+% \section{Péndulo simple}
+
+% \begin{frame}{Péndulo simple}
+    
+    
+
+% \end{frame}
+
+\begin{frame}{Esto es todo por hoy}
+
+    \begin{center}
+        {\huge ¡Muchas gracias!}
+
+        \vs
+
+        Ahora a repasar y practicar.
+    \end{center}
+
+\end{frame}
+
+\end{document}
+
+\begin{frame}{}
+
+
+
+\end{frame}

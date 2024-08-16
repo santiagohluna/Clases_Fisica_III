@@ -1,0 +1,1058 @@
+\documentclass[11pt,handout,aspectratio=1610]{beamer}
+%\documentclass[11pt]{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{latexsym} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{esint}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usetikzlibrary{babel}
+\usetikzlibrary{calc,patterns,decorations.pathmorphing,decorations.markings}
+\usepackage{xcolor}
+\usepackage{epstopdf}
+\usepackage[nointegrals]{wasysym}
+\usepackage{hyperref}
+
+\usetheme{Berkeley}
+\usecolortheme{seahorse}
+\uselanguage{Spanish}
+
+\newcommand{\sgn}{\mathop{\text{sgn}}}
+\newcommand{\diff}[0]{\text{d}}
+\newcommand{\fdiff}[2]{\dfrac{\text{d} #1}{\text{d} #2}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\fddiff}[2]{\frac{\text{d}^2 #1}{\text{d} #2^2}}
+\newcommand{\grado}[0]{^{\circ}}
+\newcommand{\chel}[4]{^{#1}_{#2}\text{#3}^{#4}}
+\newcommand{\valmed}[1]{\left\langle #1 \right\rangle}
+\newcommand{\E}[1]{\times 10^{#1}}
+\newcommand{\ver}[1]{\hat{\vec{#1}}}
+\newcommand{\vecg}[1]{\boldsymbol{#1}}
+\newcommand{\iu}{\text{i}}
+\newcommand{\norm}[1]{\left\vert\left\vert #1 \right\vert\right\vert}
+\newcommand{\abs}[1]{\left\vert #1 \right\vert}
+\newcommand{\tens}[1]{\mathbb{#1}}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\logoUNAHUR}{\includegraphics[scale=0.15]{/home/shluna/Proyectos/Clases_Fisica_III/imgs/logo-universidad-nacional-de-hurlingham_preview_rev_1.png}}
+\newcommand{\vs}{\vspace{11pt}}
+\newcommand{\un}[1]{\text{#1}}
+
+\title{Leyes de Newton y movimiento curvilíneo}
+\subtitle{Tema 1}
+\author{Física III}
+\institute{Instituto de Tecnología e Ingeniería \\ \vspace{0.25cm} Universidad Nacional de Hurlingham}
+\date{Primera parte}
+\logo{\logoUNAHUR}
+
+\AtBeginSection[]{
+  \begin{frame}
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+    \usebeamerfont{title}\insertsectionhead\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+}
+
+\tdplotsetmaincoords{70}{110}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}{En esta clase veremos:}
+    \tableofcontents[hideallsubsections]
+\end{frame}
+
+\section{Introducción}
+
+\begin{frame}{Introducción al movimiento en el plano}
+
+    Hasta aquí hemos estudiado el movimiento rectilíneo en el cual los vectores desplazamiento, velocidad y aceleración eran todos paralelos.
+
+    \begin{block}{Repaso}
+        $$
+            \vec{R} = \sum_{i=1}^{N} \vec{F}_i =
+            \begin{cases}
+                \vec{0} & \rightarrow \text{equilibrio} \Leftrightarrow  \fdiff{\vec{v}}{t} = \vec{0} \rightarrow \vec{v} \begin{cases}
+                    = \vec{0} & \rightarrow \text{equilibrio estático} \\
+                    \neq \vec{0} & \rightarrow \text{MRU} 
+                \end{cases} \\
+                m \, \vec{a} & \rightarrow \text{Dinámica} \rightarrow \text{Si} \, \fdiff{\vec{a}}{t} = \vec{0} \text{ y } \, \vec{a} \neq \vec{0} \parallel \vec{v} \Rightarrow \text{MRUV}.
+            \end{cases}
+        $$
+        \begin{columns}
+            \begin{column}{0.5\textwidth}
+                $$
+                \vec{R} = \vec{0} \Rightarrow 
+                \begin{cases}
+                    R_x = 0 \\
+                    R_y = 0.
+                \end{cases}
+                $$
+            \end{column}
+            \begin{column}{0.5\textwidth}
+                $$
+                    \vec{R} = m \, \vec{a} \Rightarrow 
+                    \begin{cases}
+                        R_x = m \, a_x; \, R_y = m \, a_y \\
+                        R_x = m \, a_x; \, R_y = 0 \\
+                        R_x = 0; \, R_y = m \, a_y \\
+                    \end{cases}
+                $$
+            \end{column}
+        \end{columns}
+    \end{block}
+
+\end{frame}
+    
+\begin{frame}{Introducción al movimiento en el plano}
+
+    Ahora, vamos a considerar casos un poco más generales en los que estos vectores no son todos paralelos entre sí, por lo que no es suficiente una dimensión espacial y un temporal para describir el movimiento.
+
+    \vs
+
+    Esto da origen al movimiento en el plano. Esto es, vamos a necesitar dos coordenadas espaciales y la coordenada temporal para describir completamente el movimiento.
+
+    \vs
+
+    En particular, vamos a estudiar dos tipos de movimiento plano:
+    \begin{itemize}
+        \item Tiro oblicuo y 
+        \item Movimiento circular.
+    \end{itemize}
+
+\end{frame}
+
+\section{Tiro oblicuo}
+
+\begin{frame}{Tiro oblicuo}
+
+    Se llama tiro oblicuo al caso en el que se lanza un cuerpo con una cierta velocidad inicial no nula, formando un ángulo ($\theta_0$) con la horizontal distinto de $90\grado$ o de $270\grado$.
+
+    \vs
+
+    Como siempre, el objetivo es encontrar la expresión del vector de posición en función del tiempo, es decir la función $\vec{r} \, (t)$, que describe el movimiento del cuerpo durante el vuelo.
+
+    \vs 
+
+    Si despreciamos el rozamiento con el aire, entonces la única fuerza que actúa sobre el cuerpo es su peso, $\vec{F}_\text{g} = \left(0 ; - m \, g\right)$. En virtud de esto tendremos que:
+    \begin{align*}
+        R_x &= 0; \\
+        R_y &= - m \, g = m \, a_y.
+    \end{align*} De donde se obtiene que $\vec{a} = \left(0; -g\right)$.
+
+\end{frame}
+
+\begin{frame}{Tiro oblicuo}
+
+    Resulta entonces que el tiro oblicuo es una composición de dos movimientos: un MRU en la dirección $x$ y un MRUV en la dirección $y$.
+
+    \vs 
+
+    Por lo tanto, en estas condiciones, podemos determinar tanto el vector de posición como el de velocidad del cuerpo en cualquier instante de tiempo.
+
+    \vs
+
+    \begin{block}{Ecuaciones del tiro oblicuo}
+        \begin{columns}
+            \begin{column}{0.5\textwidth}
+                $$a_x = 0$$
+                $$v_x (t) = v_{x,0}$$
+                $$x (t) = x_0 + v_{x,0} \left(t - t_0\right)$$
+            \end{column}
+            \begin{column}{0.5\textwidth}
+                $$a_y = - g$$
+                $$v_y (t) = v_{y,0} - g \left(t-t_0\right)$$
+                $$y (t) = y_0 + v_{y,0} \left(t - t_0\right) - \frac{1}{2} g \left(t-t_0\right)^2$$
+            \end{column}
+        \end{columns}
+    \end{block}
+
+
+
+\end{frame}
+
+\begin{frame}{Tiro oblicuo}
+
+    Puede demostrarse que la trayectoria en el espacio es una parábola cuya ecuación es: $$ y(x) = y_0 + \frac{v_{y,0}}{v_{x,0}} \left(x(t) - x_0\right) - \frac{g}{2 \, v_{x,0}^2} \left(x(t) - x_0\right)^2$$
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{figure}[h]
+                \centering
+                \begin{tikzpicture}[scale=1]
+                    \draw[thick,-latex] (0,-0.5) -- (0,3) node[anchor=south]{\scriptsize $y$};
+                    \draw[thick,-latex] (-0.5,0) -- (4.5,0) node[anchor=south]{\scriptsize $x$};
+                    \draw[scale=1, domain=0:4, smooth, variable=\x] plot ({\x}, {-0.5*\x*(\x-4)});
+                    \draw[fill=black] (0,0) circle (0.5mm);
+                    \draw[dashed] (0,1.5) -- (1,1.5) -- (1,0);
+                    \draw[latex-latex] (2,0) -- node[anchor=west]{\scriptsize $y_{max}$} (2,2);
+                    \draw[thick,blue,-latex] (0,0) -- (1,2) node[anchor=east]{\scriptsize $\vec{v}_0$};
+                    \draw (0.5,0) arc (0:63.43494882:0.5);
+                    \node at (30:0.75) {\scriptsize $\theta_0$};
+                    \draw[thick,blue,-latex] (1,1.5) -- node[anchor=east]{\scriptsize $\vec{v}$} (2,2.5);
+                    \draw[thick,red,-latex] (1,1.5) -- node[anchor=west]{\scriptsize $\vec{g}$} (1,0.5);
+                    \draw[fill=black] (1,1.5) circle (0.5mm);
+                    \draw[fill=black] (0,1.5) circle (0.5mm);
+                    \draw[fill=black] (1,0) circle (0.5mm);
+                    \draw[fill=black] (4,0) circle (0.5mm);
+                    \draw[fill=black] (2,2) circle (0.5mm);
+                    \draw[fill=black] (2,0) circle (0.5mm);
+                    \node[anchor=north east] at (0,0) {\scriptsize $t_0$};
+                    \node[anchor=south east] at (0,0) {\scriptsize $y_0$};
+                    \node[anchor=west] at (1,1.5) {\scriptsize $t$};
+                    \node[anchor=east] at (0,1.5) {\scriptsize $y (t)$};
+                    \node[anchor=north] at (1,0) {\scriptsize $x (t)$};
+                    \node[anchor=north] at (4,0) {\scriptsize $x_{\text{max}}$};
+                \end{tikzpicture}
+            \end{figure}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{itemize}
+                \item $\vec{a} = \vec{g} = (0,-g)$.
+                \item $\vec{r}_0 = \left(x_0 ; y_0\right)$.
+                \item $\vec{v}_0 = (v_{x,0},v_{y,0})$.
+                \item $\vec{v} (t) = (v_x (t),v_y(t))$.
+                \item $\vec{r} (t) = (x(t),y(t))$.
+            \end{itemize}
+        \end{column}
+    \end{columns}
+    
+\end{frame}
+
+\begin{frame}{Tiro oblicuo}
+
+    Si se conoce el valor de $\theta_0$ y la rapidez inicial ($v_0$), entonces las componentes de la velocidad inicial se pueden calcular con las expresiones:
+    \begin{align*}
+        v_{x,0} &= v_0 \cos \theta_0; \\
+        v_{y,0} &= v_0 \sen \theta_0.
+    \end{align*} En tal caso, la ecuación de la trayectoria puede reescribirse de la siguiente manera: $$ y(x) = y_0 + \tan \theta_0 \left(x (t) - x_0 \right) - \frac{g}{2 \, v_0^2 \cos^2 \theta_0} \left(x(t) - x_0\right)^2$$
+
+\end{frame}
+
+\begin{frame}{Tiro oblicuo}
+
+    Las expresiones que dan los valores de $t_{y_\text{\scriptsize max}}$ y de $y_\text{\scriptsize max}$ para los cuales el cuerpo alcanza la altura máxima en el tiro oblicuo son las mismas que las del tiro vertical. \pause 
+
+    \begin{block}{Altura máxima}
+        $$ t_{y_\text{\scriptsize max}} = t_0 + \frac{v_{y,0}}{g} \quad \text{ e } \quad y_\text{\scriptsize max} = y_0 + \frac{v_{y,0}^2}{2 \, g}$$
+        $$x_{1/2} = x(t_{y_\text{\scriptsize max}}) = x_0 + \frac{v_{x,0} \, v_{y,0}}{g} $$
+    \end{block}
+
+\end{frame}
+
+\begin{frame}{Tiro oblicuo}
+
+    El valor de $x_{\text{\scriptsize max}}$ corresponde al valor de $x (t)$ para el cual $y(t) = y_0$.
+ 
+    \begin{block}{Alcance}
+
+        \vspace{-0.3cm}
+
+        $$ t_{x_\text{\scriptsize max}} = t_0 + 2 \frac{v_{y,0}}{g} \quad \text{y} \quad x_\text{\scriptsize max} = x(t_{x_\text{\scriptsize max}}) = x_0 + 2 \frac{v_{x,0} \, v_{y,0}}{g}$$
+    \end{block}
+
+    Se puede demostrar que: $$x_{1/2} = \frac{x_\text{\scriptsize max} + x_0}{2} \quad \text{ y que } \quad t_{y_\text{\scriptsize max}} = \frac{t_0 + x(t_{x_\text{\scriptsize max}})}{2}$$
+ 
+\end{frame}
+
+\section{Movimiento circular uniforme}
+
+\begin{frame}{Introducción}
+    
+    El movimiento en una trayectoria circular es otro ejemplo clásico de movimiento en el plano (dos dimensiones espaciales).
+
+    \vs
+
+    Cuando estudiamos la segunda ley de Newton, definimos a las fuerzas como todo ente que produzca un cambio en el tiempo del vector velocidad.
+
+    \vs
+
+    De esta forma establecimos una relación causa-consecuencia, en la que una fuerza, o la resultante de un conjunto de fuerzas, aplicada a un cuerpo le imprime a este una aceleración: $$ \underbrace{\vec{F}}_{\text{causa}}  = m \, \underbrace{\vec{a}}_{\text{consecuencia}} \rightarrow \vec{r} (t). $$ Posteriormente, estudiamos las consecuencias, es decir la trayectoria que resulta, de una fuerza nula (estática y MRU) y una fuerza constante (MRUV).
+
+\end{frame}
+
+\begin{frame}{Introducción}
+
+    En el caso del movimiento circular vamos a proceder de manera inversa. Esto es, como ya conocemos la trayectoria, vamos a definir algunos conceptos que nos van a resultar útiles para describir un tipo de movimiento circular (el MCU) y luego vamos a deducir las características de la fuerza necesaria para producir este tipo de movimiento.
+
+    \vs 
+
+    Esquemáticamente: $$ \vec{r} (t) \rightarrow \vec{v} (t) \rightarrow \vec{a} (t) \rightarrow \vec{F} (t) $$
+
+\end{frame}
+
+\begin{frame}{Desplazamiento angular}
+
+Consideremos una partícula que se mueve en una trayectoria circular de radio $R$.
+
+\vs
+
+\begin{columns}
+    \begin{column}{0.45\textwidth}
+        \begin{figure}[h]
+            \centering
+            \begin{tikzpicture}[scale=1]
+                \draw[thick,-latex] (-2.5,0) -- (2.5,0) node[anchor=north]{\scriptsize $x$};
+                \draw[thick,-latex] (0,-2.5) -- (0,2.5) node[anchor=south]{\scriptsize $y$};
+                \draw[fill=black] (0,0) circle (0.5mm);
+                \draw[fill=black] (45:2) circle (0.5mm);
+                \node[anchor=south west] at (45:2) {\scriptsize $P$};
+                \draw[thick,-latex] (0,0) -- (45:2);
+                \node[anchor=south east] at (35:1.2) {\scriptsize $\vec{r}$};
+                \draw (0.5,0) arc (0:45:0.5);
+                \node at (25:0.7) {\scriptsize $\theta$};
+                \draw (2,0) arc (0:360:2);
+                \draw[dashed] (0,{2*sin(45)}) -- (45:2) -- ({2*cos(45)},0);
+                \draw[latex-latex] (0,-0.2) -- node[anchor=north]{\scriptsize $r \cos \theta$} ({2*cos(45)},-0.2);
+                \draw[latex-latex] (-0.2,0) -- node[anchor=east]{\scriptsize $r \sen \theta$} (-0.2,{2*sin(45)});
+                \draw (-0.1,{2*sin(45)}) -- (-0.3,{2*sin(45)});
+                \draw ({2*cos(45)},-0.1) -- ({2*cos(45)},-0.3);
+            \end{tikzpicture}
+        \end{figure}
+    \end{column}
+    \begin{column}{0.55\textwidth}
+        En cada instante $t$ las coordenadas de $P$ son 
+        \begin{align*}
+            x &= R \cos \theta, \\
+            y &= R \sen \theta,
+        \end{align*} por lo que $$\vec{r} = \left(R \cos \theta, R \sen \theta\right)$$ o bien $$\vec{r} = R \left(\cos \theta ; \sen \theta \right)$$ donde $R = \norm{\vec{r}} = \text{constante}$.
+    \end{column}
+\end{columns}
+
+\end{frame}
+
+\begin{frame}{Desplazamiento angular}
+
+    En virtud de que la distancia entre la partícula y el centro de la trayectoria circular es constante, se deduce que la posición de la partícula queda determinada por el ángulo $\theta$. Por tal motivo, $\theta$ se suele llamar \emph{posición angular}.
+
+    \vs 
+
+    Además, como la posición va cambiando con el tiempo, entonces $\theta$ debe ser una función del tiempo: $$\vec{r} (t) = R \left(\cos \theta (t), \sen \theta (t)\right)$$
+
+    Sea $\vec{r}_1$ el vector de posición de la partícula en el instante $t_1$ y sea $\vec{r}_2$ el vector de posición en un instante posterior $t_2$. Es decir:
+    \begin{align*}
+        \vec{r}_1 &= \vec{r} (t_1) = R \left(\cos \theta (t_1); \sen \theta (t_1)\right) = R \left(\cos \theta_1 ; \sen \theta_1\right) \\
+        \vec{r}_2 &= \vec{r} (t_2) = R \left(\cos \theta (t_2); \sen \theta (t_2)\right) = R \left(\cos \theta_2 ; \sen \theta_2\right)
+    \end{align*} donde $\theta_1 = \theta (t_1)$ y $\theta_2 = \theta (t_2)$.
+
+    
+\end{frame}
+
+\begin{frame}{Desplazamiento angular}
+
+    Sabíamos que, por definición, el vector desplazamiento es $\Delta \vec{r} = \vec{r}_2 - \vec{r}_1$.
+
+\begin{columns}
+    \begin{column}{0.5\textwidth}
+        \begin{figure}[h]
+            \centering
+            \begin{tikzpicture}[scale=1]
+                \draw[thick,-latex] (-2.5,0) -- (2.5,0) node[anchor=north]{\scriptsize $x$};
+                \draw[thick,-latex] (0,-2.5) -- (0,2.5) node[anchor=south]{\scriptsize $y$};
+                \draw[fill=black] (0,0) circle (0.5mm);
+                \draw[fill=black] (45:2) circle (0.5mm);
+                \node[anchor=south west] at (45:2) {\scriptsize $P$ ($t_1$)};
+                \draw[thick,-latex] (0,0) -- (45:2);
+                \node at (30:1.6) {\scriptsize $\vec{r}_1$};
+                \draw[fill=black] (120:2) circle (0.5mm);
+                \node[anchor=south east] at (120:2) {\scriptsize $P$ ($t_2$)};
+                \draw[thick,-latex] (0,0) -- (120:2);
+                \node[anchor=north east] at (120:1.2) {\scriptsize $\vec{r}_2$};
+                \draw (2,0) arc (0:360:2);
+                \node at (20:0.8) {\scriptsize $\theta_1$};
+                \draw (0.5,0) arc (0:45:0.5);
+                \node at (75:1.3) {\scriptsize $\theta_2$};
+                \draw (1,0) arc (0:120:1);
+            \end{tikzpicture}
+        \end{figure}
+    \end{column} \pause
+    \begin{column}{0.5\textwidth}
+        De forma análoga, podemos definir el \emph{desplazamiento angular} de la siguiente manera:
+        $$\Delta \theta = \theta_2 - \theta_1$$
+        
+        \vs 
+
+        \begin{alertblock}{¡Atención!}
+            El desplazamiento angular \textbf{NO} es un vector.
+        \end{alertblock}
+    \end{column}
+\end{columns}
+
+\end{frame}
+
+\begin{frame}{Desplazamiento angular}
+
+    Tanto el ángulo $\theta$ como el desplazamiento angular pueden expresarse en grados o en radianes. La relación entre ellos es: $$2 \, \pi \, \text{rad} = 360\grado$$
+
+    \vspace{-11pt}
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{figure}[h]
+                \centering
+                \begin{tikzpicture}[scale=1]
+                    \draw[thick,-latex] (-2.5,0) -- (2.5,0) node[anchor=north]{\scriptsize $x$};
+                    \draw[thick,-latex] (0,-2.5) -- (0,2.5) node[anchor=south]{\scriptsize $y$};
+                    \draw[fill=black] (0,0) circle (0.5mm);
+                    \draw[fill=black] (45:2) circle (0.5mm);
+                    \node[anchor=south] at (45:2) {\scriptsize $P$};
+                    \draw[thick,-latex] (0,0) -- (45:2);
+                    \node[anchor=south east] at (35:1.2) {\scriptsize $\vec{r}$};
+                    \draw (0.5,0) arc (0:45:0.5);
+                    \node at (25:0.7) {\scriptsize $\theta$};
+                    \draw (2,0) arc (0:360:2);
+                    \draw[dashed] (0,{2*sin(45)}) -- (45:2) -- ({2*cos(45)},0);
+                    \draw[latex-latex] (0,-0.2) -- node[anchor=north]{\scriptsize $r \cos \theta$} ({2*cos(45)},-0.2);
+                    \draw[latex-latex] (-0.2,0) -- node[anchor=east]{\scriptsize $r \sen \theta$} (-0.2,{2*sin(45)});
+                    \draw (-0.1,{2*sin(45)}) -- (-0.3,{2*sin(45)});
+                    \draw ({2*cos(45)},-0.1) -- ({2*cos(45)},-0.3);
+                    \draw[latex-latex,red] (2.2,0) arc (0:45:2.2);
+                    \draw (0,0) -- (45:2.3);
+                    \node[anchor=south west,red] at (20:2.2) {\scriptsize $s$};
+                \end{tikzpicture}
+            \end{figure}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            El radián se define como el cociente entre la longitud de arco, $s$, y el radio $R$:
+            $$\theta [\text{rad}] = \frac{s}{R} \, \Rightarrow \, s = R \, \theta$$
+    
+            Si el ángulo se expresa en grados: $$s = R \, \left(\frac{2 \, \pi}{360\grado}\right) \theta [{}\grado]$$
+        \end{column}
+    \end{columns}
+    
+    \end{frame}
+
+\begin{frame}{Frecuencia angular}
+
+    Podemos definir dos tipos de frecuencia angular.
+
+\begin{columns}
+    \begin{column}{0.5\textwidth}
+        \begin{figure}[h]
+            \centering
+            \begin{tikzpicture}[scale=1]
+                \draw[thick,-latex] (-2.5,0) -- (2.5,0) node[anchor=north]{\scriptsize $x$};
+                \draw[thick,-latex] (0,-2.5) -- (0,2.5) node[anchor=south]{\scriptsize $y$};
+                \draw[fill=black] (0,0) circle (0.5mm);
+                \draw[fill=black] (45:2) circle (0.5mm);
+                \node[anchor=south west] at (45:2) {\scriptsize $P$ ($t_1$)};
+                \draw[thick,-latex] (0,0) -- (45:2);
+                \node at (30:1.6) {\scriptsize $\vec{r}_1$};
+                \draw[fill=black] (120:2) circle (0.5mm);
+                \node[anchor=south east] at (120:2) {\scriptsize $P$ ($t_2$)};
+                \draw[thick,-latex] (0,0) -- (120:2);
+                \node[anchor=north east] at (120:1.2) {\scriptsize $\vec{r}_2$};
+                \draw (2,0) arc (0:360:2);
+                \node at (20:0.8) {\scriptsize $\theta_1$};
+                \draw (0.5,0) arc (0:45:0.5);
+                \node at (75:1.3) {\scriptsize $\theta_2$};
+                \draw (1,0) arc (0:120:1);
+            \end{tikzpicture}
+        \end{figure}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+        \begin{itemize}
+            \item Frecuencia angular media: $$\valmed{\omega} = \frac{\Delta \theta}{\Delta t}$$ donde, como siempre, $\Delta t = t_2 - t_1$.
+            \item Frecuencia angular instantánea: $$\omega = \lim_{\Delta t \to 0} \frac{\Delta \theta}{\Delta t} = \fdiff{\theta (t)}{t}$$
+        \end{itemize}
+    \end{column}
+\end{columns}
+
+    En ambos casos, la unidad de frecuencia angular es: $\left[\omega\right] = \dfrac{\un{rad}}{\un{s}}$
+
+\end{frame}
+
+\begin{frame}{Ecuación horaria del MCU}
+
+    Si $\omega = \text{constante} \neq 0$ entonces el cuerpo se moverá en una trayectoria circular con frecuencia angular constante.
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{figure}[h]
+                \centering
+                \begin{tikzpicture}[scale=1]
+                    \draw[thick,-latex] (-2.5,0) -- (2.5,0) node[anchor=north]{\scriptsize $x$};
+                    \draw[thick,-latex] (0,-2.5) -- (0,2.5) node[anchor=south]{\scriptsize $y$};
+                    \draw[fill=black] (0,0) circle (0.5mm);
+                    \draw[fill=black] (45:2) circle (0.5mm);
+                    \node[anchor=south west] at (45:2) {\scriptsize $P$ ($t_0$)};
+                    \draw[thick,-latex] (0,0) -- (45:2);
+                    \node at (30:1.6) {\scriptsize $\vec{r} (t_0)$};
+                    \draw[fill=black] (120:2) circle (0.5mm);
+                    \node[anchor=south east] at (120:2) {\scriptsize $P$ ($t$)};
+                    \draw[thick,-latex] (0,0) -- (120:2);
+                    \node[anchor=north east] at (120:1.2) {\scriptsize $\vec{r} (t)$};
+                    \draw (2,0) arc (0:360:2);
+                    \node at (20:0.8) {\scriptsize $\theta_0$};
+                    \draw (0.5,0) arc (0:45:0.5);
+                    \node at (75:1.3) {\scriptsize $\theta (t)$};
+                    \draw (1,0) arc (0:120:1);
+                \end{tikzpicture}
+            \end{figure}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            Esto quiere decir que $$\valmed{\omega} = \frac{\Delta \theta}{\Delta t} = \omega$$ \pause En consecuencia, $$\Delta \theta = \omega \, \Delta t$$ Si $\Delta \theta = \theta (t) - \theta_0$ y $\Delta t = t - t_0$, \pause entonces: $$\theta (t) - \theta_0 = \omega \left( t - t_0\right)$$
+        \end{column}
+    \end{columns}
+
+\end{frame}
+
+\begin{frame}{Ecuación horaria del MCU} 
+
+    Así, se obtiene la 
+    \begin{block}{Ecuación fundamental del MCU}
+    $$\theta (t) = \theta_0 + \omega \left( t - t_0\right)$$ 
+    \end{block} Resulta interesante comparar esta expresión con la ecuación horaria del MRU: $$x(t) = x_0 + v_x \left(t - t_0\right)$$
+
+\end{frame}
+
+\begin{frame}{Ecuación horaria del MCU}
+
+\begin{block}{Gráficas de $\theta$ e $\omega$ en función del tiempo}
+
+    \begin{columns}
+        \begin{column}{0.4\textwidth}
+            \begin{figure}[h]
+                \centering
+                \begin{tikzpicture}[scale=0.8]
+                    \draw[thick,-latex] (-0.5,0) -- (3.5,0) node[anchor=north]{\scriptsize $t$};
+                    \draw[thick,-latex] (0,-0.5) -- (0,3.5) node[anchor=south]{\scriptsize $\theta (t)$};
+                    \draw[scale=1, domain=-0.3:3, smooth, variable=\x,red,thick] plot ({\x}, {0.5*\x+1});
+                    \draw[fill=black] (2,2) circle (0.5mm);
+                    \draw[dashed,blue] (0,2) -- (2,2) -- (2,0);
+                    \node[anchor=north west,blue] at (2,2) {\scriptsize $(t_0,\theta_0)$};
+                    \node[anchor=north,blue] at (2,0) {\scriptsize $t_0$};
+                    \node[anchor=east,blue] at (0,2) {\scriptsize $\theta_0$};
+                \end{tikzpicture}
+            \end{figure}
+        \end{column}
+        \begin{column}{0.6\textwidth}
+            \begin{figure}[h]
+                \centering
+                \begin{tikzpicture}[scale=0.8]
+                    \draw[thick,-latex] (-0.5,0) -- (3.5,0) node[anchor=north]{\scriptsize $t$};
+                    \draw[thick,-latex] (0,-0.5) -- (0,3.5) node[anchor=south]{\scriptsize $\omega$};
+                    \draw[red,thick] (-0.5,2) -- (3.5,2);
+                    \draw[fill=black] (0,2) circle (0.5mm);
+                    \node[anchor=south east,blue] at (0,2) {\scriptsize $\omega_0$};
+                \end{tikzpicture}
+            \end{figure}
+        \end{column}
+    \end{columns}
+
+    \end{block}
+
+\end{frame}
+
+\begin{frame}{Ecuación horaria del MCU}
+
+    \begin{block}{Una observación interesante}
+
+        \begin{columns}
+            \begin{column}{0.5\textwidth}
+                La ecuación $$\theta (t) - \theta_0 = \omega (t - t_0)$$ implica que el desplazamiento angular es igual al área bajo la recta que representa la gráfica de la frecuencia angular en el tiempo.
+            \end{column}
+            \begin{column}{0.5\textwidth}
+                \begin{figure}[h]
+                    \centering
+                    \begin{tikzpicture}[scale=0.8]
+                        \draw[dashed,fill=gray!40] (1,0) rectangle (3,2);
+                        \draw[thick,-latex] (-0.5,0) -- (3.5,0) node[anchor=north]{\scriptsize $t$};
+                        \draw[thick,-latex] (0,-0.5) -- (0,3.5) node[anchor=south]{\scriptsize $\omega$};
+                        \draw[thick,red] (-0.5,2) -- (3.5,2);
+                        \draw[fill=black] (0,2) circle (0.5mm);
+                        \node[anchor=south east,blue] at (0,2) {\scriptsize $\omega_0$};
+                        \draw[fill=black] (1,2) circle (0.5mm);
+                        \draw[fill=black] (3,2) circle (0.5mm);
+                        \draw[fill=black] (1,0) circle (0.5mm);
+                        \draw[fill=black] (3,0) circle (0.5mm);
+                        \node[anchor=north] at (1,0) {\scriptsize $t_0$};
+                        \node[anchor=north] at (3,0) {\scriptsize $t$};
+                    \end{tikzpicture}
+                \end{figure}
+            \end{column}
+        \end{columns}
+    
+        \end{block}
+
+\end{frame}
+
+\begin{frame}{Ecuación horaria del MCU}
+
+    \begin{block}{Una observación interesante}
+
+        \begin{columns}
+            \begin{column}{0.5\textwidth}
+                La ecuación $$\theta (t) - \theta_0 = \omega (t - t_0)$$ implica que el desplazamiento angular es igual al área bajo la recta que representa la gráfica de la frecuencia angular en el tiempo.
+            \end{column}
+            \begin{column}{0.5\textwidth}
+                \begin{figure}[h]
+                    \centering
+                    \begin{tikzpicture}[scale=0.8]
+                        \draw[thick,-latex] (-0.5,0) -- (4,0) node[anchor=north]{\scriptsize $t$};
+                        \draw[thick,-latex] (0,-0.5) -- (0,3.5) node[anchor=south]{\scriptsize $\theta (t)$};
+                        \draw[scale=1, domain=-0.3:3.5, smooth, variable=\x,red,thick] plot ({\x}, {0.5*\x+1});
+                        \draw[fill=black] (1,1.5) circle (0.5mm);
+                        \draw[dashed,blue] (0,1.5) -- (1,1.5) -- (1,0);
+                        \node[anchor=north,blue] at (1,0) {\scriptsize $t_0$};
+                        \node[anchor=east,blue] at (0,1.5) {\scriptsize $\theta_0$};
+                        \draw[fill=black] (3,2.5) circle (0.5mm);
+                        \draw[dashed,blue] (0,2.5) -- (3,2.5);
+                        \draw[dashed,blue] (3,1.5) -- (3,0);
+                        \node[anchor=north,blue] at (3,0) {\scriptsize $t$};
+                        \node[anchor=east,blue] at (0,2.5) {\scriptsize $\theta$};
+                        \draw[dashed,blue] (1,1.5) -- node[anchor=north]{\scriptsize $t - t_0$} (3,1.5) -- node[anchor=west]{\scriptsize $\theta - \theta_0$} (3,2.5);
+                        \draw[fill=black] (3,1.5) circle (0.5mm);
+                    \end{tikzpicture}
+                \end{figure}
+            \end{column}
+        \end{columns}
+    
+        \end{block}
+
+\end{frame}
+
+\begin{frame}{Período}
+
+    El período $P$ se define como el intervalo de tiempo ($\Delta t$) que tarda un cuerpo en dar una vuelta completa. \pause 
+
+    \vspace{11pt}
+
+    Una vuelta, o revolución, completa corresponde a un desplazamiento angular de $2 \, \pi$ rad. Entonces: $$\omega = \frac{\Delta \theta}{\Delta  t} = \frac{2 \, \pi}{P}$$ O bien:    $$ P = \frac{2 \, \pi}{\omega}$$
+
+\end{frame}
+
+\begin{frame}{Frecuencia}
+
+    $\omega$ representa la frecuencia angular, es decir, la cantidad de radianes que se desplaza la partícula por unidad de tiempo que, como vimos, se puede calcular como $$\omega = \frac{2 \, \pi}{P}$$ Como sabemos que $1 \, \text{revolución} = 2 \, \pi \, \text{rad}$, entonces: $$\omega = \frac{2 \, \pi}{P} \left(\frac{1 \, \text{rev}}{2 \, \pi}\right) = \frac{1}{P} = f$$
+
+    Es decir, $f$ representa la frecuencia angular expresada en unidad de revoluciones o ciclos por unidad de tiempo. Es por esto que resulta ser igual al inverso multiplicativo del periodo: $$f  = \frac{1}{P}$$
+
+\end{frame}
+
+\begin{frame}{Frecuencia}
+
+    En el SI, la unidad de tiempo es el segundo y, por lo tanto: $$\left[f\right] = \frac{1}{\text{s}} = \text{Hz}$$
+
+    Otra unidad muy utilizada de frecuencia es son las revoluciones por minuto. \pause
+
+    \vspace{11pt}
+
+    Como $1 \, \text{min} = 60 \, \text{s}$ y $1 \, \text{revolución} = 2 \, \pi \, \text{rad}$ entonces: $$1 \frac{\text{rad}}{\text{s}} = 1 \frac{\text{rad}}{s} \times \left(\frac{60 \, \text{s}}{1 \, \text{min}}\right) \times \left(\frac{1 \text{rev}}{2 \, \pi \, \text{rad}}\right) = \frac{60}{2 \, \pi} \, \text{rpm}$$ O bien: $$ 1 \, \text{rpm} = \frac{2 \, \pi}{60} \frac{\text{rad}}{\text{s}}$$
+
+\end{frame}
+
+\section{Velocidad tangencial}
+
+\begin{frame}{Velocidad tangencial}
+
+    El vector de posición de una partícula que se mueve en una trayectoria circular es $$\vec{r} (t) = R \left(\cos \theta (t), \sen \theta (t)\right)$$ \pause Si el movimiento se caracteriza por tener frecuencia angular constante, entonces $$\theta (t) = \theta_0 + \omega \left( t - t_0\right)$$ 
+
+\end{frame}
+
+\begin{frame}{Velocidad tangencial}
+
+    Sabemos que la velocidad de la partícula se obtiene como
+    \begin{equation*}
+        \begin{split}
+            \vec{v} (t) = \fdiff{\vec{r}(t)}{t} &= R \left(\fdiff{\cos \theta (t)}{t}, \fdiff{\sen \theta (t)}{t}\right) \\ 
+            &= R \left(-\sen \theta (t) \fdiff{\theta (t)}{t}, \cos \theta (t) \fdiff{\theta (t)}{t}\right)
+        \end{split}
+    \end{equation*} \pause Pero $\fdiff{\theta (t)}{t} = \omega$. \pause Entonces,
+    \begin{equation*}
+        \begin{split}
+            \vec{v} (t) &= R \left(- \omega \sen \theta (t), \omega \cos \theta (t)\right) \\
+                        &= R \, \omega \left(- \sen \theta (t), \cos \theta (t)\right)
+        \end{split}
+    \end{equation*}
+
+\end{frame}
+
+\begin{frame}{Velocidad tangencial}
+
+    A partir de la expresión $\vec{v} (t) = R \, \omega \left(- \sen \theta (t), \cos \theta (t)\right)$ podemos hacer dos observaciones: \pause
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+        \begin{itemize}
+            \item $\norm{\vec{v} (t)} = v = R \, \omega$ \pause $ \Rightarrow v = \text{constante}$. \pause
+            \item $\vec{v} (t) \cdot \vec{r} (t) = 0$.
+        \end{itemize}
+    \end{column} \pause
+    \begin{column}{0.5\textwidth}
+        \begin{figure}[h]
+            \centering
+            \begin{tikzpicture}[scale=0.8]
+                \draw[thick,-latex] (-2.5,0) -- (2.5,0) node[anchor=north]{\scriptsize $x$};
+                \draw[thick,-latex] (0,-2.5) -- (0,2.5) node[anchor=south]{\scriptsize $y$};
+                \draw[fill=black] (0,0) circle (0.5mm);
+                \draw[fill=black] (45:2) circle (0.5mm);
+                \node[anchor=south west] at (45:2) {\scriptsize $P$};
+                \draw[thick,-latex] (0,0) -- (45:2);
+                \node[anchor=south east] at (35:1.2) {\scriptsize $\vec{r}$};
+                \draw[thick,-latex,blue] (45:2) -- node[anchor=south west]{\scriptsize $\vec{v}$} ({2*cos(45)-2*0.75*sin(45)},{2*sin(45)+2*0.75*cos(45)});
+                \draw (0.5,0) arc (0:45:0.5);
+                \node at (25:0.7) {\scriptsize $\theta$};
+                \draw (2,0) arc (0:360:2);
+            \end{tikzpicture}
+        \end{figure}
+    \end{column}
+\end{columns}
+
+\end{frame}
+
+\begin{frame}{Velocidad tangencial}
+
+    A partir de la expresión $\vec{v} (t) = R \, \omega \left(- \sen \theta (t), \cos \theta (t)\right)$ podemos hacer dos observaciones:
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+        \begin{itemize}
+            \item $\norm{\vec{v} (t)} = v = R \, \omega$ $ \Rightarrow v = \text{constante}$.
+            \item $\vec{v} (t) \cdot \vec{r} (t) = 0$.
+        \end{itemize}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+        \begin{figure}[h]
+            \centering
+            \begin{tikzpicture}[scale=0.8]
+                \draw[thick,-latex] (-2.5,0) -- (2.5,0) node[anchor=north]{\scriptsize $x$};
+                \draw[thick,-latex] (0,-2.5) -- (0,2.5) node[anchor=south]{\scriptsize $y$};
+                \draw[fill=black] (0,0) circle (0.5mm);
+                \draw[fill=black] (45:2) circle (0.5mm);
+                \node[anchor=south west] at (45:2) {\scriptsize $P$};
+                \draw[thick,-latex] (0,0) -- (45:2);
+                \node[anchor=south east] at (35:1.2) {\scriptsize $\vec{r}$};
+                \draw[thick,-latex,blue] (45:2) -- node[anchor=south west]{\scriptsize $\vec{v}$} ({2*cos(45)-2*0.75*sin(45)},{2*sin(45)+2*0.75*cos(45)});
+                \draw[thick,-latex] (0,0) -- node[anchor=south west]{\scriptsize $\vec{r}$} (135:2);
+                \draw[thick,-latex,blue] (135:2) -- node[anchor=south east]{\scriptsize $\vec{v}$} ({2*cos(135)-2*0.75*sin(135)},{2*sin(135)+2*0.75*cos(135)});
+                \draw[thick,-latex] (0,0) -- node[anchor=south east]{\scriptsize $\vec{r}$} (225:2);
+                \draw[thick,-latex,blue] (225:2) -- node[anchor=north east]{\scriptsize $\vec{v}$} ({2*cos(225)-2*0.75*sin(225)},{2*sin(225)+2*0.75*cos(225)});
+                \draw[thick,-latex] (0,0) -- node[anchor=south west]{\scriptsize $\vec{r}$} (315:2);
+                \draw[thick,-latex,blue] (315:2) -- node[anchor=north west]{\scriptsize $\vec{v}$} ({2*cos(315)-2*0.75*sin(315)},{2*sin(315)+2*0.75*cos(315)});
+                \draw (0.5,0) arc (0:45:0.5);
+                \node at (25:0.7) {\scriptsize $\theta$};
+                \draw (2,0) arc (0:360:2);
+            \end{tikzpicture}
+        \end{figure}
+    \end{column}
+\end{columns}
+
+\end{frame}
+
+\section{Aceleración centrípeta}
+
+\begin{frame}{Aceleración centrípeta}
+
+La aceleración se obtiene como la derivada de la velocidad respecto al tiempo: 
+\begin{equation*}
+    \begin{split}
+        \vec{a}_{\text{c}} (t) &= \fdiff{\vec{v} (t)}{t} \\
+                               &= R \, \omega \left(- \fdiff{\sen \theta (t)}{t}, \fdiff{\cos \theta (t)}{t}\right) \\
+                               &= R \, \omega \left(- \cos \theta (t) \fdiff{\theta (t)}{t}, - \sen \theta \fdiff{\theta (t)}{t}\right) \\
+                               &= R \, \omega \left(- \omega \cos \theta (t), - \omega \sen \theta (t) \right) \\
+                               &= R \, \omega^2 \left(- \cos \theta (t), - \sen \theta (t) \right)
+    \end{split}
+\end{equation*}
+
+\end{frame}
+
+\begin{frame}{Aceleración centrípeta}
+
+    Podemos hacer tres observaciones de la expresión $\vec{a}_{\text{c}} = R \, \omega^2 \left(- \cos \theta (t), - \sen \theta (t) \right)$.
+    \begin{columns}
+        \begin{column}{0.6\textwidth}
+        \begin{itemize}
+            \item $\norm{\vec{a}_{\text{c}} (t)} = a_{\text{c}} = R \, \omega^2 \Rightarrow a_{\text{c}} = \text{constante}$.
+            \item Considerado que $v = R \, \omega$, tenemos 
+            \begin{align*}
+                a_{\text{c}} &= v \, \omega \\
+                a_{\text{c}} &= \frac{v^2}{R} \\
+                a_{\text{c}} &= R \, \omega^2
+            \end{align*}
+            \item $\vec{a}_{\text{c}} (t) \cdot \vec{v} (t) = 0$.
+            \item $\vec{a}_{\text{c}} (t) \parallel \vec{r} (t)$.
+        \end{itemize}
+    \end{column}
+    \begin{column}{0.4\textwidth}
+        \begin{figure}[h]
+            \centering
+            \begin{tikzpicture}[scale=0.8]
+                \draw[thick,-latex] (-2.5,0) -- (2.5,0) node[anchor=north]{\scriptsize $x$};
+                \draw[thick,-latex] (0,-2.5) -- (0,2.5) node[anchor=south]{\scriptsize $y$};
+                \draw[fill=black] (0,0) circle (0.5mm);
+                \draw[fill=black] (45:2) circle (0.5mm);
+                \node[anchor=south west] at (45:2) {\scriptsize $P$};
+                \draw[thick,-latex] (0,0) -- node[anchor=south east]{\scriptsize $\vec{r}$} (45:2);
+                \draw[thick,-latex,blue] (45:2) -- node[anchor=south west]{\scriptsize $\vec{v}$} ({2*cos(45)-2*0.75*sin(45)},{2*sin(45)+2*0.75*cos(45)});
+                \draw[thick,-latex,red] (45:2) -- node[anchor=north west]{\scriptsize $\vec{a}_{\text{c}}$} ({2*cos(45)-2*0.5*cos(45)},{2*cos(45)-2*0.5*cos(45)});
+                \draw (0.5,0) arc (0:45:0.5);
+                \node at (25:0.7) {\scriptsize $\theta$};
+                \draw (2,0) arc (0:360:2);
+            \end{tikzpicture}
+        \end{figure}
+    \end{column}
+\end{columns}
+
+\end{frame}
+
+\begin{frame}{Aceleración centrípeta}
+
+    Podemos hacer tres observaciones de la expresión $\vec{a}_{\text{c}} = R \, \omega^2 \left(- \cos \theta (t), - \sen \theta (t) \right)$.
+    \begin{columns}
+        \begin{column}{0.6\textwidth}
+        \begin{itemize}
+            \item $\norm{\vec{a}_{\text{c}} (t)} = a_{\text{c}} = R \, \omega^2 \Rightarrow a_{\text{c}} = \text{constante}$.
+            \item Considerado que $v = R \, \omega$, tenemos 
+            \begin{align*}
+                a_{\text{c}} &= v \, \omega \\
+                a_{\text{c}} &= \frac{v^2}{R} \\
+                a_{\text{c}} &= R \, \omega^2
+            \end{align*}
+            \item $\vec{a}_{\text{c}} (t) \cdot \vec{v} (t) = 0$.
+            \item $\vec{a}_{\text{c}} (t) \parallel \vec{r} (t)$.
+        \end{itemize}
+    \end{column}
+    \begin{column}{0.4\textwidth}
+        \begin{figure}[h]
+            \centering
+            \begin{tikzpicture}[scale=0.8]
+                \draw[thick,-latex] (-2.5,0) -- (2.5,0) node[anchor=north]{\scriptsize $x$};
+                \draw[thick,-latex] (0,-2.5) -- (0,2.5) node[anchor=south]{\scriptsize $y$};
+                \draw[fill=black] (0,0) circle (0.5mm);
+                \draw[fill=black] (45:2) circle (0.5mm);
+                \node[anchor=south west] at (45:2) {\scriptsize $P$};
+                \draw[thick,-latex] (0,0) -- node[anchor=south east] {\scriptsize $\vec{r}$} (45:2);
+                \draw[thick,-latex,blue] (45:2) -- node[anchor=south west]{\scriptsize $\vec{v}$} ({2*cos(45)-2*0.75*sin(45)},{2*sin(45)+2*0.75*cos(45)});
+                \draw[thick,-latex,red] (45:2) -- node[anchor=north west]{\scriptsize $\vec{a}_{\text{c}}$} ({2*cos(45)-2*0.5*sin(45)},{2*cos(45)-2*0.5*sin(45)});
+                \draw[thick,-latex] (0,0) -- node[anchor=south west]{\scriptsize $\vec{r}$} (135:2);
+                \draw[thick,-latex,blue] (135:2) -- node[anchor=south east]{\scriptsize $\vec{v}$} ({2*cos(135)-2*0.75*sin(135)},{2*sin(135)+2*0.75*cos(135)});
+                \draw[thick,-latex,red] (135:2) -- node[anchor=north east]{\scriptsize $\vec{a}_{\text{c}}$} ({2*cos(135)-2*0.5*cos(135)},{2*sin(135)-2*0.5*sin(135)});
+                \draw[thick,-latex] (0,0) -- node[anchor=south east]{\scriptsize $\vec{r}$} (225:2);
+                \draw[thick,-latex,blue] (225:2) -- node[anchor=north east]{\scriptsize $\vec{v}$} ({2*cos(225)-2*0.75*sin(225)},{2*sin(225)+2*0.75*cos(225)});
+                \draw[thick,-latex,red] (225:2) -- node[anchor=north west]{\scriptsize $\vec{a}_{\text{c}}$} ({2*cos(225)-2*0.5*cos(225)},{2*sin(225)-2*0.5*sin(225)});
+                \draw[thick,-latex] (0,0) -- node[anchor=south west]{\scriptsize $\vec{r}$} (315:2);
+                \draw[thick,-latex,blue] (315:2) -- node[anchor=north west]{\scriptsize $\vec{v}$} ({2*cos(315)-2*0.75*sin(315)},{2*sin(315)+2*0.75*cos(315)});
+                \draw[thick,-latex,red] (315:2) -- node[anchor=north east]{\scriptsize $\vec{a}_{\text{c}}$} ({2*cos(315)-2*0.5*cos(315)},{2*sin(315)-2*0.5*sin(315)});
+                \draw (0.5,0) arc (0:45:0.5);
+                \node at (25:0.7) {\scriptsize $\theta$};
+                \draw (2,0) arc (0:360:2);
+            \end{tikzpicture}
+        \end{figure}
+    \end{column}
+\end{columns}
+
+\end{frame}
+
+\section{Sistema de referencia ``móvil''}
+
+\begin{frame}{Sistema de referencia ``móvil''}
+    
+    Tal como vimos en la Unidad II, todo vector se puede expresar como combinación lineal de versores. En el caso del vector de posición, $\vec{r} (t) = \left(x(t); y(t)\right)$, podemos expresarlo de la siguiente forma: $$\vec{r}(t) = x(t) \hat{e}_x + y(t) \hat{e}_y $$ Decimos en este caso que los versores $\hat{e}_x$ y $\hat{e}_y$ forman una \emph{base} en la cual expresar cualquier vector del plano.
+
+    \vs
+
+    Ahora bien, teniendo en cuenta que $x(t) = R \cos \theta(t)$ y que $y(t) = R \sen \theta(t)$, también podemos expresar el vector de posición como $$ \vec{r}(t) = \left(R \cos \theta(t);  R \sen \theta(t)\right) = R \left(\cos \theta(t); \sen \theta(t)\right) = R \, \hat{e}_r (t)$$ donde $\hat{e}_r (t) = \left(\cos \theta(t); \sen \theta(t)\right)$ es el versor que da la dirección y el sentido del vector de posición. Por tal motivo, se suele decir que $\hat{e}_r$ es el versor que apunta en la dirección \emph{radial}.
+
+\end{frame}
+
+\begin{frame}{Sistema de referencia ``móvil''}
+
+    A partir de la expresión de la aceleración centrípeta, $\vec{a}_{\text{c}} = R \, \omega^2 \left(- \cos \theta (t), - \sen \theta (t) \right)$, y teniendo en cuenta lo anterior, podemos expresar $\vec{a}_\text{c}(t)$ de la siguiente manera: $$ \vec{a}_{\text{c}} = - R \, \omega^2 \left(\cos \theta (t), \sen \theta (t) \right) = - R \, \omega^2 \, \hat{e}_r (t) $$ donde se ve claramente que el sentido de la aceleración centrípeta es opuesto al del vector de posición.
+
+\end{frame}
+
+\begin{frame}{Sistema de referencia ``móvil''}
+
+    Por su parte, la velocidad viene expresada mediante $\vec{v} = R \, \omega \left(-\sen \theta(t); \cos \theta (t)\right)$. Ahora bien, puede verse que $\left(-\sen \theta(t); \cos \theta (t)\right)$ es un versor que, además, es siempre perpendicular a $\hat{e}_r$: 
+    \begin{align*}
+        \norm{\left(-\sen \theta(t); \cos \theta (t)\right)} &= \sqrt[2]{\left[-\sen \theta(t)\right]^2 + \left[\cos \theta (t)\right]^2} \\
+        &= \sqrt[2]{\sen^2 \theta(t) + \cos^2 \theta (t)} \\
+        &= \sqrt[2]{1} \\
+        &= 1;
+    \end{align*}
+    \begin{align*}
+        \ver{e}_r \cdot \left(-\sen \theta(t); \cos \theta (t)\right) &= 
+        \left(\cos \theta(t); \sen \theta(t)\right) \cdot \left(-\sen \theta(t); \cos \theta (t)\right) \\
+            &= - \cos \theta(t) \, \sen \theta(t) + \sen \theta(t) \, \cos \theta (t) \\
+            &= 0.
+    \end{align*}
+
+\end{frame}
+
+\begin{frame}{Sistema de referencia ``móvil''}
+
+    El versor $\left(-\sen \theta(t); \cos \theta (t)\right)$ se lo suele denominar $\hat{e}_\theta$. Por lo que $\hat{e}_\theta = \left(-\sen \theta(t); \cos \theta (t)\right)$ y, en consecuencia: $$\vec{v}(t) = R \, \omega \, \hat{e}_\theta$$ El hecho de que los versores $\hat{e}_r$ y $\hat{e}_\theta$ sean siempre perpendiculares entre sí, al igual que $\hat{e}_x$ y $\hat{e}_y$, nos brinda la posibilidad de pensarlos como los versores que definen un nuevo sistema de referencia que, en virtud de sus definiciones, giran junto con la partícula, es decir, definen un sistema de referencia móvil.
+
+\end{frame}
+
+\begin{frame}{Sistema de referencia ``móvil''}   
+
+    \begin{block}{Sistema de referencia móvil}
+
+        \begin{columns}
+            \begin{column}{0.45\textwidth}
+                \begin{figure}[h]
+                    \centering
+                    \begin{tikzpicture}[scale=1]
+                        \draw[thick,-latex] (-2.5,0) -- (2.5,0) node[anchor=north]{\scriptsize $x$};
+                        \draw[thick,-latex] (0,-2.5) -- (0,2.5) node[anchor=south]{\scriptsize $y$};
+                        \begin{scope}[rotate=45]
+                            \draw[thick,-latex] (-2.5,0) -- (2.5,0) node[anchor=north]{\scriptsize $r$};
+                            \draw[thick,-latex] (0,-2.5) -- (0,2.5) node[anchor=south]{\scriptsize $\theta$};
+                        \end{scope}
+                        
+                        \draw[-latex] (30:2.75) arc (30:60:2.75);
+                        \node at (45:3) {\scriptsize $\omega$};
+                        
+                        \draw[thick,-latex] (0,0) -- node[anchor=south east]{\scriptsize $\vec{r}$} (45:2);
+                        \draw[thick,-latex,blue] (45:2) -- node[anchor=south west]{\scriptsize $\vec{v}$} ({2*cos(45)-2*0.75*sin(45)},{2*sin(45)+2*0.75*cos(45)});
+                        \draw[thick,-latex,red] (45:2) -- node[anchor=north west]{\scriptsize $\vec{a}_{\text{c}}$} ({2*cos(45)-2*0.5*cos(45)},{2*cos(45)-2*0.5*cos(45)});
+                        \draw (0.5,0) arc (0:45:0.5);
+                        \node at (25:0.7) {\scriptsize $\theta$};
+                        \draw (2,0) arc (0:360:2);
+                        \draw[thick,-latex,orange] (0,0) -- node[anchor=south]{\scriptsize $\hat{e}_r$} (45:0.75);
+                        \draw[thick,-latex,orange] (0,0) -- node[anchor=east]{\scriptsize $\hat{e}_\theta$} (135:0.75);
+                        \draw[thick,-latex,green!50!black] (0,0) -- (0:0.75) node[anchor=north]{\scriptsize $\hat{e}_x$};
+                        \draw[thick,-latex,green!50!black] (0,0) -- (90:0.75) node[anchor=east]{\scriptsize $\hat{e}_y$};
+
+                        \draw[fill=black] (0,0) circle (0.5mm);
+                        \draw[fill=black] (45:2) circle (0.5mm);
+                        \node[anchor=south] at (45:2) {\scriptsize $P$};
+                    \end{tikzpicture}
+                \end{figure}
+            \end{column}
+            \begin{column}{0.45\textwidth}
+                \begin{figure}[h]
+                    \centering
+                    \begin{tikzpicture}[scale=1]
+                        \draw[thick,-latex] (-2.5,0) -- (2.5,0) node[anchor=north]{\scriptsize $r$};
+                        \draw[thick,-latex] (0,-2.5) -- (0,2.5) node[anchor=south]{\scriptsize $\theta$};
+
+                        \draw[thick,-latex] (0,0) -- node[anchor=south]{\scriptsize $\vec{r} = R \hat{e}_r$} (2,0);
+                        \draw[thick,-latex,blue] (0,0) -- node[anchor=west]{\scriptsize $\vec{v} = R \omega  \hat{e}_\theta$} (0,2);
+                        \draw[thick,-latex,red] (0,0) -- (-1,0) node[anchor=north]{\scriptsize $\vec{a}_{\text{c}} = - R \omega^2 \hat{e}_r$};
+                        \draw[thick,-latex,orange] (0,0) -- (1,0) node[anchor=north]{\scriptsize $\hat{e}_r$};
+                        \draw[thick,-latex,orange] (0,0) -- (0,1) node[anchor=east]{\scriptsize $\hat{e}_\theta$};
+                        \draw[fill=black] (0,0) circle (0.5mm);
+                        \draw[fill=black] (2,0) circle (0.5mm);
+                        \node[anchor=south] at (2,0) {\scriptsize $P$};
+                    \end{tikzpicture}
+                \end{figure}
+            \end{column}
+        \end{columns}
+        
+    \end{block}
+
+\end{frame}
+
+\section{MCU y dinámica}
+
+\begin{frame}{Aceleración centrípeta y fuerza centrípeta}
+
+    En virtud de la segunda ley de Newton, la aceleración centrípeta puede asociarse con una \emph{fuerza centrípeta}.
+
+    \begin{block}{Fuerza centrípeta}
+    $$\vec{F}_{\text{c}} = m \, \vec{a}_{\text{c}}$$ Su módulo, $F_\text{c}$, es $$F_{\text{c}} = m \, a_{\text{c}} = m \, R \, \omega^2 = m \, v \, \omega = m \, \frac{v^2}{R}$$ y, por supuesto, su dirección y sentidos serán los mismos que los de la $\vec{a}_{\text{c}}$, es decir, en dirección del radio y sentido hacia el centro de la circunferencia: $$ \vec{F}_\text{c} = - m \, R \, \omega^2 \hat{e}_r$$
+    \end{block}
+
+\end{frame}
+
+\begin{frame}{Aceleración centrípeta y fuerza centrípeta}
+
+    Cabe destacar que la relación $$\vec{F}_{\text{c}} = m \, \vec{a}_{\text{c}}$$ va más allá de una simple relación matemática entre la aceleración y la fuerza centrípetas.
+
+    \vspace{11pt}
+
+    \begin{alertblock}{¡Importante!}
+        Desde el punto de vista conceptual, la ecuación $\vec{F}_{\text{c}} = m \, \vec{a}_{\text{c}}$ representa la \emph{condición necesaria y suficiente} para que ocurra el movimiento circular en un plano.
+    \end{alertblock}
+
+\end{frame}
+
+\begin{frame}{Aceleración centrípeta y fuerza centrípeta}
+
+    $\vec{F}_\text{c}$ puede representar la resultante de un conjunto de fuerzas que actúa sobre el cuerpo. Si, en particular, esa resultante está \emph{siempre} dirigida hacia un punto fijo del plano, entonces la partícula va a describir una trayectoria circular alrededor de ese punto. 
+    
+    \vspace{11pt}
+    
+    Inversamente, si un cuerpo describe una trayectoria circular alrededor de un punto fijo, entonces inmediatamente nos damos cuenta de que la resultante de todas las fuerzas que actúan sobre el cuerpo, cualesquiera sea el origen de estas fuerzas, apunta hacia ese punto fijo.
+
+    \vspace{11pt}
+
+    En este sentido, la fuerza centrípeta solamente modifica la dirección del vector velocidad, pero no su módulo.
+
+\end{frame}
+
+\begin{frame}{Aceleración centrípeta y fuerza centrípeta}
+
+    A la luz de lo que vimos en esta unidad, podemos ampliar el esquema conceptual que venimos construyendo a lo largo del curso.
+
+    \begin{block}{Repaso}
+        $$
+            \vec{R} = \sum_{i=1}^{N} \vec{F}_i =
+            \begin{cases}
+                \vec{0} & \rightarrow \text{Equilibrio} \Leftrightarrow  \fdiff{\vec{v}}{t} = \vec{0} \rightarrow \vec{v} \begin{cases}
+                    = \vec{0} & \rightarrow \text{Equilibrio estático} \\
+                    \neq \vec{0} & \rightarrow \text{MRU} 
+                \end{cases} \\
+                m \, \vec{a} & \rightarrow \text{Dinámica} \rightarrow \text{Si} \, \fdiff{\vec{a}}{t} = \vec{0} \text{ y } \, \vec{a} \neq \vec{0} \rightarrow \begin{cases}
+                    \parallel \vec{v} \Rightarrow \text{MRUV}. \\
+                    \perp \vec{v} \Rightarrow \text{MCU}.
+                \end{cases}
+            \end{cases}
+        $$
+        \begin{columns}
+            \begin{column}{0.5\textwidth}
+                $$
+                \vec{R} = \vec{0} \Rightarrow 
+                \begin{cases}
+                    R_x = 0 \\
+                    R_y = 0.
+                \end{cases}
+                $$
+            \end{column}
+            \begin{column}{0.5\textwidth}
+                $$
+                    \vec{R} = m \, \vec{a} \Rightarrow 
+                    \begin{cases}
+                        R_x = m \, a_x; \, R_y = m \, a_y \\
+                        R_x = m \, a_x; \, R_y = 0 \\
+                        R_x = 0; \, R_y = m \, a_y \\
+                    \end{cases}
+                $$
+            \end{column}
+        \end{columns}
+    \end{block}
+
+\end{frame}
+
+\begin{frame}{Esto es todo por hoy}
+
+    \begin{center}
+        {\huge ¡Muchas gracias!}
+
+        \vs
+
+        Ahora a repasar y practicar.
+    \end{center}
+
+\end{frame}
+
+\end{document}
+
+\begin{frame}{}
+
+
+
+\end{frame}

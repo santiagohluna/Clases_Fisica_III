@@ -1,0 +1,707 @@
+\documentclass[addpoints]{exam}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{charter}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{babel,calc,patterns,decorations.pathmorphing,decorations.markings,arrows.meta,shapes.geometric}
+\usepackage{tikz-3dplot}
+\usepackage{multicol}
+\usepackage{exam-randomizechoices}
+\usepackage[left=1cm,right=1cm,top=2cm,bottom=2cm]{geometry}
+\usepackage[font=small,labelfont={small,bf},margin=0.5cm,justification=justified]{caption}
+\usepackage[font=small,labelfont={small,bf}]{subcaption}
+\usepackage[italic,defaultmathsizes]{mathastext}
+\usepackage{hyperref}
+\usepackage{calculator}
+\usepackage[breakable]{tcolorbox}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{cancel}
+\usepackage{tipa}
+\usepackage{enumerate}
+
+%\pointpoints{punto}{puntos}
+%\bonuspointpoints{punto extra}{puntos extra}
+
+\renewcommand{\solutiontitle}{\textbf{Solución: }}
+\renewcommand{\thequestion}{\bfseries\arabic{question}}
+
+\newcommand{\sgn}{\mathop{\mathrm{sgn}}}
+\newcommand{\diff}[0]{\mathrm{d}}
+\newcommand{\fdiff}[2]{\frac{\mathrm{d} #1}{\mathrm{d} #2}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\fddiff}[2]{\frac{\mathrm{d^2} #1}{\mathrm{d} #2^2}}
+\newcommand{\grado}[0]{^{\circ}}
+\newcommand{\angulo}[3]{#1\grado \, #2' \, #3''}
+\newcommand{\chel}[4]{^{#1}_{#2}\mbox{#3}^{#4}}
+\newcommand{\valmed}[1]{\left\langle #1 \right\rangle}
+\newcommand{\E}[1]{\times 10^{#1}}
+\newcommand{\ver}[1]{\hat{\vec{#1}}}
+\newcommand{\vecg}[1]{\boldsymbol{#1}}
+\newcommand{\iu}{\mathrm{i}}
+\newcommand{\norm}[1]{\left\vert\left\vert #1 \right\vert\right\vert}
+\newcommand{\abs}[1]{\left\vert #1 \right\vert}
+\newcommand{\tens}[1]{\mathbb{#1}}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\un}[1]{\text{#1}}
+\newcommand{\logoUNAHUR}{\includegraphics[scale=0.35]{/home/shluna/UNAHUR/IAM/Apuntes/logo_unahur.png}}
+\renewcommand{\arraystretch}{1.5}
+\newcommand{\rta}{\textbf{Respuesta: }}
+\newcommand{\rtas}{\textbf{Respuestas: }}
+\newcommand{\ang}{110}
+\newcommand{\angu}{-30}
+\newcommand{\rad}{4}
+\newcommand{\mg}{1}
+\newcommand{\muc}{0.5}
+\newcommand{\arc}[1]{{%
+  \setbox9=\hbox{#1}%
+  \ooalign{\resizebox{\wd9}{\height}{\texttoptiebar{\phantom{A}}}\cr#1}}}
+
+\hypersetup{
+%      draft,
+   linktocpage=true,
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    filecolor=blue,      
+    urlcolor=blue
+}
+
+\printanswers
+\qformat{\textbf{Ejercicio \thequestion}\hfill}
+
+\pagestyle{headandfoot}
+\firstpageheader{Instituto de Tecnología e Ingeniería}{\logoUNAHUR}{Física}
+\firstpageheadrule
+\runningheader{Guía de ejercicios -- Unidad V}{\logoUNAHUR}{Física}
+\runningheadrule
+\firstpagefooter{}{Página \thepage\ de \numpages}{}
+\firstpagefootrule
+\runningfooter{}{Página \thepage\ de \numpages}{}
+\runningfootrule
+
+\begin{document}
+
+\renewcommand{\tablename}{Tabla}
+
+\tdplotsetmaincoords{70}{110}
+
+\begin{tcolorbox}[colback=white,arc=0mm,colframe=black]
+    \begin{center}
+        \Large\textbf{Guía de ejercicios resueltos y propuestos -- Unidad V}
+    \end{center}
+\end{tcolorbox}
+
+\vspace{11pt}
+
+\begin{questions}
+
+    \section{Tiro oblicuo}
+
+    \question Un hombre está parado en la azotea de un edificio de $30$ m y lanza una roca con una velocidad de $40 \, \frac{\text{m}}{\text{s}}$, a $37\grado$ sobre la horizontal. Puede ignorarse la resistencia del aire. Calcule: 
+    \begin{enumerate}[a)]
+        \item la posición de la roca (coordenadas $x$ e $y$) a los $1$ s; $3$ s y a los $8$ s después de haber partido;
+        \item la altura máxima que alcanza la roca sobre la azotea;
+        \item la rapidez de la roca justo antes de golpear el suelo;
+        \item la distancia horizontal desde el edificio hasta el punto donde la roca golpea el suelo;
+        \item el instante en que vuelve a pasar por el nivel de la azotea.
+    \end{enumerate}
+
+    \rtas
+    \begin{enumerate}[a)]
+        \item $\vec{r} (1 \, \text{s}) = \left(31.95 \, \text{m} ; 49.17 \, \text{m} \right) $; $\vec{r} (3 \, \text{s}) = \left( 95.84 \, \text{m} ; 58.12 \, \text{m} \right) $; $\vec{r} (8 \, \text{s}) = \left( 255.56 \, \text{m} ; -91.02 \, \text{m} \right) $
+        \item $29.38$ m;
+        \item $v_\text{f} = 46.7 \, \frac{\text{m}}{\text{s}}$
+        \item $d = 189.4$ m;
+        \item $t = 4.91$ s.
+    \end{enumerate}
+
+    \question Se lanza una piedra horizontalmente con una velocidad inicial de 10 m/s desde un balcón de $4$ m de altura con respecto al piso. Simultáneamente, se suelta una segunda piedra del mismo punto. ¿Cuál de las dos llega primero al piso? 
+    
+    \rta Llegan al mismo tiempo.
+
+    \question Un jugador de rugby patea la pelota que parte desde el piso con una velocidad de $18 \, \frac{\text{m}}{\text{s}}$ y un ángulo de $37\grado$ con respecto a la horizontal. A 30 metros de donde parte la pelota, medidos en forma horizontal, se encuentra la "hache" con un travesaño a 3 m de altura del piso (ver Figura~\ref{fig:rugby}). 
+    \begin{enumerate}[a)]
+        \item Determinar si la pelota pasa por encima o por debajo del travesaño y a qué distancia de éste lo hace.
+        \item ¿En qué punto de la trayectoria la velocidad de la pelota forma un ángulo de $-30\grado$ hacia abajo con la horizontal?
+    \end{enumerate}
+
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[scale=0.8]{/home/shluna/UNAHUR/Física/Clases/figs/rugby.png}
+        \caption{ }
+        \label{fig:rugby}
+    \end{figure}
+
+    \rtas 
+    \begin{enumerate}[a)]
+        \item 2 m (aprox.) por debajo;
+        \item $x=27.4$ m; $y = 2.4$ m.
+    \end{enumerate}
+
+    \question Una pelota lanzada a $53\grado$ sobre la horizontal golpea un edificio situado a 36 m en un punto a 3 m por sobre el punto de lanzamiento. Puede ignorarse la resistencia del aire. 
+    \begin{enumerate}[a)]
+        \item Calcule el módulo de la velocidad inicial de la bola.
+        \item Obtenga el módulo y dirección de la velocidad de la pelota justo antes de golpear el edificio.
+    \end{enumerate}
+
+    \rtas
+    \begin{enumerate}
+        \item $v_0 = 20 \, \frac{\text{m}}{\text{s}}$;
+        \item $v_\text{f} = 18.4 \, \frac{\text{m}}{\text{s}}$, $\theta = - 49.4\grado$.
+    \end{enumerate}
+
+    \question Una partícula $A$ se lanza con cierta velocidad inicial cuyo módulo es de $20 \, \frac{\text{m}}{\text{s}}$ y que forma un ángulo inicial $\theta_0$ con la horizontal, tal que $\tan \theta_0 = \frac{4}{3}$, desde una altura inicial de $10 \, \text{m}$, en el instante $t_0 = 0 \, \text{s}$. En ese mismo instante, una partícula $B$ parte del reposo en el punto $(x_0;0)$ y se desplaza hacia la derecha a lo largo del eje $x$ con aceleración constante. La Figura~\ref{fig:tiro_encuentro} muestra un esquema de la situación planteada. Despreciando el rozamiento con el aire, calcular: \label{ej:encuentro_oblicuo}
+    \begin{enumerate}[a)]
+        \item El instante de tiempo en el cual la partícula $A$ alcanza la altura máxima y las coordenadas de este punto, $(x_{y_\text{max}}; y_\text{max})$.
+        \item El instante de tiempo ($t_{x_\text{max}})$ y las coordenadas del punto $(x_\text{max};0)$ en el que la partícula $A$ intersecta el eje $x$.
+        \item El valor de la aceleración para el cual las partículas se encuentran en el instante en el que la rapidez de la partícula $B$ es igual a la componente $x$ de la velocidad de la partícula $A$.
+        \item El valor de $x_0$.
+    \end{enumerate}
+
+    \textbf{Sugerencia:} Antes de comenzar a resolver el ejercicio, tenga en cuenta las condiciones iniciales de las dos partículas, es decir, en $t_0 = 0$ s:
+    \begin{itemize}
+        \item Partícula $A$: $x_A (0) = 0$, $y_A (0) = 10 \, \text{m}$, $v_{A,x} (0) = v_0 \cos \theta_0$, $v_{A,y} (0) = v_0 \sen \theta_0$.
+        \item Partícula $B$: $x_B (0) = x_0$, $v_{B} (0) = 0$.
+    \end{itemize} Escriba a continuación las ecuaciones que dan la posición y velocidad de cada partícula en función del tiempo: $x_A (t)$, $y_A (t)$, $v_{A,x} (t)$, $v_{y,A} (t)$, $x_B (t)$ y $v_B (t)$:
+    \begin{table}[ht]
+        \centering
+        \begin{tabular}{m{0.4\textwidth}m{0.4\textwidth}}
+            Partícula $A$: & Partícula $B$: \\
+            $x_A (t) = $ & $x_B (t) = $ \\
+            $y_A (t) = $ &  \\
+            $v_{A,x} (t) = $ & $v_{B,x} (t) = $ \\
+            $v_{A,y} (t) = $ & \\ 
+        \end{tabular}
+    \end{table} 
+
+    Además, pensando en la condición de encuentro, responda las siguientes preguntas:
+    \begin{itemize}
+        \item ¿en qué punto del plano se encuentran ambas partículas?
+        \item ¿cuál es el instante ($t_e$) en el que se encuentran? 
+    \end{itemize}
+
+    \question Un bloque se encuentra en el punto más alto de un plano inclinado un cierto ángulo $\theta$ respecto a la horizontal. Dicho ángulo es tal que $\tan \theta = \frac{3}{4}$. El coeficiente de rozamiento entre este y la superficie del plano es $0.25$. El bloque parte del reposo y se desplaza $10$ m hasta que llega al final del plano y cae una altura $h = 50$ m alcanzando una distancia horizontal $d$ desde el borde del plano inclinado, tal como se muestra en la Figura~\ref{fig:planoinc}. Hallar: \label{ej:planoinc_oblicuo}
+    \begin{parts}
+        \part La aceleración del bloque mientras se desplaza por el plano inclinado.
+        \part El módulo de la velocidad del bloque cuando este llega al final del plano inclinado.
+        \part El tiempo necesario para llegar al final del plano inclinado.
+        \part La distancia horizontal $d$.
+    \end{parts}
+    
+    \begin{figure}[ht]
+        \centering
+        \begin{subfigure}{0.5\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=0.9]
+                \draw[thick,-latex] (-0.5,0) -- (10,0) node[anchor=north]{$x$};
+                \draw[thick,-latex] (0,-0.5) -- (0,5) node[anchor=east]{$y$};
+                \draw[scale=1,domain=0:9,smooth,variable=\x,black,thick] plot ({\x},{-4*(\x+1)*(\x-9)/25});
+                \draw[thick,-latex,red] (0,{36/25}) -- node[anchor=south east]{$\vec{v}_0$} ({2*25/sqrt(1649)},{36/25+2*32/sqrt(1649)});
+                \draw (0.5,{36/25}) node[anchor=south west]{$\theta_0$} arc (0:52:0.5);
+                \draw (0,{36/25}) -- (1,{36/25});
+                \fill (0,{36/25}) circle (0.5mm) node[anchor=east]{$y_0$};
+                \fill (4,4) circle (0.5mm);
+                \draw[dashed] (0,4) -- (4,4);
+                \fill (0,4) circle (0.5mm) node[anchor=east]{$y_\text{max}$};
+                \draw[dashed] (4,0) -- (4,4);
+                \fill (4,0) circle (0.5mm) node[anchor=north]{$x_{y_\text{max}}$};
+                \fill (9,0) circle (0.5mm) node[anchor=north]{$x_\text{max}$};
+                \fill (2,0) circle (0.5mm) node[anchor=north]{$x_0$};
+                \draw[thick,-latex] (2,0.5) -- node[anchor=south]{$\vec{a}$} (3,0.5);
+                \fill (0,0) circle (0.5mm) node[anchor=north east]{$O$};
+                \node[anchor=south east] at (2,0) {$B$};
+                \node[anchor=north west] at (0,{36/25}) {$A$};
+            \end{tikzpicture}
+            \caption{Esquema del Ejercicio~\ref{ej:encuentro_oblicuo}.}
+            \label{fig:tiro_encuentro}
+        \end{subfigure}
+        ~
+        \begin{subfigure}{0.35\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=1.2]
+                \draw[thick] (0,0) -- ({\rad*cos(\angu)},{\rad*sin(\angu)}) -- ({\rad*cos(\angu)},-5) -- ({\rad*cos(\angu)+2},-5);
+                \draw ({\rad*cos(\angu)},{\rad*sin(\angu)}) -- ({\rad*cos(\angu)-1},{\rad*sin(\angu)});
+                \draw ({\rad*cos(\angu)-0.5},{\rad*sin(\angu)}) arc (180.0:{180.0+\angu}:0.5);
+                \node[anchor=south east] at ({\rad*cos(\angu)-0.5},{\rad*sin(\angu)}) {$\theta$};
+                %%%
+                \begin{scope}[rotate=\angu]
+                    \draw[latex-latex] (0.3,0.75) -- node[fill=white]{$\Delta x$} (4,0.75);
+                    \draw (4,0.65) -- (4,0.85);
+                    \draw (0.3,0.65) -- (0.3,0.85);
+                    \draw[dashed] (0.6,0.25) -- (4,0.25);
+                    \draw[-latex,thick] (4,0.25) -- (5,0.25) node[anchor=west]{$\vec{v}$};
+                    \draw[fill=gray!30,thick] (0,0) rectangle +(0.6,0.5);
+                    %\fill (4,0.25) circle (0.5mm);
+                \end{scope}
+                %%%
+                \fill ({4*cos(\angu)-0.25*sin(\angu)},{4*sin(\angu)+0.25*cos(\angu)}) circle (0.3mm);
+                \draw ({4*cos(\angu)-0.25*sin(\angu)},{4*sin(\angu)+0.25*cos(\angu)}) -- ({4*cos(\angu)-0.25*sin(\angu)+0.75},{4*sin(\angu)+0.25*cos(\angu)});
+                \draw ({4*cos(\angu)-0.25*sin(\angu)+0.5},{4*sin(\angu)+0.25*cos(\angu)}) arc (0:\angu:0.5);
+                \node[anchor=north west] at ({4*cos(\angu)-0.25*sin(\angu)+0.5},{4*sin(\angu)+0.25*cos(\angu)}) {$\theta$};
+                \draw[scale=1,domain={4*cos(\angu)-0.25*sin(\angu)}:{4*cos(\angu)-0.25*sin(\angu)+1.35},smooth,variable=\x,black,dashed] plot ({\x},{4*sin(\angu)+0.25*cos(\angu) + tan(\angu)*(\x-(4*cos(\angu)-0.25*sin(\angu))) - ((\x - (4*cos(\angu)-0.25*sin(\angu)))/cos(\angu))^2});
+                \fill ({4*cos(\angu)-0.25*sin(\angu)+1.35},-5) circle (0.3mm);
+                \draw[latex-latex] ({\rad*cos(\angu)-0.25},{\rad*sin(\angu)}) -- node[fill=white]{$h$} ({\rad*cos(\angu)-0.25},-5);
+                \draw ({\rad*cos(\angu)-0.1},-5) -- ({\rad*cos(\angu)-0.4},-5);
+                \draw ({\rad*cos(\angu)},-5.1) -- ({\rad*cos(\angu)},-5.4);
+                \draw ({4*cos(\angu)-0.25*sin(\angu)+1.35},-5.1) -- ({4*cos(\angu)-0.25*sin(\angu)+1.35},-5.4);
+                \draw[latex-latex] ({\rad*cos(\angu)},-5.25) -- node[fill=white]{$d$} ({4*cos(\angu)-0.25*sin(\angu)+1.35},-5.25);
+            \end{tikzpicture}
+        \caption{Esquema del Ejercicio~\ref{ej:planoinc_oblicuo}.}
+        \label{fig:planoinc}
+        \end{subfigure}        
+    \end{figure}
+
+    \section{Movimiento circular uniforme}
+
+    \question ¿Qué ángulo en radianes corresponde a un arco de 90 cm de longitud situado sobre una circunferencia cuyo radio es de 60 cm? ¿Cuál es el valor de este ángulo en grados?
+
+    \begin{solution} 
+    La relación entre el ángulo en radianes ($\theta$), la longitud de arco ($s$) y el radio ($R$) de una circunferencia es: $$s = R \, \theta$$ Por lo tanto, el ángulo en radianes puede calcularse como: $$\theta = \frac{s}{R} = \frac{90 \, \text{cm}}{60 \, \text{cm}} = 1.5 \, \text{rad}$$ Para convertir esta medida a grados, podemos usar el hecho de que $360\grado = 2 \, \pi \, \text{rad}$: $$\theta = 1.5 \, \text{rad} \left(\frac{360 \grado}{2 \, \pi \, \text{rad}}\right) = \angulo{85}{56}{37.21}$$
+    \end{solution}
+
+    \question ¿Qué ángulo en radianes corresponde a un arco de 78.54 cm de longitud situado sobre una circunferencia cuyo diámetro es de 100 cm? ¿Cuál es el valor de este ángulo en grados?
+
+    \rta $\theta = 1.5748 \, \text{rad} = \angulo{90}{13}{45.82}$.
+
+    \question El ángulo comprendido entre dos radios de una circunferencia es $0.60$ rad. ¿Cuál es la longitud del arco correspondiente en una circunferencia de radio 200 cm?
+
+    \rta $s = 120 \, \text{cm} = 1.20 \, \text{m}$.
+
+    \question La tierra da una vuelta sobre sí misma una vez cada 24 hs.
+    \begin{parts}
+    \part Calcular la velocidad angular de rotación de la Tierra en radianes por segundo.
+    \part ¿Cuántos grados se desplaza cada una hora?
+    \part ¿Cuál es el módulo de la velocidad tangencial de un cuerpo situado en la superficie del ecuador terrestre?
+    \end{parts}
+
+    \begin{solution}
+    \begin{parts}
+        \part La Tierra da una vuelta cada 24 hs, esto significa que gira un ángulo $2 \, \pi$ radianes en 24 hs. Como sabemos que cada hora tiene 3600 segundos, entonces: $$24 \, \text{h} \left(\frac{3600 \, \text{s}}{1 \, \text{h}}\right) = 86\, 400 \, \text{s}$$ Luego: $$\omega = \frac{\Delta \theta}{\Delta t} = \frac{2 \, \pi \, \text{rad}}{86400 \, \text{s}} = \frac{\pi}{43200} \, \frac{\text{rad}}{\text{s}} \approx 7.27 \E{-5} \, \frac{\text{rad}}{\text{s}}$$
+        \part El desplazamiento angular se puede calcular mediante: $$\Delta \theta = \omega \, \Delta t$$ En este caso, $\Delta t = 1 \, \text{h} = 3600 \, \text{s}$. En consecuencia: $$\Delta \theta = \frac{\pi}{43200} \, \frac{\text{rad}}{\text{s}} \times 3600 \, \text{s} = \frac{\pi}{12} \, \text{rad} \times \left(\frac{360\grado}{2 \, \pi \, \text{rad}}\right) = 15\grado$$
+        \part El módulo de la velocidad tangencial viene dado por: $$ v = R_\oplus \, \omega $$ donde $R_\oplus$ es el radio de la Tierra. Teniendo en cuenta el valor antes calculado de $\omega$ y que $R_\oplus = 6.37 \E{6} \, \text{m}$, obtenemos: $$ v = 6.37 \E{6} \, \text{m} \times 7.27 \E{-5} \, \frac{\text{rad}}{\text{s}} \approx 463.01 \frac{\text{m}}{\text{s}} \approx 1667.16 \frac{\text{km}}{\text{h}}$$
+    \end{parts}
+    \end{solution}
+
+    \question Calcular la velocidad angular, en radianes por segundo, del cigüeñal de un auto cuyo motor gira a 3600 rpm.
+
+    \rta $\omega = 120 \, \pi \, \dfrac{\text{rad}}{\text{s}}$.
+
+    \question Un motor de avión, con su hélice, se coloca sobre un banco de pruebas. Las palas de la hélice tienen, cada una, $1.8$ m de longitud.
+    \begin{parts}
+    \part Calcular la velocidad de los extremos de las palas cuando la hélice gira a 1200 rpm.
+    \part ¿Cuál es la velocidad tangencial de un punto de la pala situado a igual distancia del eje y del extremo?
+    \end{parts}
+
+    \begin{solution}
+    \begin{parts}
+        \part En primer lugar, la velocidad angular es: $$\omega = 1200 \, \text{rpm} = 1200 \times \frac{2 \, \pi}{60} \, \frac{\text{rad}}{\text{s}} = 40 \, \pi \, \frac{\text{rad}}{\text{s}}$$ Luego: $$v = R \, \omega = 1.8 \, \text{m} \times 40 \, \pi \, \frac{\text{rad}}{\text{s}} = 72 \, \pi \, \frac{\text{m}}{\text{s}} \approx 226 \, \frac{\text{m}}{\text{s}} = 813.6 \, \frac{\text{km}}{\text{h}}$$
+        \part La velocidad tangencial en la mitad de la distancia entre el eje y el extremo de la pala es: $$v = \frac{R}{2} \, \omega = 0.9 \, \text{m} \times 40 \, \pi \, \frac{\text{rad}}{\text{s}} = 36 \, \pi \, \frac{\text{m}}{\text{s}} \approx 113 \, \frac{\text{m}}{\text{s}} = 406.8 \, \frac{\text{km}}{\text{h}}$$
+    \end{parts}
+    \end{solution}
+
+    \question Un cilindro de 15 cm de diámetro gira en un torno a 750 rpm.
+
+    \begin{parts}
+    \part ¿Cuánto vale la velocidad angular en radianes por segundo?
+    \part ¿Cuál es el período de rotación?
+    \part ¿Cuál es la velocidad tangencial de la superficie del cilindro?
+    \part ¿Cuál es el módulo de la aceleración centrípeta?
+    \part La velocidad tangencial adecuada para trabajar el hierro fundido es $60 \, \frac{\text{cm}}{\text{s}}$, aproximadamente. ¿A cuántas revoluciones por minuto debe girar en un torno, una pieza de 5 cm de diámetro?
+    \end{parts}
+
+    \begin{solution}
+    \begin{parts}
+        \part El cilindro gira a 750 rpm. Como $$1 \, \text{rpm} = \frac{2\, \pi}{60} \frac{\un{rad}}{\un{s}}$$ tenemos: $$ \omega = 750 \, \text{rpm} \times \left(\frac{2\, \pi}{60} \frac{\un{rad}}{\un{s}}\right) = 25 \, \pi \, \frac{\text{rad}}{\text{s}}$$
+        \part El período está dado por $$P = \frac{2 \, \pi}{\omega} = \frac{2 \, \pi}{25 \, \pi \, \frac{\text{rad}}{\text{s}}} = 0.08 \, \text{s}$$
+        \part La velocidad tangencial está dada por $$v = R \, \omega$$ donde $R$ es el radio de la trayectoria circular y $\omega$ es la velocidad angular expresada en radianes por segundo. Sabemos que $R = 7.5$ cm. Luego: $$v = 7.5 \, \text{cm} \times 25 \, \pi \, \frac{\text{rad}}{\text{s}} = 187.5 \, \pi \, \frac{\text{cm}}{\text{s}} \approx 589 \, \frac{\text{cm}}{\text{s}} = 5.89 \, \frac{\text{m}}{\text{s}}$$
+        \part El módulo de la aceleración centrípeta viene dado por: $$a_\text{c} = v \, \omega = \frac{v^2}{R}$$ Entonces: $$a_\text{c} = 187.5 \, \pi \, \frac{\text{cm}}{\text{s}} \times 25 \, \pi \, \frac{\text{rad}}{\text{s}} = 4687.5 \, \pi^2 \, \frac{\text{cm}}{\text{s}^2} = 46.875 \, \pi^2 \, \frac{\text{m}}{\text{s}^2} \approx 462.64 \, \frac{\text{m}}{\text{s}^2}$$
+        \part Ahora, tenemos que $R = 2.5 \, \text{cm}$ y que $v = 60 \, \frac{\text{cm}}{\text{s}}$. Por lo tanto, podemos calcular el valor de $\omega$: $$\omega = \frac{v}{R} = \frac{60 \, \frac{\text{cm}}{\text{s}}}{2.5 \, \text{cm}} = 24 \, \frac{\text{rad}}{\text{s}}$$ Usando nuevamente el hecho de que $$1 \, \text{rpm} = \frac{2\, \pi}{60} \frac{\un{rad}}{\un{s}}$$ se obtiene: $$24 \, \frac{\text{rad}}{\text{s}} \times \left(\frac{1 \, \text{rpm}}{\frac{2\, \pi}{60} \frac{\un{rad}}{\un{s}}}\right) \approx 230 \, \text{rpm} $$
+    \end{parts}
+    \end{solution}
+
+    \question Un motor eléctrico gira a 1800 rpm y tiene sobre su eje tres poleas de diámetros 5, 10 y 15 cm, respectivamente. Calcular la velocidad tangencial en la superficie de cada polea, en metros por segundo.
+
+    \rta Para $R = 2.5$ cm, $v = 4.71 \, \frac{\text{m}}{\text{s}}$. Para $R = 5$ cm, $v = 9.42 \, \frac{\text{m}}{\text{s}}$. Para $R = 7.5$ cm, $v = 14.14 \, \frac{\text{m}}{\text{s}}$.
+
+    \question Hallar los valores correspondientes del módulo de la aceleración centrípeta de un punto en la superficie de cada polea. Expresarlas en metros por segundo al cuadrado.
+
+    \rta Para $R = 2.5$ cm, $a_\text{c} = 887.36 \, \frac{\text{m}}{\text{s}^2}$. Para $R = 5$ cm, $a_\text{c} = 1774.73 \, \frac{\text{m}}{\text{s}^2}$. Para $R = 7.5$ cm, $a_\text{c} = 2665.86 \, \frac{\text{m}}{\text{s}^2}$.
+
+    \question Una partícula, que tiene una masa de 800 g, describe una trayectoria circular de $15.7$ m de radio. El periodo de dicho movimiento es constante. Se sabe que en el instante $t_1 = 2.8$ s, la posición angular $\theta_1$ es de $15\grado$ y que en el instante $t_2 = 3.2$ s es $\theta_2 = 20\grado$. Determinar:
+    \begin{parts}
+    \part La frecuencia angular $\omega$.
+    \part El periodo ($P$) y la frecuencia física ($f$).
+    \part El módulo de la velocidad tangencial $v$.
+    \part El módulo de la aceleración centrípeta $a_\text{c}$.
+    \part El módulo de la fuerza centrípeta $F_\text{c}$.
+    \part El momento de inercia de la partícula.
+    \part El módulo del momento angular.
+    \end{parts}
+
+    \begin{solution}
+    \begin{parts}
+        \part Como se sabe, en $t_1 = 2.8$ s, $\theta_1 = 15\grado$ y en $t_2 = 3.2$ s, $\theta_2 = 20\grado$. La partícula describe un MCU, puesto que el periodo es constante, y por lo tanto la frecuencia angular puede calcularse como: $$ \omega = \frac{\Delta \theta}{\Delta t} = \frac{\theta_2 - \theta_1}{t_2 - t_1} = \frac{20\grado - 15\grado}{3.2\, \text{s} - 2.8 \, \text{s}} = \frac{5\grado}{0.4 \, \text{s}} = 12.5 \frac{{}\grado}{\text{s}} \approx 0.22 \frac{\text{rad}}{\text{s}}$$
+        \part El periodo se puede calcular usando la relación $$ P = \frac{2 \, \pi \, \text{rad}}{\omega} = \frac{2 \, \pi \, \text{rad}}{0.22 \frac{\text{rad}}{\text{s}}} = 28.8 \, \text{s}.$$ Una vez determinado el periodo, la frecuencia física se puede calcular mediante: $$f = \frac{1}{P} = \frac{1}{28.8 \, \text{s}} \approx 0.035 \, \text{Hz} = 2.08 \, \text{rpm}$$
+        \part El módulo de la velocidad tangencial se determina con la expresión: $$ v = R \, \omega = 15.7 \, \text{m} \times 0.22 \frac{\text{rad}}{\text{s}} \approx 3.42 \, \frac{\text{m}}{\text{s}}$$
+        \part Podemos calcular el módulo de la aceleración centrípeta con: $$a_\text{c} = R \, \omega^2 = 15.7 \, \text{m} \times \left(0.22 \frac{\text{rad}}{\text{s}}\right)^2 \approx 0.75 \, \frac{\text{m}}{\text{s}^2}$$
+        \part Multiplicando el módulo de la aceleración centrípeta antes calculado, podemos determinar el módulo de la fuerza centrípeta usando la segunda ley de Newton: $$F_\text{c} = m \, a_\text{c} = 0.8 \, \text{kg} \times 0.75 \, \frac{\text{rad}}{\text{s}^2} \approx 0.6 \, \text{N}$$
+        \part A partir de su definición, el momento de inercia se calcula como: $$ I = m \, R^2 = 0.8 \, \text{kg} \times \left(15.7 \, \text{m}^2\right) = 197.19 \, \, \text{kg} \, \text{m}^2$$
+        \part Por último, y aprovechando el resultado anterior, podemos calcular el módulo del momento angular: $$ L = I \, \omega \approx 197.19 \, \, \text{kg} \, \text{m}^2 \times 0.22 \frac{\text{rad}}{\text{s}} \approx 43 \, \text{kg} \, \frac{\text{m}^2}{\text{s}}$$
+    \end{parts}
+    \end{solution}
+
+    \question Una pelota de 200 g de masa gira en un péndulo cónico con una cuerda de 50 cm de longitud que forma un ángulo de $10\grado$ con la vertical, describiendo un movimiento circular uniforme. Hallar:
+    \begin{parts}
+    \part La tensión de la cuerda.
+    \part La velocidad tangencial de la pelota.
+    \part El período con el que gira la pelota.
+    \end{parts}
+
+    \begin{solution}
+    \begin{center}
+        \begin{tikzpicture}[scale=1]
+        \fill[pattern=north east lines] ({5*cos(60)-0.5},{5*sin(60)}) rectangle ({5*cos(60)+0.5},{5*sin(60)+0.2});
+        \draw[thick] ({5*cos(60)-0.5},{5*sin(60)}) -- ({5*cos(60)+0.5},{5*sin(60)});
+        \draw[thick,-latex] (-0.5,0) -- (2,0) node[anchor=north]{$x$};
+        \draw[thick,-latex] (0,-0.5) -- (0,2) node[anchor=east]{$y$};
+        \draw[thick] (0,0) -- node[anchor=south east]{$L$} (60:5);
+        \draw (0,1) arc (90:60:1);
+        \node[anchor=south] at (75:1.1) {$\theta$};
+        \draw ({5*cos(60)},{5*sin(60)-1}) arc (270:240:1);
+        \node[anchor=north] at ({5*cos(60)-0.3},{5*sin(60)-1}) {$\theta$};
+        \draw[dashed] (0,0) -- ({10*cos(60)},0);
+        \draw[dashed] ({5*cos(60)},0) -- (60:5);
+        \fill[black] (0,0) circle (0.5mm);
+        \draw[dashed] ({5*cos(60)},0) ellipse (2.5 and 0.5);
+        \draw[-latex] ({10*cos(60)},-0.35) arc [x radius = 2.7, y radius = 0.7, start angle = -30, end angle = 30];
+        \node[anchor=west] at ({10*cos(60)+0.5},0) {$\omega$};
+        \draw[thick,red,-latex] (0,0) -- (0,-1.5) node[anchor=west]{$\vec{F}_\text{g}$};
+        \draw[thick,blue,-latex] (0,0) -- (60:2) node[anchor=north west]{$\vec{T}$};
+        \end{tikzpicture}
+    \end{center}
+
+    \begin{parts}
+        \part Observando la figura se pueden obtener las componentes de los vectores tensión $\vec{T}$ y peso $\vec{F}_\text{g}$:
+        \begin{align*}
+        \vec{T} &= \left(T \sen \theta ; T \cos \theta\right) \\
+        \vec{F}_\text{g} &= \left(0; -m \, g\right)\\
+        \end{align*} Estas son las únicas fuerzas que actúan sobre la pelota.
+    
+        Planteamos ahora las sumatorias de las componentes de las fuerzas en los ejes $x$ e $y$:
+        \begin{align*}
+        R_y &= T \cos \theta - m \, g = 0 \\
+        R_x &= T \sen \theta = m \, a_\text{c}
+        \end{align*} De la sumatoria de fuerzas en el eje $y$ se obtiene: $$T = \frac{m \, g}{\cos \theta} = \frac{0.2 \, \text{kg} \times 9.8 \, \frac{\text{m}}{\text{s}^2}}{\cos 10\grado} \approx 2 \, \text{N}$$
+        \part A partir de la sumatoria de fuerzas en el eje $x$ se puede obtener una expresión de la aceleración centrípeta: $$a_\text{c} = \frac{T \sen \theta}{m}$$ Reemplazando en esta última la expresión de la tensión obtenida antes: $$a_\text{c} = g \, \tan \theta$$ Por otro lado, la velocidad tangencial y la aceleración centrípeta se relacionan mediante: $$a_\text{c} = \frac{v^2}{R}$$ El radio de la trayectoria circular se puede obtener observando nuevamente la figura. Esto es, $R = L \sen \theta$ y por lo tanto: $$v^2 = a_\text{c} \, L \sen \theta = g \, L \, \tan \theta \sen \theta$$ Es decir: $$v = \sqrt{g \, L \, \tan \theta \sen \theta} = \sqrt{9.8 \, \frac{\text{m}}{s}^2 \times 0.5 \, \text{m} \times \tan 10\grado \times \sen 10\grado} \approx 0.387 \, \frac{\text{m}}{\text{s}}$$
+        \part La aceleración centrípeta está relacionada con la velocidad angular mediante $$a_\text{c} = R \, \omega^2$$ De donde podemos despejar $\omega$: $$\omega = \sqrt{\frac{a_\text{c}}{R}} = \sqrt{\frac{g \tan \theta}{L \cos \theta}} = \sqrt{\frac{g}{L \cos \theta}}$$ Luego, podemos calcular el periodo con: $$P = \frac{2 \, \pi}{\omega} = 2 \, \pi \sqrt{\frac{L \cos \theta}{g}}$$ Reemplazando los valores: $$P = 2 \, \pi \sqrt{\frac{0.5 \, \text{m} \cos 10\grado}{9.8 \, \frac{\text{m}}{s}^2}} \approx 1.41 \, \text{s}$$
+    \end{parts}
+    \end{solution}
+
+    \question Una piedra de masa 2 kg, unida a una cuerda de 50 cm de longitud y cuya resistencia a la rotura es de 500 N, gira en una circunferencia horizontal. ¿Qué velocidad debe llevar la piedra para que su velocidad angular sea la suficiente para provocar la rotura de la cuerda?
+
+    \rta $v = 11.18 \, \frac{\text{m}}{\text{s}}$.
+
+    \question Una pelota de 2.5 kg de masa gira en un péndulo cónico con una cuerda de 50 cm de longitud que forma un ángulo de $60\grado$ con la vertical, describiendo un movimiento circular uniforme contenido en  un plano horizontal (Figura~\ref{fig:pendiloconico}). Hallar: \label{ej:pendulo_conico}
+    \begin{parts}
+    \part La tensión de la cuerda.
+    \part La velocidad tangencial de la pelota.
+    \part El período con el que gira la pelota.
+    \end{parts}
+
+    \rtas
+    \begin{parts}
+        \part $T = 49$ N.
+        \part $v = 2.71 \, \frac{\text{m}}{\text{s}}$.
+        \part $P = 1$ s.
+    \end{parts}
+
+    \begin{figure}[ht]
+        \centering
+        \begin{subfigure}{0.45\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=1]
+                \fill[pattern=north east lines] ({5*cos(60)-0.5},{5*sin(60)}) rectangle ({5*cos(60)+0.5},{5*sin(60)+0.2});
+                \draw[thick] ({5*cos(60)-0.5},{5*sin(60)}) -- ({5*cos(60)+0.5},{5*sin(60)});
+                \draw[thick] (0,0) -- node[anchor=south east]{$L$} (60:5);
+                \draw ({5*cos(60)},{5*sin(60)-1}) arc (270:240:1);
+                \node[anchor=north] at ({5*cos(60)-0.3},{5*sin(60)-1}) {$\theta$};
+                \draw[dashed] (0,0) -- ({10*cos(60)},0);
+                \draw[dashed] ({5*cos(60)},0) -- (60:5);
+                \fill[black] (0,0) circle (0.8mm);
+                \draw[dashed] ({5*cos(60)},0) ellipse (2.5 and 0.5);
+                \draw[-latex] ({10*cos(60)},-0.35) arc [x radius = 2.7, y radius = 0.7, start angle = -30, end angle = 30];
+                \node[anchor=west] at ({10*cos(60)+0.5},0) {$\omega$};
+            \end{tikzpicture}
+            \caption{Esquema del Ejercicio~\ref{ej:pendulo_conico}.}
+        \label{fig:pendiloconico}
+        \end{subfigure}
+        ~
+        \begin{subfigure}{0.45\textwidth}
+            \centering
+            \includegraphics[width=0.6\textwidth]{/home/shluna/UNAHUR/Física/Clases/figs/mesaydosmasas.jpg}
+            \caption{Esquema del Ejercicio~\ref{ej:mesa}.}
+            \label{fig:mesa}
+        \end{subfigure}        
+    \end{figure}
+
+    \question Un bloque pequeño de masa $m$ descansa sobre una mesa horizontal sin fricción, a una distancia $r$ de un agujero en el centro de la mesa (figura~\ref{fig:mesa}). Un cordón atado al bloque pequeño pasa por el agujero y está atado por el otro extremo a un bloque suspendido de masa $M$. Se imprime al bloque pequeño un movimiento circular uniforme con radio $R$ y rapidez $v$. Obtener las expresiones de la velocidad tangencial ($v$) y del período del movimiento circular uniforme ($P$) en función de $m$, $M$ y $R$. \label{ej:mesa}
+
+    \rta $v = \sqrt{\dfrac{M \, g \, R}{m}}$ y $P = 2 \, \pi \sqrt{\dfrac{m \, R}{M \, g}}$.
+
+    \question Demostrar que la distancia $d$ a la cual debería colocarse un satélite artificial, de masa $m$, para que complete una trayectoria circular alrededor del centro de la Tierra en un intervalo de tiempo igual al periodo de rotación terrestre, asumiendo que este último es constante, está dada por: $$d = \sqrt[3]{\frac{G \times M_\oplus \times P^2}{4 \times \pi^2}}$$ donde $G$ es la constante gravitatoria, $M_\oplus$ es la masa de la Tierra y $P$ es el periodo del movimiento circular asociado al satélite. Una vez obtenida la expresión, calcular:
+    \begin{enumerate}[a)]
+        \item El valor de $d$ (expresado en metros) con los datos consignados a continuación y el valor de $\frac{d}{R_\oplus}$, donde $R_\oplus$ es el radio de la Tierra.
+        \item El módulo de la velocidad tangencial, expresado en kilómetros por segundo.
+    \end{enumerate}
+
+    \textbf{Datos:} $G = 6.67 \E{-11} \dfrac{\text{N} \, \text{m}^2}{\text{kg}^2}$; $M_\oplus = 5.98 \E{24} \, \text{kg}$; $R_\oplus = 6.37 \E{6} \, \text{m}$. El periodo de rotación de la Tierra es de 86400 s.
+
+    \begin{figure}[ht]
+        \centering
+        \begin{tikzpicture}[scale=1]
+            \fill[gray!40] (0,0) circle (1);
+            \draw[thick] (0,0) circle (1);
+            \fill[black] (0,0) circle (0.5mm) node[anchor=north]{Tierra};
+            \draw[thick,-latex] (0,0) -- node[anchor=north west]{$R_\oplus$} (45:1);
+            \draw[thick,dashed] (0,0) circle (3);
+            \draw[thick,-latex] (0,0) -- node[anchor=north east]{$d$} (120:3);
+            \fill[black] (120:3) circle (0.5mm) node[anchor=south east]{Satélite};
+            \node[anchor=north west] at (315:3) {Órbita del satélite};
+        \end{tikzpicture}
+        \caption{Esquema del ejercicio 2.}
+        \label{fig:orbita_sat}
+    \end{figure}
+
+    \textbf{Sugerencia:} Asuma que la Tierra es una distribución perfectamente esférica y homogénea de masa que interactúa con el satélite a través de la fuerza de atracción gravitatoria, cuyo módulo está dado por: $$F_\text{grav} = G \, \frac{M_\oplus \, m}{d^2}$$ donde $d$ es la distancia entre el satélite artificial y el centro de la Tierra. Puede suponer, además, que la órbita del satélite está contenida en un plano que pasa por el centro de la Tierra, tal como se muestra en la Figura~\ref{fig:orbita_sat}.
+
+    Responda las siguientes preguntas:
+    \begin{itemize}
+        \item ¿Cuál es el periodo del movimiento circular asociado al satélite artificial?
+        \item ¿Cómo se puede calcular su frecuencia angular $\omega$?
+        \item ¿Cómo están relacionadas $\omega$ y la aceleración centrípeta $a_\text{c}$?
+        \item ¿Cuál es la fuerza centrípeta $F_\text{c}$ que origina la aceleración centrípeta y obliga al satélite a describir una trayectoria circular?
+        \item ¿Cómo se relacionan $F_\text{c}$ y $a_\text{c}$?
+    \end{itemize}
+
+    \begin{figure}[ht]
+        \centering
+        \begin{tikzpicture}[scale=1,tdplot_main_coords]
+            \draw[thick] (-4,-4,0) -- (4,-4,0) -- (4,4,0) -- (-4,4,0) -- cycle;
+            \draw[dashed] (0,0,0) circle (3);
+            \draw[fill=gray!40] (0,0,0) circle (0.1);
+            \draw[fill=gray!40] ({0.1*cos(\ang)},{0.1*sin(\ang)},0) -- ({0.1*cos(\ang)},{0.1*sin(\ang)},0.5) -- ({-0.1*cos(\ang)},{-0.1*sin(\ang)},0.5) -- ({-0.1*cos(\ang)},{-0.1*sin(\ang)},0);
+            \draw[fill=gray!40] (0,0,0.5) circle (0.1);
+            \draw[thick] (0,-0.1,0.25) arc (-90:90:0.1);
+            \draw[thick] (0,0.1,0.25) -- node[anchor=south]{$R$} (0,3,0.25);
+            %\draw[thick,-Kite] (4,3,0.25) -- (3.6,3,0.25);
+            %\draw[thick,red,-latex] (0,3,0.25) -- node[anchor=north west]{$\vec{v}_{\text{B}2}$} (-3,3,0.25);
+            \draw[thick,-latex] (0,3,0.25) -- node[anchor=north west]{$\vec{v}_{0}$} (-3,3,0.25);
+            % \draw[densely dashed] (-3,3,0.25) -- (-5,3,0.25);
+            % \draw[thick,-Kite] (-5,3,0.25) -- (-5.25,3,0.25);
+            % \draw[thick,-latex,blue] (-4,3.5,0.25) -- node[anchor=north west]{$\vec{v}_{\text{A}2}$} (-5.5,3.5,0.25);
+            \draw[fill=gray!40] (-0.5,2.75,0) -- (-0.5,3.25,0) -- (0.5,3.25,0) -- (0.5,2.75,0) -- cycle;
+            \draw[fill=gray!40] (-0.5,2.75,0.5) -- (-0.5,3.25,0.5) -- (0.5,3.25,0.5) -- (0.5,2.75,0.5) -- cycle;
+            \draw[fill=gray!40] (0.5,2.75,0) -- (0.5,2.75,0.5) -- (0.5,3.25,0.5) -- (0.5,3.25,0) -- cycle;
+            \draw[fill=gray!40] (0.5,3.25,0) -- (0.5,3.25,0.5) -- (-0.5,3.25,0.5) -- (-0.5,3.25,0) -- cycle;
+            %\draw[densely dashed] (3.6,3,0.25) -- (0.5,3,0.25);
+        \end{tikzpicture}
+        \caption{ }
+        \label{fig:plano_bloque_1}
+    \end{figure}
+
+    \question Un bloque de 5 kg de masa está atado a un clavo situado en el centro de una superficie horizontal sin rozamiento. Se desprecia también el efecto de cualquier otra fuerza externa, como la resistencia del aire. El hilo que une el bloque con el clavo está totalmente estirado y tiene una longitud de 25 cm. Se le imprime al bloque una velocidad inicial tal que el bloque tarda $0.1 \pi$ segundos en describir una trayectoria circular completa alrededor del clavo tal como se muestra en la Figura~\ref{fig:plano_bloque_1}. \label{ej:plano_bloque_1}
+
+    \begin{parts}
+        \part ¿Cuál es el periodo ($P$) del movimiento? Informar el valor con su respectiva unidad.
+        \part Hallar la frecuencia angular ($\omega$) del movimiento.
+        \part ¿Con qué rapidez describe el bloque la trayectoria circular?
+        \part ¿Cuánto vale el módulo de la aceleración centrípeta?
+        \part Calcular el módulo de la tensión del hilo.
+    \end{parts}
+
+    \rtas
+    \begin{enumerate}[a)]
+        \item $P = 0.1 \pi$ s.
+        \item $\omega = 20 \, \frac{\text{rad}}{\text{s}}$.
+        \item $v = 5 \, \frac{\text{m}}{\text{s}}$.
+        \item $a_\text{c} = 100 \, \frac{\text{m}}{\text{s}^2}$.
+        \item $F_\text{T} = 500 \, \text{N}$.
+    \end{enumerate}
+
+    \question Un proyectil que tiene una masa de 20 g se dispara contra un bloque de $4.98$ kg. El primero tiene una velocidad de $500 \, \frac{\text{m}}{\text{s}}$, mientras que el bloque está inicialmente en reposo antes de ser impactado por el proyectil. Después del choque el proyectil y el bloque quedan unidos. El bloque está atado, mediante un hilo completamente estirado de $50$ cm de longitud, a un clavo situado en el centro de una superficie sin rozamiento sobre la cual el conjunto formado por el proyectil y el bloque describe una trayectoria circular alrededor de dicho clavo, tal como se muestra en la Figura~\ref{fig:plano_bloque_2}. Determinar: \label{ej:plano_bloque_2}
+    \begin{parts}
+        \part La velocidad del conjunto formado por el proyectil y el bloque después del choque.
+        \part La frecuencia angular $\omega$ y el periodo del movimiento circular uniforme que describe dicho conjunto.
+        \part La tensión del hilo.
+    \end{parts}
+
+    \begin{figure}[ht]
+        \centering
+        \begin{tikzpicture}[scale=1,tdplot_main_coords]
+            \draw[thick] (-4,-4,0) -- (4,-4,0) -- (4,4,0) -- (-4,4,0) -- cycle;
+            \draw[dashed] (0,0,0) circle (3);
+            \draw[fill=gray!40] (0,0,0) circle (0.1);
+            \draw[fill=gray!40] ({0.1*cos(\ang)},{0.1*sin(\ang)},0) -- ({0.1*cos(\ang)},{0.1*sin(\ang)},0.5) -- ({-0.1*cos(\ang)},{-0.1*sin(\ang)},0.5) -- ({-0.1*cos(\ang)},{-0.1*sin(\ang)},0);
+            \draw[fill=gray!40] (0,0,0.5) circle (0.1);
+            \draw[thick] (0,-0.1,0.25) arc (-90:90:0.1);
+            \draw[thick] (0,0.1,0.25) -- node[anchor=south]{$R$} (0,3,0.25);
+            \draw[thick,-Kite] (4,3,0.25) -- (3.6,3,0.25);
+            \draw[thick,-latex] (5,3.5,0.25) node[anchor=north west]{$\vec{v}_{\text{A}1}$} -- (3.5,3.5,0.25);
+            %\draw[thick,red,-latex] (0,3,0.25) -- node[anchor=north west]{$\vec{v}_{\text{B}2}$} (-3,3,0.25);
+            \draw[thick,-latex] (0,3,0.25) -- node[anchor=north west]{$\vec{v}_{2}$} (-3,3,0.25);
+            % \draw[densely dashed] (-3,3,0.25) -- (-5,3,0.25);
+            % \draw[thick,-Kite] (-5,3,0.25) -- (-5.25,3,0.25);
+            % \draw[thick,-latex,blue] (-4,3.5,0.25) -- node[anchor=north west]{$\vec{v}_{\text{A}2}$} (-5.5,3.5,0.25);
+            \draw[fill=gray!40] (-0.5,2.75,0) -- (-0.5,3.25,0) -- (0.5,3.25,0) -- (0.5,2.75,0) -- cycle;
+            \draw[fill=gray!40] (-0.5,2.75,0.5) -- (-0.5,3.25,0.5) -- (0.5,3.25,0.5) -- (0.5,2.75,0.5) -- cycle;
+            \draw[fill=gray!40] (0.5,2.75,0) -- (0.5,2.75,0.5) -- (0.5,3.25,0.5) -- (0.5,3.25,0) -- cycle;
+            \draw[fill=gray!40] (0.5,3.25,0) -- (0.5,3.25,0.5) -- (-0.5,3.25,0.5) -- (-0.5,3.25,0) -- cycle;
+            \draw[densely dashed] (3.6,3,0.25) -- (0.5,3,0.25);
+        \end{tikzpicture}
+        \caption{ }
+        \label{fig:plano_bloque_2}
+    \end{figure}
+
+    \rtas
+    \begin{parts}
+        \part $v_2 = 2 \, \frac{\text{m}}{\text{s}}$.
+        \part $\omega = 4 \, \frac{\text{rad}}{\text{s}}$; $P = 1.57 \, \text{s}$.
+        \part $T = 40 \, \text{N}$.
+    \end{parts}
+
+    \section{Dinámica rotacional y MCUV}
+
+    \question Un péndulo está constituido por una pequeña esfera de plomo, de masa 100 g, sujeta al extremo de una cuerda de 1 m de longitud. ¿Cuál es su momento de inercia respecto a un eje que pasa por el extremo superior de la cuerda y es perpendicular a su longitud?
+
+    \begin{solution}
+        Consideremos la esfera como una masa puntual. El momento de inercia es: $$I = m \, L^2 = 0.1 \, \text{kg} \times \left(1 \, \text{m}\right)^2 = 0.1 \, \text{kg m}^2$$
+    \end{solution}
+
+    % \question Durante intervalos de 2 segundos de duración, se han realizado las lecturas en el tacómetro de un motor que se muestran en la Tabla~\ref{tab:tacometro}
+
+    % \begin{table}[ht]
+    % \centering
+    % \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+    %     \hline
+    %     Tiempo (s)              & 0    & 2    & 4    & 6    & 8    & 10   & 12   & 14   & 16   & 18   \\ \hline
+    %     Velocidad angular (rpm) & 1000 & 1000 & 1500 & 2000 & 2500 & 3000 & 3500 & 3800 & 4000 & 4000 \\ \hline
+    % \end{tabular}
+    % \caption{ }
+    % \label{tab:tacometro}
+    % \end{table}
+
+    % Calcular la aceleración angular media, en radianes por segundo cuadrado, durante cada intervalo de dos segundos. ¿Fue constante la aceleración angular durante el intervalo total? ¿Lo fue durante alguna parte del intervalo?
+
+    % \begin{solution}
+    % En el intervalo comprendido entre 0 y 2 segundos no hubo cambio de velocidad angular, tampoco en el intervalo entre 16 y 18 segundos. Por lo tanto, durante dichos intervalos la aceleración angular fue nula. En el intervalo comprendido entre 2 y 4 segundos la velocidad angular aumentó desde 1000 a 1500 rpm, es decir, de 105 a 157 $\frac{\text{rad}}{\text{s}}$. El aumento de velocidad angular fue de, por consiguiente, $\Delta \omega = 157 \, \frac{\text{rad}}{\text{s}} - 105 \, \frac{\text{rad}}{\text{s}} = 52 \, \frac{\text{rad}}{\text{s}}$, y puesto que el intervalo de tiempo $\Delta t$ fue de 2 segundos, la aceleración  angular media fue de: $$\alpha = \frac{\Delta \omega}{\Delta t} = \frac{52 \, \frac{\text{rad}}{\text{s}}}{2 \, \text{s}} = 26 \, \frac{\text{rad}}{\text{s}^2}$$ 
+    % \end{solution}
+
+    \question Una partícula de masa $m = 1.2 \, \text{kg}$ describe una trayectoria circular de radio $R = 5 \, \text{m}$. En el instante $t_1 = 4.25 \, \text{s}$, la frecuencia angular de esta es $\omega_1 = 15 \frac{{}\grado}{\text{s}}$, mientras que en el instante $t_2 = 6.5 \, \text{s}$ su frecuencia angular es $\omega_2 = 45 \, \frac{{}\grado}{\text{s}}$. Determinar:
+    \begin{parts}
+    \part el valor medio de la aceleración angular media,
+    \part el momento de inercia de la partícula y
+    \part el valor medio de la componente del torque perpendicular al plano del movimiento.
+    \end{parts}
+
+    \begin{solution}
+    \begin{parts}
+        \part En virtud de los datos presentes en la consigna del ejercicio, podemos determinar la aceleración angular utilizando la expresión: $$ \valmed{\alpha} = \frac{\Delta \omega}{\Delta t} = \frac{\omega_2 - \omega_1}{t_2 - t_1}$$ Reemplazando los valores correspondientes, se obtiene: $$\valmed{\alpha} = \frac{45 \, \frac{{}\grado}{\text{s}} - 15 \frac{{}\grado}{\text{s}}}{6.5 \, \text{s} - 4.25 \, \text{s}} = \frac{30 \, \frac{{}\grado}{\text{s}}}{2.25 \, \text{s}} \approx 0.23 \frac{\text{rad}}{\text{s}^2}$$
+        \part El momento de inercia de la partícula respecto del punto alrededor del cual describe la trayectoria circular es: $$ I = m \, R^2 = 1.2 \, \text{kg} \times \left(5 \, \text{m}\right)^2 = 30 \, \text{kg} \, \text{m}^2 $$
+        \part Por último, el valor medio del torque es: $$ \valmed{\tau} = I \, \valmed{\alpha} = 30 \, \text{kg} \, \text{m}^2 \times 0.23 \frac{\text{rad}}{\text{s}^2} = 6.98 \, \text{N m}.$$
+    \end{parts}
+    \end{solution}
+
+    \question En un determinado instante, una partícula de masa $m = 6 \, \text{kg} $ se encuentra sobre el eje $x$ de cierto sistema de referencia a $4.5 \, \text{m}$ a la derecha de su origen y sobre ella actúa una fuerza que tiene un módulo de $500 \, \text{N}$ y forma un ángulo de $30\grado$ con la parte positiva del eje $x$, tal como se muestra en la Figura~\ref{fig:torque}. Determinar el módulo del torque producido por la fuerza y el módulo de la aceleración angular, ambos medidos en el sistema de referencia dado.
+
+    \begin{figure}[ht]
+    \centering
+        \begin{tikzpicture}[scale=1]
+        \draw[thick,-latex] (0,-0.5) -- (0,1.5) node[anchor=east]{$y$};
+        \draw[thick,-latex] (-0.5,0) -- (7,0) node[anchor=north]{$x$};
+        \draw[thick,-latex,red] (4.5,0) -- node[anchor=south east]{$\vec{F}$} ({4.5+2*cos(30)},1);
+        \draw (5,0) arc (0:30:0.5);
+        \node[anchor=south west] at (5.1,0) {$30\grado$};
+        \fill[black] (0,0) circle (0.5mm);
+        \fill[black] (4.5,0) circle (0.5mm);
+        \draw[latex-latex] (0,-0.3) -- node[fill=white]{$4.5 \, \text{m}$} (4.5,-0.3);
+        \draw (4.5,-0.1) -- (4.5,-0.5);
+        \end{tikzpicture}
+    \caption{ }
+    \label{fig:torque}
+    \end{figure}
+
+    \begin{solution}
+    A partir de la Figura~\ref{fig:torque}, podemos ver que el vector de posición de la partícula es: $$\vec{r} = (4.5 \, \text{m} ; 0). $$ Por otro lado, las componentes de la fuerza aplicada sobre la partícula son: $$\vec{F} = \left(F \cos \theta; F \sen \theta \right),$$ donde $F = \norm{\vec{F}} = 500 \, \text{N}$ y $\theta = 30\grado$. En consecuencia, el torque es: $$ \vec{\tau} = \vec{r} \times \vec{F} = \left(500 \, \text{N} \sen 30\grado \times 4.5 \, \text{m} - 0 \times 500 \, \text{N} \cos 30\grado\right) \hat{\vec{k}} = 1125 \, \text{N m} \, \hat{\vec{k}}. $$ de donde se concluye que $\norm{\vec{\tau}} = 1125 \, \text{N m}$.
+
+    El torque y la aceleración angular están relacionados mediante: $$ \vec{\tau} = I \, \vec{\alpha}. $$ Sin embargo, como ambos vectores son paralelos y tienen la misma dirección que el eje $z$, perpendicular al plano $x-y$, podemos trabajar directamente con sus módulos: $$ \tau = I \, \alpha, $$ donde $I = m \, R^2$ es el momento de inercia. Para este caso: $$ I = 6 \, \text{kg} \times \left(4.5 \, \text{m}\right)^2 = 121.5 \, \text{kg} \, \text{m}^2. $$ Luego: $$\alpha = \frac{\tau}{I} = \frac{1125 \, \text{N m}}{121.5 \, \text{kg} \, \text{m}^2} = 9.26 \, \frac{\text{rad}}{\text{s}^2}.$$
+    \end{solution}
+
+    \question Un disco de radio 10 cm parte del reposo y comienza a girar alrededor de un eje horizontal que pasa por su centro con una aceleración angular de $2 \, \frac{\text{rad}}{\text{s}^2}$. Calcular al cabo de 1 segundo:
+    \begin{parts}
+    \part la velocidad angular;
+    \part el desplazamiento angular;
+    \part el módulo de la aceleración centrípeta;
+    \part el modulo de la aceleración tangencial;
+    \part el módulo de la aceleración resultante.
+    \end{parts}
+
+    \begin{solution}
+    \begin{parts}
+        \part $$\omega = \omega_0 + \alpha \, \Delta t = 2 \, \frac{\text{rad}}{\text{s}^2} \times 1 \, \text{s} = 2 \, \frac{\text{rad}}{\text{s}}$$
+        \part $$\Delta \theta = \omega_0 \, \Delta t + \frac{1}{2} \alpha \, \Delta^2 = \frac{1}{2} \times 2 \, \frac{\text{rad}}{\text{s}^2} \times 1^2 \, \text{s}^2 = 1 \, \text{rad}$$
+        \part $$a_\text{c} = R \, \omega^2$$ $$\omega^2 = \omega_0^2 + 2 \, \alpha \, \Delta \theta = 2 \times 2 \, \frac{\text{rad}}{\text{s}^2} \, \times 1 \, \text{rad} = 4 \, \frac{\text{rad}^2}{\text{s}^2}$$ $$a_\text{c} = 10 \, \text{cm} \times 4 \, \frac{\text{rad}^2}{\text{s}^2} = 40 \, \frac{\text{cm}}{\text{s}^2}$$
+        \part $$a_\text{t} = R \, \alpha = 10 \, \text{cm} \times 2 \, \frac{\text{rad}}{\text{s}^2} = 20 \, \frac{\text{cm}}{\text{s}^2}$$
+        \part $$a = \sqrt{a_\text{c}^2 + a_\text{t}^2} = \sqrt{\left(40 \, \frac{\text{cm}}{\text{s}}\right)^2 + \left(20 \, \frac{\text{cm}}{\text{s}^2}\right)^2} = 45.7 \, \frac{\text{cm}}{\text{s}^2}$$
+    \end{parts}
+    \end{solution}
+
+    \question Si ahora se considera que hay rozamiento entre el bloque y la superficie horizontal del Ejercicio~\ref{ej:plano_bloque_2}, siendo el coeficiente cinético de rozamiento $\mu_\text{c} = 0.1$, y se le imprime la misma velocidad inicial ($v_0 = 2 \, \frac{\text{m}}{\text{s}}$), determinar:
+    \begin{parts}
+        \part el valor de la componente $z$ de la aceleración angular y el de la aceleración tangencial y
+        \part el intervalo de tiempo transcurrido desde que el bloque inicia su movimiento hasta que se detiene completamente y el desplazamiento angular correspondiente.
+    \end{parts}
+
+    \textbf{Dato:} El radio de la trayectoria circular es de 50 cm.
+
+    \rtas
+    \begin{parts}
+        \part $\alpha = - 1.96 \, \frac{\text{rad}}{\text{s}^2}$; $ a_\text{t} = - 0.98 \, \frac{\text{m}}{\text{s}^2}$.
+        \part $\Delta t = 2.04 \, \text{s}$; $\Delta \theta = 4.08 \, \text{rad}$.
+    \end{parts}
+
+    \question Se considera nuevamente la situación esquematizada en la Figura~\ref{fig:plano_bloque_1}, pero esta vez se desconoce la masa del bloque y la longitud del hilo que une al bloque con el clavo es ahora de 50 cm. Además, se considera que hay rozamiento entre el bloque y la superficie horizontal, siendo $\mu_\text{c} = 0.1$, y se le imprime al bloque una velocidad inicial tal que este logra dar una vuelta completa alrededor del clavo antes de detenerse completamente.
+    \begin{parts}
+        \part Calcular el valor inicial de la frecuencia angular ($\omega_0$).
+        \part Hallar el valor del intervalo de tiempo ($\Delta t$) que tarda el bloque en dar la vuelta completa.
+    \end{parts}
+
+    \rtas
+    \begin{enumerate}[a)]
+        \item $\omega_0 = 4.96 \, \frac{\text{rad}}{\text{s}}$.
+        \item $\Delta t = 2.53$ s.
+    \end{enumerate}
+
+\end{questions}
+
+    \begin{table}[ht]
+        \centering
+        \begin{tabular}{|c|cccccccccc|}
+            \hline
+            $\alpha$ (grados)   & $0\grado$ &  $30\grado$ & $45\grado$ & $60\grado$ & $90\grado$ & $135\grado$ & $180\grado$ & $225\grado$ & $270\grado$ & $315\grado$ \\
+            \hline
+            $\alpha$ (radianes) &   $0$    &  $\frac{\pi}{6}$ & $\frac{\pi}{4}$ & $\frac{\pi}{3}$ & $\frac{\pi}{2}$ & $\frac{3}{4} \pi$ & $\pi$ & $\frac{5}{4} \pi$ & $\frac{3}{2} \pi$ & $\frac{7}{4} \pi$ \\
+            \hline
+            $\sin \alpha$       &   $0$    & $\frac{1}{2}$ & $\frac{\sqrt{2}}{2}$ & $\frac{\sqrt{3}}{2}$ & $1$ & $\frac{\sqrt{2}}{2}$ & $0$ & $\frac{-\sqrt{2}}{2}$ & $-1$ & $-\frac{\sqrt{2}}{2}$ \\
+            $\cos \alpha$       &   $1$    & $\frac{\sqrt{3}}{2}$ & $\frac{\sqrt{2}}{2}$ & $\frac{1}{2}$ & $0$ & $-\frac{\sqrt{2}}{2}$ & $-1$ & $-\frac{\sqrt{2}}{2}$ & $0$ & $\frac{\sqrt{2}}{2}$ \\
+            $\tan \alpha$       &   $0$    & $\frac{\sqrt{3}}{3}$ & $1$ & $\sqrt{3}$ & $+\infty$ & $-1$ & $0$ & $1$ & $-\infty$ & $-1$ \\
+            \hline  
+        \end{tabular}
+    \end{table}
+
+\end{document}
