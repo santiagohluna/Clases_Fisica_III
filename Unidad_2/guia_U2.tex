@@ -185,7 +185,7 @@
             \begin{tikzpicture}[scale=1]
                 \draw[thick,-latex] (-2,0) -- (2,0) node[anchor=north]{$x$};
                 \draw[thick,-latex] (0,-2) -- (0,2) node[anchor=east]{$y$};
-                \draw[thick,-latex,black!40!green] (0,0) -- (1.5,0) node[anchor=south]{$\vec{T}$};
+                \draw[thick,-latex,black!40!green] (0,0) -- (1.5,0) node[anchor=south]{$\vec{F}_\text{T}$};
                 \draw[thick,-latex,red] (0,0) -- (0,-1.5) node[anchor=west]{$\vec{F}_\text{g}^{(B)}$};
                 \draw[thick,-latex,blue] (0,0) -- (0,1.5) node[anchor=east]{$\vec{F}_\text{N}^{(B)}$};
                 \fill[black] (0,0) circle (0.5mm);
@@ -202,7 +202,7 @@
                 \draw[thick,-latex] (0,0) -- (30:2) node[anchor=south east]{$\vec{F}$};
                 \draw (1,0) arc (0:30:1);
                 \node[anchor=south west] at (1,0) {$\varphi$};
-                \draw[thick,-latex,black!40!green] (0,0) -- (-1.5,0) node[anchor=south]{$\vec{T}$};
+                \draw[thick,-latex,black!40!green] (0,0) -- (-1.5,0) node[anchor=south]{$\vec{F}_\text{T}$};
                 \draw[thick,-latex,red] (0,0) -- (0,-1.5) node[anchor=west]{$\vec{F}_\text{g}^{(A)}$};
                 \draw[thick,-latex,blue] (0,0) -- (0,1.5) node[anchor=east]{$\vec{F}_\text{N}^{(A)}$};
                 \fill[black] (0,0) circle (0.5mm);
@@ -222,10 +222,10 @@
             \item $\vec{F} = \left(F \cos \varphi; F \sen \varphi\right)$,
             \item $\vec{F}_\text{N}^{(A)} = \left(0; F_\text{N}^{(A)}\right)$,
             \item $\vec{F}_\text{g}^{(A)} = \left(0; - m_A \, g\right)$,
-            \item $\vec{T} = \left(-T;0\right)$.
+            \item $\vec{F}_T = \left(-F_\text{T};0\right)$.
         \end{itemize} Las componentes $x$ e $y$ de la resultante son:
         \begin{align}
-            R_x &= \sum f_x = F \cos \varphi - T = m_A \, a_x, \label{ec:sumfxA} \\
+            R_x &= \sum f_x = F \cos \varphi - F_\text{T} = m_A \, a_x, \label{ec:sumfxA} \\
             R_y &= \sum f_y = F \sen \varphi + F_\text{N}^{(A)} - m_A \, g = 0. \label{ec:sumfyA}
         \end{align} Dado que el bloque no se mueve en la dirección vertical, $R_y$ debe ser igual a cero. En cambio, como el bloque se va a acelerar en la dirección horizontal, en virtud de la segunda ley de Newton se tiene que $R_x = m_A \, a_x$, donde $a_x$ es la componente $x$ de la aceleración del sistema.
 
@@ -235,20 +235,20 @@
         \begin{itemize}
             \item $\vec{F}_\text{N}^{(B)} = \left(0; F_\text{N}^{(B)}\right)$,
             \item $\vec{F}_\text{g}^{(B)} = \left(0; - m_B \, g\right)$,
-            \item $\vec{T} = \left(T;0\right)$.
+            \item $\vec{F}_T = \left(F_\text{T};0\right)$.
         \end{itemize} Las componentes de la fuerza resultante que actúa sobre el bloque $B$ son:
         \begin{align}
-            R_x &= \sum f_x = T = m_B \, a_x, \label{ec:sumfxB} \\
+            R_x &= \sum f_x = F_\text{T} = m_B \, a_x, \label{ec:sumfxB} \\
             R_y &= \sum f_y = F_\text{N}^{(B)} - m_B \, g = 0. \label{ec:sumfyB}
         \end{align} Como el bloque $B$ tampoco se mueve en la dirección vertical, la componente $y$ de la resultante debe ser también igual a cero y, en consecuencia, podríamos determinar $F_\text{N}^{(B)}$ de la Ecuación~\eqref{ec:sumfyB}, pero tampoco es un dato relevante para el ejercicio.
 
         Al igual que ocurre con el bloque $A$, la componente $x$ de la resultante de las fuerzas aplicadas al bloque $B$ también es igual al producto de la masa del bloque $B$ por la aceleración del sistema, tal como se indica en la Ecuación~\eqref{ec:sumfxB}.
 
-        Podemos observar que las Ecuaciones~\eqref{ec:sumfxA} y \eqref{ec:sumfxB} forman un sistema de dos ecuaciones lineales con dos incógnitas ($T$ y $a_x$):
+        Podemos observar que las Ecuaciones~\eqref{ec:sumfxA} y \eqref{ec:sumfxB} forman un sistema de dos ecuaciones lineales con dos incógnitas ($F_\text{T}$ y $a_x$):
         \begin{align}
-            F \cos \varphi - T &= m_A \, a_x, \label{ec:RxA} \\
-                            T &= m_B \, a_x, \label{ec:RxB}
-        \end{align} Este sistema se puede resolver por cualquiera de los métodos conocidos. Teniendo en cuenta que el módulo de la tensión del hilo aparece sumando en la Ecuación~\eqref{ec:RxB} y restando en la Ecuación~\eqref{ec:RxA}, podemos sumar las dos ecuaciones, con lo cual: $$ F \cos \varphi - T + T = m_A \, a_x + m_B \, a$$ O bien: $$ F \cos \varphi = \left(m_A + m_B\right) a_x$$ De donde se obtiene: $$a_x = \frac{F \cos \varphi}{\left(m_A + m_B\right)}$$ Reemplazando los valores correspondientes, obtenemos: $$ a_x = \frac{50 \, \text{N} \times \cos 60\grado}{\left(6 \, \text{kg} + 4 \, \text{kg}\right)} = 2.5 \, \frac{\text{m}}{\text{s}^2}$$ Una vez determinada la aceleración del sistema, podemos calcular la tensión del hilo usando la Ecuación~\eqref{ec:RxA} o la Ecuación~\eqref{ec:RxB}, cualquiera de las dos nos debe llevar al mismo resultado. Si utilizamos la Ecuación~\eqref{ec:RxB}, tenemos: $$T = 4 \, \text{kg} \times 2.5 \, \frac{\text{m}}{\text{s}^2} = 10 \, \text{N}$$
+            F \cos \varphi - F_\text{T} &= m_A \, a_x, \label{ec:RxA} \\
+                            F_\text{T} &= m_B \, a_x, \label{ec:RxB}
+        \end{align} Este sistema se puede resolver por cualquiera de los métodos conocidos. Teniendo en cuenta que el módulo de la tensión del hilo aparece sumando en la Ecuación~\eqref{ec:RxB} y restando en la Ecuación~\eqref{ec:RxA}, podemos sumar las dos ecuaciones, con lo cual: $$ F \cos \varphi - F_\text{T} + F_\text{T} = m_A \, a_x + m_B \, a$$ O bien: $$ F \cos \varphi = \left(m_A + m_B\right) a_x$$ De donde se obtiene: $$a_x = \frac{F \cos \varphi}{\left(m_A + m_B\right)}$$ Reemplazando los valores correspondientes, obtenemos: $$ a_x = \frac{50 \, \text{N} \times \cos 60\grado}{\left(6 \, \text{kg} + 4 \, \text{kg}\right)} = 2.5 \, \frac{\text{m}}{\text{s}^2}$$ Una vez determinada la aceleración del sistema, podemos calcular la tensión del hilo usando la Ecuación~\eqref{ec:RxA} o la Ecuación~\eqref{ec:RxB}, cualquiera de las dos nos debe llevar al mismo resultado. Si utilizamos la Ecuación~\eqref{ec:RxB}, tenemos: $$F_\text{T} = 4 \, \text{kg} \times 2.5 \, \frac{\text{m}}{\text{s}^2} = 10 \, \text{N}$$
 
     \end{solution}
 
@@ -264,7 +264,7 @@
             \draw[fill=gray!40] (-2,0) rectangle (-1,1);
             \node at (1.5,0.5) {$m_2$};
             \node at (-1.5,0.5) {$m_1$}; 
-            \draw[thick,-latex] (2,0.5) -- node[anchor=south]{$B$} (4,0.5) node[anchor=south]{$\vec{T}_B$};
+            \draw[thick,-latex] (2,0.5) -- node[anchor=south]{$B$} (4,0.5) node[anchor=south]{$\vec{F}_\text{T}^B$};
             \draw[thick,-latex] (-0.5,1.5) -- node[anchor=south]{$\vec{a}$} (0.5,1.5);
         \end{tikzpicture}
         \caption{ }
@@ -272,13 +272,13 @@
     \end{figure}
 
     \begin{solution}
-        Aislemos cada cuerpo como se indica por las líneas de puntos, y realicemos los correspondientes diagramas de cuerpo libre para cada uno. Representemos por $T_A$ y $T_B$ las tensiones de las cuerdas $A$ y $B$, respectivamente. El sistema de fuerzas que actúa sobre el bloque de 8 kg está formado por su peso, $\vec{F}_\text{g}^{(1)}$, la reacción normal, $\vec{F}_{\text{N}}^{(1)}$, de la superficie sobre él y la tensión, $\vec{T}_A$, dirigida hacia la derecha. El sistema de fuerzas que actúa sobre el bloque de 16 kg está formado por su peso, $\vec{F}_\text{g}^{(2)}$, la fuerza normal, $\vec{F}_{\text{N}}^{(2)}$, la tensión $\vec{T}_A$, dirigida hacia la izquierda, y la tensión $\vec{T}_B$ dirigida hacia la derecha. 
+        Aislemos cada cuerpo como se indica por las líneas de puntos, y realicemos los correspondientes diagramas de cuerpo libre para cada uno. Representemos por $T_A$ y $T_B$ las tensiones de las cuerdas $A$ y $B$, respectivamente. El sistema de fuerzas que actúa sobre el bloque de 8 kg está formado por su peso, $\vec{F}_\text{g}^{(1)}$, la reacción normal, $\vec{F}_{\text{N}}^{(1)}$, de la superficie sobre él y la tensión, $\vec{F}_\text{T}^A$, dirigida hacia la derecha. El sistema de fuerzas que actúa sobre el bloque de 16 kg está formado por su peso, $\vec{F}_\text{g}^{(2)}$, la fuerza normal, $\vec{F}_{\text{N}}^{(2)}$, la tensión $\vec{F}_\text{T}^A$, dirigida hacia la izquierda, y la tensión $\vec{F}_\text{T}^B$ dirigida hacia la derecha. 
         
         Si para cada bloque elegimos un sistema de referencia cuyo eje $x$ sea paralelo a la superficie y su eje $y$ sea perpendicular a la misma, entonces las componentes de las fuerzas que actúan sobre el bloque de 8 kg son:
         \begin{itemize}
             \item $\vec{F}_\text{g}^{(1)} = \left(0; - m_1 \, g\right)$, donde $m_1 = 8$ kg;
             \item $\vec{F}_{\text{N}}^{(1)} = \left(0;F_{\text{N}}^{(1)}\right)$;
-            \item $\vec{T}_A = \left(T_A; 0\right)$.
+            \item $\vec{F}_\text{T}^A = \left(T_A; 0\right)$.
         \end{itemize}
         La sumatoria de las componentes verticales de las fuerzas es: $$\sum f_y = F_{\text{N}}^{(1)} - m_1 \, g = 0$$ la cual es igual cero porque el bloque está en equilibrio en la dirección vertical. Se obtiene entonces que $$ F_{\text{N}}^{(1)} = m_1 \, g = 8 \, \text{kg} \times 9.8 \, \frac{\text{m}}{\text{s}^2} = 78.4 \, \text{N}$$ Por otro lado, la sumatoria de las componentes $x$ de las fuerzas que actúan sobre el bloque de 8 kg es: $$\sum f_x = T_A = m_1 \, a$$ donde $a = 0.5 \, \frac{\text{m}}{\text{s}^2}$. En este caso, debemos aplicar la segunda ley de Newton porque el bloque \emph{no} está en equilibrio en la dirección horizontal. De esta última ecuación, obtenemos: $$T_A = 8 \, \text{kg} \times 0.5 \, \frac{\text{m}}{\text{s}^2} = 4 \, \text{N}$$
 
@@ -286,10 +286,10 @@
         \begin{itemize}
             \item $\vec{F}_\text{g}^{(2)} = \left(0; - m_2 \, g\right)$, donde $m_2 = 16$ kg;
             \item $\vec{F}_{\text{N}}^{(2)} = \left(0;F_{\text{N}}^{(2)}\right)$;
-            \item $\vec{T}_A = \left(-T_A; 0\right)$;
-            \item $\vec{T}_B = \left(T_B; 0\right)$.
+            \item $\vec{F}_\text{T}^A = \left(-T_A; 0\right)$;
+            \item $\vec{F}_\text{T}^B = \left(T_B; 0\right)$.
         \end{itemize}
-        Análogamente al caso anterior, la sumatoria de fuerzas en la dirección vertical debe ser igual a cero dado que este bloque también está en equilibrio en esa dirección: $$\sum f_y = F_{\text{N}}^{(2)} - m_2 \, g = 0,$$ de donde se obtiene: $$F_{\text{N}}^{(2)} = m_2 \, g = 16 \, \text{kg} \times 9.8 \, \frac{\text{m}}{\text{s}^2} = 156.8 \, \text{N}$$ En cambio, la sumatoria de las componentes en la dirección horizontal es: $$ \sum f_x = T_B - T_A = m_2 \, a$$ La cuerda $A$ sirve simplemente para transmitir la fuerza de un bloque a otro, de modo que las fuerzas designadas por $\vec{T}_A$ constituyen un par de acción y reacción, y son numéricamente iguales. Entonces, obtenemos: $$T_B = T_A + m_2 \, a = 4 \, \text{N} + 16 \, \text{kg} \times 0.5 \, \frac{\text{m}}{\text{s}^2} = 12 \, \text{N}$$
+        Análogamente al caso anterior, la sumatoria de fuerzas en la dirección vertical debe ser igual a cero dado que este bloque también está en equilibrio en esa dirección: $$\sum f_y = F_{\text{N}}^{(2)} - m_2 \, g = 0,$$ de donde se obtiene: $$F_{\text{N}}^{(2)} = m_2 \, g = 16 \, \text{kg} \times 9.8 \, \frac{\text{m}}{\text{s}^2} = 156.8 \, \text{N}$$ En cambio, la sumatoria de las componentes en la dirección horizontal es: $$ \sum f_x = T_B - T_A = m_2 \, a$$ La cuerda $A$ sirve simplemente para transmitir la fuerza de un bloque a otro, de modo que las fuerzas designadas por $\vec{F}_\text{T}^A$ constituyen un par de acción y reacción, y son numéricamente iguales. Entonces, obtenemos: $$T_B = T_A + m_2 \, a = 4 \, \text{N} + 16 \, \text{kg} \times 0.5 \, \frac{\text{m}}{\text{s}^2} = 12 \, \text{N}$$
     \end{solution}
 
     \question Dos bloques $A$ y $B$ están unidos mediante una cuerda flexible e inextensible de masa despreciable que pasa por una polea de masa también despreciable. El bloque $A$ está apoyado sobre una superficie horizontal, mientras que el bloque $B$ cuelga suspendido de la cuerda, tal como se muestra en la Figura~\ref{fig:vinculados2}. La masa del bloque $A$ es de 16 kg, mientras que la masa del bloque $B$ es de 8 kg. Despreciando todas las fuerzas de rozamiento e inercia de la polea, hallar la aceleración y la tensión de la cuerda.
@@ -314,36 +314,36 @@
     \end{figure}
 
     \begin{solution}
-        Aislemos las dos partes, como se indica por las líneas de puntos. El único efecto de la polea es cambiar la dirección de a cuerda, la cual tira con la misma fuerza $\vec{T}$ de cada bloque.
+        Aislemos las dos partes, como se indica por las líneas de puntos. El único efecto de la polea es cambiar la dirección de a cuerda, la cual tira con la misma fuerza $\vec{F}_\text{T}$ de cada bloque.
 
-        Entonces, el sistema de fuerzas que actúa sobre el bloque de 16 kg son su peso, $\vec{F}_\text{g}^{(A)}$, la reacción normal de la superficie, $\vec{F}_\text{N}$, y la tensión de la cuerda, $\vec{T}$. Por otro lado, las fuerzas que actúan sobre el bloque de 8 kg son su peso, $\vec{F}_\text{g}^{(B)}$ y la tensión de la cuerda, $\vec{T}$.
+        Entonces, el sistema de fuerzas que actúa sobre el bloque de 16 kg son su peso, $\vec{F}_\text{g}^{(A)}$, la reacción normal de la superficie, $\vec{F}_\text{N}$, y la tensión de la cuerda, $\vec{F}_\text{T}$. Por otro lado, las fuerzas que actúan sobre el bloque de 8 kg son su peso, $\vec{F}_\text{g}^{(B)}$ y la tensión de la cuerda, $\vec{F}_\text{T}$.
 
         Si para el bloque $A$ definimos un sistema de referencia cuyo eje $x$ sea paralelo a la superficie horizontal y cuyo eje $y$ sea perpendicular a la misma, entonces las componentes de las fuerzas que actúan sobre el bloque de 16 kg son:
         \begin{itemize}
             \item $\vec{F}_\text{g}^{(A)} = \left(0; - m_A \, g\right)$, donde $m_A = 16$ kg;
             \item $\vec{F}_\text{N} = \left(0; F_\text{N}\right)$;
-            \item $\vec{T} = \left(T;0\right)$.
+            \item $\vec{F}_\text{T} = \left(F_\text{T};0\right)$.
         \end{itemize}
-        La sumatoria de las componentes de las fuerzas en la dirección vertical deber ser igual a cero porque el bloque se encuentra en equilibrio en esa dirección: $$R_y^{(A)} = F_\text{N} - m_A \, g = 0,$$ de donde se obtiene: $$F_\text{N} = m_A \, g = 16 \, \text{kg} \times 9.8 \, \frac{\text{m}}{\text{s}^2} = 156.8 \, \text{N}$$ Por otro lado, la sumatoria de fuerzas en la dirección horizontal es distinta de cero porque no existe fuerza alguna que equilibre la acción de la fuerza $\vec{T}$, entonces: 
+        La sumatoria de las componentes de las fuerzas en la dirección vertical deber ser igual a cero porque el bloque se encuentra en equilibrio en esa dirección: $$R_y^{(A)} = F_\text{N} - m_A \, g = 0,$$ de donde se obtiene: $$F_\text{N} = m_A \, g = 16 \, \text{kg} \times 9.8 \, \frac{\text{m}}{\text{s}^2} = 156.8 \, \text{N}$$ Por otro lado, la sumatoria de fuerzas en la dirección horizontal es distinta de cero porque no existe fuerza alguna que equilibre la acción de la fuerza $\vec{F}_\text{T}$, entonces: 
         \begin{equation}
             \label{ec:RxA_vinculados2}
-            R_x^{(A)} = T = m_A \, a_x
+            R_x^{(A)} = F_\text{T} = m_A \, a_x
         \end{equation} donde $a_x$ es la componente $x$ de la aceleración del sistema.
 
         Si para el bloque $B$ elegimos un sistema de referencia cuyo eje $x$ tenga dirección vertical, y se considera positivo el sentido hacia abajo, las componentes de las fuerzas que actúan sobre el bloque que cuelga de la cuerda son:
         \begin{itemize}
             \item $\vec{F}_\text{g}^{(B)} = \left( m_B \, g; 0\right)$, donde $m_B = 8$ kg;
-            \item $\vec{T} = (-T;0)$.
+            \item $\vec{F}_\text{T} = (-F_\text{T};0)$.
         \end{itemize}
         Así, la sumatoria de fuerzas en la dirección vertical resulta: 
         \begin{equation}
             \label{ec:RxB_vinculados2}
-            R_x^{(B)} =  - T + m_B \, g = m_B \, a_x
+            R_x^{(B)} =  - F_\text{T} + m_B \, g = m_B \, a_x
         \end{equation} De esta forma, reuniendo las Ecuaciones~\eqref{ec:RxA_vinculados2} y \eqref{ec:RxB_vinculados2}, obtenemos un sistema de dos ecuaciones con dos incógnitas:
         \begin{align*}
-                    T &= m_A \, a_x \\
-            - T + m_B \, g &= m_B \, a_x,
-        \end{align*} del cual obtenemos como resultado que: $T = 52.27 \, \text{N}$ y $a_x = 3.27 \, \frac{\text{m}}{\text{s}^2}$.
+                    F_\text{T} &= m_A \, a_x \\
+            - F_\text{T} + m_B \, g &= m_B \, a_x,
+        \end{align*} del cual obtenemos como resultado que: $F_\text{T} = 52.27 \, \text{N}$ y $a_x = 3.27 \, \frac{\text{m}}{\text{s}^2}$.
     \end{solution}
 
     \question El bloque $A$ de la Figura~\ref{fig:vinculados2} tiene una masa de $12 \, \un{kg}$ y se mueve sobre una superficie horizontal lisa unido por una cuerda ligera flexible e inextensible, que pasa por una pequeña polea sin rozamiento, a un segundo bloque $B$ suspendido que tiene una masa de $4 \, \un{kg}$.
@@ -355,8 +355,8 @@
 
     \rtas
     \begin{enumerate}[a)]
-        \item $a = 2.45 \, \frac{\text{m}}{\text{s}^2}$. $T = 29.4 \, \text{N}$.
-        \item $a = 0.98 \, \frac{\text{m}}{\text{s}^2}$. $T = 35.28 \, \text{N}$.
+        \item $a = 2.45 \, \frac{\text{m}}{\text{s}^2}$. $F_\text{T} = 29.4 \, \text{N}$.
+        \item $a = 0.98 \, \frac{\text{m}}{\text{s}^2}$. $F_\text{T} = 35.28 \, \text{N}$.
     \end{enumerate}
 
     \question En la Figura~\ref{fig:ej18}, un bloque $A$, que tiene una masa de $20 \, \un{kg}$, se encuentra en reposo sobre una superficie horizontal unido por una cuerda ligera flexible e inextensible, que pasa por una pequeña polea sin rozamiento, a un balde ($B$) suspendido, que tiene una masa de $2 \, \un{kg}$.
@@ -397,7 +397,7 @@
     \rtas
     \begin{enumerate}[a)]
         \item 6 L.
-        \item $a = 2.1 \, \frac{\text{m}}{\text{s}^2}$; $T = 61.6$ N.
+        \item $a = 2.1 \, \frac{\text{m}}{\text{s}^2}$; $F_\text{T} = 61.6$ N.
         \item $v \approx 4.58 \, \frac{\text{m}}{\text{s}}$
         \item $\Delta t \approx 2.18 \, \text{s}$.
     \end{enumerate}
@@ -833,7 +833,7 @@
     \begin{enumerate}[a)]
         \item $v_{\text{B}2} = 10 \, \frac{\text{m}}{\text{s}}$.
         \item $a = 3.92 \, \frac{\text{m}}{\text{s}^2}$.
-        \item $T = 2.94 \, \text{N}$.
+        \item $F_\text{T} = 2.94 \, \text{N}$.
         \item $\Delta x \approx 12.75 \, \text{m}$.
         \item $\Delta t_1 \approx 2.55 \, \text{s}$; $\Delta t_2 \approx 5.1 \, \text{s}$.
     \end{enumerate}
@@ -1079,7 +1079,7 @@
             \fill[black] (0,0) circle (0.5mm);
             \draw[thick] (0,0) circle (2);
             \draw[thick] (0,0) -- node[anchor=south]{60 cm} (-2,0);
-            \draw[thick,-latex,blue] (-2,0) -- (-2,-2) node[anchor=north]{$\vec{T}$}; 
+            \draw[thick,-latex,blue] (-2,0) -- (-2,-2) node[anchor=north]{$\vec{F}_\text{T}$}; 
             \fill[black] (-2,0) circle (0.5mm);
         \end{tikzpicture}
         \caption{ }
@@ -1091,7 +1091,7 @@
         \begin{tikzpicture}[scale=1]
             \draw[fill=gray!40,thick] (-0.5,-0.5) rectangle (0.5,0.5);
             \draw[thick,red,-latex] (0,0) -- (0,-3) node[anchor=west]{$\vec{F}_\text{g}$};
-            \draw[thick,blue,-latex] (0,0) -- (0,2) node[anchor=west]{$\vec{T}$};
+            \draw[thick,blue,-latex] (0,0) -- (0,2) node[anchor=west]{$\vec{F}_\text{T}$};
             \fill[black] (0,0) circle (0.5mm);
         \end{tikzpicture}
         \caption{ }
@@ -1104,28 +1104,28 @@
     \begin{solution}
     Los diagramas de fuerzas correspondientes al volante y al bloque aislados se dan en las Figuras~\ref{fig:dclvol} y \ref{fig:dclbloque}, respectivamente. Se han omitido las fuerzas en el centro del volante debido a que es nulo su momento respecto al eje de rotación.
 
-    A partir de la Figura~\ref{fig:dclvol} podemos observar que la tensión $\vec{T}$ de la cuerda produce un torque que hace girar el volante en sentido antihorario. La componente $z$ de dicho torque es: $$\tau = T \, R$$ donde $R$ es el radio del volante. En virtud de la ecuación de movimiento del sólido rígido, tenemos que:
+    A partir de la Figura~\ref{fig:dclvol} podemos observar que la tensión $\vec{F}_\text{T}$ de la cuerda produce un torque que hace girar el volante en sentido antihorario. La componente $z$ de dicho torque es: $$T = F_\text{T} \, R$$ donde $R$ es el radio del volante. En virtud de la ecuación de movimiento del sólido rígido, tenemos que:
     \begin{equation*}
         \begin{split}
-            \tau &= I \, \alpha \\
-        T \, R &= I \, \alpha
+            T &= I \, \alpha \\
+        F_\text{T} \, R &= I \, \alpha
         \end{split}
-    \end{equation*} Por otro lado, las fuerzas que actúan sobre el bloque son la tensión $\vec{T}$ de la cuerda y el peso $\vec{F}_\text{g}$ del bloque. Las componentes de estas fuerzas son:
+    \end{equation*} Por otro lado, las fuerzas que actúan sobre el bloque son la tensión $\vec{F}_\text{T}$ de la cuerda y el peso $\vec{F}_\text{g}$ del bloque. Las componentes de estas fuerzas son:
     \begin{align*}
-        \vec{T} &= \left(0;T\right) \\
+        \vec{F}_\text{T} &= \left(0;F_\text{T}\right) \\
         \vec{F}_\text{g} &= \left(0;-m \, g\right).
-    \end{align*} Por lo tanto, la suma de las fuerzas en la dirección vertical da: $$\sum f_y = T - m \, g = - m \, a_y$$ Esta suma es distinta de cero por que el bloque no se encuentra suspendido en equilibrio sino que baja con una cierta aceleración que debemos determinar. Para ello, debemos tener en cuenta que el módulo de la aceleración lineal del bloque debe ser igual al módulo de la aceleración tangencial del volante: $$a_y = a_\text{t} = R \, \alpha$$ Así, obtenemos un sistema de tres ecuaciones que vinculan las tres incógnitas del problema ($T$, $\alpha$ y $a_y$) con los datos dados en el enunciado:
+    \end{align*} Por lo tanto, la suma de las fuerzas en la dirección vertical da: $$\sum f_y = F_\text{T} - m \, g = - m \, a_y$$ Esta suma es distinta de cero por que el bloque no se encuentra suspendido en equilibrio sino que baja con una cierta aceleración que debemos determinar. Para ello, debemos tener en cuenta que el módulo de la aceleración lineal del bloque debe ser igual al módulo de la aceleración tangencial del volante: $$a_y = a_\text{t} = R \, \alpha$$ Así, obtenemos un sistema de tres ecuaciones que vinculan las tres incógnitas del problema ($F_\text{T}$, $\alpha$ y $a_y$) con los datos dados en el enunciado:
     \begin{align}
-        T \, R &= I \, \alpha \label{ec:volante} \\
-        T - m \, g &= - m \, a_y  \label{ec:bloque} \\
+        F_\text{T} \, R &= I \, \alpha \label{ec:volante} \\
+        F_\text{T} - m \, g &= - m \, a_y  \label{ec:bloque} \\
         a_y &= R \, \alpha  \label{ec:at}
-    \end{align} Teniendo en cuenta la tercera ecuación, podemos reescribir la segundo como: $$T = m \, g - m \, R \, \alpha $$ Esta expresión del módulo de la tensión se puede reemplazar en la Ecuación~\eqref{ec:volante} para obtener: $$\left(m \, g - m \, R \, \alpha\right) R = I \, \alpha ,$$ de donde se puede despejar la aceleración angular: $$\alpha = \frac{m \, g \, R}{I + m \, R^2}$$ Esta última expresión se puede reemplazar en la Ecuación~\eqref{ec:at} para obtener: $$a_y = \frac{m \, g \, R^2}{I + m \, R^2} = g \left(\frac{1}{1 + \frac{I}{m \, R^2}}\right)$$ de donde se concluye que el bloque desciende con una aceleración menor que la de la gravedad debido a la resistencia que ofrece el volante a la aceleración angular producida por el torque aplicado sobre él.
+    \end{align} Teniendo en cuenta la tercera ecuación, podemos reescribir la segundo como: $$F_\text{T} = m \, g - m \, R \, \alpha $$ Esta expresión del módulo de la tensión se puede reemplazar en la Ecuación~\eqref{ec:volante} para obtener: $$\left(m \, g - m \, R \, \alpha\right) R = I \, \alpha ,$$ de donde se puede despejar la aceleración angular: $$\alpha = \frac{m \, g \, R}{I + m \, R^2}$$ Esta última expresión se puede reemplazar en la Ecuación~\eqref{ec:at} para obtener: $$a_y = \frac{m \, g \, R^2}{I + m \, R^2} = g \left(\frac{1}{1 + \frac{I}{m \, R^2}}\right)$$ de donde se concluye que el bloque desciende con una aceleración menor que la de la gravedad debido a la resistencia que ofrece el volante a la aceleración angular producida por el torque aplicado sobre él.
 
-    Reemplazando los valores correspondientes en las expresiones de $\alpha$, $a_y$ y $T$, obtenemos:
+    Reemplazando los valores correspondientes en las expresiones de $\alpha$, $a_y$ y $F_\text{T}$, obtenemos:
     \begin{align*}
         \alpha &= 6.20 \, \frac{\text{rad}}{\text{s}^2} \\
         a_y &= 3.72 \, \frac{\text{m}}{\text{s}^2} \\
-            T &= 30.38 \, \text{N}
+            F_\text{T} &= 30.38 \, \text{N}
     \end{align*}
 
     Podemos demostrar de forma analítica que la pérdida (o variación) de energía potencial gravitatoria del bloque es igual a la suma de los incrementos de energía cinética del bloque y de energía cinética de rotación del volante.
@@ -1347,7 +1347,7 @@
     \end{figure}
 
     \begin{solution}
-    A fin de evitar que el subibaja gire, se debe cumplir la segunda condición de equilibrio, es decir, que la suma de los momentos de las fuerzas sea igual a cero. Si tomamos como origen del sistema de referencia al punto de giro \( O \) del subibaja, entonces tenemos que $$ \sum \tau^{O} = P_\text{Padre} \cdot d - P_\text{Niño} \cdot 2 \, \text{m} = 0 $$ El segundo término del lado izquierdo puede pasarse sumando al lado derecho: $$ P_\text{Padre} \cdot d = P_\text{Niño} \cdot 2 \, \text{m} $$ Luego, se puede despejar la distancia \( d \): $$ d = \frac{P_\text{Niño} \cdot 2 \, \text{m}}{P_\text{Padre}}$$ Ahora bien, tenemos además que \( P_\text{Padre} = m_\text{Padre} \cdot g \) y que \( P_\text{Niño} = m_\text{Niño} \cdot g \). Entonces: $$d = \frac{m_\text{Niño} \cdot g \cdot 2 \, \text{m}}{m_\text{Padre} \cdot g} = \frac{m_\text{Niño} \cdot 2 \, \text{m}}{m_\text{Padre}} $$ Reemplazando los valores \( m_\text{Niño} = 21 \, \text{kg} \) y \( m_\text{Padre} = 105 \, \text{kg} \), obtenemos: $$d = \frac{21 \, \text{kg} \cdot 2 \, \text{m}}{105 \, \text{kg}} = 0.4 \text{m} $$
+    A fin de evitar que el subibaja gire, se debe cumplir la segunda condición de equilibrio, es decir, que la suma de los momentos de las fuerzas sea igual a cero. Si tomamos como origen del sistema de referencia al punto de giro \( O \) del subibaja, entonces tenemos que $$ \sum T^{O} = P_\text{Padre} \cdot d - P_\text{Niño} \cdot 2 \, \text{m} = 0 $$ El segundo término del lado izquierdo puede pasarse sumando al lado derecho: $$ P_\text{Padre} \cdot d = P_\text{Niño} \cdot 2 \, \text{m} $$ Luego, se puede despejar la distancia \( d \): $$ d = \frac{P_\text{Niño} \cdot 2 \, \text{m}}{P_\text{Padre}}$$ Ahora bien, tenemos además que \( P_\text{Padre} = m_\text{Padre} \cdot g \) y que \( P_\text{Niño} = m_\text{Niño} \cdot g \). Entonces: $$d = \frac{m_\text{Niño} \cdot g \cdot 2 \, \text{m}}{m_\text{Padre} \cdot g} = \frac{m_\text{Niño} \cdot 2 \, \text{m}}{m_\text{Padre}} $$ Reemplazando los valores \( m_\text{Niño} = 21 \, \text{kg} \) y \( m_\text{Padre} = 105 \, \text{kg} \), obtenemos: $$d = \frac{21 \, \text{kg} \cdot 2 \, \text{m}}{105 \, \text{kg}} = 0.4 \text{m} $$
 
     Para determinar la fuerza que el soporte ejerce sobre el subibaja, debemos plantear la primera condición de equilibrio. Como las fuerzas solamente tienen dirección vertical, entonces es suficiente sumar las fuerzas en esa dirección (\( y \)): $$ \sum f_y = F - P_\text{padre} - P_\text{Niño} = 0$$ Luego: $$F = P_\text{padre} + P_\text{Niño} = m_\text{Padre} \cdot g + m_\text{Niño} \cdot g  = \left(m_\text{Padre} + m_\text{Niño}\right) \cdot g $$ Reemplazando los valores correspondientes, se obtiene: $$F = \left( 105 \, \text{kg} + 21 \, \text{kg}\right) \cdot 9.8 \frac{\text{m}}{\text{s}} = 1234.8 \, \text{N} $$
     \end{solution}
@@ -1356,7 +1356,7 @@
 
     \begin{parts}
         \part ¿A qué distancia \( x \) a la derecha de dicho punto se debe suspender una bloque de \( B \) de \( 2 \, \text{kg} \) para que el sistema se encuentre en equilibrio estático? 
-        \part ¿Cuánto vale la tensión \( T \) del  cable?
+        \part ¿Cuánto vale la tensión \( F_\text{T} \) del  cable?
     \end{parts}
 
     \begin{figure}[ht]
@@ -1382,7 +1382,7 @@
         \label{fig:balanza}
     \end{figure}
 
-    \rtas \(x = 0.3 \, \text{m} \);  \( T = 49 \, \text{N} \).
+    \rtas \(x = 0.3 \, \text{m} \);  \( F_\text{T} = 49 \, \text{N} \).
 
     \question Para mantener en equilibrio, en la posición representada, la barra de la Figura~\ref{fig:barraybloques} ha de aplicarse una sola fuerza, $\vec{F}$. La masa del bloque $A$ es de 5 kg y la masa del bloque $B$ es de 2 kg. Pueden despreciarse el peso de la barra y las masas de las cuerdas.
     \begin{parts}
@@ -1466,10 +1466,10 @@
         \draw[thick,-latex,blue] (-1,0) node[anchor=south]{$F_x$} -- (0,0);
         \draw[thick,-latex,blue] (0,-1) node[anchor=east]{$F_y$} -- (0,0);
         \draw[fill=black] (4,0) circle (0.5mm);
-        \draw[thick,-latex,green] (4,0) -- node[anchor=south west]{$\vec{T}$} (2.5,1.5);
+        \draw[thick,-latex,green] (4,0) -- node[anchor=south west]{$\vec{F}_\text{T}$} (2.5,1.5);
         \node[anchor=south,green] at (3.2,0) {$45\grado$};
-        \draw[thick,-latex,green] (4,0) -- node[anchor=north]{$T_x$} (2.5,0);
-        \draw[thick,-latex,green] (4,0) -- node[anchor=west]{$T_y$} (4,1.5);
+        \draw[thick,-latex,green] (4,0) -- node[anchor=north]{$F_{T,x}$} (2.5,0);
+        \draw[thick,-latex,green] (4,0) -- node[anchor=west]{$F_{T,y}$} (4,1.5);
         \draw[dashed,green] (2.5,0) -- (2.5,1.5) -- (4,1.5);
         \draw[thick,-latex,red] (4,0) -- (4,-2) node[anchor=west]{$\vec{F}_\text{g, bloque}$};
         \draw[thick,-latex,red] (2,0) -- (2,-1) node[anchor=west]{$\vec{F}_\text{g, barra}$};
@@ -1482,23 +1482,23 @@
     \end{figure}
 
     \begin{solution}
-    Consideremos un sistema de referencia cartesiano cuyo origen coincide con el punto $O$, donde se encuentra el perno, tal como se muestra en la Figura~\ref{fig:dcl}. Las componentes de los vectores $\vec{T}$, $\vec{F}$, $\vec{F}_\text{g,barra}$ y $\vec{F}_\text{g,bloque}$ en dicho sistema de referencia son:
+    Consideremos un sistema de referencia cartesiano cuyo origen coincide con el punto $O$, donde se encuentra el perno, tal como se muestra en la Figura~\ref{fig:dcl}. Las componentes de los vectores $\vec{F}_\text{T}$, $\vec{F}$, $\vec{F}_\text{g,barra}$ y $\vec{F}_\text{g,bloque}$ en dicho sistema de referencia son:
     \begin{itemize}
-        \item $\vec{T} = \left(-T_x;T_y\right)$.
+        \item $\vec{F}_\text{T} = \left(-F_{T,x};F_{T,y}\right)$.
         \item $\vec{F} = \left(F_x;F_y\right)$.
         \item $\vec{F}_\text{g, barra} = \left(0;-m_\text{barra} \, g\right)$.
         \item $\vec{F}_\text{g, bloque} = \left(0;-m_\text{bloque} \, g\right)$.
     \end{itemize} El siguiente paso es plantear las dos condiciones de equilibrio:
     \begin{align}
-        \sum f_x &= F_x - T_x = 0 \label{ec:sumx} \\
-        \sum f_y &= F_y + T_y - m_\text{barra} \, g -m_\text{bloque} \, g = 0 \label{ec:sumy} \\
-        \sum \tau^{O} &= T_y \, L - m_\text{barra} \, g \, \frac{L}{2} -m_\text{bloque} \, g \, L = 0 \label{ec:sumt} 
-    \end{align} De la Ecuación~\eqref{ec:sumt} podemos despejar $T_y$: $$T_y = \frac{\left(m_\text{bloque} + \frac{m_\text{barra}}{2}\right) g\, L}{L} = \left(m_\text{bloque} + \frac{m_\text{barra}}{2}\right) g$$ Luego: $$T_y = \left(80 \, \text{kg} + \frac{40 \, \text{kg}}{2}\right) \times 9.8 \, \frac{\text{m}}{\text{s}^2} = 980 \, \text{N}$$
+        \sum f_x &= F_x - F_{T,x} = 0 \label{ec:sumx} \\
+        \sum f_y &= F_y + F_{T,y} - m_\text{barra} \, g -m_\text{bloque} \, g = 0 \label{ec:sumy} \\
+        \sum T^{O} &= F_{T,y} \, L - m_\text{barra} \, g \, \frac{L}{2} -m_\text{bloque} \, g \, L = 0 \label{ec:sumt} 
+    \end{align} De la Ecuación~\eqref{ec:sumt} podemos despejar $F_{T,y}$: $$F_{T,y} = \frac{\left(m_\text{bloque} + \frac{m_\text{barra}}{2}\right) g\, L}{L} = \left(m_\text{bloque} + \frac{m_\text{barra}}{2}\right) g$$ Luego: $$F_{T,y} = \left(80 \, \text{kg} + \frac{40 \, \text{kg}}{2}\right) \times 9.8 \, \frac{\text{m}}{\text{s}^2} = 980 \, \text{N}$$
 
-    Una vez determinado el valor de $T_y$, podemos usarlo para hallar el valor de $F_y$ en virtud de la Ecuación~\eqref{ec:sumy}: $$F_y = \left(m_\text{bloque} + m_\text{barra} g - T_y\right) = \left(80 \, \text{kg} + 40 \, \text{kg}\right) \times 9.8 \, \frac{\text{m}}{\text{s}^2} - 980 \, \text{N} = 196 \, \text{N}$$ Por último, de la Ecuación~\eqref{ec:sumx} se obtiene: $$F_x = T_x$$ Las componentes horizontal y vertical de la tensión están relacionadas mediante: $$\frac{T_y}{T_x} = \tan 45\grado = 1$$ y, por lo tanto: $$T_x = T_y = 980 \, \text{N}$$ En consecuencia, $$F_x = T_x = 980 \, \text{N}$$
+    Una vez determinado el valor de $F_{T,y}$, podemos usarlo para hallar el valor de $F_y$ en virtud de la Ecuación~\eqref{ec:sumy}: $$F_y = \left(m_\text{bloque} + m_\text{barra} g - F_{T,y}\right) = \left(80 \, \text{kg} + 40 \, \text{kg}\right) \times 9.8 \, \frac{\text{m}}{\text{s}^2} - 980 \, \text{N} = 196 \, \text{N}$$ Por último, de la Ecuación~\eqref{ec:sumx} se obtiene: $$F_x = F_{T,x}$$ Las componentes horizontal y vertical de la tensión están relacionadas mediante: $$\frac{F_{T,y}}{F_{T,x}} = \tan 45\grado = 1$$ y, por lo tanto: $$F_{T,x} = F_{T,y} = 980 \, \text{N}$$ En consecuencia, $$F_x = F_{T,x} = 980 \, \text{N}$$
     \end{solution}
 
-    \question Hallar la el módulo de la tensión ($T$) del cable $BD$ de la Figura~\ref{fig:puntal} y las componentes horizontal ($F_x$) y vertical ($F_y$) de la fuerza ejercida sobre el el puntal $AB$ por el perno $A$. La masa del bloque es de 10 kg.
+    \question Hallar la el módulo de la tensión ($F_\text{T}$) del cable $BD$ de la Figura~\ref{fig:puntal} y las componentes horizontal ($F_x$) y vertical ($F_y$) de la fuerza ejercida sobre el el puntal $AB$ por el perno $A$. La masa del bloque es de 10 kg.
 
     \begin{figure}[ht]
         \centering
@@ -1529,11 +1529,11 @@
         \label{fig:puntal}
     \end{figure}
 
-    \rtas $T = 122.5$ N; $F_x = 98$ N; $F_y = 24.5$ N.
+    \rtas $F_\text{T} = 122.5$ N; $F_x = 98$ N; $F_y = 24.5$ N.
 
-    \question Hallar nuevamente el módulo de la tensión ($T$) del cable $BD$ de la Figura~\ref{fig:puntal} y las componentes horizontal ($F_x$) y vertical ($F_y$) de la fuerza ejercida sobre el el puntal $AB$ por el perno $A$, pero esta vez considerando que la masa del bloque es de 40 kg y que la masa de la barra es de 10 kg.
+    \question Hallar nuevamente el módulo de la tensión ($F_\text{T}$) del cable $BD$ de la Figura~\ref{fig:puntal} y las componentes horizontal ($F_x$) y vertical ($F_y$) de la fuerza ejercida sobre el el puntal $AB$ por el perno $A$, pero esta vez considerando que la masa del bloque es de 40 kg y que la masa de la barra es de 10 kg.
 
-    \rtas $T = 408.34$ N, $F_x = 326.67$ N y $F_y = 245$ N.
+    \rtas $F_\text{T} = 408.34$ N, $F_x = 326.67$ N y $F_y = 245$ N.
 
 \end{questions}
 
