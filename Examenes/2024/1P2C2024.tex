@@ -46,7 +46,7 @@
 \newcommand{\chel}[4]{^{#1}_{#2}\mbox{#3}^{#4}}
 \newcommand{\valmed}[1]{\left\langle #1 \right\rangle}
 \newcommand{\E}[1]{\times 10^{#1}}
-\newcommand{\ver}[1]{\hat{\vec{#1}}}
+\newcommand{\ver}[1]{\hat{\mathbf{#1}}}
 \newcommand{\vecg}[1]{\boldsymbol{#1}}
 \newcommand{\iu}{\mathrm{i}}
 \newcommand{\norm}[1]{\left\vert\left\vert #1 \right\vert\right\vert}
@@ -120,7 +120,7 @@
 
 \begin{questions}
 
-    \question Un móvil recorre una pista circular peraltada cierto angulo $\varphi$, tal como se muestra en la Figura~\ref{fig:peralte}, y que tiene radio $R$. \\
+    \question Un móvil recorre una pista circular peraltada cierto angulo $\varphi$, tal como se muestra en la Figura~\ref{fig:peralte}, la cual tiene un radio $R$. \\
     \begin{minipage}[c]{0.6\textwidth}
         \begin{parts}
             \part Demostrar que la rapidez con la que el móvil debe recorrer la pista para describir un movimiento circular uniforme debe ser $$ v = \sqrt{g \, R \, \tan \varphi}$$
@@ -145,7 +145,7 @@
         \end{center}
     \end{minipage}
     
-    \question \label{ej:bloque_plano_MCU} Un bloque de masa $m$ está atado a un clavo situado en el centro de una superficie horizontal sin rozamiento. Se desprecia también el efecto de cualquier otra fuerza externa, como la resistencia del aire. El hilo que une el bloque con el clavo está totalmente estirado y tiene una longitud $R$. El bloque se encuentra inicialmente en reposo, pero en cierto instante se aplica sobre el bloque una fuerza de módulo constante ($F$) y cuya dirección es siempre tangente a la trayectoria, tal como se muestra en la Figura~\ref{fig:plano_bloque_MCU}. \label{ej:plano_bloque_MCU}
+    \question \label{ej:bloque_plano_MCU} Un bloque de masa $m$ está atado a un clavo situado en el centro de una superficie horizontal sin rozamiento. Se desprecia también el efecto de cualquier otra fuerza externa, como la resistencia del aire. El hilo que une el bloque con el clavo está totalmente estirado y tiene una longitud $R$. El bloque se encuentra inicialmente en reposo, pero en cierto instante se aplica sobre el bloque una fuerza de módulo constante ($F$) y cuya dirección es siempre tangente a la trayectoria, tal como se muestra en la Figura~\ref{fig:plano_bloque_MCU}. En consecuencia, esta fuerza viene dada por $\vec{F} = F \, \ver{e}_\theta $. \label{ej:plano_bloque_MCU}
     
     \begin{minipage}[c]{0.4\textwidth}
         \begin{parts}
@@ -181,55 +181,14 @@
         \end{center}
     \end{minipage}
 
-    \question \label{ej:OAS} Un oscilador armónico simple está formado por una masa puntual de $6$ kg y un resorte cuya constante es $2400\, \frac{\text{N}}{\text{m}}$, tal como se muestra en la Figura~\ref{fig:OAS_v0pos} (\subref{fig:oas_reposo_v0pos}). Se le imprime a la masa puntual una velocidad inicial $\vec{v}_0 = \left(-6\, \frac{\text{m}}{\text{s}};0\right)$, tal como se muestra en la Figura~\ref{fig:OAS_v0pos} (\subref{fig:oas_inicial_v0pos}).
+    \question Dos resortes, de constantes $k_1$ y $k_2$ se someten a la misma fuerza $\vec{F}$ y se observa que sus deformaciones son $\Delta L_1$ y $\Delta L_2$, respectivamente. Demostrar que si $\Delta L_1 < \Delta L_2$, entonces se cumple que $P_1 < P_2$, donde $P_1$ es el periodo de oscilación del resorte de constante $k_1$ y $P_2$ es el periodo del resorte de constante $k_2$.
 
-    \begin{figure}[h]
-        \centering
-        \begin{subfigure}{0.45\textwidth}
-            \centering
-            \begin{tikzpicture}[scale=1.75]
-                \draw[decoration={coil,segment length = 2mm,amplitude = 2mm,aspect = 0.5,post length = 1mm,pre length = 1mm},decorate,thick,black!50] (0,0) -- (2,0);
-                \draw[thick] (0,-0.25) -- (0,0.25);
-                \node at (1,0.3) {$k$};
-                \draw[-latex] (-0.5,0) -- (4,0) node[anchor=north]{$x$};
-                \draw[-latex] (2,-0.5) -- (2,0.5) node[anchor=east]{$y$};
-                \fill[black] (2,0) circle (0.5mm) node[anchor=south west]{$m$};
-            \end{tikzpicture}
-            \caption{ }
-            \label{fig:oas_reposo_v0pos}
-        \end{subfigure}
-        \begin{subfigure}{0.45\textwidth}
-            \centering
-            \begin{tikzpicture}[scale=1.75]
-                \draw[decoration={coil,segment length = 2mm,amplitude = 2mm,aspect = 0.5,post length = 1mm,pre length = 1mm},decorate,thick,black!50] (0,0) -- (2,0);
-                \draw[thick] (0,-0.25) -- (0,0.25);
-                \node at (1,0.3) {$k$};
-                \draw[-latex] (-0.5,0) -- (4,0) node[anchor=north]{$x$};
-                \draw[-latex] (2,-0.5) -- (2,0.5) node[anchor=east]{$y$};
-                \fill[black] (2,0) circle (0.5mm) node[anchor=south west]{$m$};
-                \draw[thick,-latex] (2,0.3) -- (1.5,0.3) node[anchor=south]{$\vec{v}_0$};
-            \end{tikzpicture}
-            \caption{ }
-            \label{fig:oas_inicial_v0pos}
-        \end{subfigure}
-        \caption{Esquema del \ref{ej:OAS}.}
-        \label{fig:OAS_v0pos}
-    \end{figure}
-
-    \begin{parts}
-        \part Determinar la frecuencia angular ($\omega$), la amplitud ($A$), el periodo ($P$) y la frecuencia física ($f$) de las oscilaciones.
-        \checkboxchar{$\Box$}
-        \part ¿Para qué valores de la elongación la rapidez de la masa puntual alcanza sus valores máximo y mínimo?
-        \part ¿Para qué valores de la elongación la rapidez de la masa puntual se anula?
-        \part ¿Para qué valores de la elongación componente $x$ de la aceleración impresa a la masa puntual alcanza sus valores máximo y mínimos?
-        \part ¿Para qué valores de la elongación la componente $x$ de la aceleración impresa a la masa puntual se anula?
-        \part Si se duplica la rapidez inicial, ¿se modifican los valores de $P$, $f$ y $\omega$? ¿Por qué?
-        \part Si la velocidad inicial fuese , $\vec{v}_0 = \left(6\, \frac{\text{m}}{\text{s}};0\right)$ ¿se modifican los valores de $A$, $P$, $f$ y $\omega$? ¿Por qué?
-    \end{parts}
-
-    \question \label{ej:equilbrio_CR} Una barra rígida que tiene una longitud de 3 m está unida a dos bloques mediante alambres inextensibles y de masa despreciable. El alambre que une la barra con el bloque $A$ pasa por una polea sin rozamiento y de masa también despreciable. Por otro lado, el segmento que va entre el extremo derecho de la barra y la polea forma un ángulo $\psi$ con la horizontal tal que $\cos \psi = \frac{3}{5}$ y $\sen \psi = \frac{4}{5}$. El bloque $A$ tiene una masa de 2 kg y el bloque $B$ tiene una masa de 12 kg, mientras que la barra tiene 10 kg de masa. Hallar la fuerza $\vec{F}$ y las coordenadas del punto de la barra en el que debe aplicarse esta fuerza para mantener la misma en equilibrio estático en la posición que se muestra en la Figura~\ref{fig:barra}. Puede informar las componentes $x$ e $y$ de la fuerza o bien su módulo y el ángulo que forma con los $x$ positivos ($\varphi$). Suponga que la fuerza $\vec{F}$ debe colocarse en el punto $(x_F; 0)$, donde debe determinar el valor de $x_F$.
-
-    \textbf{Pista:} La polea solamente cambia la dirección de la tensión del alambre.
+    \question \label{ej:equilbrio_CR} Una barra rígida que tiene una longitud de $L$ está unida a dos bloques mediante alambres inextensibles y de masa despreciable. El alambre que une la barra con el bloque $A$ pasa por una polea sin rozamiento. Por otro lado, el segmento que va entre el extremo derecho de la barra y la polea forma un ángulo $\psi$ con la horizontal. El bloque $A$ tiene una masa $m_A$ y el bloque $B$ tiene una masa $m_B$, mientras que la barra tiene masa $m_p$. Demostrar que para que la barra permanezca en equilibrio estático en la posición que se muestra en la Figura~\ref{fig:barra}, se debe aplicar una fuerza $\vec{F} = F_x \, \ver{e}_x + F_y \, \ver{e}_y$, en el punto $\vec{r}_F = x_F \, \ver{e}_x$, donde
+    \begin{align}
+        F_x &= - m_A \, g \cos \psi \\
+        F_y &= \left(m_B + m_p - m_A \sen \psi\right) g \\
+        x_F &= \left(m_B + \frac{m_p}{2}\right) \frac{L}{m_B + m_p - m_A \sen \psi}.
+    \end{align}
 
     \begin{figure}[ht]
         \centering
@@ -250,8 +209,8 @@
             \node at (-4,-0.8) {$B$};
             \draw[latex-latex] (-4,1) -- node[fill=white]{$L$} (0,1);
             \draw (-4,0.8) -- (-4,1.2);
-            \draw[latex-latex] (-2,0.5) -- node[fill=white]{$\frac{L}{2}$} (0,0.5);
-            \draw (-2,0.4) -- (-2,0.6);
+            %\draw[latex-latex] (-2,0.5) -- node[fill=white]{$\frac{L}{2}$} (0,0.5);
+            %\draw (-2,0.4) -- (-2,0.6);
             \draw[latex-latex,red] (-3,-0.5) -- node[fill=white]{$x_F$} (0,-0.5);
             \draw[red] (-3,-0.3) -- (-3,-0.7);
             \draw[fill=gray!40!white,thick] (-4,-0.1) rectangle (0,0.1);
@@ -268,11 +227,7 @@
         \label{fig:barra}
     \end{figure}
 
-    \question Un bloque de 8 kg de masa se encuentra en reposo sobre una superficie horizontal lisa. Una cuerda inextensible atada al bloque pasa por una polea, cuyo diámetro tiene 15 cm, y en el otro extremo de la cuerda cuelga otro bloque cuya masa es también de 8 kg, tal como se muestra en la Figura~\ref{fig:vinculados2}. Se abandona el sistema desde el reposo y se observa que el bloque recorre 5 m en 2 s.
-    \begin{parts}
-        \part ¿Cuál es el momento de inercia de la polea?
-        \part ¿Cuál es la tensión en cada parte de la cuerda?
-    \end{parts}
+    \question Un bloque de masa $m_A$ se encuentra en reposo sobre una superficie horizontal lisa. Una cuerda inextensible atada a este bloque pasa por una polea, de radio $R$ y masa $m_p$, y en el otro extremo de la cuerda cuelga otro bloque cuya masa es $m_B$, tal como se muestra en la Figura~\ref{fig:vinculados2}. Teniendo en cuenta que el momento de inercia de la polea es $ I = \dfrac{1}{2} m_p \, R^2$, demostrar que el módulo de la aceleración del sistema es $$ a = \frac{m_B \, g}{m_A + m_B + \dfrac{m_p}{2}}. $$
 
     \begin{figure}[h]
         \centering
