@@ -400,7 +400,7 @@
 
 \end{frame}
 
-\section{Coeficiente de Poisson y relación entre los módulos elásticos}
+\section{Coeficiente de Poisson}
 
 \begin{frame}{Coeficiente de Poisson}
 
@@ -456,8 +456,34 @@
 
     \vs 
 
-    El volumen antes de la deformación es $V_0 = a_0 \, b_0 \, c_0$ y el volumen después de la deformación es $V = \left(a_0 + \Delta a\right) \left(b_0 + \Delta b\right) \left(c_0 + \Delta c\right)$.
+    El volumen antes de la deformación es $V_0 = a_0 \, b_0 \, c_0$ y después de la deformación es $V = \left(a_0 + \Delta a\right) \left(b_0 + \Delta b\right) \left(c_0 + \Delta c\right)$.
 
+    
+\end{frame}
+
+\begin{frame}{Coeficiente de Poisson}
+
+    Aplicando la propiedad distributiva y despreciando los términos de segundo y tercer grado en las variaciones de las longitudes, se obtiene: $$ V = V_0 + b_0 \, c_0 \, \Delta a + a_0 \, c_0 \, \Delta b + a_0 \, b_0 \, \Delta c $$ o bien $$ \Delta V = b_0 \, c_0 \, \Delta a + a_0 \, c_0 \, \Delta b + a_0 \, b_0 \, \Delta c $$ Dividiendo a ambos lados de esta expresión por $V_0$, se obtiene: $$ \frac{\Delta V}{V_0} = \frac{\Delta a}{a_0} + \frac{\Delta b}{b_0} + \frac{\Delta c}{c_0} $$
+
+        
+\end{frame}
+
+\begin{frame}{Coeficiente de Poisson}
+
+    En virtud de la definición del coeficiente de Poisson, se tiene que:
+    \begin{align}
+        \frac{\Delta b}{b_0} &= - \nu \frac{\Delta a}{a_0} \\
+        \frac{\Delta c}{c_0} &= - \nu \frac{\Delta a}{a_0} 
+    \end{align} Luego: $$ \frac{\Delta V}{V_0} = \left(1 - 2 \, \nu\right) \frac{\Delta a}{a_0} $$ Experimentalmente se halla que $\nu < \frac{1}{2}$, por lo que el factor $ 1 - 2 \, \nu > 0$ y, en consecuencia, $\Delta V$ y $\Delta a$ tienen el mismo signo, lo que implica que el volumen del cuerpo aumenta cuando se lo somete a tracción ($\Delta a > 0$) y disminuye cuando se lo somete a compresión ($\Delta a < 0$).
+
+\end{frame}
+
+\section{Relación entre las constantes elásticas}
+
+\begin{frame}{Relación entre las constantes elásticas}
+
+
+    
 \end{frame}
 
 \section{Ecuaciones de movimiento}
