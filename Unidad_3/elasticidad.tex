@@ -22,6 +22,8 @@
 \usepackage[nointegrals]{wasysym}
 \usepackage{hyperref}
 \usepackage{cancel}
+\usepackage[font=small,labelfont={small,bf},margin=0.5cm,justification=justified]{caption}
+\usepackage[font=small,labelfont={small,bf}]{subcaption}
 
 \usetheme{Berkeley}
 \usecolortheme{seahorse}
@@ -101,7 +103,149 @@
 
     \vs 
 
-    Por supuesto, si esta condición es válida para cualquier par de puntos del cuerpo rígido, en particular lo es para el punto $i$ y el origen de un sistema de referencia que se encuentra dentro del cuerpo y que se mueve solidariamente junto con este y, por lo tanto: $$ \ell_i = \norm{\vec{r}_i} $$ donde ahora $\ell_i$ es la distancia del punto $i$ al origen de dicho sistema de referencia.
+    %Por supuesto, si esta condición es válida para cualquier par de puntos del cuerpo rígido, en particular lo es para el punto $i$ y el origen de un sistema de referencia que se encuentra dentro del cuerpo y que se mueve solidariamente junto con este y, por lo tanto: $$ \ell_i = \norm{\vec{r}_i} $$ donde ahora $\ell_i$ es la distancia del punto $i$ al origen de dicho sistema de referencia.
+
+    Tal como su nombre lo indica, la deformación implica un cambio o una variación de la forma de un cuerpo.
+
+\end{frame}
+
+\begin{frame}{Deformación}
+
+    Existen diversos tipos de deformación, según la manera en que se apliquen las fuerzas.
+
+    \begin{figure}
+        \centering
+        \begin{subfigure}{0.3\textwidth}
+            \centering
+            \includegraphics{../figs/mechanics_stress-1.pdf}
+            \caption{Sin deformar.}
+        \end{subfigure}
+        ~
+        \begin{subfigure}{0.3\textwidth}
+            \centering
+            \includegraphics{../figs/mechanics_stress-2.pdf}
+            \caption{Tracción.}
+        \end{subfigure}
+        ~
+        \begin{subfigure}{0.3\textwidth}
+            \centering
+            \includegraphics{../figs/mechanics_stress-3.pdf}
+            \caption{Compresión.}
+        \end{subfigure} \\
+        \begin{subfigure}{0.3\textwidth}
+            \centering
+            \includegraphics{../figs/mechanics_stress-6.pdf}
+            \caption{Corte o cizalladura.}
+        \end{subfigure}
+        ~
+        \begin{subfigure}{0.3\textwidth}
+            \centering
+            \includegraphics{../figs/mechanics_stress-4.pdf}
+            \caption{Flexión.}
+        \end{subfigure}
+        ~
+        \begin{subfigure}{0.3\textwidth}
+            \centering
+            \includegraphics{../figs/mechanics_stress-5.pdf}
+            \caption{Torsión.}
+        \end{subfigure}
+        \caption{Tipos de deformación.}
+    \end{figure}
+
+    
+\end{frame}
+
+\begin{frame}{Deformación}
+
+    Además de las anteriormente consideradas, existe también la deformación debida a la presión hidrostática.
+
+    \begin{figure}
+        \centering
+        \includegraphics{../figs/fluid_dynamics_pressure-2.pdf}
+    \end{figure}
+
+    
+\end{frame}
+
+\begin{frame}{Deformación unitaria}
+
+    En esta unidad vamos a estudiar qué ocurre cuando relajamos esta condición. Para ello, debemos primero ver cómo se describe matemáticamente la deformación.
+
+    \vs
+
+    Consideremos, en primer lugar, una barra de longitud $L$, la cual se somete a una fuerza $\vec{F}$, de tracción o de compresión, y que, como consecuencia experimenta un cambio de longitud $\Delta L$.
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{figure}
+                \centering
+                \begin{subfigure}{\textwidth}
+                    \centering
+                    \includegraphics{../figs/mechanics_stress-7.pdf}
+                \end{subfigure}
+                \\
+                \begin{subfigure}{\textwidth}
+                    \centering
+                    \includegraphics{../figs/mechanics_stress-8.pdf}
+                \end{subfigure}
+                \\
+                \begin{subfigure}{\textwidth}
+                    \centering
+                    \includegraphics{../figs/mechanics_stress-9.pdf}
+                \end{subfigure}
+            \end{figure}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            Definimos la deformación unitaria por tracción o por compresión ($\varepsilon$) como el cambio de longitud por unidad de longitud: $$ \varepsilon = \frac{\Delta L}{L} $$
+        \end{column}
+    \end{columns}
+
+\end{frame}
+
+\begin{frame}{Deformación unitaria}
+
+    La deformación por corte o cizalladura se origina cuando una fuerza se aplica en dirección paralela a una de las caras del cuerpo.
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{figure}
+                \centering
+                \begin{subfigure}{\textwidth}
+                    \centering
+                    \includegraphics{../figs/mechanics_stress_strain-1.pdf}
+                \end{subfigure}
+                \\
+                \begin{subfigure}{\textwidth}
+                    \centering
+                    \includegraphics{../figs/mechanics_stress_strain-2.pdf}
+                \end{subfigure}
+            \end{figure}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            En este caso, la deformación unitaria por corte o cizalladura se define como el desplazamiento en la dirección de la fuerza por unidad de longitud en la dirección perpendicular a la misma: $$ \varepsilon = \frac{\Delta x}{L} = \tan \theta \approx \theta $$
+        \end{column}
+    \end{columns}
+
+\end{frame}
+
+\begin{frame}{Deformación unitaria}
+
+    Por último, vamos a considerar la deformación debida a la presión hidrostática, la cual genera una variación del volumen del cuerpo, más específicamente una \emph{disminución}, puesto que esta presión se deba a fuerzas perpendiculares a todas las caras del cuerpo que tienden a comprimir al cuerpo.
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{figure}
+                \centering
+                \begin{subfigure}{\textwidth}
+                    \centering
+                    \includegraphics{../figs/fluid_dynamics_pressure-2.pdf}
+                \end{subfigure}
+            \end{figure}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            Así, la deformación unitaria por presión hidrostática se define como el cambio de volumen por unidad de unidad de volumen: $$ \varepsilon = \frac{\Delta V}{V} $$
+        \end{column}
+    \end{columns}
 
 \end{frame}
 
@@ -109,13 +253,102 @@
 
 \begin{frame}{Tensión o esfuerzo}
 
+    Como vimos anteriormente, todos los tipos de deformaciones están por supuesto asociadas a alguna fuerza aplicada al cuerpo. Ahora bien, hasta ahora representábamos las fuerzas mediante un vector que tiene un punto de aplicación.
 
+    \vs
+
+    Sin embargo, en términos más estrictos las fuerzas se ejercen mediante el contacto entre dos cuerpos. Este contacto ocurre abarcando cierta área de cada uno de los cuerpos, la cual se denomina superficie de contacto. Así, la fuerza aplicada por un cuerpo sobre otro es en realidad la resultante de las fuerzas distribuidas más o menos uniformemente sobre el área de contacto.
+
+    \vs 
+
+    Asimismo, si se considera una cierta área dentro del cuerpo, la fuerza aplicada sobre éste se distribuye casi uniformemente sobre dicha área.
+
+\end{frame}
+
+\begin{frame}{Tensión o esfuerzo}
+
+    \begin{columns}
+        \begin{column}{0.4\textwidth}
+            \begin{figure}
+                \centering
+                \begin{subfigure}{\textwidth}
+                    \includegraphics[width=\textwidth]{../figs/tracción.pdf}
+                    \caption{Tracción}
+                \end{subfigure}
+                \\
+                \begin{subfigure}{\textwidth}
+                    \includegraphics[width=\textwidth]{../figs/compresion.pdf}
+                    \caption{Compresión}
+                \end{subfigure}
+            \end{figure}
+        \end{column}
+        \begin{column}{0.6\textwidth}
+            Si consideramos una barra, a la cual se le aplica una fuerza de tracción o de compresión, y hacemos un corte transversal a una distancia suficiente de donde se aplica la fuerza, tal como se ve en la figura esa fuerza se distribuye por toda esa superficie. En este caso, la fuerza aplicada produce una deformación por compresión o por tracción.
+
+            \vs
+
+            Si se asume que la fuerza aplicada $\vec{F}$ se distribuye uniformemente sobre la superficie transversal de área $A$, definimos la tensión (o el esfuerzo), $\sigma$ como la razón de la fuerza aplicada al área sobre la que se distribuye: $$ \sigma = \frac{F}{A} $$
+        \end{column}
+    \end{columns}
+
+\end{frame}
+
+\begin{frame}{Tensión o esfuerzo}
+
+    \begin{columns}
+        \begin{column}{0.4\textwidth}
+            Consideremos ahora una fuerza que se ejerce en dirección paralela a una de las superficies del cuerpo, tal como muestra la figura. Esta fuerza produce una deformación de corte o cizalladura.
+        \end{column}
+        \begin{column}{0.4\textwidth}
+            En este caso, la tensión también se define como la fuerza dividida por el área de la suoerficie sobre la cual se distribuye: $$ \sigma = \frac{F}{A} $$
+        \end{column}
+    \end{columns}
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=\textwidth]{../figs/cortante.pdf}
+        \caption{Corte.}
+    \end{figure}
+
+\end{frame}
+
+\begin{frame}{Tensión o esfuerzo}
+
+    \begin{columns}
+        \begin{column}{0.4\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics{../figs/fluid_dynamics_pressure-1.pdf}
+            \end{figure}
+        \end{column}
+        \begin{column}{0.4\textwidth}
+            De la misma forma se define la tensión o el esfuerzo debido a la presión hidrostática, esto es la fuerza aplicada sobre un área dada del cuerpo: $$ \sigma = \frac{F}{A} = P$$
+        \end{column}
+    \end{columns}
 
 \end{frame}
 
 \begin{frame}{Fuerzas corporales o de volumen}
     
-s
+    A diferencia de las tensiones, las fuerzas coroporales o de volumen son aquellas que actúan en todo el volumen del cuerpo. Tal es el caso de la fuerza de atracción gravitatoria, a través del campo gravitatorio, o la fuerza de interacción eléctrica, a través de un campo eléctrico.
+
+    \vs
+
+    En el caso particular de la fuerza de atracción gravitatoria, podemos considerar el peso de un elemento de masa ($\diff{m}$) del cuerpo. El peso de este elemento de masa es $ \diff \vec{F}_\text{g} = \vec{g} \, \diff{m} $. El diferencial de masa puede escribirse como $\diff{m} = \rho \, \diff{V}$, donde $\rho$ es la densidad y $\diff{V}$ es el volumen del elemento de masa. Entonces: $$ \diff \vec{F}_\text{g} = \vec{g} \, \rho \, \diff{V} $$ Así, el factor $\rho \, \vec{g}$ puede identificarse con la fuerza por unidad de volumen, también conocido como peso específico: $$\vec{f}_\text{g} = \fdiff{\vec{F}_\text{g}}{V} = \rho \, \vec{g} $$
+
+\end{frame}
+
+\begin{frame}{Fuerzas corporales o de volumen}
+    
+    En términos generales, cualquier fuerza corporal o de volumen puede representarse como una fuerza por unidad de volumen: $$\vec{f} = \rho \, \vec{a}$$ donde $\rho$ es la densidad del elemento de masa del cuerpo y $\vec{a}$ es la aceleración impresa sobre dicho elemento por la fuerza $\vec{f}$.
+
+    \vs
+
+    Cabe destacar que $\vec{f}$ representa la fuerza por unidad de volumen del cuerpo, esto es, la fuerza sobre un elemento de volumen que puede deberse a una causa externa, como se mencionó anteriormente, pero también a las llamadas \emph{tensiones internas}, es decir a las fuerzas que se ejercen entre sí los elementos de volumen adyancentes.
+
+    \vs
+
+    Por supuesto, la fuerza por unidad de volumen tiene unidades de fuerza sobre unidad de volumen. En el caso del SI: $$ \left[\vec{f}\right] = \frac{\un{N}}{\un{m}^3} $$
 
 \end{frame}
 
@@ -123,13 +356,64 @@ s
 
 \begin{frame}{Ecuaciones constitutivas}
 
+    En términos generales, se denomina ecuación constitutiva a la relación entre el esfuerzo y la deformación correspondiente. La forma funcional de cada relación se la conoce como \emph{modelo reológico}.
 
+    \vs 
+
+    \begin{columns}
+        \begin{column}{0.4\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=\textwidth]{../figs/mechanics_stress-10.pdf}
+            \end{figure}            
+        \end{column}
+        \begin{column}{0.6\textwidth}
+            Dentro de cierto límite, existe una relación lineal entre el esfuerzo y la deformación, esto es $$ \sigma \propto \varepsilon $$ Esto significa que al retirar el esfuerzo aplicado al cuerpo, este recupera totalmente su forma. Para tensiones o deformaciones menores a las definidas por el límite elástico, se dice que el comportamiento del cuerpo es \emph{elástico}.
+        \end{column}
+    \end{columns}
+
+    \vs
+
+    Tal como se puede apreciar en la Figura, esta relación lineal es válida hasta el denominado \emph{limite elástico}, el cual divide las zonas entre el comportamiento elástico y el comportamiento plástico.
 
 \end{frame}
 
 \begin{frame}{Módulos elásticos}
 
+    A fin de convertir la proporcionalidad en una igualdad, se debe incluir una constante de proporcionalidad. Dicha constante depende del tipo de esfuerzo y de la deformación correspondiente.
 
+    \begin{itemize}
+        \item Para el caso de los esfuerzos y las deformaciones de tracción o de compresión, la constante de proporcionalidad se conoce como \emph{módulo de Young} ($E$): $$ E = \frac{\Delta F/A}{\Delta L /L} = \frac{L}{A} \frac{\Delta F}{\Delta L} $$
+        \item Cuando se trate de esfuerzos y deformaciones de corte, la constante de proporcionalidad se denomina \emph{módulo de rigidez} ($G$): $$ G = \frac{\Delta F/A}{\Delta x / L} = \frac{L}{A} \frac{\Delta F}{\Delta x}$$
+        \item Por último, el \emph{módulo de compresibilidad} ($B$) es la constante que relaciona la deformación por presión hidrostática con la tensión correspondiente: $$ B = - \frac{\Delta P}{\Delta V / V} = - V \frac{\Delta P}{\Delta V} $$
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Módulos elásticos}
+
+    Muchas veces resulta más conveniente usar el \emph{coeficiente de compresibilidad} ($k$), o simplemente la compresibilidad, en lugar del módulo de compresibilidad. La compresibilidad se define como el inverso multiplicativo del módulo de compresibilidad: $$ k = \frac{1}{B} = - \frac{1}{V} \frac{\Delta V}{\Delta P} $$ El signo negativo en las expresiones de $B$ y de $k$ se deben a que cuando aumenta la presión, el volumen del cuerpo disminuye. En este sentido, tenemos que: $$ - \Delta P = B \, \frac{\Delta V}{V} $$ Como $\frac{\Delta V}{V} = \varepsilon $: $$ - \Delta P = B \, \varepsilon $$ y, por lo tanto, debe ser $\sigma = - \Delta P$.
+
+    \vs
+
+    La relación lineal entre el esfuerzo y la deformación de un cuerpo, puede verse como una generalización del a ley de Hooke.
+
+\end{frame}
+
+\section{Coeficiente de Poisson y relación entre los módulos elásticos}
+
+\begin{frame}{Coeficiente de Poisson}
+
+    Cuando un cuerpo se somete a esfuerzos de tracción o de compresión, se observa que sus longitudes transversales a la dirección en la que se aplica el esfuerzo disminuyen o aumentan, respectivamente.
+    
+\end{frame}
+
+\section{Ecuaciones de movimiento}
+
+\begin{frame}
+    \frametitle{Ecuaciones de movimiento}
+
+    
 
 \end{frame}
 
