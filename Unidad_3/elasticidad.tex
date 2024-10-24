@@ -14,6 +14,7 @@
 \usepackage{xcolor}
 \usepackage{graphicx}
 \usepackage{tikz}
+\tikzset{>=latex}
 \usepackage{tikz-3dplot}
 \usetikzlibrary{babel}
 \usetikzlibrary{calc,patterns,decorations.pathmorphing,decorations.markings}
@@ -48,6 +49,12 @@
 \newcommand{\logoUNAHUR}{\includegraphics[scale=0.15]{/home/shluna/Proyectos/Clases_Fisica_III/imgs/logo-universidad-nacional-de-hurlingham_preview_rev_1.png}}
 \newcommand{\vs}{\vspace{11pt}}
 \newcommand{\un}[1]{\text{#1}}
+
+\tikzstyle{dark water}=[draw=mydarkblue,top color=darkwatercol,bottom color=darkwatercol!80!black,shading angle=5]
+\tikzstyle{force}=[->,myred,very thick,line cap=round]
+\colorlet{myred}{red!65!black}
+\colorlet{darkwatercol}{blue!80!cyan!20!white}
+\colorlet{mydarkblue}{blue!50!black}
 
 \title{Introducción a la teoría de la elasticidad}
 \subtitle{Unidad 3}
@@ -248,6 +255,12 @@
     \end{columns}
 
 \end{frame}
+
+ \begin{frame}{Tensor de deformación}
+
+    
+    
+ \end{frame}
 
 \section{Tensión y fuerzas corporales}
 
@@ -478,12 +491,45 @@
 
 \end{frame}
 
-\section{Relación entre las constantes elásticas}
+\section{Relaciones entre las constantes elásticas}
 
-\begin{frame}{Relación entre las constantes elásticas}
+\begin{frame}{Relaciones entre las constantes elásticas}
 
+    En la sección anterior vimos que al aplicar un esfuerzo de tracción o compresión a un cuerpo, este sufre una variación relativa de su volumen dada por $$ \frac{\Delta V}{V_0} = \left(1 - 2 \, \nu\right) \frac{\Delta a}{a_0} $$ En virtud de la relación entre la variación relativa de la longitud $a$ y el esfuerzo aplicado, dada por la definición del módulo de Young: $$ \frac{\Delta F}{A} = E \frac{\Delta a}{a_0},$$ se obtiene: $$ \frac{\Delta V}{V_0} = \left(1 - 2 \, \nu\right) \frac{\Delta F}{E \, A} $$
 
+\end{frame}
+
+\begin{frame}{Relaciones entre las constantes elásticas}
+
+    Supongamos ahora que se ejercen esfuerzos de compresión a lo largo de las tres direcciones ($x$, $y$ y $z$), sobre las seis caras de un cubo. En este caso, el cubo está sometido a la presión hidrostática $$\Delta P = \frac{\Delta F}{A}$$
     
+    \begin{columns}
+        \begin{column}{0.3\textwidth}
+            \begin{tikzpicture}[x={(1cm,0)},y={(0.5cm,0.4cm)},z={(0,1cm)}]
+                \def\L{0.7} % cube side
+                \def\P{0.5} % pressure size
+                \draw[force] (\L/2,\L/2,-1.1*\P) node[below] {$\vec{F}$} --++ (0,0,\P);
+                \draw[force] (-1.1*\P,\L/2,\L/2) node[left] {$\vec{F}$} --++ ( \P,0,0);
+                \draw[force] (\L/2,\L+1.5*\P,\L/2) node[above right=-2] {$\vec{F}$} --++ (0,-1.4*\P,0);
+                \draw[dark water,rounded corners=0.1] (\L,0, 0) -- (\L,0,\L) -- (\L,\L,\L) -- (\L,\L, 0) -- cycle;
+                \draw[dark water,rounded corners=0.1] ( 0,0, 0) -- ( 0,0,\L) -- (\L, 0,\L) -- (\L, 0, 0) -- cycle;
+                \draw[dark water,rounded corners=0.1] ( 0,0,\L) -- (\L,0,\L) -- (\L,\L,\L) -- ( 0,\L,\L) -- cycle;
+                \draw[force] (\L/2,\L/2,\L+1.05*\P) node[above] {$\vec{F}$} --++ (0,0,-\P);
+                \draw[force] (\L+1.05*\P,\L/2,\L/2) node[right] {$\vec{F}$} --++ (-\P,0,0);
+                \draw[force] (\L/2,-1.4*\P,\L/2) node[below left=-3] {$\vec{F}$} --++ (0,1.4*\P,0);
+            \end{tikzpicture}
+        \end{column}
+        \begin{column}{0.7\textwidth}
+            El esfuerzo sobre cada par de caras opuestas origina la misma variación relativa de volumen que aquella que se obtuvo para un solo par y, por lo tanto, el cambio total de volumen es tres veces mayor: $$ \frac{\Delta V}{V_0} = 3 \left(1 - 2 \, \nu\right) \frac{\Delta F}{E \, A} $$ O bien: $$ \frac{\Delta V}{V_0} = 3 \left(1 - 2 \, \nu\right) \frac{\Delta P}{E} $$
+        \end{column}
+    \end{columns}
+    
+\end{frame}
+
+\begin{frame}{Relaciones entre las constantes elásticas}
+
+    En virtud de la definición del módulo de compresibilidad: $$ \Delta P = - B \, \frac{\Delta V}{V} $$ se obtiene: $$ E = - \left(1-2\, \nu\right) B $$
+
 \end{frame}
 
 \section{Ecuaciones de movimiento}
