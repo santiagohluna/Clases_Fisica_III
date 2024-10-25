@@ -39,7 +39,7 @@
 \newcommand{\chel}[4]{^{#1}_{#2}\text{#3}^{#4}}
 \newcommand{\valmed}[1]{\left\langle #1 \right\rangle}
 \newcommand{\E}[1]{\times 10^{#1}}
-\newcommand{\ver}[1]{\hat{\vec{#1}}}
+\newcommand{\ver}[1]{\hat{\mathbf{#1}}}
 \newcommand{\vecg}[1]{\boldsymbol{#1}}
 \newcommand{\iu}{\text{i}}
 \newcommand{\norm}[1]{\left\vert\left\vert #1 \right\vert\right\vert}
@@ -262,16 +262,141 @@
 
     \vs 
 
-    Consideremos dos puntos cualesquiera, $i$ y $j$ de un sólido.
+    Consideremos dos puntos, $P$ y $Q$, de un sólido.
 
     \begin{columns}
         \begin{column}{0.45\textwidth}
-            
+            \begin{figure}
+                \centering
+                \begin{tikzpicture}
+                    \coordinate (O) at (0,0);
+                    \coordinate (P1) at (3,1);
+                    \coordinate (P2) at (4,2);
+                    \coordinate (Q1) at (1,2);
+                    \coordinate (Q2) at (2,3);
+                    \draw[thick,-latex] (-0.5,0) -- (5,0);
+                    \draw[thick,-latex] (0,-0.5) -- (0,4);
+                    
+                    %% Posiciones relativas
+
+                    \draw[thick,-latex,red] (P1) -- node[above]{$\vec{u}$} (Q1);
+                    \draw[thick,-latex,red] (P2) -- node[above]{$\vec{u}^{\, \prime}$} (Q2);
+                    
+                    %% Desplazamientos
+
+                    \draw[thick,-latex,blue] (P1) -- node[right=4pt,pos=0.3]{$\delta \vec{r}_P$} (P2);
+                    \draw[thick,-latex,blue] (Q1) -- node[left=4pt,pos=0.7]{$\delta \vec{r}_Q$} (Q2);
+                    
+                    \draw[thick,-latex] (O) -- node[below,near end]{$\vec{r}_P$} (P1) node[anchor=north]{$P$};
+                    \draw[thick,-latex] (O) -- node[above,near end]{$\vec{r}_P^{\, \prime}$} (P2) node[anchor=west]{$P'$};
+                    \draw[thick,-latex] (O) -- node[left,pos=0.6]{$\vec{r}_Q$} (Q1) node[anchor=east]{$Q$};
+                    \draw[thick,-latex] (O) -- node[right,pos=0.4]{$\vec{r}_Q^{\, \prime}$} (Q2) node[anchor=south]{$Q'$};
+
+                    %% Puntos
+
+                    \fill[black] (P1) circle (0.5mm);
+                    \fill[black] (P2) circle (0.5mm);
+                    \fill[black] (Q1) circle (0.5mm);
+                    \fill[black] (Q2) circle (0.5mm);
+
+                \end{tikzpicture}
+            \end{figure}
         \end{column}
         \begin{column}{0.45\textwidth}
-            
+            Sean $\vec{r}_P$ y $\vec{r}_Q$ los vectores de posición de los puntos $P$ y $Q$, respectivamente, antes de la deformación. Por otro lado, sea $\vec{u}$ la posición relativa del punto $Q$ respecto del punto $P$ esto es: $$ \vec{u} = \vec{r}_Q - \vec{r}_P $$
         \end{column}
     \end{columns}
+
+\end{frame}
+
+\begin{frame}{Tensor de deformación}
+
+    Como consecuencia de la deformación, el punto $P$ se traslada al punto $P'$ y el punto $Q$ se traslada al punto $Q'$. Sean $\delta \vec{r}_P$ y $\delta \vec{r}_Q$ los respectivos desplazamientos de estos puntos.
+
+    \begin{columns}
+        \begin{column}{0.45\textwidth}
+            \begin{figure}
+                \centering
+                \begin{tikzpicture}
+                    \coordinate (O) at (0,0);
+                    \coordinate (P1) at (3,1);
+                    \coordinate (P2) at (4,2);
+                    \coordinate (Q1) at (1,2);
+                    \coordinate (Q2) at (2,3);
+                    \draw[thick,-latex] (-0.5,0) -- (5,0);
+                    \draw[thick,-latex] (0,-0.5) -- (0,4);
+                    
+                    %% Posiciones relativas
+
+                    \draw[thick,-latex,red] (P1) -- node[above]{$\vec{u}$} (Q1);
+                    \draw[thick,-latex,red] (P2) -- node[above]{$\vec{u}^{\, \prime}$} (Q2);
+                    
+                    %% Desplazamientos
+
+                    \draw[thick,-latex,blue] (P1) -- node[right=4pt,pos=0.3]{$\delta \vec{r}_P$} (P2);
+                    \draw[thick,-latex,blue] (Q1) -- node[left=4pt,pos=0.7]{$\delta \vec{r}_Q$} (Q2);
+                    
+                    \draw[thick,-latex] (O) -- node[below,near end]{$\vec{r}_P$} (P1) node[anchor=north]{$P$};
+                    \draw[thick,-latex] (O) -- node[above,near end]{$\vec{r}_P^{\, \prime}$} (P2) node[anchor=west]{$P'$};
+                    \draw[thick,-latex] (O) -- node[left,pos=0.6]{$\vec{r}_Q$} (Q1) node[anchor=east]{$Q$};
+                    \draw[thick,-latex] (O) -- node[right,pos=0.4]{$\vec{r}_Q^{\, \prime}$} (Q2) node[anchor=south]{$Q'$};
+
+                    %% Puntos
+
+                    \fill[black] (P1) circle (0.5mm);
+                    \fill[black] (P2) circle (0.5mm);
+                    \fill[black] (Q1) circle (0.5mm);
+                    \fill[black] (Q2) circle (0.5mm);
+
+                \end{tikzpicture}
+            \end{figure}
+        \end{column}
+        \begin{column}{0.45\textwidth}
+            En consecuencia:
+            \begin{align*}
+                \vec{r}_P^{\, \prime} &= \vec{r}_P + \delta \vec{r}_P \\
+                \vec{r}_Q^{\, \prime} &= \vec{r}_Q + \delta \vec{r}_Q
+            \end{align*} La posición relativa del punto $Q'$ respecto del punto $P'$ es: $$ \vec{u}^{\, \prime} = \vec{r}_Q^{\,\prime} - \vec{r}_P^{\,\prime}$$ O, equivalentemente: $$ \vec{u}^{\, \prime} = \left(\vec{r}_Q - \vec{r}_P\right) + \left(\delta \vec{r}_Q - \delta \vec{r}_P\right) $$
+        \end{column}
+    \end{columns}
+
+\end{frame}
+
+\begin{frame}{Tensor de deformación}
+
+    Pero $\vec{r}_Q - \vec{r}_P = \vec{u}$, por lo que el térmno $\delta \vec{r}_Q - \delta \vec{r}_P$ puede identificarse con la \emph{variación} del vector posición relativa: $$ \delta \vec{u} = \delta \vec{r}_Q - \delta \vec{r}_P$$ En consecuencia: $$ \vec{u}^{\, \prime} = \vec{u} + \delta \vec{u}$$ Si $\delta \vec{r}_P$ y $\delta \vec{r}_Q$ representan variaciones infinitesimales de las posiciones de los puntos $P$ y $Q$, respectivamente, entonces $\delta \vec{u}$ es una variación infinitesimal de la posición relativa.
+
+\end{frame}
+
+\begin{frame}{Tensor de deformación}
+
+    En términos generales, $\delta \vec{u}$ viene dada por $$ \delta \vec{u} = \delta u_x \, \ver{e}_x + \delta u_y \, \ver{e}_y + \delta u_z \, \ver{e}_z, $$ donde cada componente $\vec{u}$ puede ser una función de las tres coordenadas: $u_i = u_i (x,y,z)$ con $i = x,y,z$. Luego:
+    \begin{align*}
+        \delta u_x &= \pdiff{u_x}{x} \, \diff{x} + \pdiff{u_x}{y} \, \diff y + \pdiff{u_x}{z} \, \diff z, \\
+        \delta u_y &= \pdiff{u_y}{x} \, \diff{x} + \pdiff{u_y}{y} \, \diff y + \pdiff{u_y}{z} \, \diff z, \\
+        \delta u_z &= \pdiff{u_z}{x} \, \diff{x} + \pdiff{u_z}{y} \, \diff y + \pdiff{u_z}{z} \, \diff z.
+    \end{align*}
+
+\end{frame}
+
+\begin{frame}{Tensor de deformación}
+
+    La expresión anterior puede reescribirse de la siguiente manera: $$ \delta \vec{u} = \nabla \vec{u} \, \diff \vec{r},$$ donde $\diff \vec{r} = \diff x \, \ver{e}_x  + \diff y \, \ver{e}_y + \diff z \, \ver{e}_z$ y 
+    $$ \nabla \vec{u} = \begin{pmatrix}
+        \pdiff{u_x}{x} & \pdiff{u_x}{y} & \pdiff{u_x}{z} \\
+        \pdiff{u_y}{x} & \pdiff{u_y}{y} & \pdiff{u_y}{z} \\
+        \pdiff{u_z}{x} & \pdiff{u_z}{y} & \pdiff{u_z}{z}
+    \end{pmatrix}, $$ que no es otra cosa que el jacobiano de la transformación de las coordenadas del sólido sin deformar a aquellas del estado deformado.
+
+\end{frame}
+
+\begin{frame}{Tensor de deformación}
+
+    Como toda matriz cuadrada, $\nabla \vec{u}$ puede escribirse como la suma de una matriz simétrica y otra antisimétrica: $$ \nabla \vec{u} = \frac{\nabla \vec{u} + \nabla \vec{u}^{T}}{2} + \frac{\nabla \vec{u} - \nabla \vec{u}^{T}}{2}, $$ donde $\nabla \vec{u}^{T}$ es la matriz transpuesta de $\nabla \vec{u}$.
+
+    \vs 
+
+    La matriz simétrica representa el \emph{tensor de deformación infinitesimal} ($\mathcal{E}$) y la antisimétrica es una \emph{matriz de rotación infinitesimal} ($\mathcal{R}$): $$ \mathcal{E} = \frac{\nabla \vec{u} + \nabla \vec{u}^{T}}{2} \qquad \mathcal{R} = \frac{\nabla \vec{u} - \nabla \vec{u}^{T}}{2} $$
 
 \end{frame}
 
@@ -366,15 +491,32 @@
 
 \begin{frame}{Fuerzas corporales o de volumen}
     
-    En términos generales, cualquier fuerza corporal o de volumen puede representarse como una fuerza por unidad de volumen: $$\vec{f} = \rho \, \vec{a}$$ donde $\rho$ es la densidad del elemento de masa del cuerpo y $\vec{a}$ es la aceleración impresa sobre dicho elemento por la fuerza $\vec{f}$.
-
-    \vs
+    En términos generales, cualquier fuerza corporal o de volumen puede representarse como una fuerza por unidad de volumen $\vec{f}$. Así, la fuerza aplicada sobre un elemento de volumen del cuerpo viene dada por: $$\diff \vec{F} = \vec{f} \, \diff V $$
 
     Cabe destacar que $\vec{f}$ representa la fuerza por unidad de volumen del cuerpo, esto es, la fuerza sobre un elemento de volumen que puede deberse a una causa externa, como se mencionó anteriormente, pero también a las llamadas \emph{tensiones internas}, es decir a las fuerzas que se ejercen entre sí los elementos de volumen adyancentes.
 
     \vs
 
     Por supuesto, la fuerza por unidad de volumen tiene unidades de fuerza sobre unidad de volumen. En el caso del SI: $$ \left[\vec{f}\right] = \frac{\un{N}}{\un{m}^3} $$
+
+\end{frame}
+
+\begin{frame}{Relación entre las tensiones y las fuerzas de volumen}
+
+    Consideremos un cuerpo sometido a un cierto número de fuerzas externas, las cuales se encuentran distribuidas en toda o en ciertas áreas del cuerpo. Como el cuerpo puede tener una forma irregular, podemos pensar que cada elemento de área $\diff A$ tiene una orientación determinada sobre el cual actúa un diferencial de fuerza $\diff \vec{F}$. La tensión generada por cada $\diff \vec{F}$ sobre el elemento de área correspondiente es $$ \sigma_\parallel = \fdiff{F_\parallel}{A} \qquad \text{y} \qquad \sigma_\perp = \fdiff{F_\perp}{A}, $$ donde $F_\parallel$ y $F_\perp$ son las componentes paralela y normal a $\diff A$, respectivamente. La primera genera un esfuerzo de corte y la segunda un esfuerzo de tracción o compresión. La resultante de este conjunto de fuerzas se obtiene integrando sobre el área del cuerpo: $$ \vec{R} = \int_A \diff \vec{F} = \oiint_A \sigma \, \diff A $$
+
+\end{frame}
+
+\begin{frame}{Relación entre las tensiones y las fuerzas de volumen}
+
+    Debido a estas fuerzas externas, cada elemento de volumen del cuerpo está sometido a una fuerza corporal $\vec{f}$. Tal como se indicó anteriormente, la fuerza sobre cada elemento de volumen está dada por $\diff \vec{F} = \vec{f} \, \diff V$. La resultante de estas fuerzas se calcula integrando sobre todo el volumen del cuerpo: $$\vec{R} = \iiint_V \vec{f} \, \diff V $$ En el equilibrio, esta resultante debe coincidir que la que se obtuvo antes, por lo cual: $$ \iiint_V \vec{f} \, \diff V = \oiint_A \sigma \, \diff A $$ Podemos convertir la integral de superficie presente en el lado derecho de esta ecuación en una integral de volumen en virtud del teorema de la divergencia: $$ \oiint_A \sigma \, \diff A = \iiint_V \nabla \cdot \sigma \, \diff V $$ 
+ 
+    
+\end{frame}
+
+\begin{frame}{Relación entre las tensiones y las fuerzas de volumen}
+    
+    En consecuencia: $$  \iiint_V \vec{f} \, \diff V = \iiint_V \nabla \cdot \sigma \, \diff V $$ Por lo tanto, vemos que $$ \vec{f} = \nabla \cdot \sigma. $$ Esto es, las fuerzas corporales son las ``fuentes'' de las tensiones en el cuerpo.
 
 \end{frame}
 
@@ -408,9 +550,21 @@
 
     A fin de convertir la proporcionalidad en una igualdad, se debe incluir una constante de proporcionalidad. Dicha constante depende del tipo de esfuerzo y de la deformación correspondiente.
 
+    \vs
+
+    Es importante tener en cuenta que en el régimen elástico, la respuesta en deformación del cuerpo se debe a un \emph{cambio} en la fuerza aplicada. Por ejemplo, la longitud de una barra sometida a un esfuerzo de compresión o de tracción, se modifica de $L$ a $L + \Delta L$ cuando la fuerza aplicada pasa de $\vec{F}$ a $\vec{F} + \Delta \vec{F}$ y, consecuentemente, la tensión varía de $\sigma$ a $\sigma + \Delta \sigma$.
+
+    \vs
+
+    Si llamamos de forma genérica $C$ a un módulo elástico, entonces $$C = \frac{\Delta \sigma}{\Delta \varepsilon} $$
+    
+\end{frame}
+
+\begin{frame}{Módulos elásticos}
+
     \begin{itemize}
-        \item Para el caso de los esfuerzos y las deformaciones de tracción o de compresión, la constante de proporcionalidad se conoce como \emph{módulo de Young} ($E$): $$ E = \frac{\Delta F/A}{\Delta L /L} = \frac{L}{A} \frac{\Delta F}{\Delta L} $$
-        \item Cuando se trate de esfuerzos y deformaciones de corte, la constante de proporcionalidad se denomina \emph{módulo de rigidez} ($G$): $$ G = \frac{\Delta F/A}{\Delta x / L} = \frac{L}{A} \frac{\Delta F}{\Delta x}$$
+        \item Para el caso de los esfuerzos y las deformaciones de tracción o de compresión, la constante de proporcionalidad se conoce como \emph{módulo de Young} ($E$): $$ E = \frac{\Delta F_\perp/A}{\Delta L /L} = \frac{L}{A} \frac{\Delta F_\perp}{\Delta L} $$
+        \item Cuando se trate de esfuerzos y deformaciones de corte, la constante de proporcionalidad se denomina \emph{módulo de rigidez} ($G$): $$ G = \frac{\Delta F_\parallel/A}{\Delta x / L} = \frac{L}{A} \frac{\Delta F_\parallel}{\Delta x}$$
         \item Por último, el \emph{módulo de compresibilidad} ($B$) es la constante que relaciona la deformación por presión hidrostática con la tensión correspondiente: $$ B = - \frac{\Delta P}{\Delta V / V} = - V \frac{\Delta P}{\Delta V} $$
     \end{itemize}
 
@@ -420,9 +574,30 @@
 
     Muchas veces resulta más conveniente usar el \emph{coeficiente de compresibilidad} ($k$), o simplemente la compresibilidad, en lugar del módulo de compresibilidad. La compresibilidad se define como el inverso multiplicativo del módulo de compresibilidad: $$ k = \frac{1}{B} = - \frac{1}{V} \frac{\Delta V}{\Delta P} $$ El signo negativo en las expresiones de $B$ y de $k$ se deben a que cuando aumenta la presión, el volumen del cuerpo disminuye. En este sentido, tenemos que: $$ - \Delta P = B \, \frac{\Delta V}{V} $$ Como $\frac{\Delta V}{V} = \varepsilon $: $$ - \Delta P = B \, \varepsilon $$ y, por lo tanto, debe ser $\sigma = - \Delta P$.
 
-    \vs
+
+\end{frame}
+
+\begin{frame}{Módulos elásticos}
 
     La relación lineal entre el esfuerzo y la deformación de un cuerpo, puede verse como una generalización del a ley de Hooke.
+
+    \vs
+
+    Puede ocurrir que los esfuerzos y, en consecuencia, las deformaciones varíen en el tiempo o en el espacio o en ambas, por lo que en lugar de las variaciones finitas deben considerarse variaciones infinitesimales de los esfuerzos y las deformaciones. En este sentido, los módulos elásticos se definen de la siguiente manera:
+    \begin{columns}
+        \begin{column}{0.6\textwidth}
+            \begin{itemize}
+                \item Módulo de Young: $ E = \dfrac{L}{A} \fdiff{F_\perp}{L} $
+                \item Módulo de rigidez: $ G = \dfrac{L}{A} \fdiff{F_\parallel}{L}$
+                \item Módulo de compresibilidad: $ B = - V \fdiff{P}{V} $
+                \item Compresibilidad: $ k =  - \dfrac{1}{V} \fdiff{V}{P} $
+            \end{itemize}
+        \end{column}
+        \vrule
+        \begin{column}{0.4\textwidth}
+            \hspace{11pt} En general: $$ C = \fdiff{\sigma}{\varepsilon} $$
+        \end{column}
+    \end{columns}
 
 \end{frame}
 
