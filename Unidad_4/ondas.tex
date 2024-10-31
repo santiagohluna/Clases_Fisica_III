@@ -113,13 +113,14 @@
 
 \begin{frame}{Descripción matemática de las ondas}
 
-    Anteriormente señalamos que una onda es una perturbación que se propaga por un determinado medio. Entendemos por perturbación a toda modificación o apartamiento del estado de equilibro, por lo tanto, es de fundamental importancia identificar las variables que definen el estado de equilibrio de un sistema dado. A modo de ejemplo, consideremos una cuerda tensa que se encuentra de forma horizontal sujeta a dos soportes, tal como se muestra en la Figura siguiente.
+    Anteriormente señalamos que una onda es una perturbación que se propaga por un determinado medio. Entendemos por perturbación a toda modificación o apartamiento del estado de equilibro, por lo tanto, es de fundamental importancia identificar las variables que definen el estado de equilibrio de un sistema dado. A modo de ejemplo, consideremos una cuerda tensa que se encuentra de forma horizontal sujeta a dos soportes, tal como se muestra en la Figura~\ref{fig:cuerda_equilibrio}.
 
     \vs 
     \begin{figure}
         \centering
         \includegraphics[width=0.6\textwidth]{../figs/cuerda_equilibrio.pdf}
-        \caption{}
+        \caption{Cuerda tensa en equilibrio.}
+        \label{fig:cuerda_equilibrio}
     \end{figure}
 
     Supongamos ahora que en el instante $t_0$ se le da a la cuerda un impulso tal que la cuerda se genera una perturbación que se propaga hacia la derecha con cierta rapidez $v$, como la que se muestra a continuación.
@@ -128,21 +129,272 @@
 
 \begin{frame}{Descripción matemática de las ondas}
 
-    Supongamos ahora que en el instante $t_0$ se le da a la cuerda un impulso tal que la cuerda se genera una perturbación que se propaga hacia la derecha con cierta rapidez $v$, como la que se muestra a continuación.
+    Supongamos ahora que en cierto instante se le da a la cuerda un impulso tal se genera una perturbación que se propaga hacia la derecha con cierta rapidez $v$, como la que se muestra a continuación.
 
     \begin{figure}
         \centering
         \begin{tikzpicture}[scale=1]
+            \def\Px{1.8}
+
             \draw[->,thick] (-0.5,0) -- (5,0) node[below]{$x$};
             \draw[->,thick] (0,-0.5) -- (0,2) node[left]{$y$};
-            \draw[blue,very thick,samples=100,smooth,variable=\x,domain=0:4.5] plot(\x,{exp(-(\x-2)^2/0.5)});
+            \draw[blue,very thick,samples=100,smooth,variable=\x,domain=0:4.5] plot(\x,{1.25*exp(-(\x-2)^2/0.5)});
+
+            \draw[thick,red,->] (2,1.5) -- node[above,midway]{$\vec{v}$} (3,1.5); 
+            
+            \coordinate (P) at (\Px,{1.25*exp(-(\Px-2)^2/0.5)});
+            \coordinate (Px) at (\Px,0);
+            
+            \fill[black] (P) circle (0.5mm);
+            \fill[black] (Px) circle (0.5mm);
+            
+            \draw[<->] (Px) -- node[right,midway]{$y$} (P);
         \end{tikzpicture}
     \end{figure}
 
-    En este caso, la perturbación se describe como la distancia (hacia arriba o hacia abajo) en la que la cuerda se aparta de la línea horizontal que caracteriza su estado de equilibrio.
+    En este caso, la perturbación se describe como la distancia $y$ (hacia arriba o hacia abajo) en la que la cuerda se aparta de la línea horizontal que caracteriza su estado de equilibrio.
+
+    \vs
+
+    La coordenada $y$ de cada punto de la cuerda debe ser una función tanto de su posición $x$ como del tiempo $t$, esto es: $y = f(x,t)$. 
+
+\end{frame}
+
+\begin{frame}{Descripción matemática de las ondas}
 
     Puede comprobarse que, en la medida que puedan despreciarse todos los efectos disipativos, la forma del pulso se conserva a lo largo de todo su recorrido por la cuerda y que este se propaga a velocidad constante.
+
+    \vs 
+
+    Si $y = f(x,t_0)$ representa la forma del pulso en el instante $t_0$, en un instante de tiempo arbitrario $t$ posterior o anterior, el pulso se desplaza $s$ unidades hacia la derecha o hacia la izquierda, respectivamente, donde $$ s(t) = x_0 + v \left(t - t_0\right), $$ donde $x_0$ es el valor de $s$ en $t_0$, y, por lo tanto, en el instante $t$ la forma del pulso está dada por $y = f(x-s(t))$. En virtud de que la dependencia temporal está incluida en la expresión de $s(t)$, no es necesario incluirla en la forma $f(x-s(t),t)$.
+ 
+\end{frame}
+
+\begin{frame}{Descripción matemática de las ondas}
     
+    Por otro lado, si la forma del pulso ha de conservarse, entonces la altura $y$ de un punto cuya abscisa es $x_1$, en cierto instante $t_1$, al cabo de cierto intervalo de tiempo $\Delta t$, la altura de otro punto de abscisa $x_2 = x_1 + v \, \Delta t$ debe ser también $y$ en el instante $t_2 = t_1 + \Delta t$, esto es: $$ y(x_2,t_2) = y(x_1,t_1) $$  
+
+    \begin{figure}
+        \centering
+        \begin{tikzpicture}[scale=1]
+            \def\Px{1.8}
+            \def\Qx{6.8}
+
+            \draw[->,thick] (-0.5,0) -- (10,0) node[below]{$x$};
+            \draw[->,thick] (0,-0.5) -- (0,2) node[left]{$y$};
+            \draw[blue,very thick,samples=100,smooth,variable=\x,domain=0:5,dashed] plot(\x,{1.25*exp(-(\x-2)^2/0.5)});
+            \draw[blue,very thick,samples=100,smooth,variable=\x,domain=0:9.5] plot(\x,{1.25*exp(-(\x-7)^2/0.5)});
+
+            \draw[thick,red,->] (2,1.5) -- node[above,midway]{$\vec{v}$} (3,1.5); 
+            \draw[thick,red,->] (7,1.5) -- node[above,midway]{$\vec{v}$} (8,1.5); 
+            
+            \coordinate (P) at (\Px,{1.25*exp(-(\Px-2)^2/0.5)});
+            \coordinate (Px) at (\Px,0);
+            
+            \fill[black] (P) circle (0.5mm);
+            \fill[black] (Px) circle (0.5mm) node[below left]{$x_1$};
+            
+            \draw[<->] (Px) -- node[right,midway]{$y$} (P);
+
+            \coordinate (Q) at (\Qx,{1.25*exp(-(\Qx-7)^2/0.5)});
+            \coordinate (Qx) at (\Qx,0);
+            
+            \fill[black] (Q) circle (0.5mm);
+            \fill[black] (Qx) circle (0.5mm) node[below right]{$x_2$};
+            
+            \draw[<->] (Qx) -- node[right,midway]{$y$} (Q);
+
+            \draw[<->] (\Px,-0.5) -- node[fill=white]{$v \, \Delta t$} (\Qx,-0.5);
+            \draw (\Px,-0.1) -- (\Px,-0.7);
+            \draw (\Qx,-0.1) -- (\Qx,-0.7);
+        \end{tikzpicture}
+    \end{figure}
+     
+\end{frame}
+
+\begin{frame}{Descripción matemática de las ondas}
+
+    Puede demostrarse fácilmente que la condición $ y(x_2,t_2) = y(x_1,t_1) $ queda satisfecha si la perturbación está dada por $y(x,t) = f(x-s(t))$.
+
+    \vs
+
+    En conclusión, si la magnitud $\xi$ representa una desviación de cierto estado de equilibrio, entonces la propagación de esta perturbación se describe matemáticamente con una función $\xi = f(\vec{r}-\vec{s}(t))$, donde $\vec{r}$ es el vector de posición del punto genérico en el que se evalúa la perturbación y $\vec{s}(t)$ es una función vectorial lineal en el tiempo que describe el desplazamiento de la perturbación. 
+    
+    \vs
+
+    Toda función que represente una onda se la suele llamar \emph{función de onda}.
+     
+\end{frame}
+
+\begin{frame}{Descripción matemática de las ondas}
+
+    En virtud de que la función de onda depende tanto de las coordenadas espaciales como del tiempo, podemos analizar la propagación de la perturbación asociada en el tiempo de forma análoga a como lo hicimos para el espacio.
+
+    \vs
+
+    Si ahora $y = f(x_0,t)$ representa la forma del pulso en función del tiempo, esto es cómo cambia la altura $y$ de un punto de la cuerda cuya abscisa es $x_0$ en el tiempo, entonces un \emph{desplazamiento} en el tiempo de esta función está dado por $y = f(t - \tau(x))$ donde, $$ \tau (x) = t_0 + \frac{x-x_0}{v} $$
+
+    \begin{figure}
+        \centering
+        \begin{tikzpicture}[scale=1]
+            \def\Px{1.8}
+            \def\Qx{6.8}
+
+            \draw[->,thick] (-0.5,0) -- (10,0) node[below]{$t$};
+            \draw[->,thick] (0,-0.5) -- (0,2) node[left]{$y$};
+            \draw[blue,very thick,samples=100,smooth,variable=\x,domain=0:5,dashed] plot(\x,{1.25*exp(-(\x-2)^2/0.5)});
+            \draw[blue,very thick,samples=100,smooth,variable=\x,domain=0:9.5] plot(\x,{1.25*exp(-(\x-7)^2/0.5)});
+
+            \draw[thick,red,->] (2,1.5) -- node[above,midway]{$\vec{v}$} (3,1.5); 
+            \draw[thick,red,->] (7,1.5) -- node[above,midway]{$\vec{v}$} (8,1.5); 
+            
+            \coordinate (P) at (\Px,{1.25*exp(-(\Px-2)^2/0.5)});
+            \coordinate (Px) at (\Px,0);
+            
+            \fill[black] (P) circle (0.5mm);
+            \fill[black] (Px) circle (0.5mm) node[below left]{$t_1$};
+            
+            \draw[<->] (Px) -- node[right,midway]{$y$} (P);
+
+            \coordinate (Q) at (\Qx,{1.25*exp(-(\Qx-7)^2/0.5)});
+            \coordinate (Qx) at (\Qx,0);
+            
+            \fill[black] (Q) circle (0.5mm);
+            \fill[black] (Qx) circle (0.5mm) node[below right]{$t_2$};
+            
+            \draw[<->] (Qx) -- node[right,midway]{$y$} (Q);
+
+            \draw[<->] (\Px,-0.5) -- node[fill=white]{$\frac{\Delta x}{v}$} (\Qx,-0.5);
+            \draw (\Px,-0.1) -- (\Px,-0.7);
+            \draw (\Qx,-0.1) -- (\Qx,-0.7);
+        \end{tikzpicture}
+    \end{figure}
+
+\end{frame}
+
+\begin{frame}{Ondas armónicas}
+
+    En consecuencia, podemos pensar a las ondas como perturbaciones que se propagan en espacio y tiempo.
+
+    \vs
+
+    Un claro ejemplo del desplazamiento en el tiempo de una función es el de una onda armónica. Supongamos que la coordenada $y$ de un punto de abscisa $x_0$ varía en el tiempo según $$ y = f(t) = A \sen \left(\omega t\right), $$ donde $A$ es la amplitud y $\omega$ es la frecuencia angular. En otras palabras, el punto considerado describe un movimiento armónico simple en la dirección vertical.
+
+    \begin{figure}
+        \centering
+        \begin{tikzpicture}[scale=1]
+            \def\A{1}
+            \def\L{5}
+
+            \draw[dashed] (0,\A) -- (6.8,\A);
+            \draw[dashed] (0,-\A) -- (6.8,-\A);
+
+            \draw[->,thick] (-0.5,0) -- (7,0) node[below]{$t$};
+            \draw[->,thick] (0,-1.5) -- (0,1.5) node[left]{$y$};
+            \draw[blue,very thick,samples=100,smooth,variable=\x,domain=0:{2*pi}] plot(\x,{\A*sin(\x*360/\L)}) node[above]{$f(t)$};
+
+            \fill[black] (0,\A) circle (0.5mm) node[left]{$+A$};
+            \fill[black] (0,-\A) circle (0.5mm) node[left]{$-A$};
+            \fill[black] (\L,0) circle (0.5mm) node[below right]{$P$};
+            
+        \end{tikzpicture}
+    \end{figure}
+
+    
+\end{frame}
+
+\begin{frame}{Ondas armónicas}
+
+    Si ahora consideramos que se trata de una perturbación armónica que se propaga por la cuerda, debemos incluir en la expresión de la función que describe el movimiento vertical del punto el desplazamiento temporal: $$ y(x,t) = f(t-\tau(x)) = A \sen \left(\omega \left[t - \tau(x)\right]\right) $$ Reemplazando la expresión de $\tau (x)$, se obtiene: $$ y(x,t) = A \sen \left(\omega \left[\left(t - t_0\right) - \frac{\left(x-x_0\right)}{v}\right]\right). $$ Expresión que también podemos reescribir como: $$ y(x,t) = A \sen \left(\omega \, \Delta t - k \, \Delta x\right), $$ donde $k = \dfrac{\omega}{v}$ se conoce como el \emph{número de onda} y el término $\omega \, \Delta t - k \, \Delta x $ es la \emph{fase}, siendo $\Delta t = t - t_0$ y $\Delta x = x - x_0$.
+
+        
+\end{frame}
+
+\begin{frame}{Ondas armónicas}
+
+    Como habíamos visto, toda función de onda cumple con la propiedad de que $y(x_1, t_1) = y(x_2, t_2)$, donde $x_2 = x_1 + v \left(t_2-t_1\right)$. Dado que en el caso de las ondas armónicas $y(x,t)$ es una función periódica, tanto en el tiempo como en el espacio, esta propiedad se satisface cuando $\Delta t = t_2 - t_1 = P$, siendo $P$ el periodo de la función. Cuando esto ocurre, el desplazamiento espacial de la onda es $\Delta x = x_2 - x_1 = \lambda$, donde $\lambda$ se conoce como \emph{longitud de onda}. Esto es: $$ \lambda = v \, P$$ Pero como $P = \dfrac{1}{f}$, se obtiene que $$ \lambda = \frac{v}{f}, \qquad \text{ o bien, } \qquad v = \lambda \, f $$ En virtud de que $\omega = 2 \, \pi \, f$, podemos expresar el número de onda en función de la longitud de onda: $$ k = \frac{\omega}{v} = \frac{2 \, \pi \, f}{\lambda \, f}. \quad \text{En consecuencia:} \quad k = \frac{2 \, \pi}{\lambda}. $$ 
+
+            
+\end{frame}
+
+\begin{frame}{Ondas armónicas}
+
+    \begin{figure}
+        \centering
+        \begin{tikzpicture}[scale=1]
+            \def\A{1}
+            \def\L{5}
+            \def\xa{\L/8}
+            \def\xb{9*\L/8}
+
+            \coordinate (P) at (\xa,{\A*sin(\xa*360/\L)});
+            \coordinate (Q) at (\xb,{\A*sin(\xb*360/\L)});
+
+            \draw[densely dotted] (0,{\A*sin(\xa*360/\L)}) -- (Q);
+            \draw[densely dotted] (\xa,0) -- (P);
+            \draw[densely dotted] (\xb,0) -- (Q);
+
+            \draw[dashed] (0,\A) -- (6.8,\A);
+            \draw[dashed] (0,-\A) -- (6.8,-\A);
+
+            \draw[->,thick] (-0.5,0) -- (7,0) node[below]{$x$};
+            \draw[->,thick] (0,-1.5) -- (0,1.5) node[left]{$y$};
+            \draw[blue,very thick,samples=100,smooth,variable=\x,domain=0:{2*pi}] plot(\x,{\A*sin(\x*360/\L)});
+
+            \fill[black] (0,\A) circle (0.5mm) node[left]{$+A$};
+            \fill[black] (0,-\A) circle (0.5mm) node[left]{$-A$};
+            
+            \fill[black] (\xa,0) circle (0.5mm) node[below]{$x_1$};
+            \fill[black] (\xb,0) circle (0.5mm) node[below]{$x_2$};
+
+            \fill[black] (P) circle (0.5mm);
+            \fill[black] (Q) circle (0.5mm);
+
+            \draw[<->] (\xa,1.25) -- node[fill=white]{\small $\lambda$} (\xb,1.25);
+            \draw (\xa,1.05) -- (\xa,1.35);
+            \draw (\xb,1.05) -- (\xb,1.35);
+            
+        \end{tikzpicture}
+    \end{figure}
+
+    \begin{figure}
+        \centering
+        \begin{tikzpicture}[scale=1]
+            \def\A{1}
+            \def\L{5}
+            \def\xa{\L/8}
+            \def\xb{9*\L/8}
+
+            \coordinate (P) at (\xa,{\A*sin(\xa*360/\L)});
+            \coordinate (Q) at (\xb,{\A*sin(\xb*360/\L)});
+
+            \draw[densely dotted] (0,{\A*sin(\xa*360/\L)}) -- (Q);
+            \draw[densely dotted] (\xa,0) -- (P);
+            \draw[densely dotted] (\xb,0) -- (Q);
+
+            \draw[dashed] (0,\A) -- (6.8,\A);
+            \draw[dashed] (0,-\A) -- (6.8,-\A);
+
+            \draw[->,thick] (-0.5,0) -- (7,0) node[below]{$t$};
+            \draw[->,thick] (0,-1.5) -- (0,1.5) node[left]{$y$};
+            \draw[blue,very thick,samples=100,smooth,variable=\x,domain=0:{2*pi}] plot(\x,{\A*sin(\x*360/\L)});
+
+            \fill[black] (0,\A) circle (0.5mm) node[left]{$+A$};
+            \fill[black] (0,-\A) circle (0.5mm) node[left]{$-A$};
+            
+            \fill[black] (\xa,0) circle (0.5mm) node[below]{$t_1$};
+            \fill[black] (\xb,0) circle (0.5mm) node[below]{$t_2$};
+
+            \fill[black] (P) circle (0.5mm);
+            \fill[black] (Q) circle (0.5mm);
+
+            \draw[<->] (\xa,1.25) -- node[fill=white]{\small $P$} (\xb,1.25);
+            \draw (\xa,1.05) -- (\xa,1.35);
+            \draw (\xb,1.05) -- (\xb,1.35);
+            
+        \end{tikzpicture}
+    \end{figure}
+
 \end{frame}
 
 \section{La ecuación de ondas clásica}
@@ -153,7 +405,9 @@
 
     \vs
 
-    Para derivarla, vamos a considerar una cuerda tensa capaz de deformarse.
+    Para derivarla, vamos a considerar nuevamente una cuerda tensa capaz de deformarse.
+
+    
 
 \end{frame}
 
