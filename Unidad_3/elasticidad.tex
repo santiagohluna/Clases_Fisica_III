@@ -34,7 +34,8 @@
 \newcommand{\diff}[0]{\text{d}}
 \newcommand{\fdiff}[2]{\dfrac{\text{d} #1}{\text{d} #2}}
 \newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
-\newcommand{\fddiff}[2]{\frac{\text{d^2} #1}{\text{d} #2^2}}
+\newcommand{\fddiff}[2]{\frac{\text{d}^2 #1}{\text{d} #2^2}}
+\newcommand{\pddiff}[2]{\frac{\partial^2 #1}{\partial #2^2}}
 \newcommand{\grado}[0]{^{\circ}}
 \newcommand{\chel}[4]{^{#1}_{#2}\text{#3}^{#4}}
 \newcommand{\valmed}[1]{\left\langle #1 \right\rangle}
@@ -270,27 +271,28 @@
                 \centering
                 \begin{tikzpicture}
                     \coordinate (O) at (0,0);
-                    \coordinate (P1) at (3,1);
-                    \coordinate (P2) at (4,2);
-                    \coordinate (Q1) at (1,2);
-                    \coordinate (Q2) at (2,3);
+                    \coordinate (P1) at (1,2);
+                    \coordinate (Q1) at (2,3);
+                    \coordinate (P2) at (3,1);
+                    \coordinate (Q2) at (4,2);
+                    
                     \draw[thick,-latex] (-0.5,0) -- (5,0);
                     \draw[thick,-latex] (0,-0.5) -- (0,4);
                     
                     %% Posiciones relativas
 
-                    \draw[thick,-latex,red] (P1) -- node[above]{$\vec{u}$} (Q1);
-                    \draw[thick,-latex,red] (P2) -- node[above]{$\vec{u}^{\, \prime}$} (Q2);
+                    \draw[thick,-latex,blue] (P1) -- node[left=4pt,pos=0.7]{$\diff \vec{r}$} (Q1);
+                    \draw[thick,-latex,blue] (P2) -- node[right=4pt,pos=0.3]{$\diff \vec{r}^{\, \prime}$} (Q2);
                     
                     %% Desplazamientos
 
-                    \draw[thick,-latex,blue] (P1) -- node[right=4pt,pos=0.3]{$\delta \vec{r}_P$} (P2);
-                    \draw[thick,-latex,blue] (Q1) -- node[left=4pt,pos=0.7]{$\delta \vec{r}_Q$} (Q2);
+                    \draw[thick,-latex,red] (P1) -- node[above right]{$\vec{u}$} (P2);
+                    \draw[thick,-latex,red] (Q1) -- node[above right]{$\vec{u}^{\, \prime}$} (Q2);
                     
-                    \draw[thick,-latex] (O) -- node[below,near end]{$\vec{r}_P$} (P1) node[anchor=north]{$P$};
-                    \draw[thick,-latex] (O) -- node[above,near end]{$\vec{r}_P^{\, \prime}$} (P2) node[anchor=west]{$P'$};
-                    \draw[thick,-latex] (O) -- node[left,pos=0.6]{$\vec{r}_Q$} (Q1) node[anchor=east]{$Q$};
-                    \draw[thick,-latex] (O) -- node[right,pos=0.4]{$\vec{r}_Q^{\, \prime}$} (Q2) node[anchor=south]{$Q'$};
+                    \draw[thick,-latex] (O) -- node[pos=0.6,left]{$\vec{r}_P$} (P1) node[left]{$P$};
+                    \draw[thick,-latex] (O) -- node[right,pos=0.7]{$\vec{r}_Q$} (Q1) node[above]{$Q$};
+                    \draw[thick,-latex] (O) -- node[below,near end]{$\vec{r}_{P'}$} (P2) node[below right=-3pt]{$P'$};
+                    \draw[thick,-latex] (O) -- node[above,pos=0.4]{$\vec{r}_{Q'}$} (Q2) node[right]{$Q'$};
 
                     %% Puntos
 
@@ -303,7 +305,7 @@
             \end{figure}
         \end{column}
         \begin{column}{0.45\textwidth}
-            Sean $\vec{r}_P$ y $\vec{r}_Q$ los vectores de posición de los puntos $P$ y $Q$, respectivamente, antes de la deformación. Por otro lado, sea $\vec{u}$ la posición relativa del punto $Q$ respecto del punto $P$ esto es: $$ \vec{u} = \vec{r}_Q - \vec{r}_P $$
+            Sean $\vec{r}_P$ y $\vec{r}_Q$ los vectores de posición de los puntos $P$ y $Q$, respectivamente, antes de la deformación. Si asumimos que estos puntos están separados una distancia infinitesimal, entonces: $$ \vec{r}_Q = \vec{r}_P + \diff \vec{r},$$ donde $\diff \vec{r}$ es el vector posición relativa del punto $Q$ respecto del punto $P$.
         \end{column}
     \end{columns}
 
@@ -311,7 +313,7 @@
 
 \begin{frame}{Tensor de deformación}
 
-    Como consecuencia de la deformación, el punto $P$ se traslada al punto $P'$ y el punto $Q$ se traslada al punto $Q'$. Sean $\delta \vec{r}_P$ y $\delta \vec{r}_Q$ los respectivos desplazamientos de estos puntos.
+    Como consecuencia de la deformación, el punto $P$ se traslada al punto $P'$ y el punto $Q$ se traslada al punto $Q'$. Sean $\vec{u}$ y $\vec{u}^{\, \prime}$ los respectivos desplazamientos de estos puntos.
 
     \begin{columns}
         \begin{column}{0.45\textwidth}
@@ -319,27 +321,28 @@
                 \centering
                 \begin{tikzpicture}
                     \coordinate (O) at (0,0);
-                    \coordinate (P1) at (3,1);
-                    \coordinate (P2) at (4,2);
-                    \coordinate (Q1) at (1,2);
-                    \coordinate (Q2) at (2,3);
+                    \coordinate (P1) at (1,2);
+                    \coordinate (Q1) at (2,3);
+                    \coordinate (P2) at (3,1);
+                    \coordinate (Q2) at (4,2);
+                    
                     \draw[thick,-latex] (-0.5,0) -- (5,0);
                     \draw[thick,-latex] (0,-0.5) -- (0,4);
                     
                     %% Posiciones relativas
 
-                    \draw[thick,-latex,red] (P1) -- node[above]{$\vec{u}$} (Q1);
-                    \draw[thick,-latex,red] (P2) -- node[above]{$\vec{u}^{\, \prime}$} (Q2);
+                    \draw[thick,-latex,blue] (P1) -- node[left=4pt,pos=0.7]{$\diff \vec{r}$} (Q1);
+                    \draw[thick,-latex,blue] (P2) -- node[right=4pt,pos=0.3]{$\diff \vec{r}^{\, \prime}$} (Q2);
                     
                     %% Desplazamientos
 
-                    \draw[thick,-latex,blue] (P1) -- node[right=4pt,pos=0.3]{$\delta \vec{r}_P$} (P2);
-                    \draw[thick,-latex,blue] (Q1) -- node[left=4pt,pos=0.7]{$\delta \vec{r}_Q$} (Q2);
+                    \draw[thick,-latex,red] (P1) -- node[above right]{$\vec{u}$} (P2);
+                    \draw[thick,-latex,red] (Q1) -- node[above right]{$\vec{u}^{\, \prime}$} (Q2);
                     
-                    \draw[thick,-latex] (O) -- node[below,near end]{$\vec{r}_P$} (P1) node[anchor=north]{$P$};
-                    \draw[thick,-latex] (O) -- node[above,near end]{$\vec{r}_P^{\, \prime}$} (P2) node[anchor=west]{$P'$};
-                    \draw[thick,-latex] (O) -- node[left,pos=0.6]{$\vec{r}_Q$} (Q1) node[anchor=east]{$Q$};
-                    \draw[thick,-latex] (O) -- node[right,pos=0.4]{$\vec{r}_Q^{\, \prime}$} (Q2) node[anchor=south]{$Q'$};
+                    \draw[thick,-latex] (O) -- node[pos=0.6,left]{$\vec{r}_P$} (P1) node[left]{$P$};
+                    \draw[thick,-latex] (O) -- node[right,pos=0.7]{$\vec{r}_Q$} (Q1) node[above]{$Q$};
+                    \draw[thick,-latex] (O) -- node[below,near end]{$\vec{r}_{P'}$} (P2) node[below right=-3pt]{$P'$};
+                    \draw[thick,-latex] (O) -- node[above,pos=0.4]{$\vec{r}_{Q'}$} (Q2) node[right]{$Q'$};
 
                     %% Puntos
 
@@ -354,34 +357,44 @@
         \begin{column}{0.45\textwidth}
             En consecuencia:
             \begin{align*}
-                \vec{r}_P^{\, \prime} &= \vec{r}_P + \delta \vec{r}_P \\
-                \vec{r}_Q^{\, \prime} &= \vec{r}_Q + \delta \vec{r}_Q
-            \end{align*} La posición relativa del punto $Q'$ respecto del punto $P'$ es: $$ \vec{u}^{\, \prime} = \vec{r}_Q^{\,\prime} - \vec{r}_P^{\,\prime}$$ O, equivalentemente: $$ \vec{u}^{\, \prime} = \left(\vec{r}_Q - \vec{r}_P\right) + \left(\delta \vec{r}_Q - \delta \vec{r}_P\right) $$
+                \vec{r}_{P'} &= \vec{r}_P + \vec{u} \\
+                \vec{r}_{Q'} &= \vec{r}_Q + \vec{u}^{\, \prime}
+            \end{align*} Por otro lado, además, $$ \vec{r}_{Q'} = \vec{r}_{P'} + \diff \vec{r}^{\, \prime} $$
         \end{column}
     \end{columns}
 
-\end{frame}
-
-\begin{frame}{Tensor de deformación}
-
-    Pero $\vec{r}_Q - \vec{r}_P = \vec{u}$, por lo que el térmno $\delta \vec{r}_Q - \delta \vec{r}_P$ puede identificarse con la \emph{variación} del vector posición relativa: $$ \delta \vec{u} = \delta \vec{r}_Q - \delta \vec{r}_P$$ En consecuencia: $$ \vec{u}^{\, \prime} = \vec{u} + \delta \vec{u}$$ Si $\delta \vec{r}_P$ y $\delta \vec{r}_Q$ representan variaciones infinitesimales de las posiciones de los puntos $P$ y $Q$, respectivamente, entonces $\delta \vec{u}$ es una variación infinitesimal de la posición relativa.
+    Reemplazando las expresiones de $\vec{r}_{P'}$ y de $\vec{r}_{Q'}$ en la última relación, se obtiene: $$ \vec{r}_Q + \vec{u}^{\, \prime} = \vec{r}_P + \vec{u} + \diff \vec{r}^{\, \prime} $$
 
 \end{frame}
 
 \begin{frame}{Tensor de deformación}
 
-    En términos generales, $\delta \vec{u}$ viene dada por $$ \delta \vec{u} = \delta u_x \, \ver{e}_x + \delta u_y \, \ver{e}_y + \delta u_z \, \ver{e}_z, $$ donde cada componente $\vec{u}$ puede ser una función de las tres coordenadas: $u_i = u_i (x,y,z)$ con $i = x,y,z$. Luego:
+    Pero como $ \vec{r}_Q = \vec{r}_P + \diff \vec{r}$: $$ \vec{r}_P + \diff \vec{r} + \vec{u}^{\, \prime} = \vec{r}_P + \vec{u} + \diff \vec{r}^{\, \prime}, $$ o, lo que es lo mismo: $$ \vec{u}^{\, \prime} - \vec{u}= \diff \vec{r}^{\, \prime} - \diff \vec{r} $$ Podemos ver entonces que la diferencia entre los desplazamientos de los puntos $P$ y $Q$ es infinitesimal, puesto que consideramos que estos puntos están separados una distancia infinitesimal antes y después de la deformación, esto es $\diff \vec{u} = \vec{u}^{\, \prime} - \vec{u} $.
+
+    \vs
+
+    Ahora bien, si el desplazamiento fuese constante, $\vec{u} = \vec{u}_0$, tendríamos que $\diff \vec{u} = \vec{0}$, lo que corresponde a una traslación rígida del cuerpo, lo que implica que $\diff \vec{r}^{\, \prime} = \diff \vec{r}$ y, por lo tanto, no habría deformación.
+
+    \vs
+
+    Se deduce entonces que $\vec{u}$ debe ser una función de la posición del punto $\vec{r}$ y posiblemente del tiempo: $\vec{u} = \vec{u} \left(\vec{r},t\right)$.
+
+\end{frame}
+
+\begin{frame}{Tensor de deformación}
+
+    En consecuencia, $\diff \vec{u}$ viene dada por $$ \diff \vec{u} = \diff u_x \, \ver{e}_x + \diff u_y \, \ver{e}_y + \diff u_z \, \ver{e}_z, $$ donde cada componente $\vec{u}$ puede ser una función de las tres coordenadas: $u_i = u_i (x,y,z)$ con $i = x,y,z$. Luego:
     \begin{align*}
-        \delta u_x &= \pdiff{u_x}{x} \, \diff{x} + \pdiff{u_x}{y} \, \diff y + \pdiff{u_x}{z} \, \diff z, \\
-        \delta u_y &= \pdiff{u_y}{x} \, \diff{x} + \pdiff{u_y}{y} \, \diff y + \pdiff{u_y}{z} \, \diff z, \\
-        \delta u_z &= \pdiff{u_z}{x} \, \diff{x} + \pdiff{u_z}{y} \, \diff y + \pdiff{u_z}{z} \, \diff z.
+        \diff u_x &= \pdiff{u_x}{x} \, \diff{x} + \pdiff{u_x}{y} \, \diff y + \pdiff{u_x}{z} \, \diff z, \\
+        \diff u_y &= \pdiff{u_y}{x} \, \diff{x} + \pdiff{u_y}{y} \, \diff y + \pdiff{u_y}{z} \, \diff z, \\
+        \diff u_z &= \pdiff{u_z}{x} \, \diff{x} + \pdiff{u_z}{y} \, \diff y + \pdiff{u_z}{z} \, \diff z.
     \end{align*}
 
 \end{frame}
 
 \begin{frame}{Tensor de deformación}
 
-    La expresión anterior puede reescribirse de la siguiente manera: $$ \delta \vec{u} = \nabla \vec{u} \, \diff \vec{r},$$ donde $\diff \vec{r} = \diff x \, \ver{e}_x  + \diff y \, \ver{e}_y + \diff z \, \ver{e}_z$ y 
+    La expresión anterior puede reescribirse de la siguiente manera: $$ \diff \vec{u} = \nabla \vec{u} \, \diff \vec{r},$$ donde $\diff \vec{r} = \diff x \, \ver{e}_x  + \diff y \, \ver{e}_y + \diff z \, \ver{e}_z$ y 
     $$ \nabla \vec{u} = \begin{pmatrix}
         \pdiff{u_x}{x} & \pdiff{u_x}{y} & \pdiff{u_x}{z} \\
         \pdiff{u_y}{x} & \pdiff{u_y}{y} & \pdiff{u_y}{z} \\
@@ -725,8 +738,59 @@
 \begin{frame}
     \frametitle{Ecuaciones de movimiento}
 
-    Consideremos un elemento diferencial del cuerpo sólido, esto es, una porción del mismo que tiene un volumen $\diff V$ y masa $\diff m$. Supongamos, además que este elemento de volumen está sometido a fuerzas o tensiones y que, en determinado instante de tiempo, la fuerza se incrementa en $\diff \vec{F}$. 
+    Consideremos un elemento diferencial del cuerpo sólido, esto es, una porción del mismo que tiene un volumen $\diff V$ y masa $\diff m$. Supongamos, además que este elemento de volumen está sometido a fuerzas o tensiones y que, en determinado instante de tiempo, la fuerza se incrementa en $\diff \vec{F} = \vec{f} \, \diff V$. 
 
+    \vs 
+
+    Como consecuencia de este incremento en la fuerza aplicada, el elemento de volumen del cuerpo adquiere una aceleración en virtud de la segunda ley de Newton: $$ \vec{f} \, \diff V = \diff m \, \vec{a}. $$ Como sabemos, $\diff m = \rho \, \diff V$, donde $\rho$ es la densidad de masa. Por otro lado, sabemos que $\vec{f} = \nabla \cdot \sigma$. Luego: $$ \nabla \cdot \sigma = \rho \, \vec{a}$$
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Ecuaciones de movimiento}
+
+    Con respecto a la aceleración, si el elemento de masa se encontraba en el punto $P$ en el instante $t$ antes de la deformación, y se desplaza al punto $P'$ en un intervalo $\diff t$ luego de la deformación, entonces la velocidad es:
+
+    \begin{columns}
+        \begin{column}{0.45\textwidth}
+            \begin{figure}
+                \centering
+                \begin{tikzpicture}
+                    \coordinate (O) at (0,0);
+                    \coordinate (P1) at (2,3);
+                    \coordinate (P2) at (4,2);
+                    
+                    \draw[thick,-latex] (-0.5,0) -- (5,0);
+                    \draw[thick,-latex] (0,-0.5) -- (0,4);
+                    
+                    %% Desplazamientos
+
+                    \draw[thick,-latex,red] (P1) -- node[above right]{$\vec{u}$} (P2);
+                    
+                    \draw[thick,-latex] (O) -- node[right,pos=0.7]{$\vec{r}_P(t)$} (P1) node[above]{$P$};
+                    \draw[thick,-latex] (O) -- node[right=10pt,pos=0.4]{$\vec{r}_{P'} (t+\diff t)$} (P2) node[right]{$P'$};
+
+                    %% Puntos
+
+                    \fill[black] (P1) circle (0.5mm);
+                    \fill[black] (P2) circle (0.5mm);
+
+                \end{tikzpicture}
+            \end{figure}
+        \end{column}
+        \begin{column}{0.45\textwidth}
+             $$ \pdiff{\vec{u}}{t} = \frac{\vec{r}_{P'} \left(t+\diff t\right) - \vec{r}_P \left(t\right)}{\diff t} $$ Por supuesto, podemos volver a derivar esta relación para hallar la aceleración: $$ \vec{a} = \pddiff{\vec{u}}{t} $$
+        \end{column}
+    \end{columns}
+
+    Se utilizan las derivadas parciales en virtud de que estamos considerando solamente la variación de la posición en el tiempo, esto es, solamente la dependencia de $\vec{u}$ con el tiempo.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Ecuaciones de movimiento}
+    
+    Finalmente, obtenemos que: $$ \nabla \cdot \sigma = \rho \, \pddiff{\vec{u}}{t},$$ la cual se conoce como la ecuación de movimiento de un cuerpo elástico.
+    
 \end{frame}
 
 \begin{frame}{Esto es todo por hoy}
