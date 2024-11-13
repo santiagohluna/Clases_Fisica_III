@@ -35,12 +35,13 @@
 \newcommand{\diff}[0]{\text{d}}
 \newcommand{\fdiff}[2]{\dfrac{\text{d} #1}{\text{d} #2}}
 \newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
-\newcommand{\fddiff}[2]{\frac{\text{d^2} #1}{\text{d} #2^2}}
+\newcommand{\pddiff}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+\newcommand{\fddiff}[2]{\frac{\diff^2 #1}{\diff #2^2}}
 \newcommand{\grado}[0]{^{\circ}}
 \newcommand{\chel}[4]{^{#1}_{#2}\text{#3}^{#4}}
 \newcommand{\valmed}[1]{\left\langle #1 \right\rangle}
 \newcommand{\E}[1]{\times 10^{#1}}
-\newcommand{\ver}[1]{\hat{\vec{#1}}}
+\newcommand{\ver}[1]{\hat{\mathbf{#1}}}
 \newcommand{\vecg}[1]{\boldsymbol{#1}}
 \newcommand{\iu}{\text{i}}
 \newcommand{\norm}[1]{\left\vert\left\vert #1 \right\vert\right\vert}
@@ -432,7 +433,175 @@
 
 \begin{frame}{La ecuación de ondas clásica}
 
-    Consideremos un elemento infinitesimal de la cuerda de longitud $\diff x$ y masa $\diff m$.
+    Consideremos un elemento infinitesimal de la cuerda de longitud $\Delta s$ y masa $\Delta m$, cuya sección transversal tiene un área $A$.
+
+    \begin{figure}
+        \centering
+        \begin{tikzpicture}[
+            declare function ={
+                cuerda(\x) = -0.1*(\x-7)^2+4;
+            },
+            declare function ={
+                dcuerda(\x) = -0.2*(\x-7);
+                fuerza(\x,\xo) = dcuerda(\xo)*(\x-\xo) + cuerda(\xo);
+            }
+            ]
+            \def\xa{3}
+            \def\xb{4.5}
+            \def\dx{2}
+            \def\dy{0.1}
+            \coordinate (P) at (\xa,{cuerda(\xa)});
+            \coordinate (Px) at (\xa,0);
+            \coordinate (Q) at (\xb,{cuerda(\xb)});
+            \coordinate (Qx) at (\xb,0);
+
+            \draw[->,thick] (-0.5,0) -- (8,0) node[below]{\small $x$};
+            \draw[->,thick] (0,-0.5) -- (0,5) node[left]{\small $y$};
+
+            \fill[black] (\xa,0) circle (0.5mm) node[below]{\small $x$};
+            \fill[black] (\xb,0) circle (0.5mm) node[below]{\small $x + \Delta x$};
+
+            \draw[densely dotted] (Px) -- (P);
+            \draw[densely dotted] (Qx) -- (Q);
+
+            \begin{scope}[shift={(P)}]
+                \draw (0,0) -- node[pos=0.7,below=-2pt]{\scriptsize $\beta_1$} (-1,0);
+                \draw (-0.5,0) arc (180:{180+atan(dcuerda(\xa))}:0.5);
+            \end{scope}
+            \begin{scope}[shift={(Q)}]
+                \draw (0,0) -- node[pos=0.8,above=-3pt]{\scriptsize $\beta_2$} (1,0);
+                \draw (0.5,0) arc (0:{atan(dcuerda(\xb))}:0.5);
+            \end{scope}
+
+            \draw[black,samples=100,smooth,variable=\x,domain=\xa:\xb,<->] plot(\x,{cuerda(\x)+0.5});
+            \node[anchor=south east] at ({0.5*(\xa+\xb)},{cuerda(0.5*(\xa+\xb))+0.5}) {\small $\Delta s$};
+            \draw (\xa,{cuerda(\xa)+0.2}) -- (\xa,{cuerda(\xa)+0.6});
+            \draw (\xb,{cuerda(\xb)+0.2}) -- (\xb,{cuerda(\xb)+0.6});
+
+            \draw[black,thick,samples=100,smooth,variable=\x,domain=1:7] plot(\x,{cuerda(\x)}) node[right]{\small $y(x,t)$};
+            \draw[red,very thick,->] (\xb,{cuerda(\xb)}) -- ({\xb+\dx},{fuerza(\xb+\dx,\xb)}) node[right]{\small $\vec{F}_2$};
+            \draw[red,very thick,->] (\xa,{cuerda(\xa)}) -- ({\xa-\dx},{fuerza(\xa-\dx,\xa)}) node[left]{\small $\vec{F}_1$};
+            \draw[blue,very thick,samples=100,smooth,variable=\x,domain=\xa:\xb] plot(\x,{cuerda(\x)+\dy});
+            \draw[blue,very thick,samples=100,smooth,variable=\x,domain=\xa:\xb] plot(\x,{cuerda(\x)-\dy});
+            \draw[blue,very thick] (\xa,{cuerda(\xa)-\dy-0.015}) -- (\xa,{cuerda(\xa)+\dy+0.015});
+            \draw[blue,very thick] (\xb,{cuerda(\xb)-\dy-0.015}) -- (\xb,{cuerda(\xb)+\dy+0.015});
+            
+
+        \end{tikzpicture}
+    \end{figure}
+
+\end{frame}
+
+\begin{frame}{La ecuación de ondas clásica}
+
+    Las fuerzas que actúan sobre el elemento de masa de la cuerda se deben a la interacción con los elementos contiguos. En otras palabras, $\vec{F}_1$ y $\vec{F}_2$ son las fuerzas que los elementos que se encuentran a la izquierda y a la derecha del elemento considerado ejercen sobre este último. Estas fuerzas están dadas por: 
+    \begin{align*}
+        \vec{F}_1 &= - F_{1,x} \, \ver{e}_x - F_{1,y} \, \ver{e}_y, \\
+        \vec{F}_2 &= \phantom{-}F_{2,x} \, \ver{e}_x + F_{2,y}\, \ver{e}_y,
+    \end{align*} donde $F_{i,x} = F_i \cos \beta_i$ y $F_{i,y} = F_i \sen \beta_i$, con $i=1,2$, siendo $F_i$ el módulo de cada fuerza. Los ángulos que cada fuerza forma con la dirección horizontal pueden expresarse como: $$ \tan \beta_1 = \frac{F_{1,y}}{F_{1,x}} \qquad \text{y} \qquad \tan \beta_2 = \frac{F_{2,y}}{F_{2,x}}, $$ por lo cual: $F_{1,y} = F_{1,x} \tan \beta_1$ y $F_{2,y} = F_{2,x} \tan \beta_2$.
+
+\end{frame}
+
+\begin{frame}{La ecuación de ondas clásica}
+
+    La resultante de las fuerzas aplicadas es: $$ \vec{R} = \left(-F_{1,x} + F_{2,x}\right) \ver{e}_x + \left(-F_{1,y} + F_{2,y}\right) \ver{e}_y $$ Evidentemente, el elemento de cuerda considerado no está en equilibrio, por lo que, en virtud de la segunda ley de Newton, la resultante debe igularse al producto de la masa del elemento por la aceleración: $$ \left(-F_{1,x} + F_{2,x}\right) \ver{e}_x + \left(-F_{1,y} + F_{2,y}\right) \ver{e}_y = \Delta m \, \vec{a} $$ Ahora bien, tal como se indicó anteriormente, una onda es una perturbación que se propaga pero \emph{sin transporte de materia}. Esto es, la coordenada $x$ de cada punto de la cuerda permanece constante: $x = \text{constante}$ y, en consecuencia, $v_x = 0$ y $a_x = 0$, por lo que la aceleración viene dada por: $$ \vec{a} = 0 \, \ver{e}_x + a_y \, \ver{e}_y.$$
+
+\end{frame}
+
+\begin{frame}{La ecuación de ondas clásica}
+
+    Luego:
+    \begin{align*}
+        -F_{1,x} + F_{2,x} &= 0, \\
+        -F_{1,y} + F_{2,y} &= \Delta m \, a_y.
+    \end{align*} De la primera ecuación se obtiene que $F_{1,x} = F_{2,x} = F_x$. La segunda puede entonces reescribirse como: $$ F_x \left(\tan \beta_2 - \tan \beta_1\right) = \Delta m \, a_y. $$ La forma de la onda está descrita por una función $y(x,t)$, puesto que la perturbación, que en este caso corresponde a un desplazamiento vertical, depende tanto del tiempo como del punto de la cuerda. Los ángulos $\beta_1$ y $\beta_2$ dan las direcciones de las fuerzas $\vec{F}_1$ y $\vec{F}_2$, respectivamente, las cuales son tangentes a $y(x,t)$ en los correspondientes puntos $x$ y $x + \Delta x$, por lo que: $$ \tan \beta_1 = \pdiff{y \left(x,t\right)}{x}  \qquad \text{y} \qquad \tan \beta_2 = \pdiff{y \left(x+\Delta x,t\right)}{x}$$
+\end{frame}
+
+\begin{frame}{La ecuación de ondas clásica}
+
+    Por otro lado, puesto que $y(x,t)$ da la posición de cada punto de la cuerda en función del tiempo, la componente vertical de la aceleración puede calcularse como $$a_y = \pddiff{y \left(x,t\right)}{t} $$ Además, el diferencial de masa puede escribirse como $\Delta m = \rho \, \Delta V$, donde $\rho$ es la densidad de la cuerda, que se asume constante. El diferencial de volumen puede escribirse como $\Delta V = A \, \Delta s$, donde $A$ es el área de la sección transversal de la cuerda y $\Delta s$ es el elemento de longitud de la cuerda. Si el elemento es suficientemente pequeño, entonces $$\Delta s \approx \sqrt{\left(\Delta x\right)^2 + \left(\Delta y\right)^2} = \Delta x \sqrt{1 + \left(\frac{\Delta y}{\Delta x}\right)^2} $$
+
+\end{frame}
+
+\begin{frame}{La ecuación de ondas clásica}
+
+    Reuniendo los resultados obtenidos, la ecuación de movimiento del elemento de masa de la cuerda queda: $$ F_x \left(\pdiff{y \left(x+\Delta x,t\right)}{x} - \pdiff{y \left(x,t\right)}{x}\right) = \rho \, A \, \Delta x \sqrt{1 + \left(\frac{\Delta y}{\Delta x}\right)^2} \pddiff{y \left(x,t\right)}{t} $$ O bien: $$ F_x \left( \frac{\pdiff{y \left(x+\Delta x,t\right)}{x} - \pdiff{y \left(x,t\right)}{x}}{\Delta x}\right) = \rho \, A \, \sqrt{1 + \left(\frac{\Delta y}{\Delta x}\right)^2} \pddiff{y \left(x,t\right)}{t} $$ Cuando $\Delta x \to 0$, por un lado: $$ \frac{\pdiff{y \left(x+\Delta x,t\right)}{x} - \pdiff{y \left(x,t\right)}{x}}{\Delta x} \to \pddiff{y \left(x,t\right)}{x}, $$ y, por otro lado, $$ \frac{\Delta y}{\Delta x} \to \pdiff{y}{x}.$$
+
+\end{frame}
+
+\begin{frame}{La ecuación de ondas clásica}
+
+    Si se considera que la deformación es pequeña, entonces $$ \pdiff{y}{x} \ll 1 $$ y, en consecuencia, se puede despreciar el segundo término dentro de la raíz cuadrada frente a la unidad: $$ \sqrt{1 + \left(\frac{\Delta y}{\Delta x}\right)^2} \approx 1 .$$ Finalmente, se obtiene: $$ F_x \pddiff{y \left(x,t\right)}{x} = \rho \, A \pddiff{y \left(x,t\right)}{t} $$ 
+
+\end{frame}
+
+\begin{frame}{La ecuación de ondas clásica}
+
+    O bien: $$ \pddiff{y \left(x,t\right)}{t} = \frac{F_x}{\rho \, A} \pddiff{y \left(x,t\right)}{x} $$ Analicemos esta ecuación. Por un lado, como la densidad es la masa $m$ de la cuerda dividida por su volumen $V = A \, L$, donde $A$ es el área de la sección transversal y $L$ es su longitud, el factor $\rho A$ es la densidad lineal de masa: $$ \rho \, A = \frac{m}{V} A = \frac{m}{L},$$ es decir, la masa por unidad de volumen.
+
+    \vs 
+
+    Otro aspecto interesante es la unidad del factor que multiplica la derivada segunda de $y(x,t)$ respecto de $x$ dos veces: $$ \left[\frac{F_x}{\rho \, A}\right] = \left[\frac{F_x \, L}{m}\right] = \frac{\text{N} \, \un{m}}{\un{kg}} = \frac{\un{kg} \, \un{m}}{\un{s}^2} \frac{\un{m}}{\un{kg}} = \frac{\un{m}^2}{\un{s}^2}$$ 
+
+\end{frame}
+
+\begin{frame}{La ecuación de ondas clásica}
+
+    Es decir, dicho factor tiene unidades de rapidez al cuadrado, ¿tendrá que ver con la velocidad de propagación de la onda? Para comprobarlo, analicemos la forma particular de la función de onda.
+
+    \vs 
+
+    Como habíamos visto, toda onda viene descrita por una función del tipo $y(x,t) = f(x-s(t))$, donde $s(t) = x_0 + v \left(t-t_0\right)$. Consideremos, sin pérdida de generalidad, que $y(x,t)$ representa una onda que se propaga hacia la derecha, para el cual $s(0) = 0$, por lo que $x_0 = 0$ y $t_0 = 0$. De esta forma, $y(x,t) = f(x-v \, t)$. Si ponemos $u = x-v \, t$, entonces:
+    \begin{columns}
+        \begin{column}{0.45\textwidth}
+            \begin{align*}
+                \pdiff{y(x,t)}{x} &= \fdiff{f}{u} \pdiff{u}{x} = \fdiff{f}{u} \\
+                \pddiff{y(x,t)}{x} &= \fddiff{f}{u} \pdiff{u}{x} = \fddiff{f}{u}.
+            \end{align*}
+        \end{column}
+        ~
+        \begin{column}{0.45\textwidth}
+            \begin{align*}
+                \pdiff{y(x,t)}{t} &= \fdiff{f}{u} \pdiff{u}{t} = \fdiff{f}{u} \left(-v\right) \\
+                \pddiff{y(x,t)}{t} &= \fddiff{f}{u} \pdiff{u}{t} = \fddiff{f}{u} \, v^2.
+            \end{align*}        
+        \end{column}
+    \end{columns}
+
+\end{frame}
+
+\begin{frame}{La ecuación de ondas clásica}
+    
+    Es decir: $$ \pddiff{y (x,t)}{t} = v^2 \pddiff{y (x,t)}{x}. $$ Si comparamos esta expresión con la obtenida al analizar la ecuación de movimiento de un elemento de masa de la cuerda, vemos que, efectivamente, $$ v^2 = \frac{F_x}{\rho \, A} $$ Esto es, la velocidad de propagación en la cuerda depende de $F_x$, que podemos identificar como la tensión de la cuerda y la densidad lineal de masa, es decir, de la distribución de masa en la cuerda.
+   
+\end{frame}
+
+\begin{frame}{La ecuación de ondas clásica}
+    
+    Además, el aspecto central es que la función de onda $y(x,t)$ es solución de la ecuación $$ \pddiff{y (x,t)}{t} = v^2 \, \pddiff{y (x,t)}{x}, $$ de lo cual podemos concluir que esta ecuación es la que describe la propagación de una onda de forma arbitraria en la cuerda. Es por este motivo que se la conoce como \emph{ecuación de onda clásica}.
+
+    \vs
+
+    Además de la ecuación de ondas, que relaciona las derivadas segundas de la perturbación respecto al espacio y al tiempo, vamos a transcribir aquí la relación entre las derivadas primeras para futuras referencias:
+    $$ \pdiff{y(x,t)}{t} = \left(-v\right) \, \pdiff{y(x,t)}{x} $$
+    
+\end{frame}
+
+\section{Energía transportada por una onda}
+
+\begin{frame}{Energía transportada por una onda}
+
+    Tal como señalamos anteriormente, no hay transporte de materia en la propagación de una onda, sino solamente hay transporte de energía. 
+    
+    \vs 
+    
+    Podemos preguntarnos qué tipo de energía es la que se propaga. Si consideramos nuevamente el caso de una onda que se propaga en una cuerda, podemos aprovechar nuestros conocimientos de la mecánica de una partícula y aplicarlos al estudio de un elemento infinitesimal de la cuerda, tal como hicimos para derivar la ecuación de ondas.
+
+\end{frame}
+
+\begin{frame}{Energía transportada por una onda}
+
+    Por un lado, tenemos energía cinética debido al movimiento vertical del elemento de masa. Así, dicho elemento infinitesimal aporta un diferencial de energía cinética dado por $$ \diff E_c = \frac{1}{2} \diff m \, v_y^2. $$ Pero como $\diff m = \rho \, \diff V $ y $v_y = \pdiff{y}{t}$, entonces: $$ \diff E_c = \frac{1}{2} \rho \, \diff V \left(\pdiff{y}{t}\right)^2 $$
 
 \end{frame}
 
