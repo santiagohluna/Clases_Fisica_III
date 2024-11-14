@@ -578,12 +578,18 @@
 
 \begin{frame}{La ecuación de ondas clásica}
     
-    Además, el aspecto central es que la función de onda $y(x,t)$ es solución de la ecuación $$ \pddiff{y (x,t)}{t} = v^2 \, \pddiff{y (x,t)}{x}, $$ de lo cual podemos concluir que esta ecuación es la que describe la propagación de una onda de forma arbitraria en la cuerda. Es por este motivo que se la conoce como \emph{ecuación de onda clásica}.
+    Más aún, el aspecto central es que la función de onda $y(x,t)$ es solución de la ecuación $$ \pddiff{y (x,t)}{t} = v^2 \, \pddiff{y (x,t)}{x}, $$ de lo cual podemos concluir que esta ecuación es la que describe la propagación de una onda de forma arbitraria en la cuerda. Es por este motivo que se la conoce como \emph{ecuación de onda clásica}.
 
     \vs
 
     Además de la ecuación de ondas, que relaciona las derivadas segundas de la perturbación respecto al espacio y al tiempo, vamos a transcribir aquí la relación entre las derivadas primeras para futuras referencias:
     $$ \pdiff{y(x,t)}{t} = \left(-v\right) \, \pdiff{y(x,t)}{x} $$
+    
+\end{frame}
+
+\begin{frame}{La ecuación de ondas clásica}
+
+    Recordemos que $y$ representa la perturbación que en el caso de la cuerda tensa corresponde al apartamiento respecto del equilibrio, esto es, la posición horizontal $y=0$. Si el estado de requilibrio estuviese representado por la ecuación $y=y_0$ (constante), entonces el apartamiento del equilibrio vendría representado por el desplazamiento respecto de este: $\xi(x,t) = y(x,t) - y_0$. Puesto que $y_0$ es constante, y que $\xi(u) = y(u) - y_0$, con $u= x-v\,t$, se obtiene, por un lado, que: $$ \pdiff{\xi (x,t)}{t} = \left(-v\right) \, \pdiff{\xi(x,t)}{x}, $$ y que: $$ \pddiff{\xi (x,t)}{t} = v^2 \, \pddiff{\xi (x,t)}{x}. $$
     
 \end{frame}
 
@@ -601,7 +607,37 @@
 
 \begin{frame}{Energía transportada por una onda}
 
-    Por un lado, tenemos energía cinética debido al movimiento vertical del elemento de masa. Así, dicho elemento infinitesimal aporta un diferencial de energía cinética dado por $$ \diff E_c = \frac{1}{2} \diff m \, v_y^2. $$ Pero como $\diff m = \rho \, \diff V $ y $v_y = \pdiff{y}{t}$, entonces: $$ \diff E_c = \frac{1}{2} \rho \, \diff V \left(\pdiff{y}{t}\right)^2 $$
+    Por un lado, tenemos energía cinética debido al movimiento vertical del elemento de masa. Así, dicho elemento infinitesimal aporta un diferencial de energía cinética dado por $$ \diff E_\text{c} = \frac{1}{2} \diff m \, v_y^2. $$ Pero como $\diff m = \rho \, \diff V $ y $v_y = \pdiff{y}{t}$, entonces: $$ \diff E_\text{c} = \frac{1}{2} \rho \, \diff V \left(\pdiff{y}{t}\right)^2 $$ Resulta conveniente definir la densidad de energía como $$ \mathcal{U} = \fdiff{E}{V}, $$ esto es, la cantidad de energía por unidad de volumen. En este caso, la densidad de energía cinética es $$ \mathcal{U}_\text{c} = \frac{1}{2} \rho \left(\pdiff{y}{t}\right)^2 $$
+
+\end{frame}
+
+\begin{frame}{Energía transportada por una onda}
+
+    Por otro lado, cada elemento de la cuerda almacena energía potencial elástica debido a la deformación que sufre cuando la perturbación pasa por su posición. Podemos calcular el incremento infinitesimal de energía potencial elástica ($\diff E_\text{pe}$) como el trabajo realizado por la fuerza que tensa la cuerda: $$\diff W = \vec{F} \cdot \diff \vec{r}.$$ Si se considera un elemento de volumen de la cuerda suficientemente pequeño, el desplazamiento es igual al alargamiento del elemento de volumen, por lo tanto: $$ \Delta W = F_x \left(\Delta s - \Delta x\right)$$ Además, tenemos nuevamente que: $$ \Delta s \approx \sqrt{\left(\Delta x\right)^2 + \left(\Delta y\right)^2} = \Delta x \sqrt{1 + \left(\frac{\Delta y}{\Delta x}\right)^2}$$
+
+\end{frame}
+
+\begin{frame}{Energía transportada por una onda}
+
+    Bajo la hipótesis planteada, y asumiendo que $$ \frac{\Delta y}{\Delta x} \ll 1, $$ esto es, la deformación relativa o unitaria es pequeña, podemos reemplazar la raíz cuadrada por su expansión en serie de Taylor: $$ \sqrt{1 + \left(\frac{\Delta y}{\Delta x}\right)^2} = 1 + \frac{1}{2} \left(\frac{\Delta y}{\Delta x}\right)^2 + \ldots$$ Si nos quedamos con los dos primeros términos, se obtiene: $$  \Delta s \approx \Delta x \left[1 + \frac{1}{2} \left(\frac{\Delta y}{\Delta x}\right)^2\right] $$
+
+\end{frame}
+
+\begin{frame}{Energía transportada por una onda}
+
+    Luego: $$ \Delta W = F_x \left(\Delta x \left[1 + \frac{1}{2} \left(\frac{\Delta y}{\Delta x}\right)^2\right] - \Delta x\right) $$ Esto es: $$ \Delta W = \frac{1}{2} F_x \, \Delta x \left(\frac{\Delta y}{\Delta x}\right)^2 $$ En el límite, cuando $\Delta x \to 0 $: $$ \diff W = \frac{1}{2} F_x \left(\pdiff{y}{x}\right)^2 \diff x = \diff E_\text{pe} $$
+
+\end{frame}
+
+\begin{frame}{Energía transportada por una onda}
+
+    Para obtener la expresión de la densidad de energía potencial elástica, podemos multiplicar y dividir la expresión anterior por el área de la sección transversal de la cuerda $A$: $$ \diff E_\text{pe} = \frac{1}{2} \frac{F_x}{A} \left(\pdiff{y}{x}\right)^2 A \, \diff x. $$ Pero, $\diff V = A \, \diff x$ y $$ v^2 = \frac{F_x}{\rho \, A}, \qquad \text{por lo que } \qquad \frac{F_x}{A} = \rho \, v^2 $$ y, en consecuencia, $$ \mathcal{U}_\text{pe} = \fdiff{E_\text{pe}}{V} = \frac{1}{2} \rho \, v^2 \left(\pdiff{y}{x}\right)^2. $$
+
+\end{frame}
+
+\begin{frame}{Energía transportada por una onda}
+
+    Ahora bien, la expresión enterior puede reescribirse como: $$ \mathcal{U}_\text{pe} = \fdiff{E_\text{pe}}{V} = \frac{1}{2} \rho \left( v \, \pdiff{y}{x}\right)^2. $$ En virtud de la relación entre las derivadas primeras de la perturbación con respecto al tiempo y al espacio: $$ \pdiff{y(x,t)}{t} = \left(-v\right) \, \pdiff{y(x,t)}{x}, $$ se obtiene: $$ \mathcal{U}_\text{pe} = \fdiff{E_\text{pe}}{V} = \frac{1}{2} \rho \left( - \pdiff{y}{t}\right)^2 = \frac{1}{2} \rho \left(\pdiff{y}{t}\right)^2 = \mathcal{U}_\text{c} $$ En consecuencia, la densidad de energía total es: $$ \mathcal{U} = \mathcal{U}_\text{c} + \mathcal{U}_\text{ep} = 2 \, \mathcal{U}_\text{c} = 2 \, \mathcal{U}_\text{ep} = \rho \left(\pdiff{y}{t}\right)^2. $$
 
 \end{frame}
 
