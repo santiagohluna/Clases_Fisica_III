@@ -637,7 +637,43 @@
 
 \begin{frame}{Energía transportada por una onda}
 
-    Ahora bien, la expresión enterior puede reescribirse como: $$ \mathcal{U}_\text{pe} = \fdiff{E_\text{pe}}{V} = \frac{1}{2} \rho \left( v \, \pdiff{y}{x}\right)^2. $$ En virtud de la relación entre las derivadas primeras de la perturbación con respecto al tiempo y al espacio: $$ \pdiff{y(x,t)}{t} = \left(-v\right) \, \pdiff{y(x,t)}{x}, $$ se obtiene: $$ \mathcal{U}_\text{pe} = \fdiff{E_\text{pe}}{V} = \frac{1}{2} \rho \left( - \pdiff{y}{t}\right)^2 = \frac{1}{2} \rho \left(\pdiff{y}{t}\right)^2 = \mathcal{U}_\text{c} $$ En consecuencia, la densidad de energía total es: $$ \mathcal{U} = \mathcal{U}_\text{c} + \mathcal{U}_\text{ep} = 2 \, \mathcal{U}_\text{c} = 2 \, \mathcal{U}_\text{ep} = \rho \left(\pdiff{y}{t}\right)^2. $$
+    Ahora bien, la expresión enterior puede reescribirse como: $$ \mathcal{U}_\text{pe} = \fdiff{E_\text{pe}}{V} = \frac{1}{2} \rho \left( v \, \pdiff{y}{x}\right)^2. $$ En virtud de la relación entre las derivadas primeras de la perturbación con respecto al tiempo y al espacio: $$ \pdiff{y(x,t)}{t} = \left(-v\right) \, \pdiff{y(x,t)}{x}, $$ se obtiene: $$ \mathcal{U}_\text{pe} = \fdiff{E_\text{pe}}{V} = \frac{1}{2} \rho \left( - \pdiff{y}{t}\right)^2 = \frac{1}{2} \rho \left(\pdiff{y}{t}\right)^2 = \mathcal{U}_\text{c} $$ En consecuencia, la densidad de energía total transportada por la onda es: $$ \mathcal{U} = \mathcal{U}_\text{c} + \mathcal{U}_\text{ep} = 2 \, \mathcal{U}_\text{c} = 2 \, \mathcal{U}_\text{ep} = \rho \left(\pdiff{y}{t}\right)^2. $$
+
+\end{frame}
+
+\begin{frame}{Potencia}
+
+    Hasta acá vimos la cantidad de energía que transporta una onda. A continuación vamos a analizar qué tan rápido se transmite esa energía. Para ello vamos a calcular la potencia desarrollada por las fuerzas que actúan sobre el elemento de masa de la cuerda tensa considerada anteriormente. Estas fuerzas vienen dadas por:
+    \begin{align*}
+        \vec{F}_1 &= - F_{1,x} \, \ver{e}_x - F_{1,y} \, \ver{e}_y, \\
+        \vec{F}_2 &= \phantom{-}F_{2,x} \, \ver{e}_x + F_{2,y}\, \ver{e}_y,
+    \end{align*} donde, nuevamente, $F_{1,y} = F_{1,x} \tan \beta_1$ y $F_{2,y} = F_{2,x} \tan \beta_2$. A su vez, $$ \tan \beta_1 = \pdiff{y \left(x,t\right)}{x}  \qquad \text{y} \qquad \tan \beta_2 = \pdiff{y \left(x+\Delta x,t\right)}{x}.$$ Habíamos visto que en virtud de que el desplazamiento horizontal del elemento es nulo: $F_{1,x} = F_{2,x} = F_x $.
+    
+\end{frame}
+
+\begin{frame}{Potencia}
+
+    En consecuencia, las fuerzas quedan expresadas de la siguiente manera:
+    \begin{align*}
+        \vec{F}_1 &= - F_{x} \, \ver{e}_x - F_{x} \pdiff{y \left(x,t\right)}{x} \, \ver{e}_y, \\
+        \vec{F}_2 &= \phantom{-}F_{x} \, \ver{e}_x + F_{x} \pdiff{y \left(x+\Delta x,t\right)}{x} \ver{e}_y,
+    \end{align*} Por otro lado, la velocidad del elemento de masa viene dada por: $$ \vec{v} = 0 \, \ver{e}_x + \pdiff{y}{t} \, \ver{e}_y. $$ En términos generales, la potencia puede calcularse como $$\fdiff{E}{t} = \vec{F} \cdot \vec{v} $$
+    
+\end{frame}
+
+\begin{frame}{Potencia}
+
+    Por lo tanto:
+    \begin{align*}
+        \left(\fdiff{E}{t}\right)_1 &= \fdiff{E}{t} \left(x,t\right) = \vec{F}_1 \cdot \vec{v} = - F_{x} \pdiff{y}{x} \pdiff{y}{t},\\
+        \left(\fdiff{E}{t}\right)_2 &= \fdiff{E}{t} \left(x+\Delta x,t\right) = \vec{F}_2 \cdot \vec{v} = F_{x} \pdiff{y}{x} \pdiff{y}{t}.
+    \end{align*} Ahora bien, la fuerza $\vec{F}_1$ es la fuerza que el elemento contiguo a a la izquierda del considerado ejerce sobre este, mientras que la fuerza $\vec{F}_2$ es la fuerza que el elemento contigua a la derecha del considerado ejerce sobre este último. Luego, $\left(\fdiff{E}{t}\right)_1$ es la energía por unidad de tiempo que se transmite desde el elemento contiguo a la izquierda hacia el elemento considerado o, la energía por unidad que \emph{entra} en este último. Por su parte, $\left(\fdiff{E}{t}\right)_2$ es la energía por unidad de tiempo que \emph{sale} del elemento considerado.
+    
+\end{frame}
+
+\begin{frame}{Potencia}
+
+    En virtud de la tercera ley ...
 
 \end{frame}
 
