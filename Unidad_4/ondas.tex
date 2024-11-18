@@ -657,7 +657,7 @@
     \begin{align*}
         \vec{F}_1 &= - F_{x} \, \ver{e}_x - F_{x} \pdiff{y \left(x,t\right)}{x} \, \ver{e}_y, \\
         \vec{F}_2 &= \phantom{-}F_{x} \, \ver{e}_x + F_{x} \pdiff{y \left(x+\Delta x,t\right)}{x} \ver{e}_y,
-    \end{align*} Por otro lado, la velocidad del elemento de masa viene dada por: $$ \vec{v} = 0 \, \ver{e}_x + \pdiff{y}{t} \, \ver{e}_y. $$ En términos generales, la potencia puede calcularse como $$\fdiff{E}{t} = \vec{F} \cdot \vec{v} $$
+    \end{align*} Por otro lado, la velocidad del elemento de masa viene dada por: $$ \vec{v} = 0 \, \ver{e}_x + \pdiff{y}{t} \, \ver{e}_y. $$ En términos generales, la potencia instantánea puede calcularse como $$\dot{E} = \fdiff{E}{t} = \vec{F} \cdot \vec{v} $$
     
 \end{frame}
 
@@ -665,15 +665,78 @@
 
     Por lo tanto:
     \begin{align*}
-        \left(\fdiff{E}{t}\right)_1 &= \fdiff{E}{t} \left(x,t\right) = \vec{F}_1 \cdot \vec{v} = - F_{x} \pdiff{y}{x} \pdiff{y}{t},\\
-        \left(\fdiff{E}{t}\right)_2 &= \fdiff{E}{t} \left(x+\Delta x,t\right) = \vec{F}_2 \cdot \vec{v} = F_{x} \pdiff{y}{x} \pdiff{y}{t}.
-    \end{align*} Ahora bien, la fuerza $\vec{F}_1$ es la fuerza que el elemento contiguo a a la izquierda del considerado ejerce sobre este, mientras que la fuerza $\vec{F}_2$ es la fuerza que el elemento contigua a la derecha del considerado ejerce sobre este último. Luego, $\left(\fdiff{E}{t}\right)_1$ es la energía por unidad de tiempo que se transmite desde el elemento contiguo a la izquierda hacia el elemento considerado o, la energía por unidad que \emph{entra} en este último. Por su parte, $\left(\fdiff{E}{t}\right)_2$ es la energía por unidad de tiempo que \emph{sale} del elemento considerado.
+        \dot{E}\left(x,t\right) &= \vec{F}_1 \cdot \vec{v} = - F_{x} \pdiff{y}{x} \pdiff{y}{t},\\
+        \dot{E} \left(x+\Delta x,t\right) &= \vec{F}_2 \cdot \vec{v} = F_{x} \pdiff{y}{x} \pdiff{y}{t}.
+    \end{align*} Ahora bien, la fuerza $\vec{F}_1$ es la fuerza que el elemento contiguo a a la izquierda del considerado ejerce sobre este, mientras que la fuerza $\vec{F}_2$ es la fuerza que el elemento contigua a la derecha del considerado ejerce sobre este último. 
+    
+    \vs
+    
+    Luego, $\dot{E} \left(x,t\right)$ es la energía por unidad de tiempo que se transmite desde el elemento contiguo a la izquierda hacia el elemento considerado o, la energía por unidad que \emph{entra} en este último. Por su parte, $\dot{E} \left(x + \Delta x,t\right)$ es la energía por unidad de tiempo que \emph{sale} del elemento considerado.
     
 \end{frame}
 
 \begin{frame}{Potencia}
 
-    En virtud de la tercera ley ...
+    En consecuencia, $\dot{E} \left(x,t\right)$ es la potencia transmitida por la onda.
+
+    \vs
+
+    Podemos utilizar la relación entre las derivadas de la función de onda respecto del tiempo y del espacio para reescribir las expresiones de la energía por unidad de tiempo transmitida por la onda: $$ \dot{E} \left(x,t\right) = F_x \, v \, \left[\pdiff{y\left(x,t\right)}{x}\right]^2, $$ o bien: $$ \dot{E} \left(x,t\right) = \frac{F_x}{v} \left[\pdiff{y\left(x,t\right)}{t}\right]^2.$$
+\end{frame}
+
+\begin{frame}{Relación entre potencia y densida de energía}
+
+    Teniendo en cuenta la relación entre la fuerza de tensión de la cuerda y la velocidad de propagación de las ondas: $$ v^2 = \frac{F_x}{\rho \, A} \Rightarrow F_x = A \, \rho \, v^2 $$ Reemplazando en la última expresión de la potencia transmitida, se obtiene: $$ \dot{E} \left(x,t\right) = A \, \rho \left[\pdiff{y\left(x,t\right)}{t}\right]^2 \, v. $$ Es decir que existe una relación entre la potencia transmitida por una onda y la densidad de energía dada por: $$ \dot{E} \left(x,t\right) = A \, \mathcal{U} \left(x,t\right) \, v. $$
+    
+\end{frame}
+
+\begin{frame}{Intensidad de una onda}
+    
+    La \emph{intensidad} $I \left(x,t\right)$ de una onda se define, en términos generales, como la potencia transmitida por esta por unidad de área: $$ I \left(x,t\right) = \frac{\dot{E} \left(x,t\right)}{A}. $$ En otras palabras, la intensidad mide el \emph{flujo} de energía transportada por una onda. 
+    
+    \vs
+
+    En virtud de la relación entre la potencia y la densidad de energía obtenida anteriormente, se tiene: $$ I \left(x,t\right) = \mathcal{U} \left(x,t\right)\, v. $$
+
+\end{frame}
+
+\begin{frame}{Ecuación de continuidad}
+
+    Consideremos ahora el \emph{balance de energía} en un elemento de volumen de la cuerda. Como vimos, $ I(x,t) = \frac{\dot{E} (x,t)}{A} $ es la energía por unidad de tiempo y por unidad de área transversal que \emph{entra} en dicho elemento de volumen.
+
+    \vs 
+
+    Por otro lado, $ I\left(x + \Delta x,t\right) = \frac{\dot{E} \left(x + \Delta x,t\right)}{A} $ es la energía por unidad de tiempo y por unidad de área que \emph{sale} del elemento de volumen considerado.
+
+    \vs
+
+    Por lo tanto, la energía neta intercambiada en este elemento de volumen en un intervalo de tiempo $\Delta t$ es: $$ \text{Balance de energía} = \left[I\left(x,t\right) - I \left(x + \Delta x, t\right)\right] A \, \Delta t. $$ Como consecuencia de este intercambio, la energía de este elemento de volumen variará en el tiempo, por lo que el balance de energía también puede calcularse como: $$ \text{Balance de energía} = \left[\mathcal{U} \left(x,t + \Delta t\right) - \mathcal{U} \left(x,t\right)\right] \Delta V. $$
+
+\end{frame}
+
+\begin{frame}{Ecuación de continuidad}
+
+    Como siempre, el elemento de volumen es, aproximadamente, $\Delta V = A \, \Delta x$, por lo que: $$ \left[I\left(x,t\right) - I \left(x + \Delta x, t\right)\right] A \, \Delta t = \left[\mathcal{U} \left(x,t + \Delta t\right) - \mathcal{U} \left(x,t\right)\right] A \, \Delta x. $$ Expresión que puede reescribirse como: $$ - \frac{I\left(x + \Delta x,t\right) - I \left(x, t\right)}{\Delta x} = \frac{\mathcal{U} \left(x,t + \Delta t\right) - \mathcal{U} \left(x,t\right)}{\Delta t}. $$ En el límite, cuando $\Delta t \to 0 $ y $\Delta x \to 0$, se obtiene: $$ - \pdiff{I\left(x,t\right)}{x} = \pdiff{\mathcal{U} \left(x,t\right)}{t}, $$ expresión que se conoce como \emph{ecuación de continuidad}, que expresa la ley de conservación de la energía. Esto es, la variación en el tiempo de la energía de un elemento de volumen se debe a una \emph{corriente} de energía que fluye de esta región a otra.
+
+\end{frame}
+
+\begin{frame}{Ecuación de continuidad}
+    
+    Si se consideran variaciones en más de una dimensión, esta ecuación toma la siguiente forma: $$ \pdiff{\mathcal{U} \left(\vec{r},t\right)}{t} + \nabla \cdot \vec{I} \left(\vec{r},t\right) = 0.$$
+
+\end{frame}
+
+\section{Principio de superposición y condiciones de borde}
+
+\begin{frame}{Principio de superposición}
+
+
+
+\end{frame}
+
+\begin{frame}{Condiciones de borde}
+
+
 
 \end{frame}
 
