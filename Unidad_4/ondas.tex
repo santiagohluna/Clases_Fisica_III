@@ -730,13 +730,93 @@
 
 \begin{frame}{Principio de superposición}
 
+    Uno de los aspectos más interesantes de la ecuación de ondas es su linealidad. 
+    
+    \vs
 
+    Toda ecuación diferencial lineal cumple con el llamado \emph{principio de superposición}, el cual establece que la combinación lineal de soluciones, es también solución. 
+    
+    \vs 
+    
+    Para el caso de la ecuación de ondas, si $\xi_1 \left(x,t\right)$ y $\xi_2 \left(x,t\right)$ son soluciones de la ecuación de ondas, esto es: $$ \pddiff{\xi_1}{t} - v^2 \pddiff{\xi_1}{x} = 0 \qquad \text{ y } \qquad \pddiff{\xi_2}{t} - v^2 \pddiff{\xi_2}{x} = 0, $$ entonces $$\xi \left(x,t\right) = C_1 \, \xi_1 \left(x,t\right) + C_2 \, \xi_2 \left(x,t\right), $$ donde $C_1, C_2 \in \rr $, es también solución.
+
+\end{frame}
+
+\begin{frame}{Principio de superposición}
+
+    Para demostrarlo, podemos derivar dos veces $\xi \left(x,t\right)$ dos veces respecto del tiempo y de $x$ para obtener: 
+    \begin{align*}
+        \pddiff{\xi \left(x,t\right)}{t} &= C_1 \, \pddiff{\xi_1 \left(x,t\right)}{t} + C_2 \, \pddiff{\xi_2 \left(x,t\right)}{t}, \\
+        \pddiff{\xi \left(x,t\right)}{x} &= C_1 \, \pddiff{\xi_1 \left(x,t\right)}{x} + C_2 \, \pddiff{\xi_2 \left(x,t\right)}{x}.
+    \end{align*} Si la segunda se multiplica por $-v^2$ y se suma a la primera se obtiene: 
+    \begin{multline}
+        \pddiff{\xi \left(x,t\right)}{t} - v^2 \pddiff{\xi \left(x,t\right)}{x} = C_1 \left[\pddiff{\xi_1 \left(x,t\right)}{t} - v^2 \pddiff{\xi_1 \left(x,t\right)}{x}\right] + \\ C_2 \left[\pddiff{\xi_2 \left(x,t\right)}{t} - v^2 \pddiff{\xi_2 \left(x,t\right)}{x}\right]
+    \end{multline} 
+    
+\end{frame}
+
+\begin{frame}{Principio de superposición}
+
+    Los factores entre corchetes en el lado derecho de esta última ecuación son cero debido a que $\xi_1 \left(x,t\right)$ y $\xi_2 \left(x,t\right)$ son soluciones de la ecuación de ondas, por lo tanto: $$ \pddiff{\xi \left(x,t\right)}{t} - v^2 \pddiff{\xi \left(x,t\right)}{x} = 0 $$ y, en consecuencia, $\xi \left(x,t\right)$ es también solución.
 
 \end{frame}
 
 \begin{frame}{Condiciones de borde}
 
+    El principio de superposición es una herramienta fundamental para estudiar las condiciones de borde.
 
+    \vs
+
+    Hasta ahora, hemos considerado el caso de una onda que se propaga en una cuerda infinita. Sin embargo, muchas veces se debe abordar el caso de una cuerda semiinfinita, es decir, se extiende desde $-\infty$ a cierto valor de $x$, o desde un valor de $x$ hasta $+\infty$, o bien, el caso en que la cuerda tiene una longitud finita.
+
+    \vs
+
+    En este sentido, vamos a estudiar dos tipos distintos de bordes:
+    \begin{enumerate}
+        \item un extremo fijo y
+        \item un extremo móvil
+    \end{enumerate}
+
+\end{frame}
+
+\begin{frame}{Condiciones de borde: Un extremo fijo}
+
+    Supongamos por simplicidad una cuerda semiinfinita que se extiende desde $-\infty$ hasta $0$, por la que se propaga un pulso hacia la derecha con rapidez $v$. Cuando el pulso llega al extremo fijo, la reacción a la fuerza que la cuerda ejerce sobre el extremo hace que el pulso se \emph{refleje} de forma que si cada punto de este se separaba de la horizontal hacia arriba, luego de llegar al extremo fijo los puntos se separan de la horizontal hacia abajo y el pulso se propaga hacia la izquierda, tal como se muestra en la siguiente figura:
+    \begin{columns}
+        \begin{column}{0.45\textwidth}
+            \includegraphics[width=\textwidth]{../figs/waves_reflection_transmission-1.pdf}
+        \end{column}
+        ~
+        \begin{column}{0.45\textwidth}
+            \includegraphics[width=\textwidth]{../figs/waves_reflection_transmission-2.pdf}
+        \end{column}
+    \end{columns}
+
+\end{frame}
+
+\begin{frame}{Condiciones de borde: Un extremo fijo}
+
+    Si la onda se representa por una función $y \left(x,t\right)$, el hecho de que el extremo permanezca fijo cuando llega el pulso, o la onda, implica que no puede haber desplazamiento vertical de la cuerda, por lo que la expresión matemática adecuada para esta condición de borde es que $$ y \left(0,t\right) = 0. $$ Es importante destacar que esta condición debe cumplirse para cualquier valor de $t$, esto es, el desplazamiento vertical del punto debe ser nulo independientemente del instante en el que la onda llega al extremo fijo.
+
+\end{frame}
+
+\begin{frame}{Condiciones de borde: Un extremo fijo}
+    
+    Sea $y_1 (x,t) = f(x-v \, t)$ la función que describe el pulso. Si se impone la condición de borde a esta función de onda se obtiene que $$y_1 (0,t) = f(-v \, t) = 0. $$ No es difícil ver que $y_1 (x,t)$ no puede cumplir nunca esta condición ya que, en el mejor de los casos, permite determinan el instante o los instantes de tiempo en los que un punto de la onda pasa por el eje $x$, puesto que $f(-v \, t)$ da la altura del punto de abscisa $x=0$ en función del tiempo, la cual no puede ser nula para todo $t$. Como consecuencia, $y \neq 0$ al menos para ciertos valores de $t$.
+
+    \vs
+
+    Para resolver esta dificultad, podemos observar que después de la reflexión, el pulso se describe como $y_2 \left(x,t\right) = -f \left(x+v \, t\right)$. Esto es, la onda conserva su forma, pero se invierte y se propaga en sentido opuesto al que tenía antes de llegar al extremo fijo, tal como se indicó anteriormente.
+
+\end{frame}
+
+\begin{frame}{Condiciones de borde: Un extremo fijo}   
+    
+    En consecuencia, podemos pensar que la cuerda es nuevamente infinita y que ambos pulsos se propagan simultáneamente por esta de forma tal que se encuentran en $x=0$. La interpretación física de este modelo consiste en considerar como \emph{reales} a los pulsos que se propagan para los $x < 0$ y \emph{virtuales} aquellos que se propagan sobre los $x>0$. Así, en virtud del principio de superposición, la onda real viene descrita por: $$ y \left(x,t\right) = y_1 \left(x,t\right) + y_2 \left(x,t\right) = f(x-v \, t) -f \left(x+v \, t\right), $$ y observamos el comportamiento de $y \left(x,t\right)$ para los $x<0$.
+
+    \vs
+
+    Si ahora imponemos la condición del extremo fijo: $$ y \left(0,t\right) = f(-v \, t) - f \left(v \, t\right) = 0, $$ podemos ver fácilmente que esta se cumple si $f$ es una función par del tiempo. En consecuencia, es posible satisfacer la condición de borde haciendo uso del principio de superposición.
 
 \end{frame}
 
