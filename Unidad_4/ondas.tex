@@ -820,6 +820,76 @@
 
 \end{frame}
 
+\begin{frame}{Condiciones de borde: Un extremo fijo}   
+
+    Vamos a considerar el caso de una onda armónica que se propaga desde $-\infty$ a $0$. Su expresión matemática es entonces: $$ y_1 (x,t) = A \sen \left(\omega \, t - k \, x\right). $$ Para cumplir con la condición de borde correspondiente al extremo fijo, debemos incluir otra onda armónica invertida y que se propague desde $+\infty$ a $0$, por lo que deberá estar dada por: $$ y_2 (x,t) = - \, A \sen \left(\omega \, t + k \, x\right). $$ En virtud de la discusión anterior, la condición de borde debería satisfacerse para la superposición de estas dos ondas: $$ y \left(x,t\right) = y_1 \left(x,t\right) + y_2 \left(x,t\right) = A \left[\sen \left(\omega \, t - k \, x\right) - \sen \left(\omega \, t + k \, x\right)\right] $$
+
+\end{frame}
+
+\begin{frame}{Condiciones de borde: Un extremo fijo}
+
+    Utilizando el teorema del seno de una suma o diferencia de ángulos se obtiene: $$ y \left(x,t\right) = - \, 2 \, A \sen \left(k \, x\right) \cos \left(\omega \, t\right). $$ Como puede verse fácilmente, $y \left(x,t\right)$ satisface la condición de borde para el extremo fijo para todo instante $t$. Notemos, además, que $y \left(x,t\right) $ es una función par del tiempo. Sin embargo, no es necesario que la función de onda que satisface esta condición de borde sea función par del tiempo. Para ver esto, consideremos la función de onda $$ y_1 \left(x,t\right) = A \cos \left(\omega \, t - k \, x\right) $$ La onda que se propaga en el sentido opuesto e invertida respecto de la anterior es: $$ y_2 = - A \cos \left(\omega \, t + k \, x\right) $$ Al sumarlas, se obtiene $$ y \left(x,t\right) = 2 \, A \sen \left(k \, x\right) \sen \left(\omega \, t\right). $$
+
+\end{frame}
+
+\begin{frame}{Condiciones de borde: Un extremo fijo}
+
+    Como vemos, la función función de onda obtenida es una función impar del tiempo. Sin embargo, también satisface la condición de borde. 
+    
+    \vs 
+    
+    En conclusión, toda función de onda que es función par del tiempo satisface la condición de borde correspondiente al extremo fijo, pero no toda función de onda que es función impar del tiempo viola dicha condición.
+
+\end{frame}
+
+\begin{frame}{Condiciones de borde: Un extremo fijo}
+
+    En los dos casos antes analizados, vemos que gracias al factor $\sen \left(k \, x\right)$ la función de onda satisface la condición de borde del extremo fijo. Sin embargo, podemos observar también que $y \left(x,t\right) = 0 $ para un conjunto discreto e infinito de valores de $x$, es decir $$ k \, x = n \, \pi \qquad \text{ o bien: } \qquad x = \frac{n \, \pi}{k} = \frac{n \, \lambda}{2}.$$ Es decir, para semienteros de la longitud de onda, la función de onda se anula para todo instante de tiempo.
+
+\end{frame}
+
+\begin{frame}{Condiciones de borde: Un extremo libre}
+
+    Consideremos ahora el caso en que tenemos una cuerda semiinfinita que, al igual que en el caso anterior, se extiende desde $-\infty$ hasta $0$, pero que ahora el extremo en $x = 0$ está libre, es decir, que este extremo puede moverse libremente sobre el eje $y$. 
+    
+    \vs 
+    
+    Cuando un pulso que se propaga hacia la derecha llega hasta $x = 0$, en cierto instante el extremo libre alcanza su desplazamiento máximo (hacia arriba o hacia abajo). 
+    
+    \vs 
+    
+    En ese instante, la componente vertical de la fuerza que la cuerda ejerce sobre el extremo se anula, pero como el elemento que se encuentra inmediatamente a la izquierda ejerce una fuerza que tiende a devolver al extremo a la posición de equilibrio, este último empieza a moverse hacia $y = 0$. 
+    
+\end{frame}
+
+\begin{frame}{Condiciones de borde: Un extremo libre}
+    
+    El resultado es la reflexión de la onda conservando su forma pero desplazándose ahora hacia $-\infty$, tal como se muestra en la siguiente figura:
+
+    \begin{columns}
+        \begin{column}{0.45\textwidth}
+            \includegraphics[width=\textwidth]{../figs/waves_reflection_transmission-3.pdf}
+        \end{column}
+        ~
+        \begin{column}{0.45\textwidth}
+            \includegraphics[width=\textwidth]{../figs/waves_reflection_transmission-4.pdf}
+        \end{column}
+    \end{columns}
+    
+\end{frame}
+
+\begin{frame}{Condiciones de borde: Un extremo libre}
+
+    Tal como señalamos anteriormente, cuando el extremo libre alcanza su desplazamiento vertical máximo, la componente vertical de la fuerza se anula. Recordemos que dicha componente viene dada por: $$ F_y = F_x \, \pdiff{y}{x}. $$ Por lo tanto, la condición de borde adecuada para el caso de un extremo libre en $x= 0$ es: $$ \pdiff{y \left(0,t\right)}{x} = 0. $$ En virtud de la discusión anterior, esta condición puede satisfacerse con una onda que se propaga desde $+\infty$ hacia $x = 0$. Si $y_1 \left(x,t\right) = f \left(x - v \, t\right)$ es la onda que incide desde la izquierda, la onda que se refleja debe venir dada por $$ y_2 \left(x,t\right) = f \left(x + v \, t\right) $$
+    
+\end{frame}
+
+\begin{frame}{Condiciones de borde: Un extremo libre}
+
+    Luego, en virtud del principio de superposición, la función de onda que satisface la condición del borde libre es: $$ y \left(x,t\right) = y_1 \left(x,t\right) + y_2 \left(x,t \right)= f \left(x - v \, t\right) + f \left(x + v \, t\right). $$ En este caso, la condición de borde es: $$ \pdiff{y \left(0,t\right)}{x} = \pdiff{f \left(-v \, t\right)}{x} + \pdiff{f \left(v \, t\right)}{x}. $$ La notación aquí utilizada implica que es la derivada la que se evalúa en $x=0$. Se puede ver aquí que si \emph{la derivada} es una función \emph{impar} del tiempo, entonces la condición de borde se satisface, aunque esta \emph{no} es una condición necesaria.
+
+\end{frame}
+
 \end{document}
 
 \begin{frame}{}
