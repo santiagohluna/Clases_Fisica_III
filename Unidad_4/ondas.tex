@@ -48,6 +48,8 @@
 \newcommand{\abs}[1]{\left\vert #1 \right\vert}
 \newcommand{\tens}[1]{\mathbb{#1}}
 \newcommand{\rr}{\mathbb{R}}
+\newcommand{\zz}{\mathbb{Z}}
+\newcommand{\nn}{\mathbb{N}}
 \newcommand{\logoUNAHUR}{\includegraphics[scale=0.15]{/home/shluna/Proyectos/Clases_Fisica_III/imgs/logo-universidad-nacional-de-hurlingham_preview_rev_1.png}}
 \newcommand{\vs}{\vspace{11pt}}
 \newcommand{\un}[1]{\text{#1}}
@@ -844,7 +846,11 @@
 
 \begin{frame}{Condiciones de borde: Un extremo fijo}
 
-    En los dos casos antes analizados, vemos que gracias al factor $\sen \left(k \, x\right)$ la función de onda satisface la condición de borde del extremo fijo. Sin embargo, podemos observar también que $y \left(x,t\right) = 0 $ para un conjunto discreto e infinito de valores de $x$, es decir $$ k \, x = n \, \pi \qquad \text{ o bien: } \qquad x = \frac{n \, \pi}{k} = \frac{n \, \lambda}{2}.$$ Es decir, para semienteros de la longitud de onda, la función de onda se anula para todo instante de tiempo.
+    En los dos casos antes analizados, vemos que gracias al factor $\sen \left(k \, x\right)$ la función de onda satisface la condición de borde del extremo fijo. Sin embargo, podemos observar también que $y \left(x,t\right) = 0 $ para un conjunto discreto e infinito de valores de $x$, es decir $$ k \, x = n \, \pi \qquad \text{ o bien: } \qquad x = \frac{n \, \pi}{k} = \frac{n \, \lambda}{2},$$ donde $n \in \zz $. Es decir, para semienteros de la longitud de onda, la función de onda se anula para todo instante de tiempo.
+
+    \vs
+
+    Estos valores de $x$, para los que $ y \left(x,t\right) = 0$, se conocen como \emph{nodos}. 
 
 \end{frame}
 
@@ -887,6 +893,70 @@
 \begin{frame}{Condiciones de borde: Un extremo libre}
 
     Luego, en virtud del principio de superposición, la función de onda que satisface la condición del borde libre es: $$ y \left(x,t\right) = y_1 \left(x,t\right) + y_2 \left(x,t \right)= f \left(x - v \, t\right) + f \left(x + v \, t\right). $$ En este caso, la condición de borde es: $$ \pdiff{y \left(0,t\right)}{x} = \pdiff{f \left(-v \, t\right)}{x} + \pdiff{f \left(v \, t\right)}{x}. $$ La notación aquí utilizada implica que es la derivada la que se evalúa en $x=0$. Se puede ver aquí que si \emph{la derivada} es una función \emph{impar} del tiempo, entonces la condición de borde se satisface, aunque esta \emph{no} es una condición necesaria.
+    
+\end{frame}
+
+\begin{frame}{Condiciones de borde: Un extremo libre}
+
+    Vamos a considerar nuevamente el caso de una onda armónica. La onda incidente viene dada por: $$ y_1 \left(x,t\right) = A \sen \left(\omega \, t - k \, x\right), $$ esto es, la onda se propaga desde $-\infty$ a $0$. En virtud de la discusión anterior, la correspondiente onda que se propaga en el sentido opuesto debe entonces ser: $$ y_2 \left(x,t\right) = A \sen \left(\omega \, t + k \, x\right). $$ Luego, la onda que satisface la condición de borde libre viene dada por la superposición de estas dos ondas: $$ y \left(x,t\right) = y_1 \left(x,t\right) + y_2 \left(x,t\right) = A \left[\sen \left(\omega \, t - k \, x\right) + \sen \left(\omega \, t + k \, x\right)\right]. $$ Utilizando una vez más el teorema del seno de la suma y diferencia de ángulos se obtiene: $$ y \left(x,t\right) = 2 \, A \cos \left(k \, x\right) \sen \left(\omega \, t\right). $$
+    
+\end{frame}
+
+\begin{frame}{Condiciones de borde: Un extremo libre}
+
+    No es difícil corroborar que $ y \left(x,t\right) $ satisface la condición de borde correspondiente al extremo libre, puesto que: $$ \pdiff{y \left(x,t\right)}{x} = - 2 \, A \sen \left(k \, x\right) \sen \left(\omega \, t\right).  $$ Es decir que: $$ \pdiff{y \left(0,t\right)}{x} = 0. $$ 
+        
+\end{frame}
+
+\begin{frame}{Condiciones de borde: Un extremo libre}
+
+    Al igual que en el caso anterior, puede verse que existen infinitos puntos para los cuales $$ \pdiff{y \left(x,t\right)}{x} = 0. $$ Estos valores de $x$ se obtienen de: $$ \sen \left(k \, x\right) = 0, $$ lo cual ocure cuando $ k \, x = n \, \pi $ es decir $$ x = \frac{n \, \pi}{k}, $$ donde $n \in \zz $. En estos valores de $x$ se hallan los puntos donde $ y \left(x,t\right) $ tiene un extremo, por lo que se conocen como \emph{antinodos}.
+        
+\end{frame}
+
+\begin{frame}{Condiciones de borde: Un extremo libre}
+
+    Los nodos de la función de onda para este caso se hallan planteando: $$ y \left(x,t\right) = 0, $$ es decir: $$ \cos \left(k \, x\right) = 0, $$ lo cual se cumple para: $$ k \, x = \frac{\pi}{2} + n \, \pi = \frac{\pi}{2} \left( 2 \, n + 1\right), $$ donde $n \in \zz $.
+
+\end{frame}
+
+\begin{frame}{Ondas estacionarias}
+
+    Un caso muy interesante de estudio es el de una cuerda de longitud finita $L$ cuyos extremos están fijos. Un ejemplo cotidiano es el de las cuerdas de una guitarra o un violín.
+
+    \vs 
+
+    En este caso, es evidente que ahora vamos a tener dos condiciones de contornos, una para cada extremo, esto es: $$ y \left(0,t\right) = y \left(L,t\right) = 0. $$ Sabemos que la primera de estas dos condiciones se cumple cuando la función de onda viene dada por: $$ y \left(x,t\right) = - \, 2 \, A \sen \left(k \, x\right) \cos \left(\omega \, t\right). $$ 
+ 
+\end{frame}
+
+\begin{frame}{Ondas estacionarias}   
+    
+    Si ahora se impone la condición para el otro extremo, se obtiene: $$ y \left(L,t\right) = - \, 2 \, A \sen \left(k \, L\right) \cos \left(\omega \, t\right) = 0. $$ Si esta condición ha de satisfacerse para todo instante de tiempo, entonces se debe cumplir necesariamente que: $$ \sen \left(k \, L\right) = 0, $$ lo cual se satisface cuando $ k \, L = n \, \pi $, con $ n \in \zz $ (en principio). Es decir: $$ k_n = \frac{n \, \pi}{L} $$  Ahora bien, recordemos que el número de onda está relacionado con la longitud de onda mediante $$ k = \frac{2 \, \pi}{\lambda}, $$ por lo tanto: $$ \lambda_n = \frac{2 \, L}{n}. $$
+    
+\end{frame}
+
+\begin{frame}{Ondas estacionarias}
+
+   A su vez, estas están relaciondas con la frecuencia angular ($\omega$) y la frecuencia lineal ($f$) a traves de: $$ k = \frac{\omega}{v} \qquad \text{y} \qquad v = \lambda \, f, $$ donde $v$ es la velocidad de propagación. En consecuencia, se tiene que: $$ f_n = n \left(\frac{v}{2 \, L}\right) \qquad \text{ y } \qquad \omega_n = n \left(\frac{\pi \, v}{L}\right). $$ Hay varios aspectos que es necesario destacar a partir de estos resultados. El primero y el más importante de ellos, es que por una cuerda de longitud finita \emph{no} pueden propagarse ondas de cualquier frecuencia. En otras palabras, solamente ondas de frecuencias bien determinadas pueden satisfacer las condiciones de borde en los dos extremos fijos. Esto se aprecia fácilmente observando que la frecuencia, la longitud de onda y el número de onda dependen de valores fijos, como la longitud de la cuerda ($L$) y la velocidad de propagación $\left(v = \sqrt{\frac{F_x}{\rho \, A}}\right)$.
+    
+\end{frame}
+
+\begin{frame}{Ondas estacionarias}
+
+    En segundo lugar, es que si bien las condiciones de borde se satisfacen para cualquier entero $n$, podemos observar que las expresiones de $k_n$, $\lambda_n$, $\omega_n$ y $f_n$ tienen sentido solamente para $n \in \nn $, es decir, $n = 1, 2, 3, \ldots$.
+
+    \vs 
+
+    Para el caso de las frecuencias lineales, vemos que cada una de ellas es un múltiplo de una frecuencia que podemos llamar \emph{fundamental}: $$ f_n = n \, f_1, \text{ donde } f_1 = \frac{v}{2 \, L}. $$ Las frecuencias correspondientes a los $n > 1$ se conocen como \emph{armónicos}, por lo que $n=2$ es el primer armónico, $n=3$ es el segundo armónico, etc.
+    
+\end{frame}
+
+\begin{frame}{Ondas estacionarias}
+
+    Por último, pero no por eso menos importante, se observa que cada valor de $n$ corresponde a un \emph{modo} de oscilación particular con su propia frecuencia. En la figura siguiente se aprecian los primeros modos.
+
+
 
 \end{frame}
 
