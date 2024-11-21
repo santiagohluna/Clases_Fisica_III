@@ -920,7 +920,7 @@
 
 \end{frame}
 
-\begin{frame}{Ondas estacionarias}
+\begin{frame}{Ondas estacionarias: dos extremos fijos}
 
     Un caso muy interesante de estudio es el de una cuerda de longitud finita $L$ cuyos extremos están fijos. Un ejemplo cotidiano es el de las cuerdas de una guitarra o un violín.
 
@@ -930,19 +930,19 @@
  
 \end{frame}
 
-\begin{frame}{Ondas estacionarias}   
+\begin{frame}{Ondas estacionarias: dos extremos fijos}   
     
     Si ahora se impone la condición para el otro extremo, se obtiene: $$ y \left(L,t\right) = - \, 2 \, A \sen \left(k \, L\right) \cos \left(\omega \, t\right) = 0. $$ Si esta condición ha de satisfacerse para todo instante de tiempo, entonces se debe cumplir necesariamente que: $$ \sen \left(k \, L\right) = 0, $$ lo cual se satisface cuando $ k \, L = n \, \pi $, con $ n \in \zz $ (en principio). Es decir: $$ k_n = \frac{n \, \pi}{L} $$  Ahora bien, recordemos que el número de onda está relacionado con la longitud de onda mediante $$ k = \frac{2 \, \pi}{\lambda}, $$ por lo tanto: $$ \lambda_n = \frac{2 \, L}{n}. $$
     
 \end{frame}
 
-\begin{frame}{Ondas estacionarias}
+\begin{frame}{Ondas estacionarias: dos extremos fijos}
 
-   A su vez, estas están relaciondas con la frecuencia angular ($\omega$) y la frecuencia lineal ($f$) a traves de: $$ k = \frac{\omega}{v} \qquad \text{y} \qquad v = \lambda \, f, $$ donde $v$ es la velocidad de propagación. En consecuencia, se tiene que: $$ f_n = n \left(\frac{v}{2 \, L}\right) \qquad \text{ y } \qquad \omega_n = n \left(\frac{\pi \, v}{L}\right). $$ Hay varios aspectos que es necesario destacar a partir de estos resultados. El primero y el más importante de ellos, es que por una cuerda de longitud finita \emph{no} pueden propagarse ondas de cualquier frecuencia. En otras palabras, solamente ondas de frecuencias bien determinadas pueden satisfacer las condiciones de borde en los dos extremos fijos. Esto se aprecia fácilmente observando que la frecuencia, la longitud de onda y el número de onda dependen de valores fijos, como la longitud de la cuerda ($L$) y la velocidad de propagación $\left(v = \sqrt{\frac{F_x}{\rho \, A}}\right)$.
+   A su vez, estas están relaciondas con la frecuencia angular ($\omega$) y la frecuencia lineal ($f$) a traves de: $$ k = \frac{\omega}{v} \qquad \text{y} \qquad v = \lambda \, f, $$ donde $v$ es la velocidad de propagación. En consecuencia, se tiene que: $$ f_n = n \left(\frac{v}{2 \, L}\right) \qquad \text{ y } \qquad \omega_n = n \left(\frac{\pi \, v}{L}\right). $$ Hay varios aspectos que es necesario destacar a partir de estos resultados. El primero y el más importante de ellos, es que por una cuerda de longitud finita \emph{no} pueden propagarse ondas de cualquier frecuencia. En otras palabras, solamente ondas de frecuencias bien determinadas pueden satisfacer las condiciones de borde en los dos extremos fijos. Esto se aprecia fácilmente observando que la frecuencia, la longitud de onda y el número de onda dependen de valores fijos, como la longitud de la cuerda ($L$) y la velocidad de propagación $\left(v = \sqrt{\frac{F_x}{\rho \, A}}\right)$. Es por este motivo que estas magnitudes se etiquetan con el subíndice $n$.
     
 \end{frame}
 
-\begin{frame}{Ondas estacionarias}
+\begin{frame}{Ondas estacionarias: dos extremos fijos}
 
     En segundo lugar, es que si bien las condiciones de borde se satisfacen para cualquier entero $n$, podemos observar que las expresiones de $k_n$, $\lambda_n$, $\omega_n$ y $f_n$ tienen sentido solamente para $n \in \nn $, es decir, $n = 1, 2, 3, \ldots$.
 
@@ -952,11 +952,75 @@
     
 \end{frame}
 
-\begin{frame}{Ondas estacionarias}
+\begin{frame}{Ondas estacionarias: dos extremos fijos}
 
     Por último, pero no por eso menos importante, se observa que cada valor de $n$ corresponde a un \emph{modo} de oscilación particular con su propia frecuencia. En la figura siguiente se aprecian los primeros modos.
 
+    \vs
 
+    \begin{columns}
+        \begin{column}{0.45\textwidth}
+            \includegraphics[width=1.\textwidth]{../figs/waves_standing-3.pdf} \\
+            \includegraphics[width=1.\textwidth]{../figs/waves_standing-5.pdf}
+        \end{column}
+        ~
+        \begin{column}{0.45\textwidth}
+            \includegraphics[width=1.\textwidth]{../figs/waves_standing-4.pdf} \\
+            \includegraphics[width=1.\textwidth]{../figs/waves_standing-6.pdf}
+        \end{column}
+    \end{columns}
+
+\end{frame}
+
+\begin{frame}{Ondas estacionarias: un extremo fijo y otro libre}
+
+    Otro caso interesante es el de una cuerda que tiene un extremo fijo y otro libre. Si suponemos en el extremo fijo está en $x=0$ y el extremo libre en $x=L$, entonces las condiciones de borde serán: $$ y \left(0,t\right) = 0 \qquad \text{ y } \qquad \pdiff{y \left(L,t\right)}{x} = 0. $$ Podemos usar nuevamente la función de onda que satisface la condición de borde del extremo fijo para plantear la condición del extremo libre: $$ \pdiff{y \left(L,t\right)}{x} = - \, 2 \, A \cos \left(k\, L\right) \cos \left(\omega \, t\right) = 0. $$ Dado que esta condición se debe cumplir para todo instante de tiempo, debe ser: $$ \cos \left(k\, L\right) = 0, $$ de donde se obtiene que: $$ k \, L = \frac{\pi}{2} \left( 2 \, n + 1\right). $$
+
+\end{frame}
+
+\begin{frame}{Ondas estacionarias: un extremo fijo y otro libre}
+
+    Vemos en este caso que el número de onda no puede tomar cualquier valor, en virtud de que $L$ es un número fijo: $$ k_n = \frac{\pi}{2} \frac{\left( 2 \, n + 1\right)}{L}. $$ Lo mismo ocurre con la longitud de onda, la frecuencia lineal y la frecuencia angular: $$ \lambda_n = \frac{4 \, L}{2 \, n + 1}, \qquad \omega_n = \left(2 \, n + 1\right) \frac{\pi \, v}{2 \, L} \qquad \text{y} \qquad f_n = \left(2 \, n + 1\right) \frac{v}{4 \, L}, $$ con $n \in \nn$.
+
+\end{frame}
+
+\begin{frame}{Ondas estacionarias: un extremo fijo y otro libre}
+
+    De nuevo, cada valor de $n$ corresponde a un modo de vibración de la cuerda, caracterizado por una valor específico de la frecuencia.
+
+    \vs 
+
+    \begin{columns}
+        \begin{column}{0.45\textwidth}
+            \includegraphics[width=1.\textwidth]{../figs/waves_standing-7.pdf} \\
+            \includegraphics[width=1.\textwidth]{../figs/waves_standing-9.pdf}
+        \end{column}
+        ~
+        \begin{column}{0.45\textwidth}
+            \includegraphics[width=1.\textwidth]{../figs/waves_standing-8.pdf} \\
+            \includegraphics[width=1.\textwidth]{../figs/waves_standing-10.pdf}
+        \end{column}
+    \end{columns}
+
+\end{frame}
+
+\begin{frame}{Solución general de la ecuación de ondas y series de Fourier}
+
+    Como conclusión de lo discutido anteriormente, se observa que hay una solución de la ecuación de ondas para cada valor de $n$, esto es: $$ y_n \left(x,t\right) = - \, 2 \, A \sen \left(k_n \, x\right) \cos \left(\omega_n \, t\right) $$ Ahora bien, en virtud del principio de superposición, la suma de todas estas (infinitas) soluciones es también solución: $$ y \left(x,t\right) = \sum_{n=1}^{\infty} \left[- \, 2 \, A \sen \left(k_n \, x\right) \cos \left(\omega_n \, t\right)\right]. $$ Como la función de onda puede ser cualquier función $y \left(x,t\right) = f \left(x - v \, t\right)$, la expresión anterior indica que toda solución puede expandirse en senos y cosenos, esto se conoce como expansión en series de Fourier.
+
+\end{frame}
+
+\begin{frame}{Solución general de la ecuación de ondas y series de Fourier}
+
+    Por otro lado, vemos que la solución queda expresada como el producto entre una función que depende solamente de $x$ y otra que depende solamente del tiempo. Esto inspira la idea de que para resolver la ecuación de ondas clásica, se puede proponer una función que tenga estas características, es decir: $$ y \left(x,t\right) = f(x) \, g(t),$$ con la prescripción de que $g (0) = 1$ de forma tal que $y\left(x,0\right) = f(x)$ represente la forma inicial de la cuerda.
+
+\end{frame}
+
+\section{Reflexión y transmisión de ondas en discontinuidades}
+
+\begin{frame}{Reflexión y transmisión de ondas en discontinuidades}
+
+    Vamos a aprovechar nuestro conocimiento sobre las condiciones de contorno para estudiar lo que ocurre cuando una onda se encuentra con una discontinuidad en el medio en el que se está propagando. Esto ocurre cuando, por ejemplo, una onda llega al punto en que la cuerda en que se estaba propagando se une con otra cuerda que tiene una densidad y tensión diferentes.
 
 \end{frame}
 
