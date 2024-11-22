@@ -1020,7 +1020,80 @@
 
 \begin{frame}{Reflexión y transmisión de ondas en discontinuidades}
 
-    Vamos a aprovechar nuestro conocimiento sobre las condiciones de contorno para estudiar lo que ocurre cuando una onda se encuentra con una discontinuidad en el medio en el que se está propagando. Esto ocurre cuando, por ejemplo, una onda llega al punto en que la cuerda en que se estaba propagando se une con otra cuerda que tiene una densidad y tensión diferentes.
+    Vamos a aprovechar nuestro conocimiento sobre las condiciones de contorno para estudiar lo que ocurre cuando una onda se encuentra con una discontinuidad en el medio en el que se está propagando. Esto ocurre cuando, por ejemplo, una onda llega al punto en que la cuerda en que se estaba propagando se une con otra cuerda que tiene una densidad diferente.
+
+    \vs 
+
+    La experiencia muestra que después de que la onda llegue a la discontinuidad, se observarán una onda reflejada y una onda transmitida, tal como se muestra en la siguiente figura:
+    \begin{columns}
+        \begin{column}{0.45\textwidth}
+            \includegraphics[width=\textwidth]{../figs/waves_reflection_transmission-5.pdf}
+        \end{column}
+        ~
+        \begin{column}{0.45\textwidth}
+            \includegraphics[width=\textwidth]{../figs/waves_reflection_transmission-6.pdf}
+        \end{column}
+    \end{columns}
+
+\end{frame}
+
+\begin{frame}{Reflexión y transmisión de ondas en discontinuidades}
+
+    Consideremos entonces dos cuerdas, una que denominamos con el número 1 que se extiende desde $-\infty$ hasta $0$ y que tiene una densidad $\rho_1$, y otra que denominamos con el número 2 que se extiende desde $x=0$ hasta $+\infty$ y que tiene una densidad $\rho_2$ . Por simplicidad, asumimos las áreas transversales de estas cuerdas son iguales: $A_1 = A_2 = A$.
+
+    \vs
+
+    Cualquier onda que se propague por la cuerda 1 satisface la ecuación de ondas: $$ \pddiff{y_1 \left(x,t\right)}{t} = v_1^2 \pddiff{y_1 \left(x,t\right)}{x}. $$ Lo mismo ocurre con cualquier onda que se propague por la cuerda 2: $$ \pddiff{y_2 \left(x,t\right)}{t} = v_2^2 \pddiff{y_2 \left(x,t\right)}{x}, $$ donde $y_1 \left(x,t\right)$ e $y_2 \left(x,t\right)$ son las funciones que representan las ondas que se propagan por la cuerda 1 y por la cuerda 2, respectivamente.
+
+\end{frame}
+
+\begin{frame}{Reflexión y transmisión de ondas en discontinuidades}
+
+    Analicemos ahora las condiciones que se deben cumplir en la unión de las dos cuerdas.
+
+    \begin{figure}
+        \centering
+        \begin{tikzpicture}[
+            declare function ={
+                cuerda(\x) = -0.1*(\x-3)^2+3.2;
+            },
+            declare function ={
+                dcuerda(\x) = -0.2*(\x-3);
+                fuerza(\x,\xo) = dcuerda(\xo)*(\x-\xo) + cuerda(\xo);
+            }
+            ]
+            \def\xa{0}
+            \def\xb{4.5}
+            \def\dx{2}
+            \def\dy{0.1}
+            \coordinate (P) at (\xa,{cuerda(\xa)});
+
+            \draw[->,thick] (-3,0) -- (4,0) node[below]{\small $x$};
+            \draw[->,thick] (0,-0.5) -- (0,4) node[left]{\small $y$};
+
+            \begin{scope}[shift={(P)}]
+                \draw (0,0) -- node[pos=0.7,below=-2pt]{\scriptsize $\beta_1$} (-1,0);
+                \draw (-0.5,0) arc (180:{180+atan(dcuerda(\xa))}:0.5);
+            \end{scope}
+            \begin{scope}[shift={(P)}]
+                \draw (0,0) -- node[pos=0.8,above=-3pt]{\scriptsize $\beta_2$} (1,0);
+                \draw (0.5,0) arc (0:{atan(dcuerda(\xa))}:0.5);
+            \end{scope}
+
+            \draw[brown,ultra thick,samples=100,smooth,variable=\x,domain=-2:0] plot(\x,{cuerda(\x)});
+            \node[below] at (-2,{cuerda(-2)}) {\small $y_1(x,t)$};
+            \node[below,brown] at (-1,{cuerda(-1)-0.1}) {\small $\rho_1$};
+            \draw[gray,ultra thick,samples=100,smooth,variable=\x,domain=0:3] plot(\x,{cuerda(\x)});
+            \node[right] at (3,{cuerda(3)}) {\small $y_2(x,t)$};
+            \node[below,gray] at (2,{cuerda(2)}) {\small $\rho_2$};
+            \draw[red,very thick,->] (\xa,{cuerda(\xa)}) -- ({\xa+\dx},{fuerza(\xa+\dx,\xa)}) node[right]{\small $\vec{F}_2$};
+            \draw[red,very thick,->] (\xa,{cuerda(\xa)}) -- ({\xa-\dx},{fuerza(\xa-\dx,\xa)}) node[left]{\small $\vec{F}_1$};
+
+            \fill[black] (\xa,{cuerda(\xa)}) circle (0.5mm);
+            
+        \end{tikzpicture}
+    \end{figure}
+
 
 \end{frame}
 
