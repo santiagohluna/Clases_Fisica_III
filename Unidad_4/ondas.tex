@@ -785,11 +785,11 @@
 
     Supongamos por simplicidad una cuerda semiinfinita que se extiende desde $-\infty$ hasta $0$, por la que se propaga un pulso hacia la derecha con rapidez $v$. Cuando el pulso llega al extremo fijo, la reacción a la fuerza que la cuerda ejerce sobre el extremo hace que el pulso se \emph{refleje} de forma que si cada punto de este se separaba de la horizontal hacia arriba, luego de llegar al extremo fijo los puntos se separan de la horizontal hacia abajo y el pulso se propaga hacia la izquierda, tal como se muestra en la siguiente figura:
     \begin{columns}
-        \begin{column}{0.45\textwidth}
+        \begin{column}{0.4\textwidth}
             \includegraphics[width=\textwidth]{../figs/waves_reflection_transmission-1.pdf}
         \end{column}
         ~
-        \begin{column}{0.45\textwidth}
+        \begin{column}{0.4\textwidth}
             \includegraphics[width=\textwidth]{../figs/waves_reflection_transmission-2.pdf}
         \end{column}
     \end{columns}
@@ -873,11 +873,11 @@
     El resultado es la reflexión de la onda conservando su forma pero desplazándose ahora hacia $-\infty$, tal como se muestra en la siguiente figura:
 
     \begin{columns}
-        \begin{column}{0.45\textwidth}
+        \begin{column}{0.4\textwidth}
             \includegraphics[width=\textwidth]{../figs/waves_reflection_transmission-3.pdf}
         \end{column}
         ~
-        \begin{column}{0.45\textwidth}
+        \begin{column}{0.4\textwidth}
             \includegraphics[width=\textwidth]{../figs/waves_reflection_transmission-4.pdf}
         \end{column}
     \end{columns}
@@ -1020,7 +1020,7 @@
 
 \begin{frame}{Reflexión y transmisión de ondas en discontinuidades}
 
-    Vamos a aprovechar nuestro conocimiento sobre las condiciones de contorno para estudiar lo que ocurre cuando una onda se encuentra con una discontinuidad en el medio en el que se está propagando. Esto ocurre cuando, por ejemplo, una onda llega al punto en que la cuerda en que se estaba propagando se une con otra cuerda que tiene una densidad diferente.
+    Vamos a aprovechar nuestro conocimiento sobre las características de la solución de la ecuación de ondas y las condiciones de contorno para estudiar lo que ocurre cuando una onda se encuentra con una discontinuidad en el medio en el que se está propagando. Esto ocurre cuando, por ejemplo, una onda llega al punto en que la cuerda en que se estaba propagando se une con otra cuerda que tiene una densidad diferente.
 
     \vs 
 
@@ -1049,51 +1049,101 @@
 
 \begin{frame}{Reflexión y transmisión de ondas en discontinuidades}
 
-    Analicemos ahora las condiciones que se deben cumplir en la unión de las dos cuerdas.
+    En virtud del principio de superposición, podemos expresar las soluciones de las ecuaciones de onda para cada cuerda en términos generales como: 
+    \begin{align*}
+        y_1 \left(x,t\right) &= f_1 \left(x - v_1 \, t\right) + g_1 \left(x + v_1 \, t \right) \\
+        y_2 \left(x,t\right) &= f_2 \left(x - v_1 \, t\right) + g_2 \left(x + v_2 \, t \right). \\
+    \end{align*} Ahora bien, si consideramos un emisor que envía un pulso a traves de la cuerda 1 desde $-\infty$, la experiencia indica que habrá una onda reflejada en la misma cuerda y una onda que se transmite por la cuerda 2, una vez que el pulso enviado por el emisor llega a la discontinuidad. En tal caso, la onda \emph{incidente}, es decir, la enviada por el emisor, está representada por $f_1 \left(x - v_1 \, t\right)$, mientras que $g_1 \left(x + v_1 \, t \right)$ representa la onda \emph{reflejada} y $ f_2 \left(x - v_1 \, t\right) $ la onda \emph{transmitida}.
 
-    \begin{figure}
-        \centering
-        \begin{tikzpicture}[
-            declare function ={
-                cuerda(\x) = -0.1*(\x-3)^2+3.2;
-            },
-            declare function ={
-                dcuerda(\x) = -0.2*(\x-3);
-                fuerza(\x,\xo) = dcuerda(\xo)*(\x-\xo) + cuerda(\xo);
-            }
-            ]
-            \def\xa{0}
-            \def\xb{4.5}
-            \def\dx{2}
-            \def\dy{0.1}
-            \coordinate (P) at (\xa,{cuerda(\xa)});
+    \vs 
 
-            \draw[->,thick] (-3,0) -- (4,0) node[below]{\small $x$};
-            \draw[->,thick] (0,-0.5) -- (0,4) node[left]{\small $y$};
+    Como no se emite onda alguna desde $+\infty$ hacia la discontinuidad, se tiene que $$ g_2 \left(x + v_2 \, t \right) \equiv 0. $$
 
-            \begin{scope}[shift={(P)}]
-                \draw (0,0) -- node[pos=0.7,below=-2pt]{\scriptsize $\beta_1$} (-1,0);
-                \draw (-0.5,0) arc (180:{180+atan(dcuerda(\xa))}:0.5);
-            \end{scope}
-            \begin{scope}[shift={(P)}]
-                \draw (0,0) -- node[pos=0.8,above=-3pt]{\scriptsize $\beta_2$} (1,0);
-                \draw (0.5,0) arc (0:{atan(dcuerda(\xa))}:0.5);
-            \end{scope}
+\end{frame}
 
-            \draw[brown,ultra thick,samples=100,smooth,variable=\x,domain=-2:0] plot(\x,{cuerda(\x)});
-            \node[below] at (-2,{cuerda(-2)}) {\small $y_1(x,t)$};
-            \node[below,brown] at (-1,{cuerda(-1)-0.1}) {\small $\rho_1$};
-            \draw[gray,ultra thick,samples=100,smooth,variable=\x,domain=0:3] plot(\x,{cuerda(\x)});
-            \node[right] at (3,{cuerda(3)}) {\small $y_2(x,t)$};
-            \node[below,gray] at (2,{cuerda(2)}) {\small $\rho_2$};
-            \draw[red,very thick,->] (\xa,{cuerda(\xa)}) -- ({\xa+\dx},{fuerza(\xa+\dx,\xa)}) node[right]{\small $\vec{F}_2$};
-            \draw[red,very thick,->] (\xa,{cuerda(\xa)}) -- ({\xa-\dx},{fuerza(\xa-\dx,\xa)}) node[left]{\small $\vec{F}_1$};
+\begin{frame}{Reflexión y transmisión de ondas en discontinuidades}
 
-            \fill[black] (\xa,{cuerda(\xa)}) circle (0.5mm);
-            
-        \end{tikzpicture}
-    \end{figure}
+    Analicemos ahora las condiciones que se deben cumplir en la unión de las dos cuerdas. Si consideramos los extremos de las cuerdas que se unen en $x=0$, vemos que $\vec{F}_1$ es la fuerza con que la cuerda 1 tira de la cuerda 2, mientras que $\vec{F}_2$ es la fuerza con la que la cuerda 2 tira de la cuerda 1. En virtud de la tercera ley de Newton tenemos que: $ \vec{F}_1 + \vec{F}_2 = \vec{0}$.
 
+    \begin{columns}
+        \begin{column}{0.65\textwidth}
+            \begin{figure}
+                \centering
+                \begin{tikzpicture}[
+                    declare function ={
+                        cuerda(\x) = -0.1*(\x-3)^2+3.2;
+                    },
+                    declare function ={
+                        dcuerda(\x) = -0.2*(\x-3);
+                        fuerza(\x,\xo) = dcuerda(\xo)*(\x-\xo) + cuerda(\xo);
+                    }
+                    ]
+                    \def\xa{0}
+                    \def\xb{4.5}
+                    \def\dx{2}
+                    \def\dy{0.1}
+                    \coordinate (P) at (\xa,{cuerda(\xa)});
+        
+                    \draw[->,thick] (-3,0) -- (4,0) node[below]{\small $x$};
+                    \draw[->,thick] (0,-0.5) -- (0,4) node[left]{\small $y$};
+        
+                    \draw[brown,ultra thick,samples=100,smooth,variable=\x,domain=-2:0] plot(\x,{cuerda(\x)});
+                    \node[below] at (-2,{cuerda(-2)}) {\small $y_1(x,t)$};
+                    \node[below,brown] at (-1,{cuerda(-1)-0.1}) {\small $\rho_1$};
+                    \draw[gray,ultra thick,samples=100,smooth,variable=\x,domain=0:3] plot(\x,{cuerda(\x)});
+                    \node[right] at (3,{cuerda(3)}) {\small $y_2(x,t)$};
+                    \node[below,gray] at (2,{cuerda(2)}) {\small $\rho_2$};
+
+                    \begin{scope}[shift={(P)}]
+                        \draw (0,0) -- node[pos=0.7,below=-2pt]{\scriptsize $\beta_1$} (-1,0);
+                        \draw (-0.5,0) arc (180:{180+atan(dcuerda(\xa))}:0.5);
+                    \end{scope}
+                    \begin{scope}[shift={(P)}]
+                        \draw (0,0) -- node[pos=0.8,above=-3pt]{\scriptsize $\beta_2$} (1,0);
+                        \draw (0.5,0) arc (0:{atan(dcuerda(\xa))}:0.5);
+                    \end{scope}
+
+                    \draw[red,very thick,->] (\xa,{cuerda(\xa)}) -- ({\xa+\dx},{fuerza(\xa+\dx,\xa)}) node[right]{\small $\vec{F}_2$};
+                    \draw[red,very thick,->] (\xa,{cuerda(\xa)}) -- ({\xa-\dx},{fuerza(\xa-\dx,\xa)}) node[left]{\small $\vec{F}_1$};
+        
+                    \fill[black] (\xa,{cuerda(\xa)}) circle (0.5mm);
+                    
+                \end{tikzpicture}
+            \end{figure}
+        \end{column}
+        ~
+        \begin{column}{0.35\textwidth}
+            Estas fuerzas vienen dadas por:
+            \begin{align*}
+                \vec{F}_1 &= - \, F_{1,x} \, \ver{e}_x - F_{1,y} \, \ver{e}_y \\
+                \vec{F}_1 &= F_{2,x} \, \ver{e}_x + F_{2,y} \, \ver{e}_y.
+            \end{align*}
+        \end{column}
+    \end{columns}
+
+\end{frame}
+
+\begin{frame}{Reflexión y transmisión de ondas en discontinuidades}
+
+    Tal como vimos, las componentes verticales puede expresarse como: 
+    \begin{align*}
+        F_{1,y} &= F_{1,x} \tan \beta_1 = F_{1,x} \pdiff{y_1}{x} \\
+        F_{2,y} &= F_{2,x} \tan \beta_2 = F_{2,x} \pdiff{y_2}{x}.
+    \end{align*} Por lo que: 
+    \begin{align*}
+        \vec{F}_1 &= - \, F_{1,x} \, \ver{e}_x - F_{1,x} \pdiff{y_1}{x} \, \ver{e}_y \\
+        \vec{F}_1 &= F_{2,x} \, \ver{e}_x + F_{2,x} \pdiff{y_2}{x} \, \ver{e}_y.
+    \end{align*} Luego: $$ \left(F_{2,x} - \, F_{1,x} \right) \ver{e}_x + \left(- F_{1,x} \pdiff{y_1}{x} + F_{2,x} \pdiff{y_2}{x} \right) \ver{e}_y = \vec{0}. $$
+
+\end{frame}
+
+\begin{frame}{Reflexión y transmisión de ondas en discontinuidades}
+
+    Esto es: 
+    \begin{align*}
+        F_{2,x} - \, F_{1,x} &= 0 \\
+        - F_{1,x} \pdiff{y_1}{x} + F_{2,x} \pdiff{y_2}{x} = 0,
+    \end{align*} de donde se obtiene que $$ F_{2,x} = F_{1,x} = F_x \qquad \text{ y } \qquad F_x \, \pdiff{y_2}{x} = F_x \pdiff{y_1}{x} $$ O, simplemente: $$ F_x \, \pdiff{y_2}{x} = F_x \pdiff{y_1}{x}. $$
 
 \end{frame}
 
