@@ -1052,7 +1052,7 @@
     En virtud del principio de superposición, podemos expresar las soluciones de las ecuaciones de onda para cada cuerda en términos generales como: 
     \begin{align*}
         y_1 \left(x,t\right) &= f_1 \left(x - v_1 \, t\right) + g_1 \left(x + v_1 \, t \right) \\
-        y_2 \left(x,t\right) &= f_2 \left(x - v_1 \, t\right) + g_2 \left(x + v_2 \, t \right). \\
+        y_2 \left(x,t\right) &= f_2 \left(x - v_1 \, t\right) + g_2 \left(x + v_2 \, t \right).
     \end{align*} Ahora bien, si consideramos un emisor que envía un pulso a traves de la cuerda 1 desde $-\infty$, la experiencia indica que habrá una onda reflejada en la misma cuerda y una onda que se transmite por la cuerda 2, una vez que el pulso enviado por el emisor llega a la discontinuidad. En tal caso, la onda \emph{incidente}, es decir, la enviada por el emisor, está representada por $f_1 \left(x - v_1 \, t\right)$, mientras que $g_1 \left(x + v_1 \, t \right)$ representa la onda \emph{reflejada} y $ f_2 \left(x - v_1 \, t\right) $ la onda \emph{transmitida}.
 
     \vs 
@@ -1063,7 +1063,65 @@
 
 \begin{frame}{Reflexión y transmisión de ondas en discontinuidades}
 
-    Analicemos ahora las condiciones que se deben cumplir en la unión de las dos cuerdas. Si consideramos los extremos de las cuerdas que se unen en $x=0$, vemos que $\vec{F}_1$ es la fuerza con que la cuerda 1 tira de la cuerda 2, mientras que $\vec{F}_2$ es la fuerza con la que la cuerda 2 tira de la cuerda 1. En virtud de la tercera ley de Newton tenemos que: $ \vec{F}_1 + \vec{F}_2 = \vec{0}$.
+    Analicemos ahora las condiciones que se deben cumplir en la unión de las dos cuerdas. Evidentemente, si las cuerdas deben permanecer unidas en todo momento, debemos imponer la condición de continuidad: $ y_1 (0,t) = y_2 (0,t)$. En consecuencia: $$ f_1 \left(- \, v_1 \, t\right) + g_1 \left(v_1 \, t\right) = f_2 \left(- \, v_2 \, t\right). $$
+
+    \begin{columns}
+        \begin{column}{0.65\textwidth}
+            \begin{figure}
+                \centering
+                \begin{tikzpicture}[
+                    declare function ={
+                        cuerda(\x) = -0.1*(\x-3)^2+3.2;
+                    },
+                    declare function ={
+                        dcuerda(\x) = -0.2*(\x-3);
+                        fuerza(\x,\xo) = dcuerda(\xo)*(\x-\xo) + cuerda(\xo);
+                    }
+                    ]
+                    \def\xa{0}
+                    \def\xb{4.5}
+                    \def\dx{2}
+                    \def\dy{0.1}
+                    \coordinate (P) at (\xa,{cuerda(\xa)});
+        
+                    \draw[->,thick] (-3,0) -- (4,0) node[below]{\small $x$};
+                    \draw[->,thick] (0,-0.5) -- (0,4) node[left]{\small $y$};
+        
+                    \draw[brown,ultra thick,samples=100,smooth,variable=\x,domain=-2:0] plot(\x,{cuerda(\x)});
+                    \node[below] at (-2,{cuerda(-2)}) {\small $y_1(x,t)$};
+                    \node[below,brown] at (-1,{cuerda(-1)-0.1}) {\small $\rho_1$};
+                    \draw[gray,ultra thick,samples=100,smooth,variable=\x,domain=0:3] plot(\x,{cuerda(\x)});
+                    \node[right] at (3,{cuerda(3)}) {\small $y_2(x,t)$};
+                    \node[below,gray] at (2,{cuerda(2)}) {\small $\rho_2$};
+
+                    \begin{scope}[shift={(P)}]
+                        \draw (0,0) -- node[pos=0.7,below=-2pt]{\scriptsize $\beta_1$} (-1,0);
+                        \draw (-0.5,0) arc (180:{180+atan(dcuerda(\xa))}:0.5);
+                    \end{scope}
+                    \begin{scope}[shift={(P)}]
+                        \draw (0,0) -- node[pos=0.8,above=-3pt]{\scriptsize $\beta_2$} (1,0);
+                        \draw (0.5,0) arc (0:{atan(dcuerda(\xa))}:0.5);
+                    \end{scope}
+
+                    \draw[red,very thick,->] (\xa,{cuerda(\xa)}) -- ({\xa+\dx},{fuerza(\xa+\dx,\xa)}) node[right]{\small $\vec{F}_2$};
+                    \draw[red,very thick,->] (\xa,{cuerda(\xa)}) -- ({\xa-\dx},{fuerza(\xa-\dx,\xa)}) node[left]{\small $\vec{F}_1$};
+        
+                    \fill[black] (\xa,{cuerda(\xa)}) circle (0.5mm);
+                    
+                \end{tikzpicture}
+            \end{figure}
+        \end{column}
+        ~
+        \begin{column}{0.35\textwidth}
+            Por simplicidad, vamos a reescribir esta condición de la siguiente manera: $$ f_1 + g_1 = f_2 $$
+        \end{column}
+    \end{columns}
+    
+\end{frame}
+
+\begin{frame}{Reflexión y transmisión de ondas en discontinuidades}
+
+    Si consideramos los extremos de las cuerdas que se unen en $x=0$, vemos que $\vec{F}_1$ es la fuerza con que la cuerda 1 tira de la cuerda 2, mientras que $\vec{F}_2$ es la fuerza con la que la cuerda 2 tira de la cuerda 1. En virtud de la tercera ley de Newton tenemos que: $ \vec{F}_1 + \vec{F}_2 = \vec{0}$.
 
     \begin{columns}
         \begin{column}{0.65\textwidth}
@@ -1127,13 +1185,13 @@
 
     Tal como vimos, las componentes verticales puede expresarse como: 
     \begin{align*}
-        F_{1,y} &= F_{1,x} \tan \beta_1 = F_{1,x} \pdiff{y_1}{x} \\
-        F_{2,y} &= F_{2,x} \tan \beta_2 = F_{2,x} \pdiff{y_2}{x}.
+        F_{1,y} &= F_{1,x} \tan \beta_1 = F_{1,x} \pdiff{y_1 (0,t)}{x} \\
+        F_{2,y} &= F_{2,x} \tan \beta_2 = F_{2,x} \pdiff{y_2 (0,t)}{x}.
     \end{align*} Por lo que: 
     \begin{align*}
-        \vec{F}_1 &= - \, F_{1,x} \, \ver{e}_x - F_{1,x} \pdiff{y_1}{x} \, \ver{e}_y \\
-        \vec{F}_1 &= F_{2,x} \, \ver{e}_x + F_{2,x} \pdiff{y_2}{x} \, \ver{e}_y.
-    \end{align*} Luego: $$ \left(F_{2,x} - \, F_{1,x} \right) \ver{e}_x + \left(- F_{1,x} \pdiff{y_1}{x} + F_{2,x} \pdiff{y_2}{x} \right) \ver{e}_y = \vec{0}. $$
+        \vec{F}_1 &= - \, F_{1,x} \, \ver{e}_x - F_{1,x} \pdiff{y_1 (0,t)}{x} \, \ver{e}_y \\
+        \vec{F}_1 &= F_{2,x} \, \ver{e}_x + F_{2,x} \pdiff{y_2 (0,t)}{x} \, \ver{e}_y.
+    \end{align*} Luego: $$ \left(F_{2,x} - \, F_{1,x} \right) \ver{e}_x + \left(- F_{1,x} \pdiff{y_1 (0,t)}{x} + F_{2,x} \pdiff{y_2 (0,t)}{x} \right) \ver{e}_y = \vec{0}. $$
 
 \end{frame}
 
@@ -1141,9 +1199,76 @@
 
     Esto es: 
     \begin{align*}
-        F_{2,x} - \, F_{1,x} &= 0 \\
-        - F_{1,x} \pdiff{y_1}{x} + F_{2,x} \pdiff{y_2}{x} = 0,
-    \end{align*} de donde se obtiene que $$ F_{2,x} = F_{1,x} = F_x \qquad \text{ y } \qquad F_x \, \pdiff{y_2}{x} = F_x \pdiff{y_1}{x} $$ O, simplemente: $$ F_x \, \pdiff{y_2}{x} = F_x \pdiff{y_1}{x}. $$
+        F_{2,x} - \, F_{1,x} &= 0, \\
+        - F_{1,x} \pdiff{y_1 (0,t)}{x} + F_{2,x} \pdiff{y_2 (0,t)}{x} &= 0,
+    \end{align*} de donde se obtiene que $$ F_{2,x} = F_{1,x} = F_x \qquad \text{ y } \qquad F_x \, \pdiff{y_2 (0,t)}{x} = F_x \pdiff{y_1 (0,t)}{x} $$ O, simplemente: $$ \pdiff{y_2 (0,t)}{x} = \pdiff{y_1 (0,t)}{x}. $$ En consecuencia, la condición de borde se expresa como: $$ \pdiff{}{x} \left(f_1 + g_1\right) = \pdiff{f_2}{x}. $$
+
+\end{frame}
+
+\begin{frame}{Reflexión y transmisión de ondas en discontinuidades}
+
+    O bien, como: $$ \pdiff{f_1}{x} + \pdiff{g_1}{x} = \pdiff{f_2}{x}. $$ Ahora bien, las derivadas de las funciones de onda con respecto a $x$ están relacionadas con las respectivas derivadas respecto al tiempo mediante: $$ \pdiff{f_1}{t} = - v_1 \, \pdiff{f_1}{x}, \quad \pdiff{g_1}{t} = v_1 \, \pdiff{g_1}{x}, \quad \text{y} \quad \pdiff{f_2}{t} = - v_2 \, \pdiff{f_2}{x}. $$ Por lo tanto, multiplicando la última expresión de la condición de borde para las fuerzas por $ v_1 \, v_2 $, se obtiene: $$ - \, \pdiff{f_1}{t} + \pdiff{g_1}{t} = - \frac{v_1}{v_2} \pdiff{f_2}{t}. $$ Ecuación que puede reescribirse como: $$ \pdiff{}{t} \left[- \, f_1 + g_1 + \frac{v_1}{v_2} f_2 \right] = 0. $$ Esto significa que la expresión entre corchetes es constante en el tiempo. 
+
+\end{frame}
+
+\begin{frame}{Reflexión y transmisión de ondas en discontinuidades}
+
+    No es difícil mostrar que $$ - \, f_1 + g_1 + \frac{v_1}{v_2} f_2 = 0. $$ Si se considera un pulso, antes de que este llegue a la discontinuidad tanto $f_1$, como $g_1$ y $f_2$ son nulas en $x=0$. En virtud de que la cantidad $- \, f_1 + g_1 + \frac{v_1}{v_2} f_2$ es constante en el tiempo, si es nula para cierto instante, entonces debe serlo para todo valor de $t$.
+
+    \vs 
+
+    De esta forma, hemos obtenido un sistema de dos ecuaciones con dos incógnitas a partir de las condiciones de borde que nos permiten determinar $g_1$ y $f_2$:
+    \begin{align*}
+        f_1 + g_1 - f_2 &= 0, \\
+        - \, f_1 + g_1 + \frac{v_1}{v_2} f_2 &= 0.
+    \end{align*} Este sistema se resuelve para dar: $$ g_1 = f_1 \left(\frac{v_2 - v_1}{v_2 + v_1}\right) \qquad \text{y} \qquad f_2 = f_1 \left(\frac{2 \, v_2}{v_2 + v_1}\right). $$
+
+\end{frame}
+
+\begin{frame}{Reflexión y transmisión de ondas en discontinuidades}
+
+    El factor entre paréntesis en el lado derecho de la expresión que da $g_1$ en función de $f_1$, se conoce como \emph{coeficiente de reflexión} ($C_R$): $$ C_R = \frac{v_2 - v_1}{v_2 + v_1}. $$ En cambio, el factor que relaciona $f_2$ con $f_1$ se denomina \emph{coeficiente de transmisión} ($C_T$): $$ C_T = \frac{2 \, v_2}{v_2 + v_1}. $$ Así, tenemos finalmente que: $$ g_1 = C_R \, f_1 \qquad \text{ y que } \qquad f_2 = C_T \, f_1. $$
+
+\end{frame}
+
+\begin{frame}{Reflexión y transmisión de ondas en discontinuidades}
+
+    Si bien estas relaciones se han obtenido para $x=0$, la condición de borde para la fuerza: $$ \pdiff{f_1}{x} + \pdiff{g_1}{x} = \pdiff{f_2}{x}, $$ sugiere que la relación entre $f_1$, $g_1$ y $f_2$ ha de ser válida para cualquier valor de $x$, puesto que: $$ \pdiff{}{x} \left[f_1 + g_1 - f_2\right] = 0, $$ así como lo es para cualquier instante de tiempo. En virtud de lo anterior: $$ \pdiff{f_1}{x} \left[1 + C_R - C_T\right] = 0, $$ lo cual, a su vez, sugiere que $C_R - C_T = -1 $, o bien que $C_T - C_R = 1$, lo cual puede demostrarse a partir de las definiciones de los coeficientes de reflexión y de transmisión.
+ 
+\end{frame}
+
+\begin{frame}{Reflexión y transmisión de ondas en discontinuidades}   
+
+    Por lo tanto, la relación entre $g_1$ y $f_2$ con $f_1$ se mantienen \emph{para el mismo valor del argumento de estas funciones}, esto es: $$ g_1 \left(x + v_1 \, t\right) = C_R \, f_1 \left(x + v_1 \, t\right) \qquad \text{ y } \qquad f_2 \left(x - v_2 \, t\right) = C_T \, f_1 \left(x - v_2 \, t\right). $$
+
+
+\end{frame}
+
+\begin{frame}{Reflexión y transmisión de ondas en discontinuidades}
+
+    A continuación, vamos a considerar algunos casos extremos para verificar la validez de las expresiones obtenidas.
+
+    \vs
+
+    Para comenzar, recordemos que la velocidad de propagación en cada cuerda viene dada por $$ v_1 = \sqrt{\frac{F_x}{\rho_1 \, A}} \qquad \text{y} \qquad v_2 = \sqrt{\frac{F_x}{\rho_2 \, A}}, $$ puesto que asumimos que las áreas transversales de cada cuerda son iguales.
+
+    \vs 
+
+    El primer caso que podemos considerar es aquel en el que desaparece la discontinuidad, es decir, cuando $\rho_1 = \rho_2$. Esto implica que $v_1 = v_2$ y, por lo tanto, $C_R = 0$ y $C_T = 1$, por lo que $g_1 = 0$ y $f_2 = f_1$, esto es, no hay onda reflejada puesto que la incidente sigue su camino como si se tratara de una misma cuerda.
+
+\end{frame}
+
+\begin{frame}{Reflexión y transmisión de ondas en discontinuidades}
+
+    El segundo caso corresponde al extremo fijo, el cual se puede considerar como el caso límite en el que la cuerda 2 es mucho más ``pesada'' que la cuerda 1. A partir de la definición de las velocidades de propagación por cada cuerda tenemos que: $$ \frac{v_2}{v_1} = \sqrt{\frac{\rho_1}{\rho_2}},$$ por lo que $v_2 \to 0$ cuando $\rho_2 \to \infty$. En consecuencia, $C_R = -1$ y $C_T = 0$, es decir: $$ g_1 = - f_1 \qquad \text{y} \qquad f_2 = 0. $$ 
+
+    El tercer y último caso es el del extremo libre. En contraste con el anterior, este caso corresponde a aquel en el que la cuerda 2 es mucho más ``liviana'' que la cuerda 1. En virtud de la relación entre las velocidades de propagación y las densidades, tenemos esta vez que $v_2 \to \infty$ cuando $\rho_2 \to 0$, por lo que $v_2 \gg v_1 $ y, en consecuencia, $C_R = 1 $ y $ C_T = 2$.
+
+\end{frame}
+
+\begin{frame}{Reflexión y transmisión de ondas en discontinuidades}
+
+    Como vemos, el coeficiente de reflexión varía entre 1 y $-1$. Consecuentemente, el coeficiente de transmisión varía entre $0$ y $2$, lo que verifica la relación entre ellos: $$ C_T - C_R = 1.$$
 
 \end{frame}
 
