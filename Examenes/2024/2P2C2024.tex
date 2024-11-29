@@ -1,0 +1,200 @@
+\documentclass[addpoints]{exam}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{charter}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage[outline]{contour} % glow around text
+\usetikzlibrary{babel,calc,patterns,decorations.pathmorphing,decorations.markings,arrows.meta,shapes.geometric}
+\usetikzlibrary{calc}
+\tikzset{>=latex}
+\contourlength{1.1pt}
+\usepackage{tikz-3dplot}
+\usepackage{multicol}
+\usepackage{exam-randomizechoices}
+\usepackage[left=1cm,right=1cm,top=2cm,bottom=2cm]{geometry}
+\usepackage[font=small,labelfont={small,bf},margin=0.5cm,justification=justified]{caption}
+\usepackage[font=small,labelfont={small,bf}]{subcaption}
+\usepackage[italic,defaultmathsizes]{mathastext}
+\usepackage{hyperref}
+\usepackage{calculator}
+\usepackage[breakable]{tcolorbox}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{cancel}
+\usepackage{tipa}
+\usepackage{enumerate}
+
+%\pointpoints{punto}{puntos}
+%\bonuspointpoints{punto extra}{puntos extra}
+
+\renewcommand{\solutiontitle}{\textbf{Solución: }}
+\renewcommand{\thequestion}{\bfseries\arabic{question}}
+
+\newcommand{\sgn}{\mathop{\mathrm{sgn}}}
+\newcommand{\diff}[0]{\mathrm{d}}
+\newcommand{\fdiff}[2]{\frac{\mathrm{d} #1}{\mathrm{d} #2}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\fddiff}[2]{\frac{\mathrm{d^2} #1}{\mathrm{d} #2^2}}
+\newcommand{\pddiff}[2]{\frac{\partial^2 #1}{\partial {#2}^2}}
+\newcommand{\grado}[0]{^{\circ}}
+\newcommand{\angulo}[3]{#1\grado \, #2' \, #3''}
+\newcommand{\chel}[4]{^{#1}_{#2}\mbox{#3}^{#4}}
+\newcommand{\valmed}[1]{\left\langle #1 \right\rangle}
+\newcommand{\E}[1]{\times 10^{#1}}
+\newcommand{\ver}[1]{\hat{\mathbf{#1}}}
+\newcommand{\vecg}[1]{\boldsymbol{#1}}
+\newcommand{\iu}{\mathrm{i}}
+\newcommand{\norm}[1]{\left\vert\left\vert #1 \right\vert\right\vert}
+\newcommand{\abs}[1]{\left\vert #1 \right\vert}
+\newcommand{\tens}[1]{\mathbb{#1}}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\un}[1]{\text{#1}}
+\newcommand{\logoUNAHUR}{\includegraphics[scale=0.35]{/home/shluna/Proyectos/Clases_Fisica_III/imgs/logo_unahur.png }}
+\renewcommand{\arraystretch}{1.5}
+\newcommand{\rta}{\textbf{Respuesta: }}
+\newcommand{\rtas}{\textbf{Respuestas: }}
+\newcommand{\ang}{110}
+\newcommand{\angu}{-30}
+\newcommand{\rad}{4}
+\newcommand{\mg}{1}
+\newcommand{\muc}{0.5}
+\newcommand{\arc}[1]{{%
+  \setbox9=\hbox{#1}%
+  \ooalign{\resizebox{\wd9}{\height}{\texttoptiebar{\phantom{A}}}\cr#1}}}
+
+  \colorlet{mydarkblue}{blue!40!black}
+  \colorlet{myblue}{blue!30}
+  \colorlet{myred}{red!65!black}
+  \colorlet{vcol}{green!45!black}
+  \colorlet{watercol}{blue!80!cyan!10!white}
+  \colorlet{darkwatercol}{blue!80!cyan!80!black!30!white}
+  \tikzstyle{water}=[draw=mydarkblue,top color=watercol!90,bottom color=watercol!90!black,middle color=watercol!50,shading angle=0]
+  \tikzstyle{horizontal water}=[water,
+    top color=watercol!90!black!90,bottom color=watercol!90!black!90,middle color=watercol!80,shading angle=0]
+  \tikzstyle{dark water}=[draw=blue!20!black,top color=darkwatercol,bottom color=darkwatercol!80!black,middle color=darkwatercol!40,shading angle=0]
+  \tikzstyle{vvec}=[->,very thick,vcol,line cap=round]
+  \tikzstyle{force}=[->,myred,very thick,line cap=round]
+  \tikzstyle{width}=[{Latex[length=3,width=3]}-{Latex[length=3,width=3]}]
+
+\hypersetup{
+%      draft,
+   linktocpage=true,
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    filecolor=blue,      
+    urlcolor=blue
+}
+
+\printanswers
+\qformat{\textbf{Ejercicio \thequestion}\hfill}
+
+\pagestyle{headandfoot}
+\firstpageheader{Instituto de Tecnología e Ingeniería}{\logoUNAHUR}{Física III}
+\firstpageheadrule
+\runningheader{Segundo parcial}{\logoUNAHUR}{Física III}
+\runningheadrule
+\firstpagefooter{}{Página \thepage\ de \numpages}{}
+\firstpagefootrule
+\runningfooter{}{Página \thepage\ de \numpages}{}
+\runningfootrule
+
+\begin{document}
+
+\renewcommand{\tablename}{Tabla}
+
+\tdplotsetmaincoords{70}{110}
+
+\begin{tcolorbox}[colback=white,arc=0mm,colframe=black]
+    \begin{center}
+        \Large\textbf{Física III -- Segundo parcial}
+    \end{center}
+\end{tcolorbox}
+
+\begin{itemize}
+    \item \makebox[0.75\textwidth]{Nombre y apellido:\enspace\hrulefill}
+    \item \makebox[0.75\textwidth]{DNI:\enspace\hrulefill}
+\end{itemize}
+
+\begin{tcolorbox}[colback=black!5!white,arc=0mm,breakable,pad at break*=1mm,colframe=black!25!white,title=\textbf{\textcolor{black}{Instrucciones generales}}]
+    \begin{itemize}
+        \item Expresar todas las unidades en el Sistema Internacional.
+        \item Tanto las respuestas como los desarrollos correspondientes deben escribirse con bolígrafo.
+        \item Todas las hojas a entregar deben estar numeradas y se debe indicar el nombre, apellido y número de DNI en cada una.
+        \item Todas las respuestas deben estar correctamente justificadas.
+    \end{itemize}
+\end{tcolorbox}
+
+\begin{questions}
+
+    \question A continuación se presentan ciertas funciones.
+    \begin{enumerate}[i)]
+        \item $y\left(x,y,t\right) = C \, y \exp \left[- \left(x-v \, t\right)^2\right].$
+        \item $y \left(x,t\right) = C \left(x-v\,t\right) \left(x+v\,t\right).$
+        \item $y\left(x,t\right) = \frac{C \, x}{1 + \left(x + v \, t\right)^2}.$
+        \item $y\left(x,t\right) = C \left[1 - \frac{\left(x - v \, t\right)^2}{1 + \left(x - v \, t\right)^2}\right].$
+    \end{enumerate}
+    
+    Se pide que:
+    \begin{parts}
+        \part Decida cuál o cuáles de ellas representan una onda viajera que se propaga a lo largo de la dirección $x$.
+        \part Para aquellas que no lo sean, proponga, si es posible, una manera de reescribirlas para que sean funciones de onda. 
+        \part Obtenga la correspondiente expresión de la densidad de energía y de la intensidad, asumiendo que son ondas que se propagan en una cuerda cuya área de sección transversal es $A$.
+    \end{parts}
+
+    \question Una cuerda de masa $m$ y densidad $\rho$ y cuya sección transversal tiene un área $A$, que se dispone en dirección horizontal, pasa por una polea de radio $R$ y se une a un bloque de masa $M$. El otro extremo se une a una pared en el punto $O$ que se encuentra a una distancia $L$ de la polea, medida en dirección horizontal, tal como se muestra en la Figura~\ref{fig:cuerda_bloque_polea}. Si los puntos de la cuerda oscilan en la dirección vertical describiendo un movimiento armónico simple: \label{ej:cuerda_bloque_polea}
+    \begin{parts}
+        \part ¿Cuáles son las condiciones de borde que debe satisfacer la función que describe la onda que se propague por la cuerda?
+        \part ¿Qué tipo de onda pueden propagarse por la cuerda para satisfacer esas condiciones de borde?
+        \part Escriba la expresión de la función de onda correspondiente.
+        \part Explicar por qué solamente se pueden propagar ondas de frecuencias bien determinadas.
+        \part Mostrar que, en este caso, las frecuencias lineales posibles vienen dadas por $$ f_n = \frac{n}{2} \sqrt{\frac{M \, g}{m \, L}}.$$ 
+    \end{parts}
+
+    \begin{figure}[ht]
+        \centering
+        \begin{tikzpicture}[scale=1]
+            \coordinate (O) at (0,0);
+            \coordinate (P) at (6,0);
+
+            \fill[pattern=north east lines] (-0.2,-1) rectangle (0,1);
+            
+            \draw[ultra thick,brown] (O) -- (P);
+            \draw[thick] (0,1) -- (0,-1);
+            \fill[black] (O) circle (0.5mm) node[anchor=north west]{$O$};
+
+            \draw[ultra thick,brown] (6.5,-0.5) -- (6.5,-2.5);
+            \draw[ultra thick,brown] (P) arc (90:0:0.5);
+            \draw[thick,fill=gray!40!white] (6,-2.5) rectangle (7,-3.5);
+            \node at (6.5,-3) {$M$};
+
+            \draw[thick,fill=gray!40!white] (6,-0.5) circle (0.5);
+            \fill[black] (6,-0.5) circle (0.5mm);
+
+            \draw[latex-latex] (0,0.5) -- node[fill=white]{$L$} (6,0.5);
+            \draw (6,0.6) -- (6,0.1);
+
+        \end{tikzpicture}
+        \caption{Esquema del ejercicio \ref{ej:cuerda_bloque_polea}.}
+        \label{fig:cuerda_bloque_polea}
+    \end{figure}
+
+    \pagebreak 
+
+    \question Los campos eléctrico y magnético de una onda electromagnética monocromática plana están polarizados según $\ver{e}_y$ y $\ver{e}_z$, respectivamente. La amplitud del primero es $E_0$.
+    \begin{parts}
+        \part Escriba las expresiones vectoriales del campo eléctrico y del campo magnético.
+        \part Hallar la expresión del vector de Poynting.
+        \part Las perturbaciones de los campos eléctrico y magnético, ¿se propagan con la misma rapidez y con la misma frecuencia? Justifique su respuesta.
+        \part ¿En qué dirección y sentido se propaga esta onda electromagnética?
+    \end{parts}
+    
+
+\end{questions}
+
+\end{document}
