@@ -1,0 +1,161 @@
+\documentclass[addpoints]{exam}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{charter}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage[outline]{contour} % glow around text
+\usetikzlibrary{babel,calc,patterns,decorations.pathmorphing,decorations.markings,arrows.meta,shapes.geometric}
+\usetikzlibrary{calc}
+\tikzset{>=latex}
+\contourlength{1.1pt}
+\usepackage{tikz-3dplot}
+\usepackage{multicol}
+\usepackage{exam-randomizechoices}
+\usepackage[left=1cm,right=1cm,top=2cm,bottom=2cm]{geometry}
+\usepackage[font=small,labelfont={small,bf},margin=0.5cm,justification=justified]{caption}
+\usepackage[font=small,labelfont={small,bf}]{subcaption}
+\usepackage[italic,defaultmathsizes]{mathastext}
+\usepackage{hyperref}
+\usepackage{calculator}
+\usepackage[breakable]{tcolorbox}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{cancel}
+\usepackage{tipa}
+\usepackage{enumerate}
+
+%\pointpoints{punto}{puntos}
+%\bonuspointpoints{punto extra}{puntos extra}
+
+\renewcommand{\solutiontitle}{\textbf{Solución: }}
+\renewcommand{\thequestion}{\bfseries\arabic{question}}
+
+\newcommand{\sgn}{\mathop{\mathrm{sgn}}}
+\newcommand{\diff}[0]{\mathrm{d}}
+\newcommand{\fdiff}[2]{\frac{\mathrm{d} #1}{\mathrm{d} #2}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\fddiff}[2]{\frac{\mathrm{d^2} #1}{\mathrm{d} #2^2}}
+\newcommand{\pddiff}[2]{\frac{\partial^2 #1}{\partial {#2}^2}}
+\newcommand{\grado}[0]{^{\circ}}
+\newcommand{\angulo}[3]{#1\grado \, #2' \, #3''}
+\newcommand{\chel}[4]{^{#1}_{#2}\mbox{#3}^{#4}}
+\newcommand{\valmed}[1]{\left\langle #1 \right\rangle}
+\newcommand{\E}[1]{\times 10^{#1}}
+\newcommand{\ver}[1]{\hat{\mathbf{#1}}}
+\newcommand{\vecg}[1]{\boldsymbol{#1}}
+\newcommand{\iu}{\mathrm{i}}
+\newcommand{\norm}[1]{\left\vert\left\vert #1 \right\vert\right\vert}
+\newcommand{\abs}[1]{\left\vert #1 \right\vert}
+\newcommand{\tens}[1]{\mathbb{#1}}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\un}[1]{\text{#1}}
+\newcommand{\logoUNAHUR}{\includegraphics[scale=0.35]{/home/shluna/Proyectos/Clases_Fisica_III/imgs/logo_unahur.png }}
+\renewcommand{\arraystretch}{1.5}
+\newcommand{\rta}{\textbf{Respuesta: }}
+\newcommand{\rtas}{\textbf{Respuestas: }}
+\newcommand{\ang}{110}
+\newcommand{\angu}{-30}
+\newcommand{\rad}{4}
+\newcommand{\mg}{1}
+\newcommand{\muc}{0.5}
+\newcommand{\arc}[1]{{%
+  \setbox9=\hbox{#1}%
+  \ooalign{\resizebox{\wd9}{\height}{\texttoptiebar{\phantom{A}}}\cr#1}}}
+
+  \colorlet{mydarkblue}{blue!40!black}
+  \colorlet{myblue}{blue!30}
+  \colorlet{myred}{red!65!black}
+  \colorlet{vcol}{green!45!black}
+  \colorlet{watercol}{blue!80!cyan!10!white}
+  \colorlet{darkwatercol}{blue!80!cyan!80!black!30!white}
+  \tikzstyle{water}=[draw=mydarkblue,top color=watercol!90,bottom color=watercol!90!black,middle color=watercol!50,shading angle=0]
+  \tikzstyle{horizontal water}=[water,
+    top color=watercol!90!black!90,bottom color=watercol!90!black!90,middle color=watercol!80,shading angle=0]
+  \tikzstyle{dark water}=[draw=blue!20!black,top color=darkwatercol,bottom color=darkwatercol!80!black,middle color=darkwatercol!40,shading angle=0]
+  \tikzstyle{vvec}=[->,very thick,vcol,line cap=round]
+  \tikzstyle{force}=[->,myred,very thick,line cap=round]
+  \tikzstyle{width}=[{Latex[length=3,width=3]}-{Latex[length=3,width=3]}]
+
+\hypersetup{
+%      draft,
+   linktocpage=true,
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    filecolor=blue,      
+    urlcolor=blue
+}
+
+\printanswers
+\qformat{\textbf{Ejercicio \thequestion}\hfill}
+
+\pagestyle{headandfoot}
+\firstpageheader{Instituto de Tecnología e Ingeniería}{\logoUNAHUR}{Física III}
+\firstpageheadrule
+\runningheader{Recuperatorio del primer parcial}{\logoUNAHUR}{Física III}
+\runningheadrule
+\firstpagefooter{}{Página \thepage\ de \numpages}{}
+\firstpagefootrule
+\runningfooter{}{Página \thepage\ de \numpages}{}
+\runningfootrule
+
+\begin{document}
+
+\renewcommand{\tablename}{Tabla}
+
+\tdplotsetmaincoords{70}{110}
+
+\begin{tcolorbox}[colback=white,arc=0mm,colframe=black]
+    \begin{center}
+        \Large\textbf{Física III -- Recuperatorio del primer parcial}
+    \end{center}
+\end{tcolorbox}
+
+\vspace{11pt}
+
+\begin{questions}
+
+    \question Un bloque de masa $m$ está unido a un clavo situado en el centro de una superficie horizontal sin rozamiento mediante un resorte de constante $k$. Se desprecia también el efecto de cualquier otra fuerza externa, como la resistencia del aire, tal como se muestra en la Figura~\ref{fig:plano_bloque_1}. Si el bloque describe un movimiento circular uniforme, mostrar que: \label{ej:plano_bloque_1} 
+    \begin{enumerate}[a)]
+        \item El radio de la trayectoria circular depende del periodo del movimiento según: $$ R = \frac{k \, L_0}{k - m \, \omega^2} $$ donde $L_0$ es la longitud \emph{natural} del resorte y $\omega = \dfrac{2 \, \pi}{P} $.
+        \item La rapidez con la que el bloque recorre la trayectoria circular viene dada por: $$ v = \sqrt{\frac{k}{m} R \left(R - L_0\right)}. $$
+    \end{enumerate}
+
+    \begin{figure}[ht]
+        \centering
+        \begin{tikzpicture}[scale=1,tdplot_main_coords]
+            \draw[thick] (-4,-4,0) -- (4,-4,0) -- (4,4,0) -- (-4,4,0) -- cycle;
+            \draw[dashed] (0,0,0) circle (3);
+            \draw[fill=gray!40] (0,0,0) circle (0.1);
+            \draw[fill=gray!40] ({0.1*cos(\ang)},{0.1*sin(\ang)},0) -- ({0.1*cos(\ang)},{0.1*sin(\ang)},0.5) -- ({-0.1*cos(\ang)},{-0.1*sin(\ang)},0.5) -- ({-0.1*cos(\ang)},{-0.1*sin(\ang)},0);
+            \draw[fill=gray!40] (0,0,0.5) circle (0.1);
+            \draw[thick] (0,-0.1,0.25) arc (-90:90:0.1);
+            \draw[decoration={coil,segment length = 1mm,amplitude = 2mm,aspect = 0.3,post length = 3mm,pre length = 3mm},decorate,thick,black!50] (0,0.1,0.25) -- node[above=4pt]{$k$} (0,3,0.25);
+            %\draw[thick,-Kite] (4,3,0.25) -- (3.6,3,0.25);
+            %\draw[thick,red,-latex] (0,3,0.25) -- node[anchor=north west]{$\vec{v}_{\text{B}2}$} (-3,3,0.25);
+            \draw[thick,-latex] (0,3,0.25) -- node[anchor=north west]{$\vec{v}$} (-3,3,0.25);
+            % \draw[densely dashed] (-3,3,0.25) -- (-5,3,0.25);
+            % \draw[thick,-Kite] (-5,3,0.25) -- (-5.25,3,0.25);
+            % \draw[thick,-latex,blue] (-4,3.5,0.25) -- node[anchor=north west]{$\vec{v}_{\text{A}2}$} (-5.5,3.5,0.25);
+            \draw[fill=gray!40] (-0.5,2.75,0) -- (-0.5,3.25,0) -- (0.5,3.25,0) -- (0.5,2.75,0) -- cycle;
+            \draw[fill=gray!40] (-0.5,2.75,0.5) -- (-0.5,3.25,0.5) -- (0.5,3.25,0.5) -- (0.5,2.75,0.5) -- cycle;
+            \draw[fill=gray!40] (0.5,2.75,0) -- (0.5,2.75,0.5) -- (0.5,3.25,0.5) -- (0.5,3.25,0) -- cycle;
+            \draw[fill=gray!40] (0.5,3.25,0) -- (0.5,3.25,0.5) -- (-0.5,3.25,0.5) -- (-0.5,3.25,0) -- cycle;
+            %\draw[densely dashed] (3.6,3,0.25) -- (0.5,3,0.25);
+        \end{tikzpicture}
+        \caption{ }
+        \label{fig:plano_bloque_1}
+    \end{figure}
+
+    \question Un resorte de constante $k$ se sujeta por uno de sus extremos a un techo, mientras que el otro extremo se une a un bloque de masa $m$. Se observa que en el equilibrio, la deformación del resorte es $\Delta L$. Luego, el sistema formado por el resorte y el bloque se coloca sobre una superficie horizontal lisa (se desprecia el rozamiento entre el bloque y la superficie) y se lo pone a oscilar. Demostrar que el periodo del oscilador armónico simple puede calcularse con la expresión: $$ P = 2 \, \pi \sqrt{\frac{\Delta L}{g}} $$
+
+    
+
+\end{questions}
+
+\end{document}
