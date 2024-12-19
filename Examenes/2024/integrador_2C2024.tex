@@ -123,45 +123,9 @@
 
 \begin{questions}
 
-    \question Un bloque de masa $m$ está unido a un clavo situado en el centro de una superficie horizontal sin rozamiento mediante un resorte de constante $k$. Se desprecia también el efecto de cualquier otra fuerza externa, como la resistencia del aire, tal como se muestra en la Figura~\ref{fig:plano_bloque_1}. Si el bloque describe un movimiento circular uniforme, mostrar que: \label{ej:plano_bloque_1} 
-    \begin{enumerate}[a)]
-        \item El radio de la trayectoria circular depende del periodo del movimiento según: $$ R = \frac{k \, L_0}{k - m \, \omega^2} $$ donde $L_0$ es la longitud \emph{natural} del resorte y $\omega = \dfrac{2 \, \pi}{P} $.
-        \item La rapidez con la que el bloque recorre la trayectoria circular viene dada por: $$ v = \sqrt{\frac{k}{m} R \left(R - L_0\right)}. $$
-    \end{enumerate}
-
-    \begin{figure}[ht]
-        \centering
-        \begin{tikzpicture}[scale=1,tdplot_main_coords]
-            \draw[thick] (-4,-4,0) -- (4,-4,0) -- (4,4,0) -- (-4,4,0) -- cycle;
-            \draw[dashed] (0,0,0) circle (3);
-            \draw[fill=gray!40] (0,0,0) circle (0.1);
-            \draw[fill=gray!40] ({0.1*cos(\ang)},{0.1*sin(\ang)},0) -- ({0.1*cos(\ang)},{0.1*sin(\ang)},0.5) -- ({-0.1*cos(\ang)},{-0.1*sin(\ang)},0.5) -- ({-0.1*cos(\ang)},{-0.1*sin(\ang)},0);
-            \draw[fill=gray!40] (0,0,0.5) circle (0.1);
-            \draw[thick] (0,-0.1,0.25) arc (-90:90:0.1);
-            \draw[decoration={coil,segment length = 1mm,amplitude = 2mm,aspect = 0.3,post length = 3mm,pre length = 3mm},decorate,thick,black!50] (0,0.1,0.25) -- node[above=4pt]{$k$} (0,3,0.25);
-            %\draw[thick,-Kite] (4,3,0.25) -- (3.6,3,0.25);
-            %\draw[thick,red,-latex] (0,3,0.25) -- node[anchor=north west]{$\vec{v}_{\text{B}2}$} (-3,3,0.25);
-            \draw[thick,-latex] (0,3,0.25) -- node[anchor=north west]{$\vec{v}$} (-3,3,0.25);
-            % \draw[densely dashed] (-3,3,0.25) -- (-5,3,0.25);
-            % \draw[thick,-Kite] (-5,3,0.25) -- (-5.25,3,0.25);
-            % \draw[thick,-latex,blue] (-4,3.5,0.25) -- node[anchor=north west]{$\vec{v}_{\text{A}2}$} (-5.5,3.5,0.25);
-            \draw[fill=gray!40] (-0.5,2.75,0) -- (-0.5,3.25,0) -- (0.5,3.25,0) -- (0.5,2.75,0) -- cycle;
-            \draw[fill=gray!40] (-0.5,2.75,0.5) -- (-0.5,3.25,0.5) -- (0.5,3.25,0.5) -- (0.5,2.75,0.5) -- cycle;
-            \draw[fill=gray!40] (0.5,2.75,0) -- (0.5,2.75,0.5) -- (0.5,3.25,0.5) -- (0.5,3.25,0) -- cycle;
-            \draw[fill=gray!40] (0.5,3.25,0) -- (0.5,3.25,0.5) -- (-0.5,3.25,0.5) -- (-0.5,3.25,0) -- cycle;
-            %\draw[densely dashed] (3.6,3,0.25) -- (0.5,3,0.25);
-        \end{tikzpicture}
-        \caption{ }
-        \label{fig:plano_bloque_1}
-    \end{figure}
-
-    \question Un resorte de constante $k$ se sujeta por uno de sus extremos a un techo, mientras que el otro extremo se une a un bloque de masa $m$. Se observa que en el equilibrio, la deformación del resorte es $\Delta L$. Luego, el sistema formado por el resorte y el bloque se coloca sobre una superficie horizontal lisa (se desprecia el rozamiento entre el bloque y la superficie) y se lo pone a oscilar. Demostrar que el periodo del oscilador armónico simple puede calcularse con la expresión: $$ P = 2 \, \pi \sqrt{\frac{\Delta L}{g}} $$
-
-    %% \question Un resorte de constante $k_1$ se une a un bloque de masa $m$. Luego el sistema formado por estos se dispone en dirección horizontal y se lo hace oscilar alrededor de la posición de equilibrio del resorte. Si se observa que el periodo es $P_1$, mostrar que si el resorte se reemplaza por otro de constante $k_2$, el sistema formado por este nuevo resorte y el bloque oscilará con un periodo $P_2$ dado por: $$ P_2 = P_1 \sqrt{\frac{k_1}{k_2}}.$$
-
-    \pagebreak
-
-    \question \label{ej:volante_freno} Un volante de masa $M$ y radio $R$ puede girar libremente y sin rozamiento alrededor de un eje horizontal que pasa por su centro geométrico, el cual se indica con el punto $O$ de la Figura~\ref{fig:volante_freno}. Una cuerda arrollada a la circunferencia del volante une a este último con un balde de masa $m_0$. El volante se considera un cuerpo rígido cuyo momento de inercia es $I = \dfrac{1}{2} \, M \, R^2$, mientras que el balde se asume como una masa puntual. Al mismo tiempo, el volante está en contacto con un freno que consiste en un resorte de constante $k$ el cual se encuentra comprimido hasta una longitud $L_1$. La longitud natural del resorte es $L_0$. Todo el sistema se encuentra inicialmente en equilibrio estático. Mostrar que:
+    \question Un resorte de constante $k_1$ se une a un bloque de masa $m$. Luego el sistema formado por estos se dispone en dirección horizontal y se lo hace oscilar alrededor de la posición de equilibrio del resorte. Si se observa que el periodo es $P_1$, mostrar que si el resorte se reemplaza por otro de constante $k_2$, el sistema formado por este nuevo resorte y el bloque oscilará con un periodo $P_2$ dado por: $$ P_2 = P_1 \sqrt{\frac{k_1}{k_2}}.$$
+    
+    \question \label{ej:volante_hueco} Un volante, que tiene forma de un cilindro hueco, de masa $M$, radio interno $R_0$ y radio externo $R$, puede girar libremente y sin rozamiento alrededor de un eje horizontal que pasa por su centro geométrico, el cual se indica con el punto $O$ de la Figura~\ref{fig:volante_hueco}. Una cuerda arrollada a la circunferencia del volante une a este último con un balde de masa $m_0$. El volante se considera un cuerpo rígido cuyo momento de inercia es $I = \dfrac{1}{2} \, M \, R^2$, mientras que el balde se asume como una masa puntual. Al mismo tiempo, el volante está en contacto con un freno que consiste en un resorte de constante $k$ el cual se encuentra comprimido hasta una longitud $L_1$. La longitud natural del resorte es $L_0$. Todo el sistema se encuentra inicialmente en equilibrio estático. Mostrar que:
     \begin{parts}
         \part La cantidad mínima de masa $\Delta m$ que se debe agregar al balde para iniciar el movimiento viene dada por: $$ \Delta m = \frac{\mu_\text{e} \, k \left(L_1 - L_0\right)}{g} - m_0, $$ donde $\mu_\text{e}$ es el coeficiente estático de rozamiento entre el volante y el freno.
         \part Las componentes $x$ e $y$ de la fuerza $\vec{F}$ que el eje ejerce sobre el volante están dadas por: $$ F_x = k \, \Delta L, \qquad \text{ y } \qquad F_y = \left(m + M\right) g + \mu_\text{e} \, k \, \left(L_1 - L_0\right).$$
@@ -176,34 +140,30 @@
             \def\w{0.25}
             \def\l{1}
             \def\L{1}
-            \def\h{4}
+            \def\h{3}
+            \def\x{0.7}
 
             \coordinate (O) at (0,0);
             \coordinate (A) at (-\R,0);
-            \coordinate (B) at (\R,0);
-            \coordinate (C) at ({\R+\d},0);
             \coordinate (D) at (-\R,-\h);
 
             \draw[thick,fill=gray!40] (O) circle (\R);
+            \draw[thick,fill=white] (O) circle ({\x*\R});
+            \begin{scope}[rotate=30]
+                \draw[ultra thick] (O) -- (0:{\x*\R});
+                \draw[ultra thick] (O) -- (120:{\x*\R});
+                \draw[ultra thick] (O) -- (240:{\x*\R});
+            \end{scope}
+            \draw[thick,fill=gray!40] (O) circle ({0.05*\R});
 
-            \draw[-latex] (O) -- node[fill=gray!40]{$R$} (45:\R);
+            \draw[-latex] (O) -- node[fill=white]{$R$} (60:\R);
+            \draw[-latex] (O) -- node[fill=white]{$R_0$} ({270+45}:{\x*\R});
 
-            \draw[thick,->] ({-(\R+1)},0) -- ({\R+\d+1},0) node[anchor=north]{$x$};
+            \draw[thick,->] ({-(\R+1)},0) -- ({\R+1},0) node[anchor=north]{$x$};
             \draw[thick,->] (0,{-(\R+1)}) -- (0,{\R+1}) node[anchor=east]{$y$};
-
-            \draw[decoration={coil,segment length = 1mm,amplitude = 4mm,aspect = 0.3,post length = 3mm,pre length = 3mm},decorate,thick,black!50] ({\R+\w},0) -- node[above=5mm]{$k$} ({\R+\d},0);
-
-            \draw[thick,pattern=north east lines] (\R,{-0.5*\l}) rectangle ({\R+\w},{0.5*\l});
-            
-            \fill[pattern=north east lines] ({\R+\d},{-0.5*\l}) rectangle ({\R+\d+0.2},{0.5*\l});
-            \draw[ultra thick] ({\R+\d},{-0.5*\l}) -- ({\R+\d},{0.5*\l});
-
-            \draw[<->] (\R,1.5) -- node[fill=white]{$L_1$} ({\R+\d},1.5);
-            \draw (\R,0.6) -- (\R,1.6);
-            \draw ({\R+\d},0.6) -- ({\R+\d},1.6);
-
             \draw[thick] (A) -- (D);
             
+            %% Balde.
             \begin{scope}[shift={(D)}]
                 \draw[thick] (0.5,-0.5) arc (0:180:0.5);
                 \draw[thick,fill=gray!30] (-0.5,-0.5) -- (0.5,-0.5) -- (0.4,-1.3) -- (-0.4,-1.3) -- cycle;
@@ -211,13 +171,11 @@
 
             \fill[black] (O) circle (0.5mm) node[anchor=north east]{$O$};
             \fill[black] (A) circle (0.5mm) node[anchor=south east]{$A$};
-            \fill[black] (B) circle (0.5mm) node[anchor=south east]{$B$};
-            \fill[black] (C) circle (0.5mm) node[anchor=north east]{$C$};
             \fill[black] (D) circle (0.5mm) node[anchor=south east]{$A'$};
 
         \end{tikzpicture}
-        \caption{Esquema del Ejercicio~\ref{ej:volante_freno}.}
-        \label{fig:volante_freno}
+        \caption{Esquema del Ejercicio~\ref{ej:volante_hueco}.}
+        \label{fig:volante_hueco}
     \end{figure}
 
 \end{questions}
